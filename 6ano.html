@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>6.º Ano — Missão Escolar</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="arena.css">
+<link rel="stylesheet" href="escrita.css">
+<link rel="stylesheet" href="animacoes.css">
+</head>
+<body>
+
+<div class="page">
+  <!-- light top: where am I · help · pause · for parents · summaries -->
+  <div class="topbar">
+    <p class="crumbs"><a href="index.html">🏠 Início</a> › 6.º ano</p>
+    <button type="button" class="ghost" id="help-btn">❓ Ajuda</button>
+    <button type="button" class="ghost" id="pause-btn">⏸️ Pausa</button>
+    <a class="ghost" href="pais.html">👪 Para pais</a>
+    <a class="ghost" href="resumo.html">📄 Resumos</a>
+  </div>
+  <section class="strip" id="today-panel" aria-label="O teu progresso"></section>
+
+  <div class="tabs" id="subject-tabs">
+    <button class="tab-btn" data-subject="pt" type="button">📖 Português</button>
+    <button class="tab-btn" data-subject="math" type="button">🔢 Matemática</button>
+    <button class="tab-btn" data-subject="eng" type="button">🌐 Inglês</button>
+    <button class="tab-btn" data-subject="hgp" type="button">📜 HGP</button>
+    <button class="tab-btn" data-subject="cn" type="button">🔬 Ciências</button>
+  </div>
+
+  <section id="subj-pt" data-panel="pt" hidden>
+    <div class="subtabs" role="tablist" aria-label="Português">
+      <button type="button" class="subtab" data-view="mundos" role="tab">🗺️ Mundos</button>
+      <button type="button" class="subtab" data-view="escrita" role="tab">✍️ Oficina de Escrita</button>
+    </div>
+    <div class="subview" data-view="mundos">
+      <div class="map-view" id="map-pt">
+        <div class="map-head"><p class="sec-title">Escolhe um mundo <small class="muted" id="map-count-pt"></small></p><span class="xp-pill">⭐ <span class="n"><span id="xp-total-pt">0</span> / <span id="xp-max-pt">0</span> XP</span></span></div>
+        <nav class="map" id="jump-nav-pt" aria-label="Mundos de Português"></nav>
+      </div>
+      <main id="worlds-pt"></main>
+    </div>
+
+    <!-- ===================== OFICINA DE ESCRITA ===================== -->
+    <div class="subview" data-view="escrita" hidden>
+      <div class="ws-head">
+        <div>
+          <h2>✍️ Oficina de Escrita</h2>
+          <p>Treina os dedos no teclado e as ideias no papel — ao teu ritmo.</p>
+        </div>
+        <button type="button" class="ws-btn" id="ws-curio-open">💡 Sabias que…?</button>
+      </div>
+
+      <div class="tabs ws-tabs" role="tablist">
+        <button class="tab-btn" type="button" role="tab" data-tab="teclado">⌨️ Treino de teclado</button>
+        <button class="tab-btn" type="button" role="tab" data-tab="escrever">✍️ Escrever</button>
+      </div>
+
+      <section id="tab-teclado" class="ws-panel" data-panel="teclado">
+        <div class="ws-card">
+          <div class="ws-row">
+            <label>Frases de
+              <select id="ty-source">
+                <option value="mix">🎲 Tudo misturado</option>
+                <option value="fun">😄 Frases divertidas</option>
+                <option value="pt">📖 Português</option>
+                <option value="hgp">📜 HGP</option>
+                <option value="math">🔢 Matemática</option>
+                <option value="cn">🔬 Ciências</option>
+                <option value="eng">🌐 Inglês</option>
+              </select>
+            </label>
+            <label>Tamanho
+              <select id="ty-level">
+                <option value="short">🌱 Curtas</option>
+                <option value="medium">🌿 Médias</option>
+                <option value="long">🌳 Longas</option>
+              </select>
+            </label>
+            <label class="ws-check"><input type="checkbox" id="ty-accents"> Ignorar acentos</label>
+            <label class="ws-check"><input type="checkbox" id="ty-clock"> Mostrar relógio</label>
+          </div>
+          <p class="ty-target" id="ty-target" aria-live="polite"></p>
+          <textarea id="ty-input" class="ty-input" rows="3" spellcheck="false" autocomplete="off" autocapitalize="off"
+            placeholder="Começa a escrever aqui — o tempo só conta depois da primeira letra."></textarea>
+          <div class="ws-row ty-status">
+            <span id="ty-live"></span>
+            <button type="button" class="ws-btn" id="ty-next">Outra frase ↻</button>
+          </div>
+          <div id="ty-result" class="ty-result" hidden></div>
+        </div>
+        <details class="ws-card ws-tips">
+          <summary>🖐️ Dicas para escrever sem olhar para o teclado</summary>
+          <ul>
+            <li>Pousa os dedos na <b>fila do meio</b>: mão esquerda em <kbd>A</kbd> <kbd>S</kbd> <kbd>D</kbd> <kbd>F</kbd>, mão direita em <kbd>J</kbd> <kbd>K</kbd> <kbd>L</kbd> <kbd>Ç</kbd>.</li>
+            <li>Sente os pequenos relevos no <kbd>F</kbd> e no <kbd>J</kbd>: são as tuas "casas".</li>
+            <li>Os polegares ficam na barra de espaços.</li>
+            <li>Primeiro acerta, depois acelera. A velocidade vem sozinha com o treino.</li>
+            <li>Acentos: no teclado português, carrega primeiro na tecla do acento (´ ` ^ ~) e depois na letra.</li>
+          </ul>
+        </details>
+      </section>
+
+      <section id="tab-escrever" class="ws-panel" data-panel="escrever" hidden>
+        <div class="ws-card">
+          <p class="ws-step">1. Escolhe um tema</p>
+          <div class="ws-chips" id="wr-cats" role="group" aria-label="Categorias de temas">
+            <button type="button" class="ws-chip" data-cat="feliz">😊 Diário feliz</button>
+            <button type="button" class="ws-chip" data-cat="atualidade">🌍 Atualidade</button>
+            <button type="button" class="ws-chip" data-cat="passado">🏛️ Viagem ao passado</button>
+            <button type="button" class="ws-chip" data-cat="tipos">📚 Por tipo de texto</button>
+            <button type="button" class="ws-chip" data-cat="surpresa">🎲 Surpreende-me</button>
+          </div>
+          <div class="ws-themes" id="wr-themes"></div>
+        </div>
+        <div class="ws-card">
+          <div class="ws-row">
+            <label>2. Tipo de texto
+              <select id="wr-type"></select>
+            </label>
+            <span class="wr-count" id="wr-count"></span>
+          </div>
+          <ol class="wr-steps" id="wr-steps"></ol>
+          <input id="wr-title" class="wr-title" type="text" placeholder="Título (podes mudar quando quiseres)" aria-label="Título">
+          <textarea id="wr-text" class="wr-text" rows="14" placeholder="Escreve aqui. Se ficares sem ideias, toca em 💡 E agora?" aria-label="O teu texto"></textarea>
+          <div class="wr-idle" id="wr-idle" hidden>Estás a pensar? Toca em <b>💡 E agora?</b> para uma pista.</div>
+          <div class="wr-hint" id="wr-hint" aria-live="polite" hidden></div>
+          <div class="ws-row wr-actions">
+            <button type="button" class="ws-btn primary" id="wr-next">💡 E agora?</button>
+            <button type="button" class="ws-btn" id="wr-twist">🎲 Reviravolta</button>
+            <button type="button" class="ws-btn" id="wr-done">✅ Terminei!</button>
+            <span class="wr-spacer"></span>
+            <button type="button" class="ws-btn" id="wr-download">⬇️ Guardar .txt</button>
+            <button type="button" class="ws-btn" id="wr-print">🖨️ Imprimir</button>
+            <button type="button" class="ws-btn" id="wr-new">📄 Novo texto</button>
+          </div>
+          <p class="ws-note">O texto fica guardado sozinho neste computador, mesmo que feches a página.</p>
+        </div>
+        <div class="ws-card">
+          <p class="ws-step">📚 Os meus textos</p>
+          <ul class="wr-saved" id="wr-saved"></ul>
+        </div>
+      </section>
+    </div><!-- /escrita -->
+  </section>
+
+  <section id="subj-math" data-panel="math" hidden>
+    <div class="subtabs" role="tablist" aria-label="Matemática">
+      <button type="button" class="subtab" data-view="mundos" role="tab">🗺️ Mundos</button>
+      <button type="button" class="subtab" data-view="arena" role="tab">🎮 Arena de Matemática</button>
+    </div>
+    <div class="subview" data-view="mundos">
+      <div class="map-view" id="map-math">
+        <div class="map-head"><p class="sec-title">Escolhe um mundo <small class="muted" id="map-count-math"></small></p><span class="xp-pill">⭐ <span class="n"><span id="xp-total-math">0</span> / <span id="xp-max-math">0</span> XP</span></span></div>
+        <nav class="map" id="jump-nav-math" aria-label="Mundos de Matemática"></nav>
+      </div>
+      <main id="worlds-math"></main>
+    </div>
+
+    <!-- ===================== ARENA DE MATEMÁTICA ===================== -->
+    <div class="subview" data-view="arena" id="arena-root" hidden>
+      <header class="ar-player" id="ar-player"></header>
+
+      <section id="ar-lobby">
+        <h2 class="ar-title">🎮 Arena de Matemática</h2>
+        <p class="ar-sub">Exercícios sem fim, com números e desenhos sempre novos. A dificuldade ajusta-se a ti: sobe quando acertas, desce quando precisas de treinar.</p>
+        <div class="ar-modes" role="radiogroup" aria-label="Modo de jogo">
+          <button type="button" class="ar-mode" data-mode="treino" role="radio"><b>🎯 Treino</b><small>10 perguntas, sem relógio. Vês a resolução quando erras.</small></button>
+          <button type="button" class="ar-mode" data-mode="relampago" role="radio"><b>⚡ Relâmpago</b><small>60 segundos: quantas consegues acertar?</small></button>
+        </div>
+        <div class="ar-topics" id="ar-topics"></div>
+        <div class="ar-badges" id="ar-badges"></div>
+      </section>
+
+      <section id="ar-game" hidden>
+        <div class="ar-hud">
+          <button type="button" class="ar-quit" id="ar-quit" aria-label="Sair da ronda">✕</button>
+          <div class="ar-progress" id="ar-progress"></div>
+          <span class="ar-combo" id="ar-combo" aria-live="polite"></span>
+        </div>
+        <article class="ar-card" id="ar-card">
+          <p class="ar-meta" id="ar-meta"></p>
+          <div class="ar-q" id="ar-q"></div>
+          <div class="ar-visual" id="ar-visual"></div>
+          <div class="ar-choices" id="ar-choices"></div>
+          <div class="ar-interact" id="ar-interact" hidden></div>
+          <button type="button" class="ar-verify" id="ar-verify" hidden>Verificar ✓</button>
+          <form class="ar-answer" id="ar-answer" autocomplete="off">
+            <input id="ar-input" class="ar-input" type="text" aria-label="A tua resposta" spellcheck="false">
+            <span class="ar-unit" id="ar-unit"></span>
+            <button type="submit" class="ar-ok">OK ↵</button>
+          </form>
+          <div class="ar-keypad" id="ar-keypad" aria-hidden="true"></div>
+          <div class="ar-tools">
+            <button type="button" class="ar-hint-btn" id="ar-hint-btn">💡 Pista</button>
+            <span class="ar-hint" id="ar-hint" hidden></span>
+          </div>
+          <div class="ar-feedback" id="ar-feedback" aria-live="assertive" hidden></div>
+        </article>
+      </section>
+
+      <section id="ar-result" hidden></section>
+    </div><!-- /arena -->
+  </section>
+
+  <section id="subj-eng" data-panel="eng" hidden>
+    <div class="map-view" id="map-eng">
+      <div class="map-head"><p class="sec-title">Escolhe um mundo <small class="muted" id="map-count-eng"></small></p><span class="xp-pill">⭐ <span class="n"><span id="xp-total-eng">0</span> / <span id="xp-max-eng">0</span> XP</span></span></div>
+      <nav class="map" id="jump-nav-eng" aria-label="Mundos de Inglês"></nav>
+    </div>
+    <main id="worlds-eng"></main>
+  </section>
+
+  <section id="subj-hgp" data-panel="hgp" hidden>
+    <div class="map-view" id="map-hgp">
+      <div class="map-head"><p class="sec-title">Escolhe um mundo <small class="muted" id="map-count-hgp"></small></p><span class="xp-pill">⭐ <span class="n"><span id="xp-total-hgp">0</span> / <span id="xp-max-hgp">0</span> XP</span></span></div>
+      <nav class="map" id="jump-nav-hgp" aria-label="Mundos de HGP"></nav>
+    </div>
+    <main id="worlds-hgp"></main>
+  </section>
+
+  <section id="subj-cn" data-panel="cn" hidden>
+    <div class="map-view" id="map-cn">
+      <div class="map-head"><p class="sec-title">Escolhe um mundo <small class="muted" id="map-count-cn"></small></p><span class="xp-pill">⭐ <span class="n"><span id="xp-total-cn">0</span> / <span id="xp-max-cn">0</span> XP</span></span></div>
+      <nav class="map" id="jump-nav-cn" aria-label="Mundos de Ciências Naturais"></nav>
+    </div>
+    <main id="worlds-cn"></main>
+  </section>
+</div>
+
+<script src="data/portugues.js"></script>
+<script src="data/hgp.js"></script>
+<script src="data/matematica.js"></script>
+<script src="data/cn.js"></script>
+<script src="data/ingles.js"></script>
+<script src="data/extra-portugues.js"></script>
+<script src="data/extra-hgp.js"></script>
+<script src="data/extra-matematica.js"></script>
+<script src="data/extra-cn.js"></script>
+<script src="data/extra-ingles.js"></script>
+<script src="data/escrita.js"></script>
+<script src="shared.js"></script>
+<script src="animacoes.js"></script>
+<script src="animacoes-matematica.js"></script>
+<script src="animacoes-ciencias.js"></script>
+<script src="animacoes-hgp-pt-ing.js"></script>
+<script src="app.js"></script>
+<script src="arena-exercicios.js"></script>
+<script src="arena.js"></script>
+<script src="escrita.js"></script>
+
+</body></html>
