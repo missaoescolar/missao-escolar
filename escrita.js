@@ -1,356 +1,254 @@
-/* Oficina de Escrita: treino de teclado + escrita guiada com pistas "E agora?" */
-(function(){
-  const $ = id => document.getElementById(id);
-  function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
-  function load(key, fallback){ try{ const v = localStorage.getItem(key); return v===null ? fallback : JSON.parse(v); }catch(e){ return fallback; } }
-  function store(key, v){ try{ localStorage.setItem(key, JSON.stringify(v)); }catch(e){} }
-  function pick(list){ return list[Math.floor(Math.random()*list.length)]; }
+/* Oficina de Escrita — conteúdo (usado por escrita.js)
+   ESCRITA_TIPOS:   tipos de texto estudados no 2.º ciclo, com etapas e pistas "E agora?"
+   ESCRITA_TEMAS:   sugestões de temas por categoria (cada uma sugere um tipo de texto)
+   ESCRITA_REVIRAVOLTAS, TECLADO_FRASES, ESCRITA_CURIOSIDADES */
 
-  /* ---------- modal (same look as the main page) ---------- */
-  let modal = null, returnFocus = null;
-  function openModal(title, html, trigger){
-    if(!modal){
-      modal = document.createElement("div");
-      modal.className = "modal-overlay";
-      modal.setAttribute("role","dialog"); modal.setAttribute("aria-modal","true");
-      modal.innerHTML = '<div class="modal-box"><button type="button" class="modal-close" aria-label="Fechar">✕</button><h3 class="modal-title"></h3><div class="modal-body"></div></div>';
-      document.body.appendChild(modal);
-      modal.addEventListener("click", e => { if(e.target===modal) closeModal(); });
-      modal.querySelector(".modal-close").addEventListener("click", closeModal);
-      document.addEventListener("keydown", e => { if(e.key==="Escape" && modal.classList.contains("open")) closeModal(); });
-    }
-    modal.querySelector(".modal-title").textContent = title;
-    modal.querySelector(".modal-body").innerHTML = html;
-    modal.classList.add("open");
-    returnFocus = trigger || document.activeElement;
-    modal.querySelector(".modal-close").focus();
+const ESCRITA_TIPOS = {
+  narrativo: {
+    nome:"Texto narrativo (história)", icon:"📖", alvo:180,
+    etapas:[
+      {nome:"Introdução", ajuda:"Apresenta quem, onde e quando.", pistas:[
+        "Quem é a personagem principal? Dá-lhe um nome e uma característica especial.",
+        "Onde começa a história? Descreve o lugar com um pormenor que se veja, ouça ou cheire.",
+        "Quando acontece? De manhã, numa noite de tempestade, há 100 anos?",
+        "O que é que a personagem quer muito, logo no início?"
+      ]},
+      {nome:"Desenvolvimento", ajuda:"Aparece um problema e a personagem tenta resolvê-lo.", pistas:[
+        "Que problema ou obstáculo aparece de repente?",
+        "O que tenta a personagem fazer para resolver o problema? Corre bem à primeira?",
+        "Quem pode ajudar — ou atrapalhar?",
+        "O que é que a personagem sente neste momento? Medo, coragem, dúvida?",
+        "E se uma personagem dissesse algo importante? Usa o travessão (—) para o diálogo."
+      ]},
+      {nome:"Conclusão", ajuda:"O problema resolve-se (ou não) e a personagem muda.", pistas:[
+        "Como é que o problema se resolve, por fim?",
+        "O que aprendeu a personagem com esta aventura?",
+        "Como fica a vida da personagem no fim? Igual ou diferente?",
+        "Que última frase deixaria o leitor a sorrir ou a pensar?"
+      ]}
+    ],
+    rever:["A história tem princípio, meio e fim?","Usei parágrafos para mudar de momento?","Os diálogos começam com travessão (—)?","Os tempos verbais estão no passado, do princípio ao fim?"]
+  },
+  descritivo: {
+    nome:"Texto descritivo", icon:"🖼️", alvo:120,
+    etapas:[
+      {nome:"Visão geral", ajuda:"Diz o que vais descrever e a primeira impressão.", pistas:[
+        "O que estás a descrever, e qual é a primeira coisa em que se repara?",
+        "Se fosse uma fotografia, o que estaria no centro?"
+      ]},
+      {nome:"Pormenores", ajuda:"Usa os cinco sentidos e adjetivos ricos.", pistas:[
+        "Que cores e formas vês? Troca 'bonito' por uma palavra mais exata.",
+        "Que sons se ouvem? E que cheiros há no ar?",
+        "Se tocasses, como seria: liso, áspero, frio, macio?",
+        "Faz uma comparação: '…é como…'.",
+        "Descreve de cima para baixo, ou de perto para longe — escolhe uma ordem."
+      ]},
+      {nome:"Sentimento final", ajuda:"Termina com o que sentes.", pistas:[
+        "O que sentes quando estás neste lugar (ou com esta pessoa)?",
+        "Porque é que isto é especial para ti?"
+      ]}
+    ],
+    rever:["Usei vários sentidos (visão, audição, olfato, tato, paladar)?","Troquei palavras vagas ('coisa', 'bonito') por palavras exatas?","Os adjetivos concordam com os nomes?"]
+  },
+  carta: {
+    nome:"Carta / email", icon:"✉️", alvo:120,
+    etapas:[
+      {nome:"Abertura", ajuda:"Local, data e saudação.", pistas:[
+        "Escreveste o local e a data no topo (ex.: Porto, 9 de outubro de 2026)?",
+        "Como cumprimentas? 'Querida avó', 'Olá, Rui', 'Exmo. Senhor'…"
+      ]},
+      {nome:"Corpo", ajuda:"Diz porque escreves e desenvolve.", pistas:[
+        "Qual é o motivo da carta? Diz logo no primeiro parágrafo.",
+        "Conta uma novidade ou faz uma pergunta à pessoa.",
+        "Que pormenor tornaria a carta mais pessoal?"
+      ]},
+      {nome:"Despedida", ajuda:"Despede-te e assina.", pistas:[
+        "Como te despedes? 'Um beijinho', 'Até breve', 'Com os melhores cumprimentos'…",
+        "Assinaste o teu nome no fim?"
+      ]}
+    ],
+    rever:["Tem local, data, saudação, corpo, despedida e assinatura?","O tom combina com a pessoa a quem escrevo (amigo ou desconhecido)?"]
+  },
+  diario: {
+    nome:"Diário", icon:"📔", alvo:100,
+    etapas:[
+      {nome:"O dia", ajuda:"Data e o que aconteceu.", pistas:[
+        "Escreve a data e como estava o tempo.",
+        "O que aconteceu hoje de mais importante?"
+      ]},
+      {nome:"O que senti", ajuda:"Fala dos teus sentimentos.", pistas:[
+        "Como te sentiste? Tenta dar um nome exato ao sentimento.",
+        "Houve algum momento que te fez sorrir?",
+        "Alguém te surpreendeu hoje?"
+      ]},
+      {nome:"O que levo comigo", ajuda:"Termina com uma ideia para amanhã.", pistas:[
+        "O que aprendeste hoje (sobre o mundo ou sobre ti)?",
+        "O que queres fazer amanhã?"
+      ]}
+    ],
+    rever:["Escrevi na 1.ª pessoa (eu)?","Pus a data?","Falei do que senti, e não só do que aconteceu?"]
+  },
+  noticia: {
+    nome:"Notícia", icon:"📰", alvo:120,
+    etapas:[
+      {nome:"Título e lead", ajuda:"O primeiro parágrafo responde às perguntas essenciais.", pistas:[
+        "O teu título é curto e chamativo?",
+        "O primeiro parágrafo responde a: Quem? O quê? Quando? Onde?"
+      ]},
+      {nome:"Desenvolvimento", ajuda:"Como e porquê, com pormenores.", pistas:[
+        "Como é que aconteceu? E porquê?",
+        "Junta uma citação de uma testemunha, entre aspas.",
+        "Há algum número importante (quantas pessoas, que distância, quanto tempo)?"
+      ]},
+      {nome:"Fecho", ajuda:"O que vai acontecer a seguir.", pistas:[
+        "O que vai acontecer a seguir?",
+        "Releste para garantir que só puseste factos, e não a tua opinião?"
+      ]}
+    ],
+    rever:["Respondi a quem, o quê, quando, onde, como e porquê?","Escrevi na 3.ª pessoa, sem opinar?","O título resume a notícia?"]
+  },
+  opiniao: {
+    nome:"Texto de opinião", icon:"💬", alvo:150,
+    etapas:[
+      {nome:"A minha opinião", ajuda:"Apresenta o tema e o que pensas.", pistas:[
+        "Qual é o tema? Apresenta-o numa frase.",
+        "Qual é a tua opinião? Começa com 'Na minha opinião…' ou 'Eu defendo que…'."
+      ]},
+      {nome:"Argumentos", ajuda:"Dá razões e exemplos.", pistas:[
+        "Qual é o teu primeiro argumento? Dá um exemplo concreto.",
+        "Tens um segundo argumento? Liga-o com 'Além disso,…'.",
+        "O que diria alguém que pensa o contrário? Como lhe respondes?"
+      ]},
+      {nome:"Conclusão", ajuda:"Reforça a tua opinião.", pistas:[
+        "Resume a tua opinião com 'Em conclusão,…' ou 'Por tudo isto,…'.",
+        "Deixa uma proposta ou um desafio a quem lê."
+      ]}
+    ],
+    rever:["A minha opinião está clara no início?","Cada argumento tem um exemplo?","Usei conectores (além disso, por exemplo, no entanto, em conclusão)?"]
+  },
+  poema: {
+    nome:"Poema", icon:"🎵", alvo:40,
+    etapas:[
+      {nome:"Primeira estrofe", ajuda:"Escolhe uma imagem forte.", pistas:[
+        "Sobre que coisa, pessoa ou sentimento é o poema?",
+        "Escreve um verso com uma imagem: 'O mar é…'."
+      ]},
+      {nome:"Mais estrofes", ajuda:"Brinca com sons e repetições.", pistas:[
+        "Experimenta uma rima no fim de dois versos.",
+        "Repete uma palavra ou um verso — dá ritmo.",
+        "Usa uma personificação: dá ações humanas a uma coisa (o vento sussurra…)."
+      ]},
+      {nome:"Último verso", ajuda:"Termina com força.", pistas:[
+        "Que último verso fecharia o poema com surpresa ou emoção?"
+      ]}
+    ],
+    rever:["Organizei em versos e estrofes?","Usei pelo menos um recurso (rima, repetição, comparação, personificação)?"]
+  },
+  biografia: {
+    nome:"Biografia", icon:"👤", alvo:150,
+    etapas:[
+      {nome:"Origem", ajuda:"Quem é, quando e onde nasceu.", pistas:[
+        "Quem é a pessoa e porque é conhecida?",
+        "Quando e onde nasceu? Como foi a infância?"
+      ]},
+      {nome:"Vida", ajuda:"Os factos importantes, por ordem.", pistas:[
+        "Qual foi o momento mais importante da vida desta pessoa?",
+        "Que dificuldades enfrentou?",
+        "Usa marcadores de tempo: 'Em 1974,…', 'Anos depois,…'."
+      ]},
+      {nome:"Legado", ajuda:"O que deixou ao mundo.", pistas:[
+        "Porque é que ainda hoje nos lembramos desta pessoa?",
+        "Confirmaste as datas numa fonte de confiança?"
+      ]}
+    ],
+    rever:["Os factos estão por ordem cronológica?","Escrevi na 3.ª pessoa?","Confirmei as datas e os nomes?"]
+  },
+  instrucoes: {
+    nome:"Texto instrucional (receita, regras)", icon:"🧾", alvo:100,
+    etapas:[
+      {nome:"Material", ajuda:"O que é preciso.", pistas:[
+        "Qual é o objetivo? (ex.: fazer um bolo, jogar um jogo)",
+        "Faz uma lista do material ou dos ingredientes."
+      ]},
+      {nome:"Passos", ajuda:"Passos numerados, por ordem.", pistas:[
+        "Numera os passos: 1., 2., 3.…",
+        "Começa cada passo com um verbo: 'Mistura…', 'Corta…' (ou 'Misturar…').",
+        "Há algum passo onde é preciso ter cuidado? Avisa!"
+      ]},
+      {nome:"Resultado", ajuda:"Como se sabe que correu bem.", pistas:[
+        "Como fica o resultado final? Descreve-o.",
+        "Tens uma dica extra para correr ainda melhor?"
+      ]}
+    ],
+    rever:["Os passos estão numerados e por ordem?","Cada passo começa com um verbo?","Alguém conseguia seguir as instruções sem me perguntar nada?"]
   }
-  function closeModal(){ if(modal) modal.classList.remove("open"); if(returnFocus && returnFocus.focus) returnFocus.focus(); }
+};
 
-  function curioHtml(c){ return '<p class="curio-text">'+esc(c.t)+'</p><p class="curio-src">📚 Fonte: '+esc(c.fonte)+'</p>'; }
-  function openCurio(trigger){
-    let i = Math.floor(Math.random()*ESCRITA_CURIOSIDADES.length);
-    openModal("💡 Sabias que…?", '<div id="ws-curio">'+curioHtml(ESCRITA_CURIOSIDADES[i])+'</div><button type="button" class="ws-btn" id="ws-curio-next">Outra curiosidade →</button>', trigger);
-    $("ws-curio-next").addEventListener("click", () => { i = (i+1) % ESCRITA_CURIOSIDADES.length; $("ws-curio").innerHTML = curioHtml(ESCRITA_CURIOSIDADES[i]); });
-  }
-  $("ws-curio-open").addEventListener("click", e => openCurio(e.currentTarget));
-  // the workshop lives inside the Português tab: only react when it is actually on screen
-  const onScreen = el => el.offsetParent !== null;
+/* cat: feliz | atualidade | passado */
+const ESCRITA_TEMAS = [
+  {cat:"feliz", tipo:"diario",    titulo:"Três coisas boas de hoje", inicio:"Hoje aconteceram três coisas boas. A primeira foi…"},
+  {cat:"feliz", tipo:"diario",    titulo:"Algo de que me orgulho", inicio:"Uma coisa de que me orgulho muito é…"},
+  {cat:"feliz", tipo:"carta",     titulo:"Carta de agradecimento a quem me fez sorrir", inicio:"Querido/a …, escrevo-te para te agradecer…"},
+  {cat:"feliz", tipo:"descritivo",titulo:"O meu lugar calmo", inicio:"Quando preciso de sossego, vou (ou imagino que vou) para…"},
+  {cat:"feliz", tipo:"carta",     titulo:"Carta ao meu eu do futuro", inicio:"Olá, eu do futuro! Hoje tenho … anos e quero contar-te…"},
+  {cat:"feliz", tipo:"diario",    titulo:"Um erro que me ensinou alguma coisa", inicio:"Uma vez enganei-me quando… e aprendi que…"},
+  {cat:"feliz", tipo:"narrativo", titulo:"Se eu tivesse um superpoder do bem", inicio:"Acordei e descobri que conseguia…"},
+  {cat:"feliz", tipo:"poema",     titulo:"As coisas pequenas que me fazem feliz", inicio:"Fico feliz com…"},
 
-  /* ---------- tabs ---------- */
-  const tabBtns = Array.from(document.querySelectorAll(".ws-tabs .tab-btn"));
-  function activate(tab){
-    document.querySelectorAll(".ws-panel").forEach(p => { p.hidden = p.dataset.panel !== tab; });
-    tabBtns.forEach(b => { b.classList.toggle("active", b.dataset.tab===tab); b.setAttribute("aria-selected", b.dataset.tab===tab); });
-    store("ws_tab", tab);
-  }
-  tabBtns.forEach(b => b.addEventListener("click", () => activate(b.dataset.tab)));
-  activate(load("ws_tab", "teclado")==="escrever" ? "escrever" : "teclado");
+  {cat:"atualidade", tipo:"narrativo", titulo:"A primeira criança numa base na Lua", inicio:"Pela janela redonda da base lunar, a Terra parecia…"},
+  {cat:"atualidade", tipo:"narrativo", titulo:"Uma garrafa no oceano", inicio:"Na praia, entre algas e plástico, encontrei uma garrafa com uma mensagem…"},
+  {cat:"atualidade", tipo:"opiniao",   titulo:"Os robôs e a inteligência artificial devem ajudar nos trabalhos de casa?", inicio:"Na minha opinião, a inteligência artificial…"},
+  {cat:"atualidade", tipo:"opiniao",   titulo:"Quanto tempo de ecrã por dia é razoável?", inicio:"Eu defendo que…"},
+  {cat:"atualidade", tipo:"noticia",   titulo:"A minha escola vai ter painéis solares", inicio:"A escola … vai instalar painéis solares no telhado…"},
+  {cat:"atualidade", tipo:"biografia", titulo:"O lince-ibérico: um animal que quase desapareceu", inicio:"O lince-ibérico é um felino que vive na Península Ibérica…"},
+  {cat:"atualidade", tipo:"instrucoes",titulo:"Como poupar água em casa", inicio:"Objetivo: gastar menos água todos os dias. Passos:"},
+  {cat:"atualidade", tipo:"noticia",   titulo:"O jogo mais emocionante do ano", inicio:"Ontem, no pavilhão da escola, a equipa…"},
 
-  /* =====================================================================
-     TECLADO
-     ===================================================================== */
-  function plain(html){ const d = document.createElement("div"); d.innerHTML = html; return d.textContent.replace(/\s+/g," ").trim(); }
-  // split on . ! ? — but not after abbreviations like "D. Miguel", "S. Tomé", "ex.", "pp.", "n.º"
-  function sentences(text){
-    return text.split(/(?<!\b(?:D|S|Sr|Sra|Dr|Dra|ex|pp|p|séc|n\.º)\.)(?<=[.!?])\s+(?=[A-ZÁÉÍÓÚÂÊÔÀÇ"«(])/)
-      .map(s => s.trim())
-      .filter(s => s.split(/\s+/).length >= 4);
-  }
+  {cat:"passado", tipo:"diario",    titulo:"Lisboa, 1 de novembro de 1755", inicio:"Querido diário, hoje de manhã estava na igreja quando a terra começou a tremer…"},
+  {cat:"passado", tipo:"carta",     titulo:"Carta de um soldado nas Linhas de Torres (1810)", inicio:"Torres Vedras, outubro de 1810. Querida mãe,…"},
+  {cat:"passado", tipo:"noticia",   titulo:"O primeiro comboio de Portugal (1856)", inicio:"Lisboa, 28 de outubro de 1856. Partiu hoje o primeiro comboio…"},
+  {cat:"passado", tipo:"noticia",   titulo:"Última hora: proclamada a República! (1910)", inicio:"Lisboa, 5 de outubro de 1910. Esta manhã, da varanda da Câmara Municipal…"},
+  {cat:"passado", tipo:"carta",     titulo:"Emigrante 'a salto' escreve à família (anos 60)", inicio:"Paris, 1965. Queridos pais, finalmente cheguei…"},
+  {cat:"passado", tipo:"diario",    titulo:"Uma criança no 25 de Abril de 1974", inicio:"Hoje acordei e o meu pai estava colado ao rádio…"},
+  {cat:"passado", tipo:"biografia", titulo:"Biografia de Celeste Caeiro, a senhora dos cravos", inicio:"Celeste Caeiro ficou conhecida por…"},
+  {cat:"passado", tipo:"descritivo",titulo:"A minha escola em 1960 e hoje", inicio:"Se entrasse numa sala de aula em 1960, veria…"}
+];
 
-  const POOLS = {fun: TECLADO_FRASES.slice()};
-  [["pt",PT_WORLDS],["hgp",HGP_WORLDS],["math",MATH_WORLDS],["cn",CN_WORLDS],["eng",ENG_WORLDS]].forEach(([k, worlds]) => {
-    POOLS[k] = [];
-    worlds.forEach(w => w.resumo.forEach(r => { const p = plain(r); POOLS[k].push(p); sentences(p).forEach(s => POOLS[k].push(s)); }));
-  });
-  POOLS.mix = [].concat(POOLS.fun, POOLS.pt, POOLS.hgp, POOLS.math, POOLS.cn, POOLS.eng);
-  const LEVELS = { short:[15,70], medium:[70,150], long:[150,400] };
+const ESCRITA_REVIRAVOLTAS = [
+  "De repente, todas as luzes se apagaram.",
+  "Alguém bateu à porta… mas não estava lá ninguém.",
+  "Um animal olhou para a personagem e disse: — Finalmente!",
+  "No bolso, apareceu um mapa que ninguém lá tinha posto.",
+  "O relógio parou e, durante um minuto, tudo ficou imóvel.",
+  "Uma tempestade obrigou toda a gente a mudar de planos.",
+  "A personagem descobriu que estava enganada sobre um amigo.",
+  "Chegou uma mensagem misteriosa, assinada só com uma letra.",
+  "O objeto mais banal da casa começou a brilhar.",
+  "Quem parecia o vilão estava, afinal, a tentar ajudar."
+];
 
-  const tyTarget = $("ty-target"), tyInput = $("ty-input"), tyLive = $("ty-live"), tyResult = $("ty-result");
-  const tySource = $("ty-source"), tyLevel = $("ty-level"), tyAccents = $("ty-accents"), tyClock = $("ty-clock");
-  const prefs = load("ty_prefs", {source:"mix", level:"short", accents:false, clock:false});
-  tySource.value = prefs.source; tyLevel.value = prefs.level; tyAccents.checked = prefs.accents; tyClock.checked = prefs.clock;
+/* frases para o treino de teclado (além das frases dos resumos dos mundos) */
+const TECLADO_FRASES = [
+  "O gato dormiu em cima do teclado e escreveu uma palavra nova.",
+  "Hoje vou treinar devagar, sem pressa e sem medo de errar.",
+  "A girafa e o caracol decidiram fazer uma corrida.",
+  "No verão, a praia enche-se de toalhas coloridas.",
+  "Quem tem um amigo tem um tesouro.",
+  "O foguetão partiu às três horas e chegou à Lua num ápice.",
+  "A Joana e o Tomás construíram uma cabana no quintal.",
+  "Os dedos descansam na fila do meio: A S D F e J K L Ç.",
+  "Cada tecla tem o seu dedo, e cada dedo tem a sua casa.",
+  "Um pinguim de chapéu entrou na pastelaria e pediu um pastel de nata."
+];
 
-  let target = "", startedAt = 0, errors = 0, lastLen = 0, clockTimer = null, finished = false;
-
-  function norm(ch){ return tyAccents.checked ? ch.normalize("NFD").replace(/[̀-ͯ]/g,"") : ch; }
-
-  function newSentence(){
-    const [min, max] = LEVELS[tyLevel.value];
-    let pool = POOLS[tySource.value].filter(s => s.length >= min && s.length <= max);
-    if(!pool.length) pool = POOLS[tySource.value];
-    let next = pick(pool);
-    if(pool.length > 1) while(next === target) next = pick(pool);
-    target = next; startedAt = 0; errors = 0; lastLen = 0; finished = false;
-    tyInput.value = ""; tyInput.disabled = false; tyResult.hidden = true;
-    clearInterval(clockTimer);
-    paint(); tyLive.textContent = "";
-    if(onScreen(tyInput)) tyInput.focus({preventScroll:true});
-  }
-
-  function paint(){
-    const typed = tyInput.value;
-    let html = "";
-    for(let i=0;i<target.length;i++){
-      const ch = target[i];
-      let cls = "";
-      if(i < typed.length) cls = norm(typed[i])===norm(ch) ? "ok" : "err";
-      else if(i === typed.length) cls = "cur";
-      html += '<span class="'+cls+'">'+(ch===" " ? "&nbsp;" : esc(ch))+'</span>';
-    }
-    tyTarget.innerHTML = html;
-  }
-
-  function stats(){
-    const typed = tyInput.value;
-    let correct = 0;
-    for(let i=0;i<Math.min(typed.length, target.length);i++) if(norm(typed[i])===norm(target[i])) correct++;
-    const minutes = startedAt ? (Date.now()-startedAt)/60000 : 0;
-    const wpm = minutes > 0 ? Math.round((correct/5)/minutes) : 0;
-    const acc = typed.length ? Math.round(correct/Math.max(typed.length, 1)*100) : 100;
-    return {correct, wpm, acc, seconds: Math.round(minutes*60)};
-  }
-
-  function finish(){
-    finished = true; clearInterval(clockTimer); tyInput.disabled = true;
-    const s = stats();
-    const best = load("ty_best", {wpm:0});
-    const record = s.wpm > best.wpm && s.acc >= 90;
-    if(record) store("ty_best", {wpm:s.wpm, date:new Date().toISOString().slice(0,10)});
-    const count = load("ty_count", 0) + 1; store("ty_count", count);
-    const msg = s.acc === 100 ? "Perfeito, sem um único erro! 🏆" : s.acc >= 95 ? "Muito bem! 🌟" : s.acc >= 85 ? "Bom trabalho! 👍" : "Continua — a precisão vem com o treino. 💪";
-    tyResult.innerHTML =
-      '<p class="ty-msg">'+msg+'</p>'+
-      '<div class="ty-stats">'+
-        '<div><b>'+s.acc+'%</b><span>precisão</span></div>'+
-        '<div><b>'+s.wpm+'</b><span>palavras por minuto</span></div>'+
-        '<div><b>'+s.seconds+' s</b><span>tempo</span></div>'+
-        '<div><b>'+errors+'</b><span>teclas trocadas</span></div>'+
-      '</div>'+
-      '<p class="ws-note">'+(record ? '🎉 Novo recorde pessoal! ' : 'O teu recorde: '+Math.max(best.wpm, record ? s.wpm : 0)+' palavras/minuto. ')+
-      'Já treinaste '+count+' frase'+(count===1?'':'s')+'. Carrega em <kbd>Enter</kbd> para a próxima.</p>';
-    tyResult.hidden = false;
-    if(count % 5 === 0) setTimeout(() => openCurio(), 600); // a little reward every 5 sentences
-  }
-
-  tyInput.addEventListener("input", () => {
-    if(finished) return;
-    if(!startedAt && tyInput.value.length){
-      startedAt = Date.now();
-      if(tyClock.checked) clockTimer = setInterval(() => { tyLive.textContent = "⏱️ "+stats().seconds+" s"; }, 500);
-    }
-    const typed = tyInput.value;
-    if(typed.length > lastLen){
-      const i = typed.length - 1;
-      if(i < target.length && norm(typed[i]) !== norm(target[i])) errors++;
-    }
-    lastLen = typed.length;
-    paint();
-    if(typed.length >= target.length) finish();
-  });
-  // Enter = next sentence (never a line break in this box)
-  tyInput.addEventListener("keydown", e => { if(e.key==="Enter"){ e.preventDefault(); if(finished) newSentence(); } });
-  document.addEventListener("keydown", e => { if(e.key==="Enter" && finished && onScreen($("tab-teclado")) && document.activeElement !== tyInput){ e.preventDefault(); newSentence(); } });
-  $("ty-next").addEventListener("click", newSentence);
-  [tySource, tyLevel, tyAccents, tyClock].forEach(c => c.addEventListener("change", () => {
-    store("ty_prefs", {source:tySource.value, level:tyLevel.value, accents:tyAccents.checked, clock:tyClock.checked});
-    newSentence();
-  }));
-  newSentence();
-
-  /* =====================================================================
-     ESCREVER
-     ===================================================================== */
-  const wrType = $("wr-type"), wrTitle = $("wr-title"), wrText = $("wr-text"), wrHint = $("wr-hint"), wrIdle = $("wr-idle");
-  Object.keys(ESCRITA_TIPOS).forEach(k => {
-    const t = ESCRITA_TIPOS[k];
-    const o = document.createElement("option"); o.value = k; o.textContent = t.icon+" "+t.nome; wrType.appendChild(o);
-  });
-
-  const CAT_LABEL = {feliz:"😊 Diário feliz", atualidade:"🌍 Atualidade", passado:"🏛️ Viagem ao passado"};
-  let draft = load("ws_draft", {title:"", type:"narrativo", text:"", theme:""});
-  wrTitle.value = draft.title; wrType.value = ESCRITA_TIPOS[draft.type] ? draft.type : "narrativo"; wrText.value = draft.text;
-
-  function words(t){ return (t.trim().match(/[^\s—–-]+/g) || []).length; }
-  function saveDraft(){ draft = {title:wrTitle.value, type:wrType.value, text:wrText.value, theme:draft.theme}; store("ws_draft", draft); }
-
-  function stageIndex(){
-    const t = ESCRITA_TIPOS[wrType.value], n = words(wrText.value);
-    const ratio = n / t.alvo, k = t.etapas.length;
-    if(ratio < 0.25) return 0;
-    if(ratio < 0.75) return Math.min(1, k-1);
-    return k-1;
-  }
-
-  function renderSteps(){
-    const t = ESCRITA_TIPOS[wrType.value], cur = stageIndex();
-    $("wr-steps").innerHTML = t.etapas.map((e,i) =>
-      '<li class="'+(i<cur?"done":i===cur?"now":"")+'"><b>'+esc(e.nome)+'</b> <span>'+esc(e.ajuda)+'</span></li>').join("");
-    const n = words(wrText.value);
-    $("wr-count").textContent = n+" palavra"+(n===1?"":"s")+" · objetivo: cerca de "+t.alvo;
-  }
-
-  /* themes */
-  function renderThemes(cat){
-    document.querySelectorAll("#wr-cats .ws-chip").forEach(b => b.classList.toggle("active", b.dataset.cat===cat));
-    const box = $("wr-themes");
-    let items;
-    if(cat === "tipos"){
-      items = Object.keys(ESCRITA_TIPOS).map(k => ({tipo:k, titulo:ESCRITA_TIPOS[k].icon+" "+ESCRITA_TIPOS[k].nome, inicio:"", livre:true}));
-    } else if(cat === "surpresa"){
-      items = [pick(ESCRITA_TEMAS)];
-    } else {
-      items = ESCRITA_TEMAS.filter(t => t.cat === cat);
-    }
-    box.innerHTML = items.map((t,i) =>
-      '<button type="button" class="ws-theme" data-i="'+i+'"><b>'+esc(t.titulo)+'</b><small>'+
-      (t.livre ? 'Tema livre, com a estrutura deste tipo de texto' : esc(ESCRITA_TIPOS[t.tipo].icon+' '+ESCRITA_TIPOS[t.tipo].nome)+(t.cat?' · '+CAT_LABEL[t.cat]:''))+
-      '</small></button>').join("");
-    box.querySelectorAll(".ws-theme").forEach(b => b.addEventListener("click", () => useTheme(items[+b.dataset.i])));
-  }
-  document.querySelectorAll("#wr-cats .ws-chip").forEach(b => b.addEventListener("click", () => renderThemes(b.dataset.cat)));
-
-  function useTheme(t){
-    if(wrText.value.trim() && !confirm("Começar um texto novo com este tema? O texto atual vai para 'Os meus textos'.")) return;
-    if(wrText.value.trim()) archive();
-    wrType.value = t.tipo;
-    wrTitle.value = t.livre ? "" : t.titulo;
-    wrText.value = t.inicio ? t.inicio+" " : "";
-    draft.theme = t.titulo;
-    saveDraft(); renderSteps(); hideHint();
-    wrText.focus();
-    wrText.setSelectionRange(wrText.value.length, wrText.value.length);
-  }
-
-  /* ----- "E agora?" — a question about what could come next ----- */
-  const STOP = new Set("Eu Ele Ela Eles Elas Nós Tu O A Os As Um Uma De Do Da Depois Quando Então Mas E No Na Em Por Para Com Hoje Ontem Amanhã Querido Querida Olá Era Foi Já Ao Se Que Como Onde Porque Isso Este Esta Aquele Aquela Mãe Pai Lisboa Portugal".split(" "));
-  function lastName(text){
-    // a capitalised word that isn't at the start of a sentence = probably a character's name
-    const re = /(?:[^.!?\n—]\s)([A-ZÁÉÍÓÚÂÊÔÃÕÇ][a-záéíóúâêôãõç]{2,})/g;
-    let m, found = null;
-    while((m = re.exec(text))) if(!STOP.has(m[1])) found = m[1];
-    return found;
-  }
-  let lastHint = "";
-  function nextHint(){
-    const t = ESCRITA_TIPOS[wrType.value], text = wrText.value, n = words(text);
-    const stage = t.etapas[stageIndex()];
-    const extra = [];
-    const tail = text.trim().split(/\s+/).slice(-35).join(" ");
-    if(n > 25 && !/[.!?…]/.test(tail)) extra.push("Já há muitas palavras sem ponto final. Onde acaba esta frase?");
-    if(n > 70 && !/\n\s*\n|\n/.test(text)) extra.push("Que tal começares um parágrafo novo? Carrega em Enter quando muda o momento ou a ideia.");
-    if(wrType.value === "narrativo" && n > 80 && !/[—"«]/.test(text)) extra.push("Experimenta pôr uma personagem a falar. Começa a linha com um travessão (—).");
-    const name = (wrType.value === "narrativo" || wrType.value === "diario") ? lastName(text) : null;
-    if(name){
-      extra.push("O que vai "+name+" fazer a seguir?");
-      extra.push("Que segredo poderia "+name+" estar a esconder?");
-      extra.push("Como se sente "+name+" neste momento? Mostra-o por um gesto, não só por palavras.");
-    }
-    let pool = stage.pistas.concat(extra).filter(h => h !== lastHint);
-    const hint = pick(pool.length ? pool : stage.pistas);
-    lastHint = hint;
-    wrHint.innerHTML = '<span class="wr-stage">'+esc(t.icon+" "+stage.nome)+'</span> '+esc(hint);
-    wrHint.hidden = false; wrIdle.hidden = true;
-  }
-  function hideHint(){ wrHint.hidden = true; }
-  $("wr-next").addEventListener("click", nextHint);
-  $("wr-twist").addEventListener("click", () => {
-    const tw = pick(ESCRITA_REVIRAVOLTAS);
-    wrHint.innerHTML = '<span class="wr-stage">🎲 Reviravolta</span> E se… '+esc(tw)+' <button type="button" class="ws-link" id="wr-use-twist">Usar no texto</button>';
-    wrHint.hidden = false;
-    $("wr-use-twist").addEventListener("click", () => {
-      wrText.value = wrText.value.replace(/\s*$/, "") + (wrText.value.trim() ? "\n\n" : "") + tw + " ";
-      saveDraft(); renderSteps(); wrText.focus();
-    });
-  });
-
-  /* gentle nudge after 25 s without typing — only if there is already some text */
-  let idleTimer = null;
-  wrText.addEventListener("input", () => {
-    saveDraft(); renderSteps(); wrIdle.hidden = true;
-    clearTimeout(idleTimer);
-    idleTimer = setTimeout(() => { if(wrText.value.trim() && wrHint.hidden && onScreen($("tab-escrever"))) wrIdle.hidden = false; }, 25000);
-  });
-  wrTitle.addEventListener("input", saveDraft);
-  wrType.addEventListener("change", () => { saveDraft(); renderSteps(); hideHint(); });
-
-  /* ----- saved texts ----- */
-  function saved(){ return load("ws_saved", []); }
-  function archive(){
-    if(!wrText.value.trim()) return;
-    const list = saved();
-    list.unshift({id:Date.now(), title:wrTitle.value || "Sem título", type:wrType.value, text:wrText.value, date:new Date().toLocaleDateString("pt-PT")});
-    store("ws_saved", list.slice(0, 30));
-    renderSaved();
-  }
-  function renderSaved(){
-    const list = saved();
-    $("wr-saved").innerHTML = list.length ? list.map(s =>
-      '<li><button type="button" class="ws-link" data-open="'+s.id+'">'+esc(ESCRITA_TIPOS[s.type] ? ESCRITA_TIPOS[s.type].icon : "📄")+' '+esc(s.title)+'</button>'+
-      '<small>'+esc(s.date)+' · '+words(s.text)+' palavras</small>'+
-      '<button type="button" class="ws-link danger" data-del="'+s.id+'" aria-label="Apagar '+esc(s.title)+'">Apagar</button></li>').join("")
-      : '<li class="ws-note">Ainda não guardaste nenhum texto. Quando tocares em ✅ Terminei!, ele aparece aqui.</li>';
-    $("wr-saved").querySelectorAll("[data-open]").forEach(b => b.addEventListener("click", () => {
-      const s = saved().find(x => x.id === +b.dataset.open); if(!s) return;
-      if(wrText.value.trim() && !confirm("Abrir este texto? O texto atual vai para 'Os meus textos'.")) return;
-      if(wrText.value.trim()) archive();
-      store("ws_saved", saved().filter(x => x.id !== s.id));
-      wrTitle.value = s.title; wrType.value = s.type; wrText.value = s.text; saveDraft(); renderSteps(); renderSaved(); wrText.focus();
-    }));
-    $("wr-saved").querySelectorAll("[data-del]").forEach(b => b.addEventListener("click", () => {
-      if(!confirm("Apagar este texto para sempre?")) return;
-      store("ws_saved", saved().filter(x => x.id !== +b.dataset.del)); renderSaved();
-    }));
-  }
-
-  $("wr-done").addEventListener("click", e => {
-    const t = ESCRITA_TIPOS[wrType.value], n = words(wrText.value);
-    if(!n){ openModal("✍️ Ainda não há texto", "<p>Escreve pelo menos uma frase e depois toca em ✅ Terminei!</p>", e.currentTarget); return; }
-    const checks = t.rever.concat(["Comecei as frases com maiúscula e terminei com pontuação?","Li o texto em voz alta para ver se soa bem?"]);
-    const c = pick(ESCRITA_CURIOSIDADES);
-    openModal("🎉 Muito bem — escreveste "+n+" palavras!",
-      '<p>Antes de dares por terminado, faz esta revisão rápida:</p>'+
-      '<ul class="wr-review">'+checks.map((r,i) => '<li><label><input type="checkbox" id="rv'+i+'"> '+esc(r)+'</label></li>').join("")+'</ul>'+
-      '<button type="button" class="ws-btn primary" id="wr-archive">📚 Guardar em "Os meus textos"</button>'+
-      '<div class="wr-curio"><p class="curio-title">💡 Sabias que…?</p>'+curioHtml(c)+'</div>', e.currentTarget);
-    $("wr-archive").addEventListener("click", () => {
-      archive(); wrText.value = ""; wrTitle.value = ""; draft.theme = ""; saveDraft(); renderSteps(); hideHint(); closeModal();
-    });
-  });
-
-  $("wr-new").addEventListener("click", () => {
-    if(wrText.value.trim() && !confirm("Começar um texto novo? O texto atual vai para 'Os meus textos'.")) return;
-    archive(); wrText.value = ""; wrTitle.value = ""; draft.theme = ""; saveDraft(); renderSteps(); hideHint(); wrText.focus();
-  });
-
-  $("wr-download").addEventListener("click", () => {
-    const name = (wrTitle.value || "o-meu-texto").replace(/[^\wÀ-ÿ -]+/g,"").trim().replace(/\s+/g,"-") || "o-meu-texto";
-    const blob = new Blob([(wrTitle.value ? wrTitle.value+"\n\n" : "") + wrText.value], {type:"text/plain;charset=utf-8"});
-    const a = document.createElement("a");
-    a.href = URL.createObjectURL(blob); a.download = name+".txt";
-    document.body.appendChild(a); a.click(); a.remove();
-    setTimeout(() => URL.revokeObjectURL(a.href), 1000);
-  });
-
-  $("wr-print").addEventListener("click", () => {
-    const w = window.open("", "_blank");
-    if(!w) return;
-    w.document.write('<!doctype html><meta charset="utf-8"><title>'+esc(wrTitle.value||"O meu texto")+'</title>'+
-      '<body style="font-family:Georgia,serif;max-width:640px;margin:40px auto;line-height:1.7;font-size:15px">'+
-      '<h1 style="font-size:22px">'+esc(wrTitle.value||"")+'</h1>'+
-      esc(wrText.value).split(/\n{2,}/).map(p => '<p>'+p.replace(/\n/g,"<br>")+'</p>').join("")+'</body>');
-    w.document.close(); w.focus(); w.print();
-  });
-
-  renderSteps(); renderSaved(); renderThemes("feliz");
-
-  /* used by the Português worlds: "✍️ Escrever uma história / um poema" opens the Oficina with that text type */
-  window.MissaoEscrita = {
-    comecar: function(tipo){
-      if(!ESCRITA_TIPOS[tipo]) return;
-      activate("escrever");
-      if(wrType.value !== tipo || wrText.value.trim()) useTheme({tipo:tipo, titulo:"", inicio:"", livre:true});
-      renderThemes("tipos");
-    }
-  };
-})();
+const ESCRITA_CURIOSIDADES = [
+  {t:"A disposição das letras QWERTY, que está no teu teclado, foi criada na década de 1870 para as primeiras máquinas de escrever, de Christopher Latham Sholes.", fonte:"Encyclopaedia Britannica"},
+  {t:"Uma das palavras mais compridas do português é 'pneumoultramicroscopicossilicovulcanoconiótico', com 46 letras: é o nome de uma doença dos pulmões causada por cinzas vulcânicas.", fonte:"Dicionário Priberam da Língua Portuguesa"},
+  {t:"Anne Frank escreveu o seu diário entre 1942 e 1944, escondida durante a Segunda Guerra Mundial. Foi traduzido para mais de 70 línguas.", fonte:"Anne Frank House (annefrank.org)"},
+  {t:"Estudos de psicologia mostraram que escrever regularmente sobre coisas pelas quais estamos gratos pode melhorar o bem-estar e o otimismo.", fonte:"Emmons & McCullough (2003), Journal of Personality and Social Psychology"},
+  {t:"'Os Lusíadas', de Luís de Camões, publicados em 1572, têm 1102 estrofes de 8 versos — 8816 versos no total.", fonte:"Biblioteca Nacional de Portugal"},
+  {t:"José Saramago recebeu o Prémio Nobel da Literatura em 1998 — até hoje, é o único escritor de língua portuguesa a recebê-lo.", fonte:"The Nobel Prize (nobelprize.org)"},
+  {t:"Fernando Pessoa escreveu com dezenas de 'heterónimos': autores inventados por ele, cada um com biografia, estilo e opiniões próprias, como Alberto Caeiro ou Álvaro de Campos.", fonte:"Casa Fernando Pessoa"},
+  {t:"Sophia de Mello Breyner Andresen, uma das maiores poetas portuguesas, escreveu também histórias para crianças, como 'A Menina do Mar' (1958).", fonte:"Plano Nacional de Leitura; Biblioteca Nacional de Portugal"},
+  {t:"Os pequenos relevos nas teclas F e J existem para os dedos indicadores encontrarem a 'fila de casa' sem olhar para o teclado.", fonte:"Norma internacional de teclados ISO/IEC 9995-1"}
+];
