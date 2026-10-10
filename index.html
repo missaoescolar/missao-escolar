@@ -1,55 +1,12 @@
 <!doctype html>
 <html lang="pt-PT">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Missão Escolar</title>
-<link rel="stylesheet" href="style.css">
-</head>
-<body>
-
-<div class="page">
-  <header class="home-hero">
-    <div class="home-logo" aria-hidden="true">🗺️</div>
-    <h1>Missão Escolar</h1>
-    <p>A tua plataforma de estudo — sem pressas, sem castigos, ao teu ritmo.</p>
-    <p class="home-streak" id="home-streak"></p>
-  </header>
-
-  <div class="year-tabs" role="tablist" aria-label="Ano de escolaridade">
-    <button type="button" class="year-tab" role="tab" data-year="5">5.º ano</button>
-    <button type="button" class="year-tab" role="tab" data-year="6">6.º ano</button>
-  </div>
-
-  <section class="year-panel" data-year-panel="5" hidden>
-    <p class="year-caption">Disciplinas do 5.º ano</p>
-    <div class="subject-grid" id="grid-5"></div>
-  </section>
-
-  <section class="year-panel" data-year-panel="6" hidden>
-    <p class="year-caption">Disciplinas do 6.º ano — toca numa para começar</p>
-    <div class="subject-grid" id="grid-6"></div>
-  </section>
-
-  <section class="home-tools">
-    <a class="tool-card" href="resumo.html"><span aria-hidden="true">📄</span><b>Páginas-resumo</b><small>A matéria de cada mundo numa folha, pronta a imprimir</small></a>
-    <a class="tool-card" href="pais.html"><span aria-hidden="true">👪</span><b>Para pais</b><small>Como funciona, recompensas, calendários e fontes</small></a>
-  </section>
-
-  <footer class="source">Baseado nas Aprendizagens Essenciais (Direção-Geral da Educação). O progresso fica guardado neste computador.</footer>
-</div>
-
-<script src="data/portugues.js"></script>
-<script src="data/hgp.js"></script>
-<script src="data/matematica.js"></script>
-<script src="data/cn.js"></script>
-<script src="data/ingles.js"></script>
-<script src="shared.js"></script>
-<script src="animacoes.js"></script>
-<script src="animacoes-matematica.js"></script>
-<script src="animacoes-ciencias.js"></script>
-<script src="animacoes-hgp-pt-ing.js"></script>
-<script src="home.js"></script>
-
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Missão Escolar</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>
