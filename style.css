@@ -866,32 +866,3 @@
   .lb-cred{ margin:0; font-size:0.78rem; color:var(--text-muted); }
   .lb-cred a{ color:var(--accent); }
   @media print{ .galeria, .lb-overlay{ display:none !important; } }
-
-  /* ---------- 🎯 Missão de hoje · 🔔 Lembrete · more school years ---------- */
-  .hoje{ background:var(--surface); border:1px solid var(--border-soft); border-left:5px solid var(--accent); border-radius:14px; padding:12px 14px; margin-bottom:14px; box-shadow:var(--shadow); }
-  .hoje:empty{ display:none; }
-  .hoje-head{ display:flex; align-items:center; gap:12px; flex-wrap:wrap; justify-content:space-between; }
-  .hoje-ola{ flex-basis:100%; margin:0 0 4px; font-weight:600; }
-  .hoje-t{ margin:0; font-family:"Lexend",sans-serif; font-weight:800; font-size:1.05rem; }
-  .hoje-s{ margin:2px 0 0; font-size:0.88rem; color:var(--text-muted); }
-  .hoje-stats{ margin:10px 0 0; font-size:0.78rem; color:var(--text-muted); }
-  .hoje .q1{ background:transparent; border:none; padding:0; }
-  .lemb-row{ margin:10px 0; }
-  .lemb-row input[type=time]{ font:inherit; padding:6px 8px; border-radius:8px; border:1px solid var(--border); background:var(--surface); color:var(--text); margin-left:6px; }
-  .year-tabs{ flex-wrap:wrap; }
-  .year-tab.soon{ opacity:0.7; }
-  .year-tab.soon.active{ opacity:1; }
-
-  /* ---------- 🧪 PhET simulations ---------- */
-  .sims{ display:flex; flex-direction:column; gap:8px; }
-  .sims .subhead{ margin-bottom:0; }
-  .sim-btn.on{ border-style:solid; box-shadow:0 0 0 2px var(--wc) inset; }
-  .sim-box{ position:relative; width:100%; aspect-ratio:834/504; border-radius:14px; overflow:hidden; border:2px solid var(--wc); background:#fff; }
-  .sim-box iframe{ position:absolute; inset:0; width:100%; height:100%; border:0; }
-  .sim-cred{ margin:6px 2px 4px; font-size:0.76rem; color:var(--text-muted); }
-  .sim-cred a{ color:var(--accent); }
-  @media print{ .sims{ display:none !important; } }
-
-  .lgp{ margin:12px 0 0; padding-top:10px; border-top:1px dashed var(--border); font-family:"Lexend",sans-serif; font-weight:700; font-size:0.88rem; }
-  .lgp a{ color:var(--accent); }
-  .lgp small{ display:block; font-family:inherit; font-weight:400; font-size:0.75rem; color:var(--text-muted); margin-top:2px; }

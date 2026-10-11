@@ -339,12 +339,6 @@
       ["óvulo","A célula reprodutora feminina, produzida nos ovários."],
       ["ciclo menstrual","O processo que se repete aproximadamente todos os meses no corpo feminino, a partir da puberdade, preparando o útero para uma possível gravidez."],
       ["menstruação","A saída do revestimento do útero, quando não há fecundação, normalmente a cada mês."],
-      ["menarca","A primeira menstruação, normalmente por volta dos 12 anos."],
-      ["endométrio","A camada que reveste o útero por dentro; engrossa durante o ciclo e desprende-se na menstruação."],
-      ["fase pré-ovulatória","Também chamada fase folicular: os dias entre a menstruação e a ovulação, em que um folículo amadurece no ovário e o endométrio engrossa."],
-      ["ovulação","A libertação de um óvulo pelo ovário, por volta do 14.º dia de um ciclo de 28 dias."],
-      ["fase pós-ovulatória","Também chamada fase lútea: os dias depois da ovulação, em que o corpo amarelo produz progesterona e o endométrio fica pronto para uma possível gravidez."],
-      ["corpo amarelo","O que fica do folículo depois da ovulação (também chamado corpo lúteo); produz a hormona progesterona."],
       ["fecundação","A união de um espermatozoide com um óvulo, que pode dar origem a um bebé."],
       ["gravidez","O período de cerca de 9 meses em que um bebé se desenvolve no útero, depois da fecundação."]
     ],
@@ -415,54 +409,5 @@
       right:{title:"🤒 Microrganismos patogénicos", points:["Ex.: vírus da gripe","Podem causar doenças","O corpo defende-se deles com barreiras e o sistema imunitário"]}
     },
     boss:"Ficha de avaliação — Manual 2: Resumo pág. 125 · Avaliação pág. 126"
-  },
-  {
-    id:"c9", num:9, c:"m4", icon:"🩹",
-    title:"Missão Salvar Vidas: Primeiros Socorros",
-    subtitle:"O que fazer numa emergência — serve para todas as idades", pages:"Extra (não faz parte do manual)",
-    lead:"Num jogo, quando uma personagem perde vida, há sempre um kit de cura. Na vida real, o «kit» és tu: saber o que fazer nos primeiros minutos pode salvar uma vida. E a primeira regra é simples — pedir ajuda.",
-    missions:[
-      {t:"A Chamada que Salva", d:"Ligar 112 e o que dizer", f:"Com um adulto, treina uma chamada a fingir: diz ONDE estás, O QUE aconteceu, QUEM precisa de ajuda e QUANTAS pessoas", xp:10},
-      {t:"Posição Lateral de Segurança", d:"PLS, passo a passo", f:"Com um adulto, pratica a posição lateral de segurança num familiar (a fingir, com cuidado)", xp:15},
-      {t:"O Kit de Primeiros Socorros", d:"O material essencial", f:"Verifica com um adulto o kit de casa: compressas, pensos, ligaduras, luvas, tesoura de pontas redondas e soro fisiológico. Falta alguma coisa?", xp:10},
-      {t:"Cartaz dos Números de Emergência", d:"112, SNS 24 e Centro Antivenenos", f:"Faz um cartaz para pôr junto ao telefone ou no frigorífico com 112, 808 24 24 24 e 800 250 250", xp:10}
-    ],
-    resumo:[
-      "Numa emergência, primeiro a <b>segurança</b>: vê se não há perigo para ti (trânsito, fogo, eletricidade). Depois <b>pede ajuda</b>: chama um adulto e liga <b>112</b>.",
-      "O <b>112</b> é o número europeu de emergência: é gratuito e funciona mesmo sem saldo. Diz <b>onde</b> estás, <b>o que</b> aconteceu, <b>quem</b> precisa de ajuda e <b>quantas</b> pessoas. Responde às perguntas e só desliga quando te disserem.",
-      "<b>Hemorragia</b> (muito sangue a sair de uma ferida): carrega na ferida com força, com uma <b>compressa</b> ou um pano limpo, sem largar. Num corte pequeno: lavar com água e sabão (ou soro) e tapar com um penso.",
-      "<b>Queimadura</b>: arrefecer com água corrente fresca durante <b>20 minutos</b>. Nunca pôr gelo, manteiga nem pasta de dentes, e não rebentar as bolhas.",
-      "<b>Sangue do nariz</b>: sentar, inclinar a cabeça para a <b>frente</b> e apertar a parte mole do nariz durante 10 minutos. <b>Engasgamento</b>: se a pessoa consegue tossir, deve continuar a tossir; se não consegue falar nem respirar, liga-se 112 e dão-se pancadas nas costas e compressões abdominais.",
-      "Se alguém está <b>inconsciente</b> mas <b>respira</b> normalmente, põe-se em <b>posição lateral de segurança</b> e liga-se 112. Se <b>não respira</b>, liga-se 112 e começa-se o <b>suporte básico de vida</b> (compressões no peito), com a ajuda do operador."
-    ],
-    gloss:[
-      ["112","O número europeu de emergência: gratuito, funciona em toda a União Europeia, mesmo sem saldo."],
-      ["primeiros socorros","A ajuda dada a uma pessoa ferida ou doente nos primeiros minutos, até chegar ajuda especializada."],
-      ["hemorragia","Saída de sangue de um vaso sanguíneo, por exemplo numa ferida."],
-      ["compressa","Um pedaço de gaze esterilizada, usado para limpar ou tapar feridas."],
-      ["posição lateral de segurança","PLS: deitar de lado uma pessoa inconsciente que respira, para manter as vias respiratórias abertas e deixar sair o vómito."],
-      ["engasgamento","Quando algo fica preso na garganta e impede a passagem do ar."],
-      ["suporte básico de vida","SBV: compressões no peito (e respirações) que mantêm o sangue a circular quando o coração para, até chegar ajuda."],
-      ["DAE","Desfibrilhador automático externo: aparelho que analisa o coração e, se for preciso, dá um choque. Fala e diz o que fazer."],
-      ["SNS 24","Linha de saúde do Serviço Nacional de Saúde (808 24 24 24), para dúvidas e situações que não são emergência."],
-      ["Centro Antivenenos","O Centro de Informação Antivenenos do INEM (800 250 250), para quando alguém engole ou toca em algo tóxico."]
-    ],
-    quiz:[
-      {q:"Qual é o número europeu de emergência?", opts:["112","115","911","808 24 24 24"], correct:0, explain:"O 112 é gratuito e funciona em todos os países da União Europeia. O 911 é o dos Estados Unidos."},
-      {q:"Antes de ajudar alguém, o que deves verificar primeiro?", opts:["Se há algum perigo para ti","Que horas são","Se a pessoa é tua conhecida","Nada, ajuda-se logo"], correct:0, explain:"Primeiro a segurança: um socorrista ferido não ajuda ninguém."},
-      {q:"Ao ligar para o 112, o que deves dizer?", opts:["Onde estás, o que aconteceu, quem e quantos precisam de ajuda","Só o teu nome","Nada — desligas logo","Que voltas a ligar mais tarde"], correct:0, explain:"Onde, o quê, quem e quantos — e só desligas quando o operador disser."},
-      {q:"Queimaste a mão com água a ferver. O que fazes?", opts:["Pões a mão em água corrente fresca durante 20 minutos","Pões gelo diretamente","Pões manteiga","Pões pasta de dentes"], correct:0, explain:"A água corrente fresca durante 20 minutos arrefece a queimadura. Gelo, manteiga e pasta de dentes podem piorá-la."},
-      {q:"Está a sair sangue do nariz. Como deves pôr a cabeça?", opts:["Inclinada para a frente, a apertar a parte mole do nariz","Inclinada para trás","Deitado de costas","De cabeça para baixo"], correct:0, explain:"Para a frente, para o sangue não ir para a garganta; aperta-se o nariz durante 10 minutos."},
-      {q:"Uma ferida está a sangrar muito. O que fazes?", opts:["Carregas com força com uma compressa ou pano limpo e pedes ajuda","Deixas sangrar","Sopras para a ferida","Lavas com sumo de limão"], correct:0, explain:"A pressão direta e contínua é a forma de parar uma hemorragia."},
-      {q:"Uma pessoa está inconsciente mas respira normalmente. O que se faz?", opts:["Posição lateral de segurança e ligar 112","Dar-lhe água","Sentá-la numa cadeira","Deixá-la sozinha a descansar"], correct:0, explain:"De lado, as vias respiratórias ficam abertas e o vómito pode sair da boca. Liga-se 112 e vigia-se."},
-      {q:"Para que serve a posição lateral de segurança?", opts:["Manter as vias respiratórias abertas e deixar sair o vómito","Aquecer a pessoa","Ajudar a pessoa a dormir","Parar uma hemorragia"], correct:0, explain:"Uma pessoa inconsciente de costas pode sufocar com a língua ou com o vómito."},
-      {q:"Um colega engasgou-se mas está a tossir com força. O que fazes?", opts:["Incentivas a continuar a tossir e ficas com ele","Dás-lhe logo pancadas nas costas","Dás-lhe água","Deitas-o no chão"], correct:0, explain:"A tosse é a melhor forma de desengasgar. Se deixar de conseguir tossir, falar ou respirar, liga-se 112."},
-      {q:"O irmão mais novo bebeu lixívia. Que número pode ajudar?", opts:["Centro Antivenenos: 800 250 250 (e 112 se estiver mal)","808 24 24 24 apenas","Nenhum","O número da escola"], correct:0, explain:"O Centro de Informação Antivenenos funciona 24 horas. Se a pessoa estiver mal, liga-se 112. Não se deve provocar o vómito."}
-    ],
-    compare:{
-      left:{title:"🩹 Pequenos problemas", points:["Um corte pequeno, um arranhão","Um pequeno galo ou uma entorse ligeira","Trata-se em casa, com um adulto","Dúvidas? SNS 24: 808 24 24 24"]},
-      right:{title:"🚨 Emergências — liga 112", points:["Pessoa inconsciente ou que não respira","Hemorragia que não para","Engasgamento grave, queimadura grande","Dificuldade em respirar, dor forte no peito"]}
-    },
-    boss:"Sem ficha no manual — testa-te no quiz e pratica as missões com um adulto"
   }
   ];

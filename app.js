@@ -171,8 +171,7 @@
     return '<p style="margin:0 0 14px">Escolhe quanto tempo de pausa queres. Não há nada para fazer durante a pausa — só uma curiosidade nova a cada minuto, para o cérebro continuar a passear.</p>'+
       '<div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center">'+
       [5,10,15].map(function(min){ return '<button type="button" class="wheel-btn break-pick" data-min="'+min+'" style="font-size:0.95rem;padding:10px 18px">'+min+' min</button>'; }).join("")+
-      '</div>'+
-      '<p class="note-small" style="text-align:center">Ou uma pausa criativa: 🎵 <a href="https://musiclab.chromeexperiments.com/Song-Maker/" target="_blank" rel="noopener noreferrer">inventa uma música no Chrome Music Lab ↗</a> (grátis, sem conta).</p>';
+      '</div>';
   }
   function buildBreakTimerHtml(totalSeconds){
     const mm = String(Math.floor(totalSeconds/60)).padStart(2,"0");
@@ -402,7 +401,6 @@
         });
         const ok = chosen===q.correct;
         results.push(ok); if(ok) score++;
-        if(o.onAnswer) o.onAnswer(q, ok);
         fb.textContent = (ok ? "Boa! 🎉 " : "Quase! ") + q.explain;
         const d = box.querySelector(".dots"); if(d) d.outerHTML = dotsHtml();
         next.hidden = false; next.focus({preventScroll:true});
@@ -415,14 +413,11 @@
         : score>=n*0.6 ? "⭐ Muito bem! "+score+"/"+n
         : "💪 "+score+"/"+n+" — cada erro ensina qualquer coisa. Vale a pena tentar outra vez.";
       box.appendChild(el("p","q1-end",msg));
-      if(o.again !== false){
-        const again = el("button","wheel-btn","🔁 Outra vez, com as perguntas baralhadas");
-        again.type = "button";
-        again.addEventListener("click", start);
-        box.appendChild(again);
-      }
+      const again = el("button","wheel-btn","🔁 Outra vez, com as perguntas baralhadas");
+      again.type = "button";
+      again.addEventListener("click", start);
+      box.appendChild(again);
       if(n && score===n){ playChime(); burstConfetti(); }
-      if(o.onFinish) o.onFinish(score, n, box);
     }
     start();
     return {restart:start};
@@ -430,8 +425,6 @@
 
   /* ---------- "🔥 Mais difícil": swaps every quiz for the harder question bank (was the Modo Desafio button) ---------- */
   const quizRefreshers = [];
-  // every answer (world quizzes, Revisão Final, Missão de hoje) feeds the spaced repetition of banco.js
-  function registarResposta(q, ok){ if(window.MissaoBanco) MissaoBanco.registar(q, ok); }
   const challengeToggles = [];
   function makeChallengeToggle(){
     const t = el("button","toggle","");
@@ -590,37 +583,6 @@
     if(!lb) return;
     lb.hidden = true; document.body.classList.remove("lb-open");
     if(lb._trigger && lb._trigger.focus) lb._trigger.focus({preventScroll:true});
-  }
-
-  /* ---------- 🧪 PhET simulations: loaded only when the child asks (they are big and need internet) ---------- */
-  function buildSims(sims){
-    const wrap = el("div","sims");
-    wrap.appendChild(el("p","subhead",'🧪 Experimenta <small class="muted">— simulações interativas (precisam de internet)</small>'));
-    const frame = el("div","sim-frame"); frame.hidden = true;
-    sims.forEach(function(sm){
-      const b = el("button","anim-thumb sim-btn",'<span class="play" aria-hidden="true">🧪</span><span><b>'+escXml(sm.t)+'</b><small>'+escXml(sm.d)+'</small></span>');
-      b.type = "button";
-      b.addEventListener("click", function(){
-        const aberto = b.classList.contains("on");
-        wrap.querySelectorAll(".sim-btn").forEach(function(x){ x.classList.remove("on"); });
-        if(aberto){ frame.hidden = true; frame.innerHTML = ""; return; }
-        b.classList.add("on");
-        frame.innerHTML = '<div class="sim-box"><iframe src="'+sm.url+'" title="'+escXml(sm.t)+'" allowfullscreen loading="lazy"></iframe></div>'+
-          '<p class="sim-cred"><a href="'+sm.url+'" target="_blank" rel="noopener noreferrer">⛶ Abrir em ecrã inteiro ↗</a> · Simulação PhET, University of Colorado Boulder · <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">CC BY 4.0</a></p>';
-        frame.hidden = false;
-        b.insertAdjacentElement("afterend", frame);
-      });
-      wrap.appendChild(b);
-    });
-    return wrap;
-  }
-
-  /* 🤟 every key word can be looked up in Língua Gestual Portuguesa (Spread the Sign, a European sign-language dictionary) */
-  function addLgp(term){
-    const body = document.querySelector(".modal-body");
-    if(!body) return;
-    body.insertAdjacentHTML("beforeend", '<p class="lgp"><a href="https://www.spreadthesign.com/pt.pt/search/?q='+encodeURIComponent(term)+'" target="_blank" rel="noopener noreferrer">🤟 Ver o gesto em Língua Gestual Portuguesa ↗</a>'+
-      '<small>Dicionário Spread the Sign. Algumas palavras muito técnicas podem ainda não ter gesto.</small></p>');
   }
 
   function clickable(node, fn){
@@ -913,7 +875,6 @@
             if(popup && popup.bio) openModal((popup.name||term), buildBioModalHtml(popup), c);
             else if(popup && popup.svg) openModal(term, buildDiagramModalHtml(def, popup), c);
             else openModal(term, buildGlossModalHtml(def, (popup&&popup.icon)||w.icon), c);
-            if(cfg.key !== "eng") addLgp(term);
           });
           chips.appendChild(c);
         });
@@ -971,16 +932,11 @@
         const quiz = mountQuiz1(qbox, {
           title: function(){ return (hasHard && missaoChallengeOn()) ? "🔥 Desafio" : "✅ Testa-te"; },
           questions: function(){ return shuffled(missaoQuizFor(w)); },
-          extra: hasHard ? makeChallengeToggle() : null,
-          onAnswer: registarResposta
+          extra: hasHard ? makeChallengeToggle() : null
         });
         P.appendChild(qbox);
         quizRefreshers.push(quiz.restart);
       }
-
-      // 🧪 interactive PhET simulations for this world (data/recursos.js)
-      const sims = (typeof MISSAO_SIMS !== "undefined" && MISSAO_SIMS[w.id]) || [];
-      if(sims.length) P.appendChild(buildSims(sims));
 
       // the other half of the subject, one click away from where it is useful
       const OFICINA = {p5:["narrativo","uma história"], p6:["poema","um poema"]};
@@ -1036,12 +992,11 @@
         X.appendChild(cmpWrap);
       }
 
-      const recursos = (w.resources || []).concat((typeof MISSAO_LINKS !== "undefined" && MISSAO_LINKS[w.id]) || []);
-      if(recursos.length){
+      if(w.resources && w.resources.length){
         const resWrap = el("div","");
         resWrap.appendChild(el("p","subhead","🔗 Sites para explorar <small class=\"muted\">— abrem numa aba nova</small>"));
         const rg = el("div","res-grid");
-        recursos.forEach(function(r){
+        w.resources.forEach(function(r){
           const a = document.createElement("a");
           a.className = "res-card";
           a.href = r.url; a.target = "_blank"; a.rel = "noopener noreferrer";
@@ -1090,8 +1045,7 @@
         return shuffled(all).slice(0, 10);
       },
       label: function(q){ return q.icon+" Mundo "+q.world+" — "; },
-      extra: makeChallengeToggle(),
-      onAnswer: registarResposta
+      extra: makeChallengeToggle()
     });
     quizRefreshers.push(rq.restart);
     const rnav = el("div","wnav");
@@ -1119,7 +1073,7 @@
       if(mapView) mapView.hidden = !!target;
       worlds.forEach(function(w){ document.getElementById(w.id).hidden = (w.id!==target); });
       review.hidden = (target!=="revisao");
-      if(target && target!=="revisao"){ opened[target](stage || "aprender"); if(window.MissaoBanco) MissaoBanco.visto(target); }
+      if(target && target!=="revisao") opened[target](stage || "aprender");
     }
     return {show:show};
   }
@@ -1144,104 +1098,12 @@
   });
   renderTodayPanel();
 
-  /* ---------- 🎯 Missão de hoje: 10 questions a day from banco.js (new ones + spaced reviews) ---------- */
-  function diasDesdeUltimaVez(){
-    const log = getActivityLog().slice().sort();
-    if(!log.length) return null;
-    const u = log[log.length-1].split("-").map(Number), t = new Date();
-    return Math.round((Date.UTC(t.getFullYear(), t.getMonth(), t.getDate()) - Date.UTC(u[0], u[1]-1, u[2])) / 864e5);
-  }
-  const hojeCard = document.getElementById("hoje-card");
-  const pausa = diasDesdeUltimaVez();   // read before today's activity is logged
-  const NOME_MAT = {};
-  MISSAO_SUBJECTS_6.forEach(function(s){ NOME_MAT[s.key] = s.icon+" "+s.name; });
-  function renderHoje(){
-    if(!hojeCard || !window.MissaoBanco) return;
-    const m = MissaoBanco.missaoDeHoje(), st = MissaoBanco.estatisticas();
-    hojeCard.innerHTML = "";
-    const head = el("div","hoje-head");
-    const ola = (pausa !== null && pausa >= 2) ? '<p class="hoje-ola">👋 Que bom ver-te outra vez! Está tudo guardado. Começamos com uma missão curtinha?</p>' : '';
-    const b = el("button", m.feita ? "ghost" : "cta", m.feita ? "➕ Mais 5 perguntas" : "Começar →");
-    b.type = "button";
-    if(m.feita){
-      head.innerHTML = ola+'<div><p class="hoje-t">✅ Missão de hoje feita!</p><p class="hoje-s">Amanhã há perguntas novas. Se te apetecer, podes fazer mais umas.</p></div>';
-      b.addEventListener("click", function(){ jogar(MissaoBanco.mais(5), true); });
-    } else {
-      head.innerHTML = ola+'<div><p class="hoje-t">🎯 Missão de hoje</p><p class="hoje-s">'+m.perguntas.length+' perguntas de várias disciplinas · cerca de 5 minutos</p></div>';
-      b.addEventListener("click", function(){ jogar(m.perguntas, false); });
-    }
-    head.appendChild(b);
-    hojeCard.appendChild(head);
-    hojeCard.appendChild(el("p","hoje-stats","📚 "+st.total+" perguntas no banco · já respondeste a "+st.vistas+" · "+st.dominadas+" bem sabidas"+
-      (st.novasAbertas ? " · "+st.novasAbertas+" novas à tua espera nos mundos que já abriste" : "")));
-  }
-  function jogar(lista, extra){
-    hojeCard.innerHTML = "";
-    if(!lista.length){ hojeCard.appendChild(el("p","hoje-s","Já respondeste a tudo por hoje — abre um mundo novo para desbloquear mais perguntas!")); return; }
-    const box = el("div","");
-    hojeCard.appendChild(box);
-    mountQuiz1(box, {
-      title: function(){ return extra ? "➕ Mais perguntas" : "🎯 Missão de hoje"; },
-      questions: function(){ return lista; },
-      label: function(q){ return (q._s ? NOME_MAT[q._s.key] : "")+(q._w ? " · Mundo "+q._w.num : "")+" — "; },
-      onAnswer: registarResposta,
-      again: false,
-      onFinish: function(score, n, fimBox){
-        if(!extra) MissaoBanco.marcarFeita();
-        logActivityToday(); renderTodayPanel();
-        const row = el("div","next-step"), fim = el("button","cta","Fechar ✓");
-        fim.type = "button"; fim.addEventListener("click", renderHoje);
-        row.appendChild(fim); fimBox.appendChild(row);
-      }
-    });
-    if(hojeCard.getBoundingClientRect().top < 0) hojeCard.scrollIntoView({block:"start"});
-  }
-  renderHoje();
-
-  /* ---------- 🔔 Lembrete: a site cannot notify by itself while closed, so it creates a calendar reminder (.ics) ---------- */
-  const lembBtn = document.getElementById("lembrete-btn");
-  if(lembBtn) lembBtn.addEventListener("click", function(){
-    openModal("🔔 Lembrete para estudar",
-      '<p>Um site não consegue enviar avisos quando está fechado. A forma mais simples e fiável é pôr um <b>lembrete no calendário</b> do telemóvel ou do computador — com o link para a Missão de hoje.</p>'+
-      '<p class="lemb-row"><label>⏰ A que horas? <input type="time" id="lemb-hora" value="18:00"></label></p>'+
-      '<p class="lemb-row"><label><input type="radio" name="lemb-dias" value="todos" checked> Todos os dias</label> &nbsp; <label><input type="radio" name="lemb-dias" value="semana"> Só de segunda a sexta</label></p>'+
-      '<button type="button" class="cta" id="lemb-ok">📅 Criar lembrete</button>'+
-      '<p class="note-small">Descarrega um pequeno ficheiro de calendário (.ics). Ao abri-lo, o telemóvel (Android ou iPhone) ou o computador pergunta se o queres juntar ao calendário. Para o desligar, apaga o evento no calendário.</p>', lembBtn);
-    document.getElementById("lemb-ok").addEventListener("click", criarLembrete);
-  });
-  function criarLembrete(){
-    const hora = (document.getElementById("lemb-hora").value || "18:00").split(":");
-    const semana = document.querySelector('input[name="lemb-dias"]:checked').value === "semana";
-    const p2 = function(n){ return String(n).padStart(2,"0"); };
-    const d = new Date(); d.setDate(d.getDate()+1);
-    const n = new Date();
-    const url = location.href.split("#")[0];
-    const ics = ["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Missao Escolar//PT","CALSCALE:GREGORIAN","BEGIN:VEVENT",
-      "UID:missao-escolar-"+Date.now()+"@missao-escolar",
-      "DTSTAMP:"+n.getUTCFullYear()+p2(n.getUTCMonth()+1)+p2(n.getUTCDate())+"T"+p2(n.getUTCHours())+p2(n.getUTCMinutes())+"00Z",
-      "DTSTART:"+d.getFullYear()+p2(d.getMonth()+1)+p2(d.getDate())+"T"+p2(+hora[0])+p2(+hora[1])+"00",
-      "DURATION:PT15M",
-      "RRULE:"+(semana ? "FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR" : "FREQ=DAILY"),
-      "SUMMARY:🎯 Missão Escolar: missão de hoje",
-      "DESCRIPTION:10 perguntas\\, cerca de 5 minutos. "+url,
-      "URL:"+url,
-      "BEGIN:VALARM","ACTION:DISPLAY","DESCRIPTION:Hora da missão de hoje! 🎯","TRIGGER:PT0M","END:VALARM",
-      "END:VEVENT","END:VCALENDAR"].join("\r\n");
-    const a = document.createElement("a");
-    a.href = URL.createObjectURL(new Blob([ics], {type:"text/calendar;charset=utf-8"}));
-    a.download = "lembrete-missao-escolar.ics";
-    document.body.appendChild(a); a.click();
-    setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); }, 1500);
-    showToast("📅 Lembrete criado — abre o ficheiro para o juntar ao calendário.");
-  }
-
   /* ---- top bar: ❓ Ajuda and ⏸️ Pausa ---- */
   const helpBtn = document.getElementById("help-btn");
   if(helpBtn) helpBtn.addEventListener("click", function(){
     openModal("❓ Como funciona",
       '<ol class="help-list">'+
         '<li><b>Escolhe a disciplina</b> nos separadores e depois <b>um mundo</b> no mapa. Não tem de ser por ordem.</li>'+
-        '<li>Todos os dias há uma <b>🎯 Missão de hoje</b>: 10 perguntas — umas novas e outras para rever o que custou mais. Nunca são sempre as mesmas.</li>'+
         '<li>Cada mundo tem <b>3 passos</b>: 📖 Aprender → 🎯 Praticar → 🔭 Explorar. Podes saltar entre eles quando quiseres.</li>'+
         '<li>O quadro <b>📋 Para o teste</b> tem a matéria a sério — é essa que sai nas fichas.</li>'+
         '<li>Fizeste uma missão? <b>Risca a caixa</b> e o XP soma-se sozinho.</li>'+

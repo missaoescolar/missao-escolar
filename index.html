@@ -12,16 +12,27 @@
   <header class="home-hero">
     <div class="home-logo" aria-hidden="true">🗺️</div>
     <h1>Missão Escolar</h1>
-    <p>A tua plataforma de estudo, ao teu ritmo.</p>
+    <p>A tua plataforma de estudo — sem pressas, sem castigos, ao teu ritmo.</p>
     <p class="home-streak" id="home-streak"></p>
   </header>
 
-  <div class="year-tabs" id="year-tabs" role="tablist" aria-label="Ano de escolaridade"></div>
-  <div id="year-panels"></div>
+  <div class="year-tabs" role="tablist" aria-label="Ano de escolaridade">
+    <button type="button" class="year-tab" role="tab" data-year="5">5.º ano</button>
+    <button type="button" class="year-tab" role="tab" data-year="6">6.º ano</button>
+  </div>
+
+  <section class="year-panel" data-year-panel="5" hidden>
+    <p class="year-caption">Disciplinas do 5.º ano</p>
+    <div class="subject-grid" id="grid-5"></div>
+  </section>
+
+  <section class="year-panel" data-year-panel="6" hidden>
+    <p class="year-caption">Disciplinas do 6.º ano — toca numa para começar</p>
+    <div class="subject-grid" id="grid-6"></div>
+  </section>
 
   <section class="home-tools">
     <a class="tool-card" href="resumo.html"><span aria-hidden="true">📄</span><b>Páginas-resumo</b><small>A matéria de cada mundo numa folha, pronta a imprimir</small></a>
-    <a class="tool-card" href="6ano.html#cn/c9"><span aria-hidden="true">🩹</span><b>Primeiros socorros</b><small>O que fazer numa emergência — para todas as idades</small></a>
     <a class="tool-card" href="pais.html"><span aria-hidden="true">👪</span><b>Para pais</b><small>Como funciona, recompensas, calendários e fontes</small></a>
   </section>
 
@@ -38,7 +49,6 @@
 <script src="animacoes-matematica.js"></script>
 <script src="animacoes-ciencias.js"></script>
 <script src="animacoes-ciencias-2.js"></script>
-<script src="animacoes-socorros.js"></script>
 <script src="animacoes-hgp-pt-ing.js"></script>
 <script src="home.js"></script>
 
