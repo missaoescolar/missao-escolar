@@ -955,14 +955,15 @@
           }, function(guardado){
             const touched = Array.from(pendingWorlds);
             const before = touched.map(isComplete);
-            const hasChecked = Array.from(pendingMissions.values()).some(Boolean);
+            const checkedWorlds = touched.map(function(world){ return world.missions.some(function(m, i){ return pendingMissions.get(world.id+"-"+i) === true; }); });
+            const hasChecked = checkedWorlds.some(Boolean);
             replaceState(guardado);
             pendingMissions.clear(); pendingWorlds.clear();
             refreshMissionState();
             if(hasChecked) logActivityToday();
             touched.forEach(function(world, i){
               if(isComplete(world) && !before[i]){ showToast("🎉 Mundo "+world.num+" concluído!"); playChime(); burstConfetti(); }
-              else if(hasChecked){ showCurioCard(world); }
+              else if(checkedWorlds[i]){ showCurioCard(world); }
             });
           });
           if(MissaoArmazem.falhou(cfg.storeKey)) showToast("A alteração da missão está por guardar. Tenta novamente no aviso.");
@@ -1136,7 +1137,7 @@
           else cb.removeAttribute("aria-description");
           if(cb.nextElementSibling){
             cb.nextElementSibling.classList.toggle("done", !pending && !!state[k]);
-            cb.nextElementSibling.textContent = "Q"+(i+1)+" — "+m.t+(pending ? " · por guardar" : "");
+            cb.nextElementSibling.innerHTML = "Q"+(i+1)+" — "+m.t+(pending ? " · por guardar" : ""); // same markup as when the row is built
           }
         });
         renderWorldProgress(w);
@@ -1146,7 +1147,9 @@
     /* Read confirmed remote progress without discarding local pending choices. */
     MissaoArmazem.aoMudar(function(k){
       if(k !== cfg.storeKey && k !== null) return;
-      replaceState(store(cfg.storeKey));
+      const leitura = MissaoArmazem.lerSeguro(cfg.storeKey, {});
+      if(!leitura.ok) return; // Keep confirmed progress when another tab's notification cannot be read.
+      replaceState(leitura.valor);
       refreshMissionState();
     });
 
