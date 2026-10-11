@@ -89,6 +89,12 @@ const ARENA = (function(){
     return choice("O número <b>"+n+"</b> é divisível por <b>"+k+"</b>?", yes?"Sim":"Não", [yes?"Não":"Sim"],
       {explicacao:"Um número é divisível por "+k+" quando "+CRIT[k]+". "+porque+" Por isso, <b>"+(yes?"sim":"não")+"</b>.", dica:"Divisível por "+k+": "+CRIT[k]+"."});
   }
+  // which primes to try for numbers up to max: every prime p with p × p ≤ max, and why it is safe to stop there
+  const DICA_PRIMO = {
+    1:"Divide por 2, 3 e 5. Se nenhum dividir exatamente (sem contar o próprio número), é primo. Não é preciso ir além do 5, porque 7 × 7 = 49 já passa de 30.",
+    2:"Divide por 2, 3, 5 e 7. Se nenhum dividir exatamente (sem contar o próprio número), é primo. Não é preciso ir além do 7, porque 11 × 11 = 121 já passa de 100.",
+    3:"Divide por 2, 3, 5, 7, 11 e 13. Se nenhum dividir exatamente (sem contar o próprio número), é primo. Não é preciso ir além do 13, porque 17 × 17 = 289 já passa de 200."
+  };
   function primo(l){
     const max = l===1 ? 30 : l===2 ? 100 : 200;
     const want = Math.random() < 0.5;
@@ -96,7 +102,7 @@ const ARENA = (function(){
     const ds = divisors(n);
     return choice("O número <b>"+n+"</b> é primo ou composto?", want?"Primo":"Composto", [want?"Composto":"Primo"],
       {explicacao: want ? n+" só tem dois divisores, 1 e "+n+": é <b>primo</b>." : n+" tem mais de dois divisores ("+ds.join(", ")+"): é <b>composto</b>.",
-       dica:"Experimenta dividir por 2, 3, 5 e 7."});
+       dica:DICA_PRIMO[l]});
   }
   function mdc(l){
     const g = pick(l===1 ? [2,3,4,5] : l===2 ? [2,3,4,6,8] : [3,4,6,7,9,12]);
@@ -117,14 +123,27 @@ const ARENA = (function(){
       explicacao:"Múltiplos de "+a+": "+ma.join(", ")+"…<br>Múltiplos de "+b+": "+mb.join(", ")+"…<br>O primeiro em comum é <b>"+m+"</b>.",
       dica:"Escreve os múltiplos de cada número até encontrares um repetido."};
   }
+  // levels grow in number of factors and primes used, with numbers kept to the sizes worked in the 6.º ano
+  const DECOMP = {1:{primes:[2,3,5], k:[2,3], max:50}, 2:{primes:[2,3,5,7], k:[3,4], max:100}, 3:{primes:[2,3,5,7,11], k:[4,5], max:200}};
   function decomp(l){
-    const primes = l===1 ? [2,3,5] : l===2 ? [2,3,5,7] : [2,3,5,7,11];
-    const k = l===1 ? 3 : l===2 ? 4 : 5;
-    const f = []; for(let i=0;i<k;i++) f.push(pick(primes));
-    f.sort((a,b) => a-b);
-    const n = f.reduce((a,b) => a*b, 1), right = powStr(f);
-    return choice("Qual é a <b>decomposição em fatores primos</b> de "+n+"?", right,
-      [[f[0]*f[1]].concat(f.slice(2)).join(" × "), powStr(f.concat([pick(primes)]).sort((a,b)=>a-b)), powStr(f.slice(0,-1)), powStr(f.slice(1).concat([f[0]===2?3:2]).sort((a,b)=>a-b))],
+    const cfg = DECOMP[l], primes = cfg.primes;
+    let f, n;
+    do{
+      const k = rnd(cfg.k[0], cfg.k[1]);
+      f = []; for(let i=0;i<k;i++) f.push(pick(primes));
+      f.sort((a,b) => a-b);
+      n = f.reduce((a,b) => a*b, 1);
+    } while(n > cfg.max);
+    const right = powStr(f), asc = a => a.sort((x,y) => x-y);
+    // every option is written the same way (powStr), so the format never gives the answer away:
+    // a composite factor with the right product, a missing factor, an extra factor, a wrong prime
+    const erradas = shuffle([
+      f.length > 2 ? powStr(asc([f[0]*f[1]].concat(f.slice(2)))) : null,
+      powStr(f.slice(0,-1)),
+      powStr(asc(f.concat([pick(primes)]))),
+      powStr(asc(f.slice(1).concat([f[0]===2?3:2])))
+    ].filter(Boolean));
+    return choice("Qual é a <b>decomposição em fatores primos</b> de "+n+"?", right, erradas,
       {explicacao:n+" = "+f.join(" × ")+" = <b>"+right+"</b>. Todos os fatores têm de ser números primos e o produto tem de dar "+n+".",
        dica:"Divide sempre pelo menor primo possível: primeiro 2, depois 3, depois 5…"});
   }

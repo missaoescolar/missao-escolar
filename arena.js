@@ -21,7 +21,10 @@
   const copia = o => JSON.parse(JSON.stringify(o));
   let S, base;   // base = what was last read from / written to storage, to work out what this tab added since
   function carregar(){
-    S = Object.assign(copia(fresh), MissaoArmazem.ler("arena", {}));
+    const leitura = MissaoArmazem.lerSeguro("arena", {});
+    // A temporary read failure must not reset the last confirmed in-memory base.
+    if(!leitura.ok && S) return;
+    S = Object.assign(copia(fresh), leitura.valor);
     if(!S.hoje || S.hoje.data !== today()) S.hoje = {data:today(), certas:0};
     base = copia(S);
   }
