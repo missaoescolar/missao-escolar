@@ -2,14 +2,15 @@
 const MATH_EXTRA = {
   n1: {
     desafio: [
-      {q:"Qual é o menor número natural divisível ao mesmo tempo por 2, por 3 e por 5?", opts:["30","15","10","60"], correct:0, explain:"2 × 3 × 5 = 30. Como 2, 3 e 5 são primos, o menor múltiplo comum é o produto deles."},
-      {q:"Quantos números primos há entre 1 e 20?", opts:["8","6","7","10"], correct:0, explain:"São 2, 3, 5, 7, 11, 13, 17 e 19 — oito números primos."},
-      {q:"Qual é a decomposição em fatores primos de 60?", opts:["2² × 3 × 5","2 × 30","4 × 15","2 × 3 × 10"], correct:0, explain:"60 = 2 × 2 × 3 × 5 = 2² × 3 × 5. As outras opções têm fatores que não são primos (30, 4, 15, 10)."},
-      {q:"O m.d.c. de dois números primos diferentes é sempre…", opts:["1","o maior deles","o produto deles","0"], correct:0, explain:"Dois primos diferentes só têm o 1 como divisor comum."},
-      {q:"O número 1 é primo?", opts:["Não, porque só tem um divisor","Sim, porque só é divisível por si próprio","Sim, é o menor primo","Depende do contexto"], correct:0, explain:"Um primo tem exatamente dois divisores. O 1 só tem um (ele próprio), por isso não é primo nem composto."}
+      {q:"Qual é o menor número natural divisível ao mesmo tempo por 2, por 3 e por 5?", opts:["15","10","60","30"], correct:3, explain:"O número tem de ser múltiplo de 2, de 3 e de 5. O menor é o m.m.c.(2, 3, 5). Como são primos diferentes, basta multiplicá-los: 2 × 3 × 5 = 30. O 60 também é divisível pelos três, mas não é o menor. O 15 não é divisível por 2, e o 10 não é divisível por 3."},
+      {q:"Dois autocarros saem juntos do terminal às 8h00. Um sai de 10 em 10 minutos e o outro de 15 em 15 minutos. A que horas voltam a sair juntos pela primeira vez?", opts:["8h05","8h30","8h25","10h30"], correct:1, explain:"Saem juntos quando passa um múltiplo comum de 10 e de 15 minutos. O primeiro é o m.m.c.(10, 15): 10 = 2 × 5 e 15 = 3 × 5, por isso m.m.c. = 2 × 3 × 5 = 30 minutos. 8h00 + 30 minutos = 8h30. O 5 é o m.d.c., 25 é a soma, e 150 minutos (10h30) é um múltiplo comum, mas não o primeiro."},
+      {q:"Qual é a decomposição em fatores primos de 180?", opts:["4 × 9 × 5","2² × 3² × 5","2 × 3² × 10","2² × 3 × 5"], correct:1, explain:"Divide sempre pelo menor primo: 180 ÷ 2 = 90, 90 ÷ 2 = 45, 45 ÷ 3 = 15, 15 ÷ 3 = 5, 5 ÷ 5 = 1. Então 180 = 2 × 2 × 3 × 3 × 5 = 2² × 3² × 5. «4 × 9 × 5» e «2 × 3² × 10» também dão 180, mas 4, 9 e 10 não são primos. E 2² × 3 × 5 = 60."},
+      {q:"O m.d.c. de dois números primos diferentes é sempre…", opts:["o produto deles","1","0","o maior deles"], correct:1, explain:"Um número primo só tem dois divisores: o 1 e ele próprio. Dois primos diferentes só têm o 1 em comum. Exemplo: m.d.c.(5, 7) = 1. O produto (5 × 7 = 35) é o m.m.c., não o m.d.c."},
+      {q:"O número 1 é primo?", opts:["Sim, porque só é divisível por si próprio","Não, porque só tem um divisor","Sim, é o menor primo","Depende do contexto"], correct:1, explain:"Um número primo tem exatamente dois divisores. O 1 só tem um divisor (ele próprio), por isso não é primo nem composto. O menor número primo é o 2."},
+      {q:"Sem fazer contas compridas: qual é o m.m.c. de 30 e 6?", opts:["180","30","6","36"], correct:1, explain:"30 = 6 × 5, por isso o 30 já é múltiplo de 6 (e de si próprio). Então o menor múltiplo comum é o próprio 30. Regra útil: quando um número é múltiplo do outro, o m.m.c. é o maior dos dois e o m.d.c. é o menor (aqui, m.d.c.(30, 6) = 6). O 180 é o produto: é múltiplo comum, mas não o menor."}
     ],
     explorar: {
-      proximo: "Mais à frente (no 3.º ciclo) vais trabalhar com potências e raízes quadradas e descobrir porque é que cada número tem uma única decomposição em fatores primos — uma ideia a que os matemáticos chamam 'teorema fundamental da aritmética'.",
+      proximo: "Neste ano vais ver que cada número composto tem uma só decomposição em fatores primos (só a ordem dos fatores pode mudar). Os matemáticos chamam-lhe «teorema fundamental da aritmética». No 3.º ciclo vais aprofundar as potências e conhecer as raízes quadradas.",
       pontos: [
         "Os números primos acabam algum dia? (Spoiler: Euclides provou que não, há mais de 2000 anos!)",
         "Porque é que a segurança da internet depende de números primos enormes?",
