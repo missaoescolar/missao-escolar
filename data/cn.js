@@ -2,7 +2,7 @@
   {
     id:"c1", num:1, c:"m1", icon:"🍎",
     title:"Barra de Vida: Nutrição e Alimentação",
-    subtitle:"Função dos nutrientes e alimentação equilibrada", pages:"manual a confirmar",
+    subtitle:"Função dos nutrientes e alimentação equilibrada", pages:"Manual 1, págs. 10–41",
     lead:"Em qualquer jogo, comer a comida certa enche a barra de vida e dá buffs; comer lixo pode até prejudicar-te. O corpo humano funciona de forma parecida — só que os \"buffs\" chamam-se nutrientes.",
     missions:[
       {t:"Os Nutrientes da Receita", d:"Funções dos nutrientes: energética, reguladora e construtora", f:"Classificar 10 alimentos de casa pelo nutriente principal que fornecem", xp:10},
@@ -52,12 +52,12 @@
       left:{title:"🥗 Refeição equilibrada", points:["Alimentos de vários grupos da roda, nas proporções certas","Inclui hortícolas e fruta","Água como bebida principal"]},
       right:{title:"🍟 Refeição desequilibrada", points:["Baseada quase só num ou dois grupos de alimentos","Rica em açúcar, sal ou gorduras em excesso","Bebidas açucaradas em vez de água"]}
     },
-    boss:"Ficha de avaliação — por confirmar no manual"
+    boss:"Ficha de avaliação — Manual 1: Resumo pág. 39 · Avaliação pág. 40"
   },
   {
     id:"c2", num:2, c:"m2", icon:"🦷",
     title:"A Fábrica de Processamento: Digestão",
-    subtitle:"Sistema digestivo e absorção de nutrientes", pages:"manual a confirmar",
+    subtitle:"Sistema digestivo e absorção de nutrientes", pages:"Manual 1, págs. 42–69",
     lead:"A comida que entra pela boca é a matéria-prima; o sistema digestivo é a linha de montagem que a transforma em peças pequenas que o corpo consegue mesmo usar.",
     missions:[
       {t:"Mapa da Fábrica", d:"Órgãos do tubo digestivo e trajeto do alimento", f:"Desenhar o percurso do alimento, da boca ao ânus, com os órgãos certos", xp:10},
@@ -105,12 +105,12 @@
     resources:[
       {icon:"🫀", title:"Explorar o corpo humano em 3D", desc:"Vê o sistema digestivo (e outros sistemas) num modelo 3D interativo. Pode pedir um registo gratuito.", site:"BioDigital Human", url:"https://human.biodigital.com/"}
     ],
-    boss:"Ficha de avaliação — por confirmar no manual"
+    boss:"Ficha de avaliação — Manual 1: Resumo pág. 68 · Avaliação pág. 69"
   },
   {
     id:"c3", num:3, c:"m3", icon:"🫁",
     title:"Sistema de Ventilação: Respiração",
-    subtitle:"Sistema respiratório e trocas gasosas", pages:"manual a confirmar",
+    subtitle:"Sistema respiratório e trocas gasosas", pages:"Manual 1, págs. 72–99",
     lead:"Tal como uma mina precisa de ventilação para não faltar o ar, o teu corpo tem o seu próprio sistema de ventilação: o sistema respiratório.",
     missions:[
       {t:"Mapa do Ar", d:"Órgãos do sistema respiratório e percurso do ar", f:"Desenhar o percurso do ar, do nariz aos pulmões, com os órgãos certos", xp:10},
@@ -157,12 +157,12 @@
     resources:[
       {icon:"🫀", title:"Explorar o corpo humano em 3D", desc:"Vê o sistema respiratório (e outros sistemas) num modelo 3D interativo. Pode pedir um registo gratuito.", site:"BioDigital Human", url:"https://human.biodigital.com/"}
     ],
-    boss:"Ficha de avaliação — por confirmar no manual"
+    boss:"Ficha de avaliação — Manual 1: Resumo pág. 98 · Avaliação pág. 99"
   },
   {
     id:"c4", num:4, c:"m4", icon:"❤️",
     title:"A Rede de Distribuição: Circulação",
-    subtitle:"Sistema circulatório e transporte no corpo", pages:"manual a confirmar",
+    subtitle:"Sistema circulatório e transporte no corpo", pages:"Manual 1, págs. 102–125",
     lead:"Tal como um servidor precisa de uma rede para distribuir recursos a todos os jogadores, o teu corpo tem uma rede de transporte — o sistema circulatório — com o coração como motor.",
     missions:[
       {t:"O Motor da Rede", d:"O coração: estrutura básica e função de bomba", f:"Desenhar o coração e legendar as suas 4 cavidades", xp:10},
@@ -210,12 +210,12 @@
     resources:[
       {icon:"🫀", title:"Explorar o corpo humano em 3D", desc:"Vê o sistema circulatório (e outros sistemas) num modelo 3D interativo. Pode pedir um registo gratuito.", site:"BioDigital Human", url:"https://human.biodigital.com/"}
     ],
-    boss:"Ficha de avaliação — por confirmar no manual"
+    boss:"Ficha de avaliação — Manual 1: Resumo pág. 124 · Avaliação pág. 125"
   },
   {
     id:"c5", num:5, c:"m5", icon:"💧",
     title:"Sistema de Limpeza: Excreção",
-    subtitle:"Pele e sistema urinário", pages:"manual a confirmar",
+    subtitle:"Pele e sistema urinário", pages:"Manual 2, págs. 6–25",
     lead:"Tal como um servidor precisa de limpar o lixo acumulado para não encravar, o corpo tem sistemas de limpeza: a pele e o sistema urinário, que eliminam substâncias que já não servem.",
     missions:[
       {t:"A Pele, Órgão de Limpeza", d:"Estrutura básica da pele e função do suor", f:"Observar a pele depois de um exercício e descrever o que acontece", xp:10},
@@ -261,12 +261,12 @@
     resources:[
       {icon:"🫀", title:"Explorar o corpo humano em 3D", desc:"Vê o sistema urinário (e outros sistemas) num modelo 3D interativo. Pode pedir um registo gratuito.", site:"BioDigital Human", url:"https://human.biodigital.com/"}
     ],
-    boss:"Ficha de avaliação — por confirmar no manual"
+    boss:"Ficha de avaliação — Manual 2: Resumo pág. 23 · Avaliação pág. 24"
   },
   {
     id:"c6", num:6, c:"m6", icon:"🌱",
     title:"A Fábrica de Energia Verde: Fotossíntese",
-    subtitle:"Fotossíntese e o mundo das plantas", pages:"manual a confirmar",
+    subtitle:"Fotossíntese e o mundo das plantas", pages:"Manual 2, págs. 52–104",
     lead:"As plantas são como jogadores que craftam a própria comida a partir de luz solar, água e dióxido de carbono — um processo chamado fotossíntese.",
     missions:[
       {t:"A Receita da Fotossíntese", d:"Fatores necessários à fotossíntese e produtos obtidos", f:"Desenhar a \"receita\" da fotossíntese, com os ingredientes e os produtos", xp:10},
@@ -308,12 +308,12 @@
       left:{title:"☀️ Mais fotossíntese", points:["Luz suficiente (até certo ponto)","Dióxido de carbono disponível","Temperatura adequada"]},
       right:{title:"🌑 Menos fotossíntese", points:["Pouca luz","Falta de água","Temperaturas muito baixas ou muito altas"]}
     },
-    boss:"Ficha de avaliação — por confirmar no manual"
+    boss:"Ficha de avaliação — Manual 2: Resumos págs. 77 e 103 · Avaliações págs. 78 e 104"
   },
   {
     id:"c7", num:7, c:"m7", icon:"🌸",
     title:"Atualização do Personagem: Puberdade e Reprodução",
-    subtitle:"Caracteres sexuais, puberdade e reprodução humana", pages:"manual a confirmar",
+    subtitle:"Caracteres sexuais, puberdade e reprodução humana", pages:"Manual 2, págs. 26–49",
     lead:"Tal como um personagem recebe uma grande atualização ao subir de nível, o corpo humano passa por uma grande atualização na puberdade — ligada à capacidade de reprodução.",
     missions:[
       {t:"O Que é a Puberdade", d:"Puberdade como fase de transição e caracteres sexuais secundários", f:"Listar 3 mudanças comuns na puberdade (sem serem específicas de um só género)", xp:10},
@@ -361,12 +361,12 @@
     resources:[
       {icon:"🫀", title:"Explorar o corpo humano em 3D", desc:"Vê o sistema reprodutor (e outros sistemas) num modelo 3D interativo. Pode pedir um registo gratuito.", site:"BioDigital Human", url:"https://human.biodigital.com/"}
     ],
-    boss:"Ficha de avaliação — por confirmar no manual"
+    boss:"Ficha de avaliação — Manual 2: Resumo pág. 48 · Avaliação pág. 49"
   },
   {
     id:"c8", num:8, c:"m8", icon:"🦠",
     title:"Vírus de Servidor: Microrganismos e Defesas do Corpo",
-    subtitle:"Microrganismos, doenças e defesas do corpo", pages:"manual a confirmar",
+    subtitle:"Microrganismos, doenças e defesas do corpo", pages:"Manual 2, págs. 108–126",
     lead:"Tal como um servidor pode ter vírus e precisa de anti-vírus e firewalls, o corpo humano é invadido por microrganismos e tem as suas próprias defesas.",
     missions:[
       {t:"O Mundo Invisível", d:"História da descoberta dos microrganismos", f:"Pesquisar quem descobriu os microrganismos e quando, graças ao microscópio", xp:10},
@@ -408,6 +408,6 @@
       left:{title:"🦠 Microrganismos úteis", points:["Ex.: bactérias do iogurte","Ajudam processos como a fermentação","Não causam doenças"]},
       right:{title:"🤒 Microrganismos patogénicos", points:["Ex.: vírus da gripe","Podem causar doenças","O corpo defende-se deles com barreiras e o sistema imunitário"]}
     },
-    boss:"Ficha de avaliação — por confirmar no manual"
+    boss:"Ficha de avaliação — Manual 2: Resumo pág. 125 · Avaliação pág. 126"
   }
   ];
