@@ -515,6 +515,76 @@
   }
   function hideCurioCard(){ if(curioCardEl) curioCardEl.classList.remove("show"); }
 
+  /* ---------- 📷 Ver de perto: real photos and micrographs of each world (data/imagens.js) ---------- */
+  function imgList(w){ return (typeof MISSAO_IMAGENS !== "undefined" && MISSAO_IMAGENS[w.id]) || []; }
+  const MICRO_TXT = {otico:"🔬 microscópio ótico", eletronico:"🔬 microscópio eletrónico"};
+  function buildGaleria(w){
+    const list = imgList(w);
+    if(!list.length) return null;
+    const wrap = el("div","galeria");
+    wrap.appendChild(el("p","subhead",'📷 Ver de perto <small class="muted">— imagens reais; toca para ampliar</small>'));
+    const row = el("div","gal-row");
+    list.forEach(function(im, i){
+      const b = el("button","gal-item"+(im.m ? " micro" : ""),
+        '<span class="gal-pic"><img src="'+im.f+'" alt="" loading="lazy"></span>'+
+        '<span class="gal-cap">'+escXml(im.t)+(im.m ? '<small>'+MICRO_TXT[im.m]+'</small>' : '')+'</span>');
+      b.type = "button";
+      b.setAttribute("aria-label", im.t+" — ampliar");
+      b.addEventListener("click", function(){ openLightbox(list, i, b); });
+      row.appendChild(b);
+    });
+    wrap.appendChild(row);
+    return wrap;
+  }
+  let lb = null;
+  function openLightbox(list, i, trigger){
+    if(!lb){
+      lb = el("div","lb-overlay");
+      lb.setAttribute("role","dialog"); lb.setAttribute("aria-modal","true"); lb.setAttribute("aria-label","Imagem ampliada");
+      lb.innerHTML = '<div class="lb-box"><div class="lb-top"><p class="lb-n"></p><button type="button" class="lb-btn" data-a="zoom">🔍 Aproximar</button><button type="button" class="lb-btn" data-a="x" aria-label="Fechar">✕</button></div>'+
+        '<div class="lb-stage"><img alt=""></div>'+
+        '<div class="lb-nav"><button type="button" class="lb-btn" data-a="ant">← Anterior</button><button type="button" class="lb-btn" data-a="seg">Seguinte →</button></div>'+
+        '<h3 class="lb-t"></h3><p class="lb-d"></p><p class="lb-cred"></p></div>';
+      document.body.appendChild(lb);
+      lb.addEventListener("click", function(e){
+        const b = e.target.closest("button");
+        if(e.target === lb || (b && b.dataset.a === "x")) return closeLightbox();
+        if(!b) return;
+        if(b.dataset.a === "zoom"){ const on = lb.classList.toggle("zoomed"); b.textContent = on ? "↩️ Afastar" : "🔍 Aproximar"; }
+        if(b.dataset.a === "ant") showLb(lb._i - 1);
+        if(b.dataset.a === "seg") showLb(lb._i + 1);
+      });
+      lb.addEventListener("keydown", function(e){
+        if(e.key === "Escape") closeLightbox();
+        if(e.key === "ArrowLeft") showLb(lb._i - 1);
+        if(e.key === "ArrowRight") showLb(lb._i + 1);
+      });
+    }
+    lb._list = list; lb._trigger = trigger;
+    lb.hidden = false; document.body.classList.add("lb-open");
+    showLb(i);
+    lb.querySelector('[data-a="x"]').focus();
+  }
+  function showLb(i){
+    const list = lb._list, n = list.length;
+    i = (i + n) % n; lb._i = i;
+    const im = list[i], lic = LIC[im.lic] || [im.lic, ""];
+    lb.classList.remove("zoomed"); lb.querySelector('[data-a="zoom"]').textContent = "🔍 Aproximar";
+    lb.classList.toggle("micro", !!im.m);
+    const img = lb.querySelector(".lb-stage img"); img.src = im.f; img.alt = im.t;
+    lb.querySelector(".lb-n").textContent = (i+1)+" / "+n+(im.m ? " · "+MICRO_TXT[im.m] : "");
+    lb.querySelector(".lb-t").textContent = im.t;
+    lb.querySelector(".lb-d").textContent = im.d;
+    lb.querySelector(".lb-cred").innerHTML = "📷 "+escXml(im.cred)+" · "+(lic[1] ? '<a href="'+lic[1]+'" target="_blank" rel="noopener noreferrer">'+lic[0]+'</a>' : lic[0])+
+      ' · <a href="'+escXml(im.src)+'" target="_blank" rel="noopener noreferrer">Wikimedia Commons ↗</a>';
+    lb.querySelector(".lb-nav").hidden = n < 2;
+  }
+  function closeLightbox(){
+    if(!lb) return;
+    lb.hidden = true; document.body.classList.remove("lb-open");
+    if(lb._trigger && lb._trigger.focus) lb._trigger.focus({preventScroll:true});
+  }
+
   function clickable(node, fn){
     node.tabIndex = 0;
     node.setAttribute("role","button");
@@ -678,6 +748,9 @@
         list.appendChild(slot);
         A.appendChild(list);
       }
+
+      const gal = buildGaleria(w);
+      if(gal) A.appendChild(gal);
 
       (w.posters||[]).forEach(function(p){
         const fig = document.createElement("figure");
