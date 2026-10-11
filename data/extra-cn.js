@@ -208,32 +208,5 @@ const CN_EXTRA = {
       {t:"Estima-se que no corpo humano vivam tantas bactérias como células humanas — cerca de 38 biliões (no sentido português: 38 milhões de milhões).", fonte:"Sender, Fuchs & Milo (2016), revista científica PLOS Biology"},
       {t:"Antonie van Leeuwenhoek, que construía os seus próprios microscópios, foi dos primeiros a ver microrganismos, no século XVII. Chamava-lhes 'animálculos'.", fonte:"Encyclopaedia Britannica"}
     ]
-  },
-  c9: {
-    desafio: [
-      {q:"O que é um DAE?", opts:["Um aparelho que analisa o coração e, se for preciso, dá um choque","Um termómetro","Um aparelho para medir a tensão","Uma garrafa de oxigénio"], correct:0, explain:"O desfibrilhador automático externo fala e diz o que fazer; só dá choque se o ritmo do coração o exigir."},
-      {q:"No suporte básico de vida, a que ritmo se fazem as compressões no peito?", opts:["100 a 120 por minuto","10 por minuto","30 por minuto","300 por minuto"], correct:0, explain:"É o ritmo recomendado pelo Conselho Europeu de Ressuscitação — mais ou menos o ritmo da música «Stayin' Alive»."},
-      {q:"Foste picado por uma abelha. O que se faz?", opts:["Tirar o ferrão raspando com um cartão, lavar e pôr gelo envolto num pano","Pôr lama","Coçar com força","Ignorar sempre, aconteça o que acontecer"], correct:0, explain:"Se houver inchaço na cara ou dificuldade em respirar, é uma emergência: liga-se 112."},
-      {q:"Torceste o tornozelo. O que ajuda?", opts:["Repouso, gelo envolto num pano e o pé elevado","Correr para «aquecer»","Pôr água muito quente","Massajar com muita força"], correct:0, explain:"O gelo nunca se põe diretamente na pele: envolve-se num pano, durante uns 15 a 20 minutos."},
-      {q:"Qual é o número da linha SNS 24?", opts:["808 24 24 24","112","800 250 250","117"], correct:0, explain:"O SNS 24 dá conselhos de saúde por telefone. O 117 é para avisar de incêndios florestais."}
-    ],
-    explorar: {
-      proximo: "Mais tarde podes fazer um curso de Suporte Básico de Vida (há cursos para jovens na Cruz Vermelha e noutras entidades) e aprender a usar um DAE — um treino que pode mesmo salvar vidas.",
-      pontos: [
-        "Onde há um DAE (desfibrilhador) perto da tua escola ou de casa?",
-        "O que deve ter um kit de primeiros socorros para levar numa viagem?",
-        "Porque é que não se deve dar de beber a uma pessoa inconsciente?"
-      ],
-      links: [
-        {u:"https://www.inem.pt", n:"INEM — Instituto Nacional de Emergência Médica"},
-        {u:"https://www.cruzvermelha.pt", n:"Cruz Vermelha Portuguesa"},
-        {u:"https://www.nhs.uk/conditions/first-aid/", n:"NHS — guia de primeiros socorros (em inglês)"}
-      ]
-    },
-    curiosidades: [
-      {t:"O 112 funciona em todos os países da União Europeia e é sempre gratuito. Muitos operadores falam também inglês.", fonte:"Comissão Europeia"},
-      {t:"Para acertar no ritmo das compressões do suporte básico de vida (100 a 120 por minuto), há quem pense na música «Stayin' Alive», dos Bee Gees.", fonte:"American Heart Association e British Heart Foundation"},
-      {t:"A Cruz Vermelha nasceu em 1863, em Genebra, por iniciativa de Henry Dunant, depois de ver milhares de feridos sem ajuda numa batalha.", fonte:"Comité Internacional da Cruz Vermelha"}
-    ]
   }
 };
