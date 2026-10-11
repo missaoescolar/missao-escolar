@@ -152,14 +152,24 @@ const MissaoAnim = (function(){
     agendar();
   }
 
+  /* at the end the animation starts again by itself (a short rest on the last step first) —
+     unless the last step is interactive (a slider, buttons…): then it waits, and ▶ starts it again */
+  function recomecarOuEsperar(){
+    if(!ctrlBox.hidden && ctrlBox.innerHTML){
+      playing = false; playBtn.textContent = "▶"; playBtn.setAttribute("aria-label", "Ver outra vez");
+      return;
+    }
+    irPara(0);
+  }
   function agendar(){
     clearTimeout(stepTimer);
-    if(!playing || cur >= D.passos.length-1) return;
-    const dur = D.passos[cur].dur || 5800;
+    if(!playing) return;
+    const ultimo = cur >= D.passos.length-1;
+    const dur = (D.passos[cur].dur || 5800) + (ultimo ? 4000 : 0);
     // with narration the voice decides (falar → onend); the long timer is only a safety net if the voice never ends
     stepTimer = setTimeout(() => {
       if(!ov.offsetParent){ tocar(false); calar(); return; }   // the world was hidden (other tab): pause instead of playing unseen
-      irPara(cur+1);
+      if(ultimo) recomecarOuEsperar(); else irPara(cur+1);
     }, (narrar && window.speechSynthesis) ? dur + 15000 : dur);
   }
 
@@ -179,7 +189,12 @@ const MissaoAnim = (function(){
     const u = new SpeechSynthesisUtterance((p.fala || p.t).replace(/<[^>]+>/g, ""));
     u.lang = p.lang || D.lang || "pt-PT"; u.rate = 0.95;
     const k = cur;
-    u.onend = () => { if(playing && cur === k && cur < D.passos.length-1){ clearTimeout(stepTimer); stepTimer = setTimeout(() => irPara(cur+1), 900); } };
+    u.onend = () => {
+      if(!playing || cur !== k) return;
+      clearTimeout(stepTimer);
+      if(cur < D.passos.length-1) stepTimer = setTimeout(() => irPara(cur+1), 900);
+      else stepTimer = setTimeout(recomecarOuEsperar, 4000);
+    };
     speechSynthesis.speak(u);
   }
   function calar(){ if(window.speechSynthesis) speechSynthesis.cancel(); }

@@ -171,7 +171,8 @@
     return '<p style="margin:0 0 14px">Escolhe quanto tempo de pausa queres. Não há nada para fazer durante a pausa — só uma curiosidade nova a cada minuto, para o cérebro continuar a passear.</p>'+
       '<div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center">'+
       [5,10,15].map(function(min){ return '<button type="button" class="wheel-btn break-pick" data-min="'+min+'" style="font-size:0.95rem;padding:10px 18px">'+min+' min</button>'; }).join("")+
-      '</div>';
+      '</div>'+
+      '<p class="note-small" style="text-align:center">Ou uma pausa criativa: 🎵 <a href="https://musiclab.chromeexperiments.com/Song-Maker/" target="_blank" rel="noopener noreferrer">inventa uma música no Chrome Music Lab ↗</a> (grátis, sem conta).</p>';
   }
   function buildBreakTimerHtml(totalSeconds){
     const mm = String(Math.floor(totalSeconds/60)).padStart(2,"0");
@@ -591,6 +592,37 @@
     if(lb._trigger && lb._trigger.focus) lb._trigger.focus({preventScroll:true});
   }
 
+  /* ---------- 🧪 PhET simulations: loaded only when the child asks (they are big and need internet) ---------- */
+  function buildSims(sims){
+    const wrap = el("div","sims");
+    wrap.appendChild(el("p","subhead",'🧪 Experimenta <small class="muted">— simulações interativas (precisam de internet)</small>'));
+    const frame = el("div","sim-frame"); frame.hidden = true;
+    sims.forEach(function(sm){
+      const b = el("button","anim-thumb sim-btn",'<span class="play" aria-hidden="true">🧪</span><span><b>'+escXml(sm.t)+'</b><small>'+escXml(sm.d)+'</small></span>');
+      b.type = "button";
+      b.addEventListener("click", function(){
+        const aberto = b.classList.contains("on");
+        wrap.querySelectorAll(".sim-btn").forEach(function(x){ x.classList.remove("on"); });
+        if(aberto){ frame.hidden = true; frame.innerHTML = ""; return; }
+        b.classList.add("on");
+        frame.innerHTML = '<div class="sim-box"><iframe src="'+sm.url+'" title="'+escXml(sm.t)+'" allowfullscreen loading="lazy"></iframe></div>'+
+          '<p class="sim-cred"><a href="'+sm.url+'" target="_blank" rel="noopener noreferrer">⛶ Abrir em ecrã inteiro ↗</a> · Simulação PhET, University of Colorado Boulder · <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">CC BY 4.0</a></p>';
+        frame.hidden = false;
+        b.insertAdjacentElement("afterend", frame);
+      });
+      wrap.appendChild(b);
+    });
+    return wrap;
+  }
+
+  /* 🤟 every key word can be looked up in Língua Gestual Portuguesa (Spread the Sign, a European sign-language dictionary) */
+  function addLgp(term){
+    const body = document.querySelector(".modal-body");
+    if(!body) return;
+    body.insertAdjacentHTML("beforeend", '<p class="lgp"><a href="https://www.spreadthesign.com/pt.pt/search/?q='+encodeURIComponent(term)+'" target="_blank" rel="noopener noreferrer">🤟 Ver o gesto em Língua Gestual Portuguesa ↗</a>'+
+      '<small>Dicionário Spread the Sign. Algumas palavras muito técnicas podem ainda não ter gesto.</small></p>');
+  }
+
   function clickable(node, fn){
     node.tabIndex = 0;
     node.setAttribute("role","button");
@@ -881,6 +913,7 @@
             if(popup && popup.bio) openModal((popup.name||term), buildBioModalHtml(popup), c);
             else if(popup && popup.svg) openModal(term, buildDiagramModalHtml(def, popup), c);
             else openModal(term, buildGlossModalHtml(def, (popup&&popup.icon)||w.icon), c);
+            if(cfg.key !== "eng") addLgp(term);
           });
           chips.appendChild(c);
         });
@@ -945,6 +978,10 @@
         quizRefreshers.push(quiz.restart);
       }
 
+      // 🧪 interactive PhET simulations for this world (data/recursos.js)
+      const sims = (typeof MISSAO_SIMS !== "undefined" && MISSAO_SIMS[w.id]) || [];
+      if(sims.length) P.appendChild(buildSims(sims));
+
       // the other half of the subject, one click away from where it is useful
       const OFICINA = {p5:["narrativo","uma história"], p6:["poema","um poema"]};
       if(OFICINA[w.id]){
@@ -999,11 +1036,12 @@
         X.appendChild(cmpWrap);
       }
 
-      if(w.resources && w.resources.length){
+      const recursos = (w.resources || []).concat((typeof MISSAO_LINKS !== "undefined" && MISSAO_LINKS[w.id]) || []);
+      if(recursos.length){
         const resWrap = el("div","");
         resWrap.appendChild(el("p","subhead","🔗 Sites para explorar <small class=\"muted\">— abrem numa aba nova</small>"));
         const rg = el("div","res-grid");
-        w.resources.forEach(function(r){
+        recursos.forEach(function(r){
           const a = document.createElement("a");
           a.className = "res-card";
           a.href = r.url; a.target = "_blank"; a.rel = "noopener noreferrer";
