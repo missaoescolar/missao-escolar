@@ -3,12 +3,16 @@
   function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
   function load(key, fallback){ try{ const v = localStorage.getItem(key); return v===null ? fallback : JSON.parse(v); }catch(e){ return fallback; } }
 
-  /* subjects still being prepared for the 5.º ano */
-  const SUBJECTS_5 = [
-    {name:"Português", icon:"📖"}, {name:"Matemática", icon:"🔢"}, {name:"Inglês", icon:"🌐"},
-    {name:"HGP", icon:"📜"}, {name:"Ciências Naturais", icon:"🔬"}
+  /* the school years. Only the 6.º ano is ready; the others show their subjects as "Em preparação".
+     Subjects follow the Portuguese curriculum (Aprendizagens Essenciais) for each cycle. */
+  const P1 = [["Português","📖"],["Matemática","🔢"],["Estudo do Meio","🌍"],["Inglês","🌐"]];
+  const P2 = [["Português","📖"],["Matemática","🔢"],["Inglês","🌐"],["HGP","📜"],["Ciências Naturais","🔬"]];
+  const P3 = [["Português","📖"],["Matemática","🔢"],["Inglês","🌐"],["Francês ou Espanhol","🗣️"],["História","🏛️"],["Geografia","🗺️"],["Ciências Naturais","🔬"],["Físico-Química","⚗️"]];
+  const YEARS = [
+    {y:"3", ciclo:"1.º ciclo", soon:P1}, {y:"4", ciclo:"1.º ciclo", soon:P1},
+    {y:"5", ciclo:"2.º ciclo", soon:P2}, {y:"6", ciclo:"2.º ciclo", ready:true},
+    {y:"7", ciclo:"3.º ciclo", soon:P3}, {y:"8", ciclo:"3.º ciclo", soon:P3}, {y:"9", ciclo:"3.º ciclo", soon:P3}
   ];
-
   function progress(s){
     const state = load(s.store, {});
     let total=0, done=0, xp=0, xpMax=0;
@@ -29,7 +33,7 @@
     return bits.length ? '<span class="subject-inside">'+bits.map(b => '<i>'+b+'</i>').join("")+'</span>' : '';
   }
 
-  document.getElementById("grid-6").innerHTML = MISSAO_SUBJECTS_6.map((s, i) => {
+  const card6 = MISSAO_SUBJECTS_6.map((s, i) => {
     const p = progress(s);
     return '<a class="subject-card" href="6ano.html#'+s.key+'" style="--wc:var(--m'+(i+1)+');--wc-bg:var(--m'+(i+1)+'-bg)">'+
       '<span class="subject-icon" aria-hidden="true">'+s.icon+'</span>'+
@@ -40,13 +44,18 @@
       inside(s)+
     '</a>';
   }).join("");
-
-  document.getElementById("grid-5").innerHTML = SUBJECTS_5.map(s =>
+  const soonCards = list => list.map(s =>
     '<div class="subject-card soon" aria-disabled="true">'+
-      '<span class="subject-icon" aria-hidden="true">'+s.icon+'</span>'+
-      '<b>'+esc(s.name)+'</b><small>Em preparação</small>'+
+      '<span class="subject-icon" aria-hidden="true">'+s[1]+'</span>'+
+      '<b>'+esc(s[0])+'</b><small>Em preparação</small>'+
     '</div>').join("");
-
+  document.getElementById("year-tabs").innerHTML = YEARS.map(Y =>
+    '<button type="button" class="year-tab'+(Y.ready ? '' : ' soon')+'" role="tab" data-year="'+Y.y+'">'+Y.y+'.º ano</button>').join("");
+  document.getElementById("year-panels").innerHTML = YEARS.map(Y =>
+    '<section class="year-panel" data-year-panel="'+Y.y+'" hidden>'+
+      '<p class="year-caption">'+(Y.ready ? 'Disciplinas do '+Y.y+'.º ano — toca numa para começar' : Y.y+'.º ano ('+Y.ciclo+') — em preparação')+'</p>'+
+      '<div class="subject-grid">'+(Y.ready ? card6 : soonCards(Y.soon))+'</div>'+
+    '</section>').join("");
   /* streak from the activity log written by app.js */
   const log = new Set(load("activity_log", []));
   const key = d => d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
@@ -67,6 +76,6 @@
   }
   tabs.forEach(t => t.addEventListener("click", () => show(t.dataset.year)));
   let year = "6";
-  try{ const y = localStorage.getItem("home_year"); if(y==="5"||y==="6") year = y; }catch(e){}
+  try{ const y = localStorage.getItem("home_year"); if(YEARS.some(Y => Y.y===y)) year = y; }catch(e){}
   show(year);
 })();
