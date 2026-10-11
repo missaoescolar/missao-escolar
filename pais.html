@@ -30,7 +30,13 @@
 
   <section class="info" id="guardar">
     <h2>💾 Guardar o progresso</h2>
-    <p>Missões, XP, a Arena, as perguntas já respondidas e os textos da Oficina ficam guardados no próprio browser, no momento em que a criança faz cada coisa. Fechar ou recarregar a página não perde nada.</p>
+    <p>O progresso fica guardado neste browser quando a gravação tem sucesso. Se houver alterações por guardar, mantenha a página aberta e tente novamente ou descarregue uma cópia pelo botão ⬇ do aviso dessa página.</p>
+    <p>Uma cópia permite recuperar o progresso ou transferi-lo para outro browser. Inclui os textos guardados da Oficina; guarde o ficheiro num local privado. A cópia feita aqui inclui os dados já guardados. Alterações pendentes noutro separador devem ser exportadas nesse separador.</p>
+    <p><button type="button" class="ghost" id="progresso-exportar">⬇ Descarregar cópia</button></p>
+    <p><label for="progresso-ficheiro">Escolher uma cópia para recuperar:</label> <input id="progresso-ficheiro" type="file" accept=".json,application/json"></p>
+    <p id="progresso-resumo" hidden></p>
+    <p><button type="button" class="ghost" id="progresso-importar" disabled>Recuperar esta cópia</button></p>
+    <p id="progresso-estado" role="status" aria-live="polite"></p>
     <p>Se aparecer o aviso <b>⚠️ «Este browser não está a guardar o teu progresso»</b>, a causa costuma ser uma destas:</p>
     <ul class="help-list">
       <li><b>Janela privada / anónima:</b> o browser apaga tudo ao fechar. Abra o site numa janela normal.</li>
@@ -194,5 +200,7 @@
   <p class="pais-back"><a class="ghost" href="6ano.html">← Voltar ao 6.º ano</a></p>
 </div>
 
+<script src="armazem.js"></script>
+<script src="progresso.js"></script>
 </body>
 </html>
