@@ -10,8 +10,8 @@
 const MissaoBanco = (function(){
   const DIAS = [1, 2, 4, 8, 16, 30];
   const K_SRS = "banco_srs", K_HOJE = "banco_hoje"+(MISSAO_ANO_ATUAL === "6" ? "" : "_"+MISSAO_ANO_ATUAL), K_VISTOS = "mundos_vistos";
-  const load = (k, f) => { try{ const v = localStorage.getItem(k); return v === null ? f : JSON.parse(v); }catch(e){ return f; } };
-  const save = (k, v) => { try{ localStorage.setItem(k, JSON.stringify(v)); }catch(e){} };
+  const load = (k, f) => MissaoArmazem.ler(k, f);
+  const save = (k, v) => MissaoArmazem.gravar(k, v);
   const hojeN = () => { const d = new Date(); return Math.round(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()) / 864e5); };
 
   /* a small seeded random, so the day's mission is the same all day */

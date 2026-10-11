@@ -2,8 +2,8 @@
 (function(){
   const $ = id => document.getElementById(id);
   function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
-  function load(key, fallback){ try{ const v = localStorage.getItem(key); return v===null ? fallback : JSON.parse(v); }catch(e){ return fallback; } }
-  function store(key, v){ try{ localStorage.setItem(key, JSON.stringify(v)); }catch(e){} }
+  function load(key, fallback){ return MissaoArmazem.ler(key, fallback); }
+  function store(key, v){ return MissaoArmazem.gravar(key, v); }   // true = saved
   function pick(list){ return list[Math.floor(Math.random()*list.length)]; }
 
   /* ---------- modal (same look as the main page) ---------- */
@@ -172,7 +172,7 @@
   wrTitle.value = draft.title; wrType.value = ESCRITA_TIPOS[draft.type] ? draft.type : "narrativo"; wrText.value = draft.text;
 
   function words(t){ return (t.trim().match(/[^\s—–-]+/g) || []).length; }
-  function saveDraft(){ draft = {title:wrTitle.value, type:wrType.value, text:wrText.value, theme:draft.theme}; store("ws_draft", draft); }
+  function saveDraft(){ draft = {title:wrTitle.value, type:wrType.value, text:wrText.value, theme:draft.theme}; return store("ws_draft", draft); }
 
   function stageIndex(){
     const t = ESCRITA_TIPOS[wrType.value], n = words(wrText.value);
@@ -212,7 +212,7 @@
 
   function useTheme(t){
     if(wrText.value.trim() && !confirm("Começar um texto novo com este tema? O texto atual vai para 'Os meus textos'.")) return;
-    if(wrText.value.trim()) archive();
+    if(!archive()) return;
     wrType.value = t.tipo;
     wrTitle.value = t.livre ? "" : t.titulo;
     wrText.value = t.inicio ? t.inicio+" " : "";
@@ -276,12 +276,21 @@
 
   /* ----- saved texts ----- */
   function saved(){ return load("ws_saved", []); }
+  /* puts the current text in "Os meus textos". Returns false if it could NOT be saved:
+     then the text must stay in the box (the callers stop), and the child is told how to keep it.
+     There is no limit on how many texts are kept, so an old text is never deleted without asking. */
   function archive(){
-    if(!wrText.value.trim()) return;
-    const list = saved();
-    list.unshift({id:Date.now(), title:wrTitle.value || "Sem título", type:wrType.value, text:wrText.value, date:new Date().toLocaleDateString("pt-PT")});
-    store("ws_saved", list.slice(0, 30));
+    if(!wrText.value.trim()) return true;
+    const texto = {id:Date.now(), title:wrTitle.value || "Sem título", type:wrType.value, text:wrText.value, date:new Date().toLocaleDateString("pt-PT")};
+    const r = MissaoArmazem.atualizar("ws_saved", [], list => { list.unshift(texto); });
     renderSaved();
+    if(!r.ok) naoGuardou();
+    return r.ok;
+  }
+  function naoGuardou(){
+    openModal("😟 Não consegui guardar o texto",
+      '<p>O teu texto <b>continua na caixa</b>, não se perdeu.</p>'+
+      '<p>Para o guardares já, toca em <b>⬇️ Guardar .txt</b> — fica um ficheiro no computador. Depois pede a um adulto para ver em <a href="pais.html#guardar">Para pais</a> porque é que este browser não está a guardar.</p>');
   }
   function renderSaved(){
     const list = saved();
@@ -293,13 +302,15 @@
     $("wr-saved").querySelectorAll("[data-open]").forEach(b => b.addEventListener("click", () => {
       const s = saved().find(x => x.id === +b.dataset.open); if(!s) return;
       if(wrText.value.trim() && !confirm("Abrir este texto? O texto atual vai para 'Os meus textos'.")) return;
-      if(wrText.value.trim()) archive();
-      store("ws_saved", saved().filter(x => x.id !== s.id));
-      wrTitle.value = s.title; wrType.value = s.type; wrText.value = s.text; saveDraft(); renderSteps(); renderSaved(); wrText.focus();
+      if(!archive()) return;
+      wrTitle.value = s.title; wrType.value = s.type; wrText.value = s.text;
+      // only take it out of the list once it is safely saved as the text being written
+      if(saveDraft()) MissaoArmazem.atualizar("ws_saved", [], list => list.filter(x => x.id !== s.id));
+      renderSteps(); renderSaved(); wrText.focus();
     }));
     $("wr-saved").querySelectorAll("[data-del]").forEach(b => b.addEventListener("click", () => {
       if(!confirm("Apagar este texto para sempre?")) return;
-      store("ws_saved", saved().filter(x => x.id !== +b.dataset.del)); renderSaved();
+      MissaoArmazem.atualizar("ws_saved", [], list => list.filter(x => x.id !== +b.dataset.del)); renderSaved();
     }));
   }
 
@@ -314,13 +325,15 @@
       '<button type="button" class="ws-btn primary" id="wr-archive">📚 Guardar em "Os meus textos"</button>'+
       '<div class="wr-curio"><p class="curio-title">💡 Sabias que…?</p>'+curioHtml(c)+'</div>', e.currentTarget);
     $("wr-archive").addEventListener("click", () => {
-      archive(); wrText.value = ""; wrTitle.value = ""; draft.theme = ""; saveDraft(); renderSteps(); hideHint(); closeModal();
+      if(!archive()) return;
+      wrText.value = ""; wrTitle.value = ""; draft.theme = ""; saveDraft(); renderSteps(); hideHint(); closeModal();
     });
   });
 
   $("wr-new").addEventListener("click", () => {
     if(wrText.value.trim() && !confirm("Começar um texto novo? O texto atual vai para 'Os meus textos'.")) return;
-    archive(); wrText.value = ""; wrTitle.value = ""; draft.theme = ""; saveDraft(); renderSteps(); hideHint(); wrText.focus();
+    if(!archive()) return;
+    wrText.value = ""; wrTitle.value = ""; draft.theme = ""; saveDraft(); renderSteps(); hideHint(); wrText.focus();
   });
 
   $("wr-download").addEventListener("click", () => {

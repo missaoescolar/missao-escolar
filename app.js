@@ -7,21 +7,18 @@
     const newCorrect = idx.indexOf(q.correct);
     return Object.assign({}, q, {opts:newOpts, correct:newCorrect});
   }
-  function store(key){ try{ return JSON.parse(localStorage.getItem(key)||"{}"); }catch(e){ return {}; } }
-  function save(key, s){ try{ localStorage.setItem(key, JSON.stringify(s)); }catch(e){} }
+  // reading and writing go through armazem.js (warns when saving fails, keeps a copy of damaged values)
+  function store(key){ return MissaoArmazem.ler(key, {}); }
 
   function dateKey(d){
     const y=d.getFullYear(), m=String(d.getMonth()+1).padStart(2,"0"), day=String(d.getDate()).padStart(2,"0");
     return y+"-"+m+"-"+day;
   }
   function todayStr(){ return dateKey(new Date()); }
-  function getActivityLog(){ try{ return JSON.parse(localStorage.getItem("activity_log")||"[]"); }catch(e){ return []; } }
+  function getActivityLog(){ return MissaoArmazem.ler("activity_log", []); }
   function logActivityToday(){
-    try{
-      const log = getActivityLog();
-      const t = todayStr();
-      if(log.indexOf(t)===-1){ log.push(t); localStorage.setItem("activity_log", JSON.stringify(log)); }
-    }catch(e){}
+    const t = todayStr();
+    MissaoArmazem.registarAtividade(t);
   }
   function computeStreak(){
     const set = new Set(getActivityLog());
@@ -495,7 +492,7 @@
 
   /* small card that slides in after a mission is ticked — never blocks the page */
   let curioCardEl = null, curioCardTimer = null;
-  function curioCardsOff(){ try{ return localStorage.getItem("curio_cards_off")==="1"; }catch(e){ return false; } }
+  function curioCardsOff(){ return MissaoArmazem.lerTexto("curio_cards_off", "0")==="1"; }
   function showCurioCard(w){
     const list = missaoExtra(w).curiosidades || [];
     if(!list.length || curioCardsOff()) return;
@@ -513,7 +510,7 @@
     curioCardEl.classList.add("show");
     curioCardEl.querySelector('[data-act="close"]').addEventListener("click", hideCurioCard);
     curioCardEl.querySelector('[data-act="off"]').addEventListener("click", function(){
-      try{ localStorage.setItem("curio_cards_off","1"); }catch(e){}
+      MissaoArmazem.gravarTexto("curio_cards_off","1");
       hideCurioCard();
       showToast("Ok! Continuas a ver curiosidades no botão 💡 de cada mundo.");
     });
@@ -635,7 +632,8 @@
      (📖 Aprender · 🎯 Praticar · 🔭 Explorar) → Revisão Final
      ====================================================================== */
   function mountSubject(cfg){
-    const state = store(cfg.storeKey);
+    const state = store(cfg.storeKey); // confirmed persisted missions only
+    const pendingMissions = new Map(), pendingWorlds = new Set();
     const worlds = cfg.worlds;
     const mapNav = document.getElementById(cfg.navId);
     const main = document.getElementById(cfg.mainId);
@@ -643,6 +641,10 @@
     const opened = {};            // world id -> setStage(k)
     let current = null;           // open world id, "revisao" or null (= map)
 
+    function replaceState(novo){
+      Object.keys(state).forEach(function(k){ delete state[k]; });
+      Object.assign(state, novo);
+    }
     function worldDone(w){ return w.missions.filter(function(m,i){ return state[w.id+"-"+i]; }).length; }
     function isComplete(w){ return w.missions.length>0 && worldDone(w)===w.missions.length; }
 
@@ -943,13 +945,27 @@
         const detail = el("div","mdetail", m.d+" · <i>"+m.f+"</i>");
         const xp = el("span","mxp","+"+m.xp+" XP");
         cb.addEventListener("change", function(){
-          const wasComplete = isComplete(w);
-          state[key] = cb.checked; save(cfg.storeKey, state);
-          title.classList.toggle("done", cb.checked);
-          if(cb.checked) logActivityToday();
-          renderXP(); renderWorldProgress(w); renderMap(); renderTodayPanel();
-          if(isComplete(w) && !wasComplete){ showToast("🎉 Mundo "+w.num+" concluído!"); playChime(); burstConfetti(); }
-          else if(cb.checked){ showCurioCard(w); }
+          pendingMissions.set(key, cb.checked);
+          pendingWorlds.add(w);
+          // The intended choice is visible; XP/completion remain confirmed until saved.
+          refreshMissionState();
+          MissaoArmazem.atualizarPendente(cfg.storeKey, {}, function(st){
+            pendingMissions.forEach(function(checked, k){ st[k] = checked; });
+            return st;
+          }, function(guardado){
+            const touched = Array.from(pendingWorlds);
+            const before = touched.map(isComplete);
+            const hasChecked = Array.from(pendingMissions.values()).some(Boolean);
+            replaceState(guardado);
+            pendingMissions.clear(); pendingWorlds.clear();
+            refreshMissionState();
+            if(hasChecked) logActivityToday();
+            touched.forEach(function(world, i){
+              if(isComplete(world) && !before[i]){ showToast("🎉 Mundo "+world.num+" concluído!"); playChime(); burstConfetti(); }
+              else if(hasChecked){ showCurioCard(world); }
+            });
+          });
+          if(MissaoArmazem.falhou(cfg.storeKey)) showToast("A alteração da missão está por guardar. Tenta novamente no aviso.");
         });
         row.appendChild(cb); row.appendChild(title); row.appendChild(detail); row.appendChild(xp);
         missionsBox.appendChild(row);
@@ -1108,6 +1124,32 @@
     renderMap();
     renderXP();
 
+    function refreshMissionState(){
+      worlds.forEach(function(w){
+        w.missions.forEach(function(m, i){
+          const k = w.id+"-"+i, cb = document.getElementById("cb-"+k);
+          if(!cb) return;
+          const pending = pendingMissions.has(k);
+          cb.checked = pending ? pendingMissions.get(k) : !!state[k];
+          cb.setAttribute("data-save-status", pending ? "pending" : "saved");
+          if(pending) cb.setAttribute("aria-description", "Esta alteração ainda está por guardar.");
+          else cb.removeAttribute("aria-description");
+          if(cb.nextElementSibling){
+            cb.nextElementSibling.classList.toggle("done", !pending && !!state[k]);
+            cb.nextElementSibling.textContent = "Q"+(i+1)+" — "+m.t+(pending ? " · por guardar" : "");
+          }
+        });
+        renderWorldProgress(w);
+      });
+      renderXP(); renderMap(); renderTodayPanel();
+    }
+    /* Read confirmed remote progress without discarding local pending choices. */
+    MissaoArmazem.aoMudar(function(k){
+      if(k !== cfg.storeKey && k !== null) return;
+      replaceState(store(cfg.storeKey));
+      refreshMissionState();
+    });
+
     /* show the map, one world (optionally at a stage) or the review */
     function show(target, stage){
       if(target && target!=="revisao" && !opened[target]) target = null;
@@ -1253,13 +1295,15 @@
   if(pauseBtn) pauseBtn.addEventListener("click", function(){ openBreakModal(pauseBtn); });
 
   /* ---- subject tabs ---- */
+  // each year remembers its own last subject (the 6.º ano keeps the old key name)
+  const KEY_SUBJECT = "active_subject"+(MISSAO_ANO_ATUAL === "6" ? "" : "_"+MISSAO_ANO_ATUAL);
   const panels = {};
   MISSAO_SUBJECTS.forEach(function(s){ panels[s.key] = document.getElementById("subj-"+s.key); });
   const tabBtns = Array.prototype.slice.call(document.querySelectorAll("#subject-tabs .tab-btn"));
   function activate(subject){
     Object.keys(panels).forEach(function(k){ panels[k].hidden = (k!==subject); });
     tabBtns.forEach(function(b){ b.classList.toggle("active", b.dataset.subject===subject); });
-    try{ localStorage.setItem("active_subject", subject); }catch(e){}
+    MissaoArmazem.gravarTexto(KEY_SUBJECT, subject);
   }
 
   /* ---- views inside a subject: Matemática → Mundos | Arena; Português → Mundos | Oficina de Escrita ---- */
@@ -1306,7 +1350,7 @@
     return panels[parts[0]] ? {subject:parts[0], part:parts[1] || null, stage:parts[2] || null} : null;
   }
   let initial = MISSAO_SUBJECTS[0].key;
-  try{ const saved = localStorage.getItem("active_subject"); if(panels[saved]) initial = saved; }catch(e){}
+  const saved = MissaoArmazem.lerTexto(KEY_SUBJECT, null); if(panels[saved]) initial = saved;
   const h0 = fromHash();
   if(h0) route(h0.subject, h0.part, h0.stage); else route(initial);
   window.addEventListener("hashchange", function(){

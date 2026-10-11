@@ -47,8 +47,8 @@ function missaoLink(l){
 }
 
 /* Modo Desafio: guardado no browser, partilhado entre páginas */
-function missaoChallengeOn(){ try{ return localStorage.getItem("challenge_mode")==="1"; }catch(e){ return false; } }
-function missaoSetChallenge(on){ try{ localStorage.setItem("challenge_mode", on ? "1" : "0"); }catch(e){} }
+function missaoChallengeOn(){ return MissaoArmazem.lerTexto("challenge_mode", "0")==="1"; }
+function missaoSetChallenge(on){ MissaoArmazem.gravarTexto("challenge_mode", on ? "1" : "0"); }
 function missaoQuizFor(w){
   const d = missaoExtra(w).desafio;
   return (missaoChallengeOn() && d && d.length) ? d : (w.quiz || []);

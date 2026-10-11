@@ -833,6 +833,21 @@
   }
   .subhead small{ white-space:nowrap; }
 
+  /* ---------- ⚠️ progress could not be saved (armazem.js) — calm, at the bottom, never blocks ---------- */
+  .armazem-aviso{
+    position:fixed; left:50%; bottom:16px; transform:translateX(-50%); z-index:1100; width:min(560px, calc(100vw - 32px));
+    display:flex; align-items:flex-start; gap:10px; background:var(--surface); color:var(--text);
+    border:2px solid var(--accent); border-radius:16px; box-shadow:var(--shadow); padding:12px 14px;
+  }
+  .armazem-aviso p{ margin:0; font-size:0.9rem; line-height:1.45; }
+  .armazem-aviso a{ color:var(--accent); font-weight:700; }
+  .armazem-aviso button{
+    flex:none; width:32px; height:32px; border-radius:50%; cursor:pointer;
+    border:1px solid var(--border); background:var(--surface-2); color:var(--text);
+  }
+  .armazem-aviso button:focus-visible{ outline:3px solid var(--accent); outline-offset:2px; }
+  @media print{ .armazem-aviso{ display:none !important; } }
+
   /* ---------- 📷 Ver de perto: real images + lightbox ---------- */
   .galeria .subhead{ margin-bottom:8px; }
   .gal-row{ display:flex; gap:10px; overflow-x:auto; padding:2px 2px 8px; scroll-snap-type:x proximity; }

@@ -18,12 +18,42 @@
   /* ---------- saved progress ---------- */
   const today = () => { const d = new Date(); return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0"); };
   const fresh = {xp:0, certas:0, feitas:0, niveis:{}, estrelas:{}, recorde:{}, hoje:{data:"", certas:0}, medalhas:[], jogados:[], modo:"treino", som:true};
-  let S;
-  try{ S = Object.assign({}, fresh, JSON.parse(localStorage.getItem("arena") || "{}")); }catch(e){ S = Object.assign({}, fresh); }
-  if(S.hoje.data !== today()) S.hoje = {data:today(), certas:0};
-  function save(){ try{ localStorage.setItem("arena", JSON.stringify(S)); }catch(e){} }
+  const copia = o => JSON.parse(JSON.stringify(o));
+  let S, base;   // base = what was last read from / written to storage, to work out what this tab added since
+  function carregar(){
+    S = Object.assign(copia(fresh), MissaoArmazem.ler("arena", {}));
+    if(!S.hoje || S.hoje.data !== today()) S.hoje = {data:today(), certas:0};
+    base = copia(S);
+  }
+  carregar();
+  /* Keep S and base until a successful write. Merge with the latest store inside the lock:
+     counters add what each tab earned, best scores keep the highest, lists are joined,
+     and settings or levels only change if this tab changed them */
+  function save(){
+    MissaoArmazem.atualizarPendente("arena", {}, function(guardado){
+      const T = Object.assign(copia(fresh), guardado), m = Object.assign({}, T);
+      ["xp","certas","feitas"].forEach(k => { m[k] = (T[k]||0) + (S[k]||0) - (base[k]||0); });
+      ["modo","som"].forEach(k => { if(S[k] !== base[k]) m[k] = S[k]; });
+      m.niveis = Object.assign({}, T.niveis);
+      Object.keys(S.niveis).forEach(k => { if(S.niveis[k] !== base.niveis[k]) m.niveis[k] = S.niveis[k]; });
+      ["estrelas","recorde"].forEach(g => {
+        m[g] = Object.assign({}, T[g]);
+        Object.keys(S[g]).forEach(k => { m[g][k] = Math.max(m[g][k]||0, S[g][k]||0); });
+      });
+      ["medalhas","jogados"].forEach(g => { m[g] = (T[g]||[]).concat(S[g].filter(x => (T[g]||[]).indexOf(x) === -1)); });
+      const ganhoHoje = S.hoje.certas - (base.hoje.data === S.hoje.data ? base.hoje.certas : 0);
+      m.hoje = (T.hoje && T.hoje.data === S.hoje.data) ? {data:S.hoje.data, certas:T.hoje.certas + ganhoHoje} : {data:S.hoje.data, certas:S.hoje.certas};
+      return m;
+    }, function(guardado){
+      Object.assign(S, guardado);
+      base = copia(S); // advance only after the write succeeds; failed gains remain in S - base
+      renderPlayer();
+      if(!round) renderLobby();
+    });
+  }
   function logActivity(){
-    try{ const log = JSON.parse(localStorage.getItem("activity_log") || "[]"); if(log.indexOf(today())===-1){ log.push(today()); localStorage.setItem("activity_log", JSON.stringify(log)); } }catch(e){}
+    const t = today();
+    MissaoArmazem.registarAtividade(t);
   }
   const nivel = t => S.niveis[t] || 1;
   const playerLevel = xp => Math.floor(Math.sqrt(xp/40)) + 1;   // 40, 160, 360, 640… XP
@@ -446,6 +476,13 @@
 
   /* ---------- start ---------- */
   renderPlayer(); renderLobby();
+  // Never replace unacknowledged local gains with another tab's state.
+  MissaoArmazem.aoMudar(k => {
+    if(k !== "arena" && k !== null) return;
+    if(!MissaoArmazem.temPendentes("arena")) carregar();
+    renderPlayer();
+    if(!round) renderLobby();
+  });
   window.MissaoArena = {
     start: t => { if(TOPICS.indexOf(t) !== -1 || t === "mix") start(t); },
     lobby: () => { if(!round){ renderPlayer(); renderLobby(); show("ar-lobby"); } }

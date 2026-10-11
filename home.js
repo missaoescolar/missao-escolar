@@ -1,7 +1,7 @@
 /* Página inicial: escolher o ano e a disciplina */
 (function(){
   function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
-  function load(key, fallback){ try{ const v = localStorage.getItem(key); return v===null ? fallback : JSON.parse(v); }catch(e){ return fallback; } }
+  function load(key, fallback){ return MissaoArmazem.ler(key, fallback); }
 
   /* the school years. Only the 6.º ano is ready; the others show their subjects as "Em preparação".
      Subjects follow the Portuguese curriculum (Aprendizagens Essenciais) for each cycle. */
@@ -73,10 +73,10 @@
   function show(year){
     tabs.forEach(t => { const on = t.dataset.year===year; t.classList.toggle("active", on); t.setAttribute("aria-selected", on); });
     document.querySelectorAll(".year-panel").forEach(p => { p.hidden = p.dataset.yearPanel !== year; });
-    try{ localStorage.setItem("home_year", year); }catch(e){}
+    MissaoArmazem.gravarTexto("home_year", year);
   }
   tabs.forEach(t => t.addEventListener("click", () => show(t.dataset.year)));
   let year = "6";
-  try{ const y = localStorage.getItem("home_year"); if(YEARS.some(Y => Y.y===y)) year = y; }catch(e){}
+  const y = MissaoArmazem.lerTexto("home_year", null); if(YEARS.some(Y => Y.y===y)) year = y;
   show(year);
 })();

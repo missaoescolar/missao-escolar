@@ -26,7 +26,7 @@ const MissaoAnim = (function(){
   /* ---------- player ---------- */
   let ov, stage, cap, dots, ctrlBox, endBox, playBtn, svg;
   let D = null, cur = 0, playing = false, narrar = false, stepTimer = null, timers = [], returnFocus = null;
-  try{ narrar = localStorage.getItem("anim_narrar") === "1"; }catch(e){}
+  narrar = MissaoArmazem.lerTexto("anim_narrar", "0") === "1";
 
   /* The player is a single box that is placed INSIDE the world it belongs to
      (in the element with data-anim-slot="<world id>"), never on top of the page. */
@@ -62,7 +62,7 @@ const MissaoAnim = (function(){
       if(a === "ant") irPara(Math.max(0, cur-1));
       if(a === "seg") irPara(Math.min(D.passos.length-1, cur+1));
       if(a === "play") tocar(!playing);
-      if(a === "voz"){ narrar = !narrar; try{ localStorage.setItem("anim_narrar", narrar ? "1" : "0"); }catch(err){} pintarVoz(); if(narrar) falar(); else calar(); }
+      if(a === "voz"){ narrar = !narrar; MissaoArmazem.gravarTexto("anim_narrar", narrar ? "1" : "0"); pintarVoz(); if(narrar) falar(); else calar(); }
     });
     dots.addEventListener("click", e => { const b = e.target.closest("button"); if(b) irPara(+b.dataset.k); });
     // keyboard only while the focus is inside the player (it lives in the page, so arrows must not hijack scrolling)
