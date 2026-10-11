@@ -6,10 +6,10 @@
      acertar → caixa seguinte, volta daqui a 1, 2, 4, 8, 16 ou 30 dias; errar → caixa 0, volta amanhã.
    - A missão de cada dia: primeiro algumas revisões que "venceram", depois perguntas novas dos mundos que
      a criança já abriu. Fica fixa durante o dia (recarregar a página não a muda).
-   Precisa de shared.js (MISSAO_SUBJECTS_6, missaoExtra). Usado por app.js. */
+   Precisa de shared.js (MISSAO_SUBJECTS do ano desta página, missaoExtra). Usado por app.js. */
 const MissaoBanco = (function(){
   const DIAS = [1, 2, 4, 8, 16, 30];
-  const K_SRS = "banco_srs", K_HOJE = "banco_hoje", K_VISTOS = "mundos_vistos";
+  const K_SRS = "banco_srs", K_HOJE = "banco_hoje"+(MISSAO_ANO_ATUAL === "6" ? "" : "_"+MISSAO_ANO_ATUAL), K_VISTOS = "mundos_vistos";
   const load = (k, f) => { try{ const v = localStorage.getItem(k); return v === null ? f : JSON.parse(v); }catch(e){ return f; } };
   const save = (k, v) => { try{ localStorage.setItem(k, JSON.stringify(v)); }catch(e){} };
   const hojeN = () => { const d = new Date(); return Math.round(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()) / 864e5); };
@@ -22,7 +22,7 @@ const MissaoBanco = (function(){
 
   /* ---------- build the pool (once) ---------- */
   const POR_ID = {}, POR_MATERIA = {};
-  MISSAO_SUBJECTS_6.forEach(s => {
+  MISSAO_SUBJECTS.forEach(s => {
     const lista = [];
     const termos = [];
     s.worlds.forEach(w => (w.gloss || []).forEach(g => termos.push({w:w, term:g[0], def:g[1]})));
@@ -99,7 +99,7 @@ const MissaoBanco = (function(){
   /* worlds the child has reached: opened worlds, worlds with ticked missions, and always world 1 of each subject */
   function mundosAbertos(){
     const set = new Set(load(K_VISTOS, []));
-    MISSAO_SUBJECTS_6.forEach(s => {
+    MISSAO_SUBJECTS.forEach(s => {
       if(s.worlds[0]) set.add(s.worlds[0].id);
       const st = load(s.store, {});
       s.worlds.forEach(w => w.missions.forEach((m, i) => { if(st[w.id+"-"+i]) set.add(w.id); }));

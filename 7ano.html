@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>7.º Ano — Missão Escolar</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="animacoes.css">
+<script>var MISSAO_ANO = "7";</script>
+</head>
+<body>
+
+<div class="page">
+  <div class="topbar">
+    <p class="crumbs"><a href="index.html">🏠 Início</a> › 7.º ano</p>
+    <button type="button" class="ghost" id="help-btn">❓ Ajuda</button>
+    <button type="button" class="ghost" id="pause-btn">⏸️ Pausa</button>
+    <button type="button" class="ghost" id="lembrete-btn">🔔 Lembrete</button>
+    <a class="ghost" href="pais.html">👪 Para pais</a>
+    <a class="ghost" href="resumo.html?d=cn7">📄 Resumos</a>
+  </div>
+  <section class="strip" id="today-panel" aria-label="O teu progresso"></section>
+  <section class="hoje" id="hoje-card" aria-label="Missão de hoje"></section>
+
+  <div class="tabs" id="subject-tabs">
+    <button class="tab-btn" data-subject="cn7" type="button">🔬 Ciências Naturais</button>
+    <span class="tab-soon" title="Em preparação">📖 Português</span>
+    <span class="tab-soon" title="Em preparação">🔢 Matemática</span>
+    <span class="tab-soon" title="Em preparação">⚗️ Físico-Química</span>
+    <span class="tab-soon" title="Em preparação">🏛️ História</span>
+    <span class="tab-soon" title="Em preparação">🗺️ Geografia</span>
+  </div>
+
+  <section id="subj-cn7" data-panel="cn7" hidden>
+    <div class="map-view" id="map-cn7">
+      <div class="map-head"><p class="sec-title">A Terra em transformação — escolhe um mundo <small class="muted" id="map-count-cn7"></small></p><span class="xp-pill">⭐ <span class="n"><span id="xp-total-cn7">0</span> / <span id="xp-max-cn7">0</span> XP</span></span></div>
+      <nav class="map" id="jump-nav-cn7" aria-label="Mundos de Ciências Naturais do 7.º ano"></nav>
+      <p class="note-small">As outras disciplinas do 7.º ano estão em preparação.</p>
+    </div>
+    <main id="worlds-cn7"></main>
+  </section>
+</div>
+
+<script src="data/cn7.js"></script>
+<script src="data/extra-cn7.js"></script>
+<script src="data/imagens.js"></script>
+<script src="data/imagens7.js"></script>
+<script src="data/recursos.js"></script>
+<script src="shared.js"></script>
+<script src="banco.js"></script>
+<script src="animacoes.js"></script>
+<script src="animacoes-geologia.js"></script>
+<script src="app.js"></script>
+
+</body></html>

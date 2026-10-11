@@ -34,36 +34,70 @@
       ]});
   })();
 
-  /* ---------------- posição lateral de segurança (vista de cima) ---------------- */
+  /* ---------------- posição lateral de segurança: vista de cima, com braços e pernas que se mexem ----------------
+     Cada braço e perna é um grupo que roda à volta da articulação (ombro, cotovelo, anca, joelho);
+     a transição CSS faz o movimento suave. No fim, a imagem real da posição. Segundo o ERC (2021). */
   (function(){
-    const pele = {stroke:"#B5704F", sw:9, lc:"round", lj:"round"};
-    const cabeca = (x, y) => c(x,y,16,{fill:"#F4C7B0", stroke:"#B5704F", sw:2});
-    const costas = (bracos, pernas) => p(pernas,pele)+r(180,56,40,98,{rx:16, fill:"#7FA7D9", stroke:"#3E63B0", sw:2})+p(bracos,pele)+cabeca(200,40);
-    const PERNAS = "M192,148 L184,240 M208,148 L216,240";
+    const CAMISOLA = "#6FA0D8", CALCAS = "#4A5A78", PELE = "#F4C7B0", CONTORNO = "#B5704F", VERM = "#C0392B";
+    const seg = (x1, y1, x2, y2, cor, w) => l(x1,y1,x2,y2,{stroke:cor, sw:w, lc:"round"});
+    const art = (id, ox, oy, inner) => g({id:id, style:"transform-origin:"+ox+"px "+oy+"px; transform:rotate(0deg)"}, inner);
+    const seta = (id, d) => p(d,{id:id, cls:"seta", pl:1, stroke:VERM, sw:3, "marker-end":"url(#pls-ponta)"});
     A.def({id:"pls", mundo:"c9", cor:"m4", titulo:"A posição lateral de segurança (PLS)",
       cena: () =>
+        '<defs><marker id="pls-ponta" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="'+VERM+'"/></marker></defs>'+
         r(0,0,400,260,{fill:"var(--m3-bg)", op:0.45})+
-        t(46,140,"🧑",{fs:34})+t(46,170,"tu",{fs:11})+t(8,20,"vista de cima",{ta:"start", fs:11, fw:400})+
-        g({id:"p0"}, costas("M184,70 L166,150 M216,70 L234,150", PERNAS))+
-        g({id:"p1", cls:"an-h"}, costas("M184,70 L136,72 L136,30 M216,70 L234,150", PERNAS))+
-        g({id:"p2", cls:"an-h"}, costas("M184,70 L136,72 L136,30 M216,70 L198,100 L186,46", "M192,148 L184,240 M208,148 L248,186 L228,236"))+
-        g({id:"p3", cls:"an-h"},
-          r(116,156,120,36,{rx:16, fill:"#7FA7D9", stroke:"#3E63B0", sw:2})+cabeca(100,168)+p("M236,176 L330,190",pele)+p("M232,172 L270,128 L304,168",pele)+
-          p("M126,170 L112,150 L96,158",pele)+p("M128,180 L160,212",pele)+
-          t(270,112,"joelho dobrado",{fs:11, fw:400})+t(96,206,"mão sob a face",{fs:11, fw:400}))+
-        t(320,40,"",{id:"dica", fs:13, fill:"#C0392B"})+t(320,58,"",{id:"dica2", fs:11, fw:400}),
+        t(8,18,"vista de cima",{ta:"start", fs:11, fw:400})+
+        /* you, kneeling beside the person */
+        g({id:"tu"}, el2(70,140,26,38,"#E0923A")+c(70,104,14,{fill:"#5A3B28"})+c(70,106,11,{fill:PELE})+t(70,200,"tu, de joelhos",{fs:11}))+
+        /* the person, on their back */
+        g({id:"costas"},
+          art("pD", 210,168, seg(210,168,214,206,CALCAS,16)+art("sD", 214,206, seg(214,206,214,240,CALCAS,15)+c(214,246,7,{fill:"#333"})))+
+          seg(190,168,186,240,CALCAS,16)+c(186,246,7,{fill:"#333"})+
+          r(176,142,48,30,{rx:10, fill:CALCAS})+r(176,54,48,94,{rx:14, fill:CAMISOLA, stroke:"#3E6FB0", sw:1.5})+
+          art("bE", 180,62, seg(180,62,172,108,CAMISOLA,13)+art("aE", 172,108, seg(172,108,168,146,PELE,10)+c(168,150,6,{fill:PELE, stroke:CONTORNO, sw:1})))+
+          art("bD", 220,62, seg(220,62,228,108,CAMISOLA,13)+art("aD", 228,108, seg(228,108,232,146,PELE,10)+c(232,150,6,{fill:PELE, stroke:CONTORNO, sw:1})))+
+          c(200,36,16,{fill:PELE, stroke:CONTORNO, sw:2})+p("M186,30 Q200,14 214,30",{stroke:"#5A3B28", sw:6, lc:"round"})+
+          t(250,40,"👀👂",{id:"olhar", cls:"an-h", ta:"start", fs:18}))+
+        /* the person, on their side (after rolling towards you) */
+        g({id:"lado", cls:"an-h", tr:"translate(46,6)"},
+          seg(246,160,336,174,CALCAS,16)+c(342,175,7,{fill:"#333"})+
+          seg(244,150,282,112,CALCAS,16)+seg(282,112,318,152,CALCAS,15)+c(322,156,7,{fill:"#333"})+
+          r(212,136,40,32,{rx:10, fill:CALCAS})+r(122,134,96,36,{rx:14, fill:CAMISOLA, stroke:"#3E6FB0", sw:1.5})+
+          seg(140,164,172,204,CAMISOLA,12)+
+          seg(136,140,118,122,CAMISOLA,12)+seg(118,122,104,140,PELE,10)+
+          c(102,150,16,{fill:PELE, stroke:CONTORNO, sw:2})+p("M90,140 Q96,128 110,132",{stroke:"#5A3B28", sw:6, lc:"round"})+
+          t(282,96,"joelho dobrado: não deixa rolar",{fs:10.5, fw:400})+t(72,182,"mão sob a face",{fs:10.5, fw:400})+
+          t(60,128,"boca para baixo",{fs:10.5, fw:400}))+
+        g({id:"foto", cls:"an-h"}, r(14,24,372,200,{rx:12, fill:"#fff", stroke:"var(--border)"})+
+          '<image href="img/c9/pls-final.jpg" x="20" y="30" width="360" height="190" preserveAspectRatio="xMidYMid meet"/>'+
+          t(200,246,"Assim fica a posição lateral de segurança",{fs:13}))+
+        seta("s1","M160,80 C140,70 130,60 134,40")+
+        seta("s2","M236,100 C220,90 205,80 192,60")+
+        seta("s3","M248,200 C262,190 262,176 250,170")+
+        seta("s4","M300,60 C330,100 330,170 290,214")+
+        t(392,24,"",{id:"dica", ta:"end", fs:13, fill:VERM})+t(392,42,"",{id:"dica2", ta:"end", fs:11, fw:400}),
       passos:[
         {t:"A pessoa não responde? Chama-a em voz alta e toca-lhe nos ombros. Depois vê se <b>respira normalmente</b>: olha para o peito, ouve e sente, até 10 segundos.", f:S => {
-          S.texto("#dica","Respira? 👀👂"); S.texto("#dica2","até 10 segundos"); }},
-        {t:"Se <b>respira</b>: ajoelha-te ao lado dela. Põe o <b>braço mais perto de ti</b> em ângulo reto, com a palma da mão virada para cima.", f:S => {
-          S.esconder("#p0"); S.mostrar("#p1"); S.texto("#dica","1. Braço em L"); S.texto("#dica2","palma para cima"); }},
-        {t:"Passa o <b>outro braço</b> por cima do peito e encosta as costas da mão à bochecha do lado de ti. Dobra o <b>joelho do lado de lá</b>, com o pé no chão.", f:S => {
-          S.esconder("#p0, #p1"); S.mostrar("#p2"); S.texto("#dica","2. Mão na face"); S.texto("#dica2","joelho de lá dobrado"); }},
-        {t:"Puxa pelo joelho dobrado e <b>roda a pessoa para o teu lado</b>. A perna de cima fica dobrada, para ela não rolar.", f:S => {
-          S.esconder("#p0, #p1, #p2"); S.mostrar("#p3"); S.texto("#dica","3. Rodar para ti"); S.texto("#dica2","a perna segura o corpo"); }},
-        {t:"Inclina a cabeça um pouco para trás, para o ar passar: assim, se vomitar, o vómito sai pela boca. <b>Liga 112</b> e vigia se continua a respirar.", f:S => {
-          S.esconder("#p0, #p1, #p2"); S.mostrar("#p3"); S.cls("#p3","an-pulse"); S.texto("#dica","4. Ligar 112"); S.texto("#dica2","e vigiar a respiração"); }}
+          S.mostrar("#olhar"); S.cls("#olhar","an-pulse"); S.texto("#dica","Respira?"); S.texto("#dica2","olha, ouve e sente"); }},
+        {t:"Se <b>respira</b>: ajoelha-te ao lado dela. Põe o <b>braço mais perto de ti</b> em ângulo reto, com o cotovelo dobrado e a palma da mão para cima.", f:S => {
+          S.esconder("#olhar"); S.mover("#bE","rotate(80deg)"); S.mover("#aE","rotate(94deg)"); S.cls("#s1","draw");
+          S.texto("#dica","1. Braço em L"); S.texto("#dica2","palma para cima"); }},
+        {t:"Passa o <b>outro braço</b> por cima do peito e encosta as costas da mão à bochecha do lado de ti. Segura-a aí.", f:S => {
+          S.esconder("#olhar"); S.mover("#bE","rotate(80deg)"); S.mover("#aE","rotate(94deg)");
+          S.mover("#bD","rotate(45deg)"); S.mover("#aD","rotate(134deg)"); S.cls("#s2","draw");
+          S.texto("#dica","2. Mão na face"); S.texto("#dica2","do teu lado"); }},
+        {t:"Com a outra mão, <b>dobra o joelho do lado de lá</b>, com o pé assente no chão.", f:S => {
+          S.mover("#bE","rotate(80deg)"); S.mover("#aE","rotate(94deg)"); S.mover("#bD","rotate(45deg)"); S.mover("#aD","rotate(134deg)");
+          S.mover("#pD","rotate(-30deg)"); S.mover("#sD","rotate(140deg)"); S.cls("#s3","draw");
+          S.texto("#dica","3. Joelho dobrado"); S.texto("#dica2","pé no chão"); }},
+        {t:"Puxa pelo joelho dobrado e <b>roda a pessoa para o teu lado</b>. Ajusta a perna de cima, dobrada, para ela não rolar, e a mão debaixo da face.", dur:7000, f:S => {
+          S.cls("#s4","draw"); S.texto("#dica","4. Rodar para ti"); S.texto("#dica2","puxando pelo joelho");
+          const rodar = () => { S.esconder("#costas"); S.cls("#s1, #s2, #s3","draw",false); S.mostrar("#lado"); };
+          if(S.instant) rodar(); else S.depois(rodar, 1800); }},
+        {t:"Inclina a cabeça um pouco para trás, para o ar passar — se vomitar, o vómito sai pela boca. <b>Liga 112</b> e vigia se continua a respirar.", dur:7500, f:S => {
+          S.esconder("#costas, #lado, #tu"); S.cls("#s1, #s2, #s3, #s4","draw",false); S.mostrar("#foto"); S.texto("#dica",""); S.texto("#dica2",""); }}
       ]});
+    function el2(cx, cy, rx, ry, fill){ return '<ellipse cx="'+cx+'" cy="'+cy+'" rx="'+rx+'" ry="'+ry+'" fill="'+fill+'"/>'; }
   })();
 
   /* ---------------- pequenas emergências, uma de cada vez ---------------- */

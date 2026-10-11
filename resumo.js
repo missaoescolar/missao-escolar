@@ -2,7 +2,7 @@
    resumo.html          → índice de todos os mundos
    resumo.html?w=<id>   → página-resumo de um mundo (ex.: ?w=m1, ?w=n3, ?w=c7, ?w=e2) */
 (function(){
-  const SUBJECTS = MISSAO_SUBJECTS_6; // from shared.js
+  const SUBJECTS = MISSAO_SUBJECTS_6.concat(MISSAO_SUBJECTS_7); // from shared.js — every year that is ready
   const LETTERS = ["A","B","C","D","E"];
 
   function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
@@ -147,7 +147,7 @@
     return '<header class="index-head"><h1>📄 Páginas-resumo'+(one ? ' de '+esc(one.name) : '')+'</h1><p>Uma folha por mundo, com o essencial para o teste. Abre uma e imprime com Ctrl+P (ou Cmd+P no Mac).'+
       (one ? ' <a href="resumo.html">Ver todas as disciplinas</a>' : '')+'</p></header>'+
       list.map(function(s){
-        return '<section class="index-subject"><h2>'+s.icon+' '+esc(s.name)+'</h2><div class="index-grid">'+
+        return '<section class="index-subject"><h2>'+s.icon+' '+esc(s.name)+' <small>· '+(s.ano || '6')+'.º ano</small></h2><div class="index-grid">'+
           s.worlds.map(function(w){
             return '<a class="index-card" style="'+colorVars(w)+'" href="'+link(w)+'"><span class="index-ic" aria-hidden="true">'+w.icon+'</span><span><small>Mundo '+w.num+'</small><b>'+esc(w.title)+'</b></span></a>';
           }).join("")+'</div></section>';
@@ -161,7 +161,8 @@
 
   const onlyKey = params.get("d");
   // "back" goes to the world itself (6ano.html#pt/p3), or to the subject's map, or home
-  const back = found ? '6ano.html#'+found.s.key+'/'+found.w.id : (onlyKey ? '6ano.html#'+onlyKey : 'index.html');
+  const pagina = s => (s && s.page) || '6ano.html', subjOnly = SUBJECTS.filter(function(s){ return s.key===onlyKey; })[0];
+  const back = found ? pagina(found.s)+'#'+found.s.key+'/'+found.w.id : (onlyKey ? pagina(subjOnly)+'#'+onlyKey : 'index.html');
   document.getElementById("sheet-nav").innerHTML =
     '<a href="'+back+'">← Voltar '+(found ? 'ao mundo' : onlyKey ? 'à disciplina' : 'ao início')+'</a>'+
     (found ? '<button type="button" id="print-btn">🖨️ Imprimir esta página</button>' : '');

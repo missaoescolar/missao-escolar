@@ -111,3 +111,7 @@
   .an-cap{ font-size:0.95rem; }
   .an-bar > .an-voz{ margin-left:0; }
 }
+
+/* ---------- 7.º ano ---------- */
+.onda-s{ transform-box:fill-box; transform-origin:center; animation:an-onda 2.4s ease-out infinite; }
+@keyframes an-onda{ 0%{ transform:scale(.3); opacity:.9; } 100%{ transform:scale(3.2); opacity:0; } }

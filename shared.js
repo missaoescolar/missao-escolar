@@ -5,7 +5,8 @@ const MISSAO_EXTRA = Object.assign({},
   typeof MATH_EXTRA !== "undefined" ? MATH_EXTRA : {},
   typeof CN_EXTRA !== "undefined" ? CN_EXTRA : {},
   typeof ENG_EXTRA !== "undefined" ? ENG_EXTRA : {},
-  typeof PT_EXTRA !== "undefined" ? PT_EXTRA : {}
+  typeof PT_EXTRA !== "undefined" ? PT_EXTRA : {},
+  typeof CN7_EXTRA !== "undefined" ? CN7_EXTRA : {}
 );
 
 /* Disciplinas do 6.º ano, pela ordem dos separadores. key = usado nos ids da página e no localStorage */
@@ -16,6 +17,14 @@ const MISSAO_SUBJECTS_6 = [
   {key:"hgp",  name:"HGP",                icon:"📜", store:"hgp_missions",  worlds: typeof HGP_WORLDS  !== "undefined" ? HGP_WORLDS  : []},
   {key:"cn",   name:"Ciências Naturais",  icon:"🔬", store:"cn_missions",   worlds: typeof CN_WORLDS   !== "undefined" ? CN_WORLDS   : []}
 ];
+
+/* Disciplinas do 7.º ano já prontas (as outras ainda estão em preparação). */
+const MISSAO_SUBJECTS_7 = [
+  {key:"cn7", name:"Ciências Naturais", ano:"7", icon:"🔬", store:"cn7_missions", page:"7ano.html", worlds: typeof CN7_WORLDS !== "undefined" ? CN7_WORLDS : []}
+];
+/* Each year page says which year it is (var MISSAO_ANO = "7" before the scripts); without it, it is the 6.º ano. */
+const MISSAO_ANO_ATUAL = (typeof MISSAO_ANO !== "undefined") ? String(MISSAO_ANO) : "6";
+const MISSAO_SUBJECTS = MISSAO_ANO_ATUAL === "7" ? MISSAO_SUBJECTS_7 : MISSAO_SUBJECTS_6;
 
 /* Fontes com pesquisa por link (testadas num browser). lang: língua do site. */
 const FONTES = {
