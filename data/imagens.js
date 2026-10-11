@@ -112,6 +112,25 @@ const MISSAO_IMAGENS = {
       cred:"Angelsharum", lic:"SA30", src:COMMONS+"Handwashing.jpg"}
   ]
 };
+/* Smithsonian Open Access (CC0 — livres de usar, sem restrições) */
+const SMITHSONIAN = q => "https://collections.si.edu/search/results.htm?q="+encodeURIComponent(q);
+MISSAO_IMAGENS.c3 = [
+  {f:"img/c3/pulmao-de-aco.jpg", t:"Parte de um «pulmão de aço»",
+    d:"Na primeira metade do século XX, a poliomielite paralisava os músculos da respiração de muitas crianças. O «pulmão de aço» envolvia o corpo e mudava a pressão do ar à volta do peito: assim o tórax expandia-se e o ar entrava nos pulmões, como faz o diafragma. Hoje, graças à vacina, a poliomielite quase desapareceu.",
+    cred:"National Museum of American History, Smithsonian Institution", lic:"CC0", src:SMITHSONIAN("Chest Portion of an Iron Lung")}
+];
+MISSAO_IMAGENS.c8.push(
+  {f:"img/c8/vacina-1809.jpg", t:"Um cartão sobre vacinas, de 1809",
+    d:"Em 1809, em Milton (Estados Unidos), testou-se a vacina contra a varíola: crianças vacinadas foram expostas à doença e nenhuma ficou doente. Este cartão comemora esse teste — uma das primeiras provas públicas de que as vacinas funcionam.",
+    cred:"National Museum of American History, Smithsonian Institution", lic:"CC0", src:SMITHSONIAN("Card Commemorating a Test of the Effectiveness of Vaccination")});
+MISSAO_IMAGENS.c9 = [
+  {f:"img/c9/pls-final.jpg", t:"A posição lateral de segurança",
+    d:"De lado, com a perna de cima dobrada (para não rolar), a mão debaixo da face e a cabeça ligeiramente inclinada para trás: as vias respiratórias ficam abertas e, se vomitar, o vómito sai pela boca.",
+    cred:"Grummelbacke", lic:"CC0", src:COMMONS+"Stabile_seitenlage.png"},
+  {f:"img/c9/pls-cruz-vermelha.jpg", t:"Um voluntário da Cruz Vermelha a socorrer",
+    d:"Num exercício de treino, um socorrista verifica a vítima. Muitas associações, como a Cruz Vermelha, dão cursos de primeiros socorros — também para jovens.",
+    cred:"Michal Maňas", lic:"PD", src:COMMONS+"Carotidian_pulse_and_recovery_position.jpg"}
+];
 MISSAO_IMAGENS.c7.push(
   {f:"img/c7/ecografia.jpg", t:"Ecografia de um feto com 20 semanas",
     d:"Com ultrassons, o médico consegue ver o bebé dentro do útero sem o magoar. Aqui vê-se o perfil do feto: a testa, o nariz e a boca.",

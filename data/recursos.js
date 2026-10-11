@@ -32,3 +32,33 @@ const MISSAO_LINKS = {
   e1: [BABADUM], e3: [BABADUM], e4: [BABADUM], e6: [BABADUM],
   n4: [{icon:"💻", title:"Code.org — Hora do Código", desc:"Atividades de programação com blocos, cheias de padrões e sequências. Grátis; em português.", site:"code.org", url:"https://code.org/learn"}]
 };
+
+/* ---------- mais sites de confiança (museus, arquivos e ciência), por mundo ---------- */
+(function(){
+  const E = q => "https://www.europeana.eu/pt/search?query="+encodeURIComponent(q);
+  const G = q => "https://artsandculture.google.com/search?q="+encodeURIComponent(q);
+  const PBS = q => "https://www.pbslearningmedia.org/search/?q="+encodeURIComponent(q);
+  const NHM = q => "https://www.nhm.ac.uk/search.html?q="+encodeURIComponent(q);
+  const europeana = (q, txt) => ({icon:"🏛️", title:"Europeana: "+txt, desc:"Quadros, gravuras, fotografias e documentos dos arquivos e museus europeus. Muitas imagens são livres.", site:"europeana.eu", url:E(q)});
+  const artes = (q, txt) => ({icon:"🖼️", title:"Google Arts & Culture: "+txt, desc:"Museus virtuais, obras de arte em alta resolução e exposições online.", site:"artsandculture.google.com", url:G(q)});
+  const pbs = (q, txt) => ({icon:"🎞️", title:"PBS LearningMedia: "+txt, desc:"Vídeos e atividades educativas da televisão pública americana (em inglês; alguns pedem registo gratuito).", site:"pbslearningmedia.org", url:PBS(q)});
+  const nhm = (q, txt) => ({icon:"🦖", title:"Natural History Museum: "+txt, desc:"O Museu de História Natural de Londres: artigos, imagens e curiosidades (em inglês).", site:"nhm.ac.uk", url:NHM(q)});
+  const SNACKS_VIDA = {icon:"🧪", title:"Exploratorium — experiências de ciências da vida", desc:"«Science Snacks»: experiências simples para fazer em casa ou na escola (em inglês).", site:"exploratorium.edu", url:"https://www.exploratorium.edu/snacks/subject/life-science"};
+  const SNACKS_TERRA = {icon:"🧪", title:"Exploratorium — experiências de ciências da Terra", desc:"«Science Snacks»: experiências simples sobre rochas, água e clima (em inglês).", site:"exploratorium.edu", url:"https://www.exploratorium.edu/snacks/subject/earth-science"};
+  const MAIS = {
+    m1: [europeana("terramoto Lisboa 1755","o terramoto de 1755"), artes("Palácio Nacional de Mafra","Palácio de Mafra")],
+    m2: [europeana("D. Pedro IV","D. Pedro IV e o liberalismo")],
+    m3: [europeana("caminho de ferro Portugal","comboios e indústria"), artes("Gustave Eiffel","Gustave Eiffel")],
+    m4: [europeana("República Portuguesa 1910","a República de 1910")],
+    m5: [europeana("Estado Novo Portugal","o Estado Novo")],
+    m6: [artes("Revolução dos Cravos","a Revolução dos Cravos")],
+    m8: [europeana("União Europeia","a construção europeia")],
+    p6: [artes("Fernando Pessoa","Fernando Pessoa"), artes("Luís de Camões","Luís de Camões")],
+    p7: [artes("Teatro Nacional D. Maria II","o Teatro D. Maria II")],
+    c3: [SNACKS_VIDA], c4: [SNACKS_VIDA], c6: [SNACKS_VIDA, nhm("pollination","polinização")], c8: [SNACKS_VIDA, nhm("microbes","micróbios")],
+    g1: [nhm("minerals","minerais"), SNACKS_TERRA], g2: [SNACKS_TERRA], g3: [nhm("fossils","fósseis"), nhm("dinosaurs","dinossauros")],
+    g4: [nhm("mass extinction","extinções em massa")], g5: [pbs("plate tectonics","tectónica de placas")],
+    g6: [pbs("volcano","vulcões")], g7: [pbs("earthquake","sismos")], g8: [nhm("rock cycle","o ciclo das rochas")]
+  };
+  Object.keys(MAIS).forEach(k => { MISSAO_LINKS[k] = (MISSAO_LINKS[k] || []).concat(MAIS[k]); });
+})();
