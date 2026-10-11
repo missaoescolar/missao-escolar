@@ -3,41 +3,93 @@
     id:"n1", num:1, c:"m1", icon:"🧮",
     title:"Fábrica de Números",
     subtitle:"Múltiplos, divisores e números primos", pages:"manual a confirmar",
-    lead:"Antes de craftar qualquer coisa, um jogador precisa de saber contar e agrupar recursos. Este mundo é sobre as regras escondidas dentro dos números: quem divide quem, e quais são os números que não se deixam dividir por mais ninguém.",
+    lead:"Neste mundo vais aprender a reconhecer números primos, a decompor um número em fatores primos e a calcular o m.d.c. e o m.m.c. de dois números. Vê primeiro a animação e os 5 exemplos resolvidos, um de cada vez. No fim tens o resumo para o teste.",
     missions:[
-      {t:"Divisível ou Não?", d:"Critérios de divisibilidade por 2, 3, 5, 9 e 10", f:"Testar 10 números à tua escolha e classificá-los", xp:10},
-      {t:"Caça aos Primos", d:"Números primos e números compostos", f:"Encontrar todos os números primos até 50, como numa caça ao tesouro", xp:10},
-      {t:"Árvore de Fatores", d:"Decomposição em fatores primos", f:"Desenhar a árvore de fatores de 3 números", xp:10},
-      {t:"O Maior Divisor Comum", d:"Máximo divisor comum (m.d.c.) e mínimo múltiplo comum (m.m.c.)", f:"Resolver 2 problemas práticos, como repartir itens em grupos iguais", xp:15}
+      {t:"Divisível ou Não?", d:"Critérios de divisibilidade por 2, 3, 5, 9 e 10", f:"Escreve 10 números de 2 ou 3 algarismos. Para cada um, usa os critérios do resumo e indica se é divisível por 2, 3, 5, 9 e 10. Verifica 3 deles com a calculadora: se for divisível, a divisão dá um número inteiro.", xp:10},
+      {t:"Caça aos Primos", d:"Números primos e números compostos", f:"Escreve os números de 1 a 50, em linhas de 10. Risca o 1 e, como na animação do crivo, risca os múltiplos de 2, 3, 5 e 7 (mas não o 2, o 3, o 5 e o 7). Verifica: têm de sobrar 15 números primos.", xp:10},
+      {t:"Árvore de Fatores", d:"Decomposição em fatores primos", f:"Faz a árvore de fatores de 36, 48 e 90, como no Exemplo 1. Começa sempre pelo menor primo que divide o número. Verifica: multiplica os primos das pontas dos ramos e tens de obter o número do início.", xp:10},
+      {t:"m.d.c. e m.m.c. em Problemas", d:"Máximo divisor comum (m.d.c.) e mínimo múltiplo comum (m.m.c.)", f:"Resolve, como nos Exemplos 4 e 5: (1) Com 20 rosas e 30 túlipas, queres fazer ramos iguais sem sobrar flores. Quantos ramos, no máximo? (2) Um sino toca de 6 em 6 minutos e outro de 8 em 8. Tocaram juntos agora. Daqui a quantos minutos voltam a tocar juntos? Verifica: em (1), 20 e 30 têm de dar divisões exatas pelo número de ramos; em (2), a tua resposta tem de dar divisões exatas por 6 e por 8.", xp:15}
     ],
     resumo:[
-      "Um número é <b>múltiplo</b> de outro quando resulta de o multiplicar por um número natural (ex.: 12 é múltiplo de 3, porque 3 × 4 = 12).",
-      "Um número é <b>divisor</b> de outro quando o divide exatamente, sem deixar resto (ex.: 3 é divisor de 12).",
-      "<b>Critérios de divisibilidade:</b> por 2 — termina em 0, 2, 4, 6 ou 8; por 3 — a soma dos algarismos é múltiplo de 3; por 5 — termina em 0 ou 5; por 9 — a soma dos algarismos é múltiplo de 9; por 10 — termina em 0.",
-      "Um <b>número primo</b> só tem dois divisores: o 1 e ele próprio (ex.: 2, 3, 5, 7, 11, 13). Um <b>número composto</b> tem mais do que dois divisores.",
-      "Todo o número composto pode ser escrito como um produto de números primos — a <b>decomposição em fatores primos</b>.",
-      "O <b>m.d.c.</b> (máximo divisor comum) de dois números é o maior número que os divide a ambos ao mesmo tempo. O <b>m.m.c.</b> (mínimo múltiplo comum) é o menor múltiplo comum aos dois, sem contar o zero."
+      "Um número é <b>múltiplo</b> de outro quando resulta de o multiplicar por 0, 1, 2, 3, … (ex.: 12 é múltiplo de 3, porque 3 × 4 = 12).",
+      "Um número é <b>divisor</b> de outro quando o divide exatamente, sem deixar resto (ex.: 3 é divisor de 12, porque 12 ÷ 3 = 4).",
+      "<b>Critérios de divisibilidade</b> — um número é divisível:<br>por 2, se termina em 0, 2, 4, 6 ou 8;<br>por 3, se a soma dos algarismos é múltiplo de 3;<br>por 5, se termina em 0 ou 5;<br>por 9, se a soma dos algarismos é múltiplo de 9;<br>por 10, se termina em 0.",
+      "Um <b>número primo</b> tem exatamente dois divisores: o 1 e ele próprio (ex.: 2, 3, 5, 7, 11, 13). Um <b>número composto</b> tem mais do que dois divisores. O 1 não é primo nem composto.",
+      "Uma <b>potência</b> é uma multiplicação de fatores iguais escrita de forma curta: 2³ = 2 × 2 × 2 = 8. O 2 é a base e o 3 é o expoente.",
+      "A <b>decomposição em fatores primos</b> escreve um número composto como um produto de números primos (ex.: 60 = 2 × 2 × 3 × 5 = 2² × 3 × 5). Cada número tem uma só decomposição: só a ordem dos fatores pode mudar.",
+      "O <b>m.d.c.</b> (máximo divisor comum) de dois números é o maior número que divide os dois. Pela decomposição: multiplica os fatores primos comuns, cada um com o menor expoente.",
+      "O <b>m.m.c.</b> (mínimo múltiplo comum) de dois números é o menor múltiplo comum aos dois, diferente de zero. Pela decomposição: multiplica todos os fatores primos (comuns e não comuns), cada um com o maior expoente."
     ],
     gloss:[
-      ["múltiplo","O resultado de multiplicar um número por outro número natural."],
+      ["múltiplo","O resultado de multiplicar um número por 0, 1, 2, 3, … (ex.: 0, 3, 6 e 9 são múltiplos de 3)."],
       ["divisor","Um número que divide outro exatamente, sem deixar resto."],
-      ["número primo","Um número que só tem dois divisores: o 1 e ele próprio."],
+      ["número primo","Um número que tem exatamente dois divisores: o 1 e ele próprio."],
       ["número composto","Um número que tem mais do que dois divisores."],
       ["decomposição em fatores primos","Escrever um número como um produto de números primos."],
       ["m.d.c.","Máximo divisor comum — o maior número que divide dois números ao mesmo tempo."],
-      ["m.m.c.","Mínimo múltiplo comum — o menor número que é múltiplo de dois números ao mesmo tempo."]
+      ["m.m.c.","Mínimo múltiplo comum — o menor número, diferente de zero, que é múltiplo de dois números ao mesmo tempo."],
+      ["potência","Uma multiplicação de fatores iguais escrita de forma curta: 5² = 5 × 5 = 25."],
+      ["expoente","Numa potência, o número pequeno em cima: diz quantas vezes a base se multiplica (em 2³, o expoente é 3)."],
+      ["contraexemplo","Um exemplo que mostra que uma afirmação é falsa: o 2 é primo e par, por isso «todos os primos são ímpares» é falso."]
     ],
     quiz:[
-      {q:"O que é um múltiplo de um número?", opts:["O resultado de multiplicar esse número por um número natural","Um número que o divide sem deixar resto","Um número primo relacionado com ele","A soma de todos os seus divisores"], correct:0, explain:"Um múltiplo resulta de multiplicar o número por um número natural (ex.: 12 é múltiplo de 3, porque 3×4=12)."},
-      {q:"Qual destes números é múltiplo de 5?", opts:["20","22","23","27"], correct:0, explain:"20 é múltiplo de 5, porque 5×4=20; os outros não terminam em 0 ou 5."},
-      {q:"Qual é o critério de divisibilidade por 3?", opts:["A soma dos algarismos é múltiplo de 3","O número termina em 3","O número é ímpar","O número termina em 0"], correct:0, explain:"Um número é divisível por 3 quando a soma dos seus algarismos é múltiplo de 3 (ex.: 123 → 1+2+3=6, múltiplo de 3)."},
-      {q:"Quantos divisores tem um número primo?", opts:["Exatamente dois: o 1 e ele próprio","Nenhum","Três ou mais","Depende do número"], correct:0, explain:"Um número primo tem exatamente dois divisores: o 1 e ele próprio."},
-      {q:"Qual destes números é primo?", opts:["7","8","9","10"], correct:0, explain:"7 só é divisível por 1 e por 7, por isso é primo; 8, 9 e 10 têm mais divisores."},
-      {q:"O que é um número composto?", opts:["Um número com mais de dois divisores","Um número primo","Um número que só tem o divisor 1","Um número par"], correct:0, explain:"Um número composto tem mais do que dois divisores (ao contrário do número primo, que só tem dois)."},
-      {q:"O que é a decomposição em fatores primos de um número?", opts:["Escrevê-lo como um produto de números primos","Dividi-lo por 2","Somar todos os seus divisores","Multiplicá-lo por ele próprio"], correct:0, explain:"A decomposição em fatores primos escreve um número composto como um produto de números primos (ex.: 12 = 2×2×3)."},
-      {q:"Qual é o m.d.c. (máximo divisor comum) de 12 e 18?", opts:["6","3","2","36"], correct:0, explain:"Os divisores comuns de 12 e 18 são 1, 2, 3 e 6; o maior é 6."},
-      {q:"Qual é o m.m.c. (mínimo múltiplo comum) de 4 e 6?", opts:["12","24","10","6"], correct:0, explain:"Os múltiplos comuns de 4 e 6 incluem 12, 24...; o menor (sem contar o zero) é 12."},
-      {q:"Um número termina em 4. É divisível por 2?", opts:["Sim, porque termina em 0, 2, 4, 6 ou 8","Não, só números pares terminados em 2 são divisíveis por 2","Só se for também múltiplo de 4","Depende dos outros algarismos"], correct:0, explain:"Um número é divisível por 2 quando termina em 0, 2, 4, 6 ou 8 — e 4 está nessa lista."}
+      {q:"O que é um múltiplo de um número?", opts:["Um número que o divide sem deixar resto","O resultado de multiplicar esse número por 0, 1, 2, 3, …","Um número primo relacionado com ele","A soma de todos os seus divisores"], correct:1, explain:"Um múltiplo obtém-se a multiplicar: 3 × 4 = 12, por isso 12 é múltiplo de 3. Um número que divide outro sem deixar resto é um divisor, não um múltiplo."},
+      {q:"Qual destes números é múltiplo de 5?", opts:["22","27","20","23"], correct:2, explain:"Os múltiplos de 5 terminam em 0 ou em 5. O 20 termina em 0, e 5 × 4 = 20. O 22, o 27 e o 23 terminam em 2, 7 e 3, por isso não são múltiplos de 5."},
+      {q:"Qual é o critério de divisibilidade por 3?", opts:["O número termina em 3","A soma dos algarismos é múltiplo de 3","O número é ímpar","O número termina em 0"], correct:1, explain:"Soma os algarismos: em 123, 1 + 2 + 3 = 6, que é múltiplo de 3, por isso 123 é divisível por 3. «Termina em 3» não serve: 13 termina em 3, mas 13 ÷ 3 não dá uma divisão exata."},
+      {q:"«Todos os números primos são ímpares.» Esta afirmação é verdadeira ou falsa? Escolhe a resposta com a justificação certa.", opts:["Verdadeira. Nenhum número par é primo.","Falsa. O 9 é ímpar e não é primo.","Falsa. O 2 é primo e é par.","Verdadeira. 3, 5, 7 e 11 são primos e ímpares."], correct:2, explain:"Basta um contraexemplo para mostrar que uma afirmação é falsa. Aqui, o contraexemplo tem de ser um número primo e par: o 2, que só tem os divisores 1 e 2. O 9 não serve, porque não é primo. E mostrar exemplos que funcionam (3, 5, 7, 11) não prova que é sempre verdade."},
+      {q:"Qual destes números é primo?", opts:["15","21","17","27"], correct:2, explain:"Testa os primos 2 e 3: o 17 não é par, e 1 + 7 = 8 não é múltiplo de 3. Não é preciso testar mais, porque 5 × 5 = 25 já passa de 17. Por isso, 17 é primo. Os outros são compostos: 15 = 3 × 5, 21 = 3 × 7 e 27 = 3 × 9."},
+      {q:"Qual é a decomposição em fatores primos de 36?", opts:["4 × 9","2² × 3²","6²","2 × 3²"], correct:1, explain:"36 = 2 × 18 = 2 × 2 × 9 = 2 × 2 × 3 × 3 = 2² × 3². «4 × 9» e «6²» também dão 36, mas 4, 9 e 6 não são números primos. E 2 × 3² = 18, não 36."},
+      {q:"Quanto é 2³?", opts:["6","8","9","5"], correct:1, explain:"2³ quer dizer 2 × 2 × 2: o expoente 3 diz quantas vezes o 2 se multiplica. 2 × 2 = 4 e 4 × 2 = 8. Atenção: 2³ não é 2 × 3 = 6, nem 3² = 9."},
+      {q:"Qual é o m.d.c. (máximo divisor comum) de 24 e 36?", opts:["6","72","12","4"], correct:2, explain:"24 = 2³ × 3 e 36 = 2² × 3². Os fatores comuns são o 2 e o 3, e escolhe-se o menor expoente de cada um: 2² × 3 = 12. Verifica: 24 ÷ 12 = 2 e 36 ÷ 12 = 3. O 6 e o 4 também dividem os dois, mas não são os maiores. O 72 é o m.m.c."},
+      {q:"Dois faróis piscaram agora ao mesmo tempo. Um pisca de 4 em 4 segundos e o outro de 6 em 6 segundos. Daqui a quantos segundos voltam a piscar juntos pela primeira vez?", opts:["12","24","10","2"], correct:0, explain:"Procura-se o menor múltiplo comum de 4 e 6: o m.m.c. Múltiplos de 4: 4, 8, 12, … Múltiplos de 6: 6, 12, … O primeiro comum é 12. Pela decomposição: 4 = 2² e 6 = 2 × 3, por isso m.m.c. = 2² × 3 = 12. O 24 também é comum, mas não é o primeiro; 10 é a soma e 2 é o m.d.c."},
+      {q:"A Rita tem 18 rebuçados e 30 chocolates. Quer fazer sacos iguais: todos com o mesmo número de rebuçados e o mesmo número de chocolates, sem sobrar nada. Qual é o maior número de sacos que pode fazer?", opts:["3","90","6","2"], correct:2, explain:"O número de sacos tem de dividir o 18 e o 30 sem deixar resto. O maior é o m.d.c.: 18 = 2 × 3² e 30 = 2 × 3 × 5, então m.d.c. = 2 × 3 = 6. Cada saco leva 18 ÷ 6 = 3 rebuçados e 30 ÷ 6 = 5 chocolates. Com 2 ou 3 sacos também dá, mas não é o maior número."}
+    ],
+    // worked examples: shown in 📖 Aprender (and on the printable page) through the existing "posters" mechanism,
+    // as plain text steps, so they do not depend on the drawing
+    posters:[
+      {title:"🌳 Exemplo 1 — Árvore de fatores de 60", svg:'<svg class="poster-svg" viewBox="0 0 300 228" style="max-width:300px;margin:0 auto" role="img" aria-label="Árvore de fatores de 60: o 60 divide-se em 2 e 30; o 30 em 2 e 15; o 15 em 3 e 5. Os números com círculo são primos: 2, 2, 3 e 5.">'+
+        '<g stroke="currentColor" stroke-width="2"><line x1="120" y1="36" x2="60" y2="68"/><line x1="120" y1="36" x2="180" y2="68"/><line x1="180" y1="96" x2="130" y2="128"/><line x1="180" y1="96" x2="230" y2="128"/><line x1="230" y1="156" x2="190" y2="188"/><line x1="230" y1="156" x2="270" y2="188"/></g>'+
+        '<g fill="var(--surface)" stroke="var(--wc)" stroke-width="2.5"><circle cx="60" cy="84" r="17"/><circle cx="130" cy="144" r="17"/><circle cx="190" cy="204" r="17"/><circle cx="270" cy="204" r="17"/></g>'+
+        '<g font-family="Lexend, sans-serif" font-size="18" font-weight="700" text-anchor="middle"><text x="120" y="30">60</text><text x="60" y="90">2</text><text x="180" y="90">30</text><text x="130" y="150">2</text><text x="230" y="150">15</text><text x="190" y="210">3</text><text x="270" y="210">5</text></g></svg>'+
+        '<ul class="wheel-legend">'+
+        '<li><span aria-hidden="true">🎯</span><span><b>O que queremos descobrir:</b> escrever 60 como uma multiplicação só de números primos.</span></li>'+
+        '<li><span aria-hidden="true">🚦</span><span><b>Como começar:</b> escreve 60 no topo. Procura o menor primo que divide 60. O 60 é par, por isso começa pelo 2.</span></li>'+
+        '<li><span aria-hidden="true">👣</span><span><b>Passo a passo:</b><br>60 = 2 × 30<br>30 = 2 × 15<br>15 = 3 × 5<br>Quando um ramo chega a um número primo (com círculo), esse ramo acaba.</span></li>'+
+        '<li><span aria-hidden="true">✅</span><span><b>Resultado:</b> junta os primos das pontas dos ramos: 60 = 2 × 2 × 3 × 5.</span></li>'+
+        '<li><span aria-hidden="true">🔍</span><span><b>Verificar:</b> 2 × 2 = 4, 4 × 3 = 12, 12 × 5 = 60. Todos os fatores (2, 3 e 5) são primos. Se começasses por 6 × 10, a árvore seria diferente, mas o resultado seria o mesmo.</span></li>'+
+        '</ul>'},
+      {title:"🔢 Exemplo 2 — Potências", svg:'<ul class="wheel-legend">'+
+        '<li><span aria-hidden="true">🎯</span><span><b>O que queremos descobrir:</b> escrever de forma curta uma multiplicação de fatores iguais, como 2 × 2 × 2.</span></li>'+
+        '<li><span aria-hidden="true">🚦</span><span><b>Como começar:</b> conta quantas vezes aparece o mesmo fator.</span></li>'+
+        '<li><span aria-hidden="true">👣</span><span><b>Passo a passo:</b><br>Em 2 × 2 × 2, o 2 aparece 3 vezes.<br>Escreve-se 2³ e lê-se «2 ao cubo» ou «2 elevado a 3».<br>O 2 é a <b>base</b> e o 3 é o <b>expoente</b>.<br>Da mesma forma, 5 × 5 = 5² («5 ao quadrado»).</span></li>'+
+        '<li><span aria-hidden="true">✅</span><span><b>Resultado:</b> 2³ = 2 × 2 × 2 = 8. No Exemplo 1: 60 = 2 × 2 × 3 × 5 = 2² × 3 × 5.</span></li>'+
+        '<li><span aria-hidden="true">🔍</span><span><b>Verificar:</b> escreve a multiplicação por extenso e calcula. Cuidado: 2³ não é 2 × 3. 2³ = 8, mas 2 × 3 = 6.</span></li>'+
+        '</ul>'},
+      {title:"➗ Exemplo 3 — Divisões sucessivas de 84", svg:'<svg class="poster-svg" viewBox="0 0 150 170" style="max-width:150px;margin:0 auto" role="img" aria-label="Divisões sucessivas de 84: 84 a dividir por 2 dá 42; 42 a dividir por 2 dá 21; 21 a dividir por 3 dá 7; 7 a dividir por 7 dá 1.">'+
+        '<line x1="72" y1="10" x2="72" y2="160" stroke="currentColor" stroke-width="2"/>'+
+        '<g font-family="Lexend, sans-serif" font-size="18" font-weight="700"><g text-anchor="end"><text x="62" y="36">84</text><text x="62" y="66">42</text><text x="62" y="96">21</text><text x="62" y="126">7</text><text x="62" y="156">1</text></g>'+
+        '<g fill="var(--wc)"><text x="84" y="36">2</text><text x="84" y="66">2</text><text x="84" y="96">3</text><text x="84" y="126">7</text></g></g></svg>'+
+        '<ul class="wheel-legend">'+
+        '<li><span aria-hidden="true">🎯</span><span><b>O que queremos descobrir:</b> decompor 84 em fatores primos, de forma organizada.</span></li>'+
+        '<li><span aria-hidden="true">🚦</span><span><b>Como começar:</b> traça uma linha vertical. Escreve 84 à esquerda. À direita, escreve o menor primo que divide 84: o 2.</span></li>'+
+        '<li><span aria-hidden="true">👣</span><span><b>Passo a passo:</b><br>84 ÷ 2 = 42<br>42 ÷ 2 = 21<br>21 não é par, mas 2 + 1 = 3 é múltiplo de 3:<br>21 ÷ 3 = 7<br>7 é primo:<br>7 ÷ 7 = 1<br>Paras quando chegas a 1.</span></li>'+
+        '<li><span aria-hidden="true">✅</span><span><b>Resultado:</b> os números da direita são os fatores primos: 84 = 2 × 2 × 3 × 7 = 2² × 3 × 7.</span></li>'+
+        '<li><span aria-hidden="true">🔍</span><span><b>Verificar:</b> 2² × 3 × 7 = 4 × 3 × 7 = 12 × 7 = 84.</span></li>'+
+        '</ul>'},
+      {title:"🤝 Exemplo 4 — m.d.c. de 12 e 18", svg:'<ul class="wheel-legend">'+
+        '<li><span aria-hidden="true">🎯</span><span><b>O que queremos descobrir:</b> o maior número que divide 12 e 18 sem deixar resto.</span></li>'+
+        '<li><span aria-hidden="true">🚦</span><span><b>Como começar:</b> decompõe os dois números em fatores primos, como nos Exemplos 1 e 3.</span></li>'+
+        '<li><span aria-hidden="true">👣</span><span><b>Passo a passo:</b><br>12 = 2² × 3<br>18 = 2 × 3² (o 2 sozinho é o mesmo que 2¹)<br>Fatores comuns aos dois: o 2 e o 3.<br>De cada um, escolhe o <b>menor expoente</b>: 2¹ e 3¹.</span></li>'+
+        '<li><span aria-hidden="true">✅</span><span><b>Resultado:</b> m.d.c.(12, 18) = 2 × 3 = 6.</span></li>'+
+        '<li><span aria-hidden="true">🔍</span><span><b>Verificar:</b> 12 ÷ 6 = 2 e 18 ÷ 6 = 3, sem resto. Os divisores comuns de 12 e 18 são 1, 2, 3 e 6, e o maior é o 6.</span></li>'+
+        '</ul>'},
+      {title:"🔁 Exemplo 5 — m.m.c. de 12 e 18", svg:'<ul class="wheel-legend">'+
+        '<li><span aria-hidden="true">🎯</span><span><b>O que queremos descobrir:</b> o menor número, diferente de zero, que é múltiplo de 12 e de 18.</span></li>'+
+        '<li><span aria-hidden="true">🚦</span><span><b>Como começar:</b> usa as mesmas decomposições do Exemplo 4: 12 = 2² × 3 e 18 = 2 × 3².</span></li>'+
+        '<li><span aria-hidden="true">👣</span><span><b>Passo a passo:</b><br>Junta todos os fatores primos que aparecem, comuns e não comuns: o 2 e o 3.<br>De cada um, escolhe o <b>maior expoente</b>: 2² (do 12) e 3² (do 18).</span></li>'+
+        '<li><span aria-hidden="true">✅</span><span><b>Resultado:</b> m.m.c.(12, 18) = 2² × 3² = 4 × 9 = 36.</span></li>'+
+        '<li><span aria-hidden="true">🔍</span><span><b>Verificar:</b> 36 ÷ 12 = 3 e 36 ÷ 18 = 2, sem resto. Os múltiplos de 18 são 18, 36, … O 18 não é múltiplo de 12, por isso o 36 é o menor.</span></li>'+
+        '</ul>'}
     ],
     compare:{
       left:{title:"✖️ Múltiplo", points:["Resulta de multiplicar um número por outro","Um número tem infinitos múltiplos","Ex.: 12 é múltiplo de 3"]},
