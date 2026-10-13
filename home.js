@@ -25,6 +25,7 @@
   // asked on every visit (today it may be a test, tomorrow a new theme): nothing is pre-selected,
   // and the subjects only appear once a goal is chosen. The last choice is still saved for app.js.
   let intent = null;
+  if(location.hash === "#disciplinas"){ const g = MissaoArmazem.lerTexto("home_intent", null); if(INTENTS.some(I => I.id === g)) intent = g; }   // reload on screen 3
 
   function progress(s){
     const state = load(s.store, {});
@@ -90,7 +91,7 @@
   /* remembered choices: goal and year (the year is asked once; afterwards it shows as "6.º ano · Mudar") */
   const savedYear = MissaoArmazem.lerTexto("home_year", null);
   let year = READY.some(Y => Y.y === savedYear) ? savedYear : null;
-  let picking = !year, showSoon = false;
+  let showSoon = false;
 
   /* "Continuar de onde ficaste": the last subject used, if it has a world half done */
   (function(){
@@ -109,45 +110,53 @@
   })();
 
   const yearPick = document.getElementById("year-pick");
+  const intentGrid = document.getElementById("intent-grid");
   const grid = document.getElementById("subject-grid");
+  const crumbs = document.getElementById("home-crumbs");
   const soonBtn = document.getElementById("show-soon");
   const soonYears = document.getElementById("soon-years");
 
-  const intentGrid = document.getElementById("intent-grid");
+  /* the screen comes from the address (#objetivo, #disciplinas), so the browser's back button works */
+  function screen(){
+    if(location.hash === "#disciplinas" && year && intent) return 3;
+    if(location.hash === "#objetivo" && year) return 2;
+    return 1;
+  }
+  function go(n){ const h = n===3 ? "#disciplinas" : n===2 ? "#objetivo" : ""; if(location.hash !== h) location.hash = h; else render(); }
+  window.addEventListener("hashchange", render);
+
   function render(){
+    const n = screen(), Y = YEARS.find(Y => Y.y === year), I = INTENTS.find(I => I.id === intent);
+    document.querySelectorAll(".home-screen").forEach(s => { s.hidden = Number(s.dataset.screen) !== n; });
+    document.getElementById("home-tools").hidden = n !== 1;
+    crumbs.hidden = n === 1;
+    crumbs.innerHTML = '<button type="button" class="ghost-btn" data-back>← Voltar</button><span>'+
+      (Y ? '<b>'+Y.y+'.º ano</b>' : '')+(n === 3 && I ? ' › <b>'+I.icon+' '+I.t+'</b>' : '')+'</span>';
+
+    yearPick.innerHTML = '<div class="year-tabs">'+READY.map(Y =>
+      '<button type="button" class="year-tab'+(Y.y===year ? ' active' : '')+'" data-year="'+Y.y+'" aria-pressed="'+(Y.y===year)+'">'+Y.y+'.º ano</button>').join("")+'</div>'+
+      '<p class="year-caption">'+(year ? 'O teu ano está marcado: toca nele para continuar.' : 'Fica guardado para a próxima vez.')+'</p>';
     intentGrid.innerHTML = INTENTS.map(I =>
       '<button type="button" class="intent-card'+(I.id===intent ? ' on' : '')+'" data-intent="'+I.id+'" aria-pressed="'+(I.id===intent)+'">'+
         '<span class="intent-icon" aria-hidden="true">'+I.icon+'</span><b>'+I.t+'</b><span class="intent-sub">'+I.s+'</span><small>'+I.d+'</small>'+
       '</button>').join("");
-    if(picking){
-      yearPick.innerHTML = '<div class="year-tabs">'+READY.map(Y =>
-        '<button type="button" class="year-tab'+(Y.y===year ? ' active' : '')+'" data-year="'+Y.y+'" aria-pressed="'+(Y.y===year)+'">'+Y.y+'.º ano</button>').join("")+'</div>'+
-        (year ? '' : '<p class="year-caption">Escolhe o teu ano. Fica guardado para a próxima vez.</p>');
-    } else {
-      yearPick.innerHTML = '<p class="year-chosen"><b>'+year+'.º ano</b> <button type="button" class="link-btn" data-change-year>Mudar</button></p>';
-    }
-
-    const Y = YEARS.find(Y => Y.y === year);
-    document.getElementById("intent-step").hidden = !Y;
-    const showSubjects = !!(Y && intent);
-    grid.hidden = !showSubjects; document.getElementById("subject-step").hidden = !showSubjects;
-    document.getElementById("intent-hint").hidden = !Y || !!intent;
-    grid.innerHTML = showSubjects ? cards(Y.list) + (showSoon && Y.soon ? soonCards(Y.soon) : '') : '';
+    grid.innerHTML = n === 3 && Y ? cards(Y.list) + (showSoon && Y.soon ? soonCards(Y.soon) : '') : '';
     soonBtn.textContent = showSoon ? "Esconder o que está em construção" : "Ver o que está em construção";
     soonBtn.setAttribute("aria-expanded", showSoon);
     soonYears.hidden = !showSoon;
     soonYears.textContent = "Em preparação: "+YEARS.filter(Y => !Y.ready).map(Y => Y.y+".º").join(", ").replace(/, ([^,]*)$/, " e $1")+" ano.";
+    window.scrollTo(0, 0);
   }
 
   yearPick.addEventListener("click", e => {
-    if(e.target.closest("[data-change-year]")){ picking = true; render(); return; }
     const b = e.target.closest("[data-year]"); if(!b) return;
-    year = b.dataset.year; picking = false; MissaoArmazem.gravarTexto("home_year", year); render();
+    year = b.dataset.year; MissaoArmazem.gravarTexto("home_year", year); go(2);
   });
-  soonBtn.addEventListener("click", () => { showSoon = !showSoon; render(); });
   intentGrid.addEventListener("click", e => {
     const b = e.target.closest("[data-intent]"); if(!b) return;
-    intent = b.dataset.intent; MissaoArmazem.gravarTexto("home_intent", intent); render();
+    intent = b.dataset.intent; MissaoArmazem.gravarTexto("home_intent", intent); go(3);
   });
+  crumbs.addEventListener("click", e => { if(e.target.closest("[data-back]")) go(screen() - 1); });
+  soonBtn.addEventListener("click", () => { showSoon = !showSoon; render(); });
   render();
 })();

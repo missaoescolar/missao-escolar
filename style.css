@@ -552,6 +552,10 @@
     .intent-icon{ grid-row:1 / span 2; font-size:1.6rem; }
     .intent-card small{ display:none; }
   }
+  /* home: one screen at a time, with a way back */
+  .home-crumbs{ display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin:0 0 6px; font-family:"Lexend",sans-serif; font-size:0.92rem; }
+  .ghost-btn{ font:inherit; font-weight:700; cursor:pointer; padding:7px 14px; border-radius:999px; border:1.5px solid var(--border); background:var(--surface); color:var(--text); }
+  .ghost-btn:focus-visible{ outline:3px solid var(--accent); outline-offset:2px; }
   .year-pick .year-tabs{ margin-bottom:6px; }
   .year-chosen{ text-align:center; margin:0; font-family:"Lexend",sans-serif; font-size:1.05rem; }
   .home-resume{
