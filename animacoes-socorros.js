@@ -90,12 +90,14 @@
           S.mover("#bE","rotate(80deg)"); S.mover("#aE","rotate(94deg)"); S.mover("#bD","rotate(45deg)"); S.mover("#aD","rotate(134deg)");
           S.mover("#pD","rotate(-30deg)"); S.mover("#sD","rotate(140deg)"); S.cls("#s3","draw");
           S.texto("#dica","3. Joelho dobrado"); S.texto("#dica2","pé no chão"); }},
-        {t:"Puxa pelo joelho dobrado e <b>roda a pessoa para o teu lado</b>. Ajusta a perna de cima, dobrada, para ela não rolar, e a mão debaixo da face.", dur:7000, f:S => {
+        {t:"Puxa pelo joelho dobrado e <b>roda a pessoa na tua direção</b>, para o teu lado. Assim controlas o movimento: ela não cai para longe nem fica de barriga para baixo. Ajusta a perna de cima, dobrada, para ela não rolar, e a mão debaixo da face.", dur:8000, f:S => {
           S.cls("#s4","draw"); S.texto("#dica","4. Rodar para ti"); S.texto("#dica2","puxando pelo joelho");
           const rodar = () => { S.esconder("#costas"); S.cls("#s1, #s2, #s3","draw",false); S.mostrar("#lado"); };
           if(S.instant) rodar(); else S.depois(rodar, 1800); }},
         {t:"Inclina a cabeça um pouco para trás, para o ar passar — se vomitar, o vómito sai pela boca. <b>Liga 112</b> e vigia se continua a respirar.", dur:7500, f:S => {
-          S.esconder("#costas, #lado, #tu"); S.cls("#s1, #s2, #s3, #s4","draw",false); S.mostrar("#foto"); S.texto("#dica",""); S.texto("#dica2",""); }}
+          S.esconder("#costas, #lado, #tu"); S.cls("#s1, #s2, #s3, #s4","draw",false); S.mostrar("#foto"); S.texto("#dica",""); S.texto("#dica2",""); }},
+        {t:"<b>Que lado do corpo fica para baixo?</b> Qualquer um serve: o importante é a pessoa ficar de lado. Exceções: uma <b>grávida</b> fica do lado <b>esquerdo</b> (assim o bebé não aperta uma veia grande que leva sangue ao coração); se tem um braço ou uma perna <b>ferida</b>, não a deites por cima da ferida; se tiver de ficar assim <b>mais de 30 minutos</b>, vira-a para o outro lado, para não magoar o braço de baixo.", dur:11000, f:S => {
+          S.mostrar("#foto"); S.texto("#dica","Qualquer lado serve"); S.texto("#dica2","grávida: lado esquerdo"); }}
       ]});
     function el2(cx, cy, rx, ry, fill){ return '<ellipse cx="'+cx+'" cy="'+cy+'" rx="'+rx+'" ry="'+ry+'" fill="'+fill+'"/>'; }
   })();

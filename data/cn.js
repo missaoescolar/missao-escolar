@@ -408,7 +408,7 @@
     lead:"Num jogo, quando uma personagem perde vida, há sempre um kit de cura. Na vida real, o «kit» és tu: saber o que fazer nos primeiros minutos pode salvar uma vida. E a primeira regra é simples — pedir ajuda.",
     missions:[
       {t:"A Chamada que Salva", d:"Ligar 112 e o que dizer", f:"Com um adulto, treina uma chamada a fingir: diz ONDE estás, O QUE aconteceu, QUEM precisa de ajuda e QUANTAS pessoas", xp:10},
-      {t:"Posição Lateral de Segurança", d:"PLS, passo a passo", f:"Com um adulto, pratica a posição lateral de segurança num familiar (a fingir, com cuidado)", xp:15},
+      {t:"Posição Lateral de Segurança", d:"PLS, passo a passo", f:"Vê primeiro a animação da PLS até ao fim.\nCom um adulto, pratica num familiar deitado de costas (a fingir, com cuidado): braço do teu lado em ângulo reto, a outra mão encostada à face, joelho do lado de lá dobrado.\nRoda-o na tua direção, puxando pelo joelho.\nVerifica: a pessoa ficou de lado, sem rolar, com a perna de cima dobrada, a mão debaixo da face e a cabeça inclinada para trás, de boca virada para o chão.", xp:15},
       {t:"O Kit de Primeiros Socorros", d:"O material essencial", f:"Verifica com um adulto o kit de casa: compressas, pensos, ligaduras, luvas, tesoura de pontas redondas e soro fisiológico. Falta alguma coisa?", xp:10},
       {t:"Cartaz dos Números de Emergência", d:"112, SNS 24 e Centro Antivenenos", f:"Faz um cartaz para pôr junto ao telefone ou no frigorífico com 112, 808 24 24 24 e 800 250 250", xp:10}
     ],
@@ -418,7 +418,7 @@
       "<b>Hemorragia</b> (muito sangue a sair de uma ferida): carrega na ferida com força, com uma <b>compressa</b> ou um pano limpo, sem largar. Num corte pequeno: lavar com água e sabão (ou soro) e tapar com um penso.",
       "<b>Queimadura</b>: arrefecer com água corrente fresca durante <b>20 minutos</b>. Nunca pôr gelo, manteiga nem pasta de dentes, e não rebentar as bolhas.",
       "<b>Sangue do nariz</b>: sentar, inclinar a cabeça para a <b>frente</b> e apertar a parte mole do nariz durante 10 minutos. <b>Engasgamento</b>: se a pessoa consegue tossir, deve continuar a tossir; se não consegue falar nem respirar, liga-se 112 e dão-se pancadas nas costas e compressões abdominais.",
-      "Se alguém está <b>inconsciente</b> mas <b>respira</b> normalmente, põe-se em <b>posição lateral de segurança</b> e liga-se 112. Se <b>não respira</b>, liga-se 112 e começa-se o <b>suporte básico de vida</b> (compressões no peito), com a ajuda do operador."
+      "Se alguém está <b>inconsciente</b> mas <b>respira</b> normalmente, põe-se em <b>posição lateral de segurança</b> e liga-se 112. De lado, a língua não cai para trás a tapar a garganta e, se a pessoa vomitar, o vómito sai pela boca em vez de ir para os pulmões. Roda-se a pessoa <b>na tua direção</b>, para controlares o movimento; qualquer lado do corpo serve, mas uma grávida fica do lado esquerdo e nunca se deita a pessoa por cima de uma ferida. Se <b>não respira</b>, liga-se 112 e começa-se o <b>suporte básico de vida</b> (compressões no peito), com a ajuda do operador."
     ],
     gloss:[
       ["112","O número europeu de emergência: gratuito, funciona em toda a União Europeia, mesmo sem saldo."],
