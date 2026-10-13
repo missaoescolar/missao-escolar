@@ -101,48 +101,107 @@
     id:"n2", num:2, c:"m2", icon:"🍕",
     title:"Inventário de Frações",
     subtitle:"Frações e operações", pages:"manual a confirmar",
-    lead:"O teu inventário está cheio de itens partidos ao meio, em três, em quatro. Frações são só isso: pedaços de um todo — e este mundo ensina a juntá-los, trocá-los e craftar com eles.",
+    lead:"Neste mundo vais aprender a encontrar frações equivalentes, a simplificar, a comparar frações, a calcular a fração de uma quantidade e a fazer as quatro operações com frações. Vê primeiro a animação e os 6 exemplos resolvidos, um de cada vez. No fim tens o resumo para o teste.",
     missions:[
-      {t:"Partir o Bolo", d:"Numerador e denominador", f:"Desenhar 5 frações como fatias de pizza ou bolo", xp:10},
-      {t:"Trocar por Equivalentes", d:"Frações equivalentes e simplificação", f:"Encontrar 3 pares de frações equivalentes", xp:10},
-      {t:"Juntar e Tirar Itens", d:"Adição e subtração de frações", f:"Resolver 5 operações com frações", xp:10},
-      {t:"Craftar com Frações", d:"Multiplicação e divisão de frações", f:"Inventar um problema de crafting com frações e resolvê-lo", xp:15}
+      {t:"Iguais por Dentro", d:"Frações equivalentes e simplificação", f:"Escreve 3 frações equivalentes a 2/3, como no Exemplo 1.\nSimplifica até à forma irredutível: 12/18, 20/30 e 14/21. Usa o m.d.c. do Mundo 1.\nVerifica: duas frações a/b e c/d são equivalentes quando a × d = b × c (ex.: 2/3 e 4/6, porque 2 × 6 = 3 × 4).", xp:10},
+      {t:"Quem É Maior?", d:"Comparar e ordenar frações", f:"Ordena do menor para o maior: 2/3, 3/4, 5/8 e 1/2, como no Exemplo 2.\nDesenha as quatro frações numa reta numérica entre 0 e 1.\nVerifica: escreve as quatro frações com denominador 24 e compara só os numeradores.", xp:10},
+      {t:"Contar a Turma", d:"Fração de uma quantidade", f:"Numa turma de 24 alunos, 3/8 vêm de autocarro, 1/4 vêm a pé e os outros vêm de carro.\nCalcula quantos alunos vêm de cada maneira, como no Exemplo 4.\nVerifica: os três números somados têm de dar 24.", xp:10},
+      {t:"Juntar e Tirar Pedaços", d:"Adição e subtração de frações", f:"Calcula, como no Exemplo 3: 1/2 + 1/3; 3/4 − 1/6; 2/5 + 3/10; 1 − 3/8; 1 e 1/2 + 2/3.\nDá cada resultado na forma irredutível.\nVerifica: antes de calcular, estima. Por exemplo, 1/2 + 1/3 tem de ser menos do que 1, porque 1/3 é menos do que 1/2.", xp:10},
+      {t:"Multiplicar e Dividir", d:"Multiplicação e divisão de frações", f:"Resolve, como nos Exemplos 5 e 6:\n(1) Sobraram 3/4 de uma pizza e comeste 2/3 do que sobrou. Que fração da pizza inteira comeste?\n(2) Com 6 litros de sumo, quantas garrafas de 3/4 de litro consegues encher?\nVerifica: em (2), multiplica o número de garrafas por 3/4. Tens de obter os 6 litros.", xp:15}
     ],
     resumo:[
-      "Uma <b>fração</b> representa uma parte de um todo dividido em partes iguais: o <b>numerador</b> (partes consideradas) sobre o <b>denominador</b> (total de partes).",
-      "Duas frações dizem-se uma <b>fração equivalente</b> da outra quando representam a mesma quantidade, mesmo escritas de forma diferente (ex.: 1/2 = 2/4 = 3/6). Uma fração está na forma <b>irredutível</b> quando numerador e denominador não têm divisores comuns além do 1.",
-      "Para somar ou subtrair frações com denominadores diferentes, reduzem-se primeiro ao mesmo denominador — normalmente o m.m.c. dos denominadores.",
-      "Para <b>multiplicar</b> frações, multiplicam-se os numeradores entre si e os denominadores entre si. Para <b>dividir</b> frações, multiplica-se pelo <b>inverso</b> da segunda fração.",
-      "Um <b>número misto</b> combina uma parte inteira com uma fração (ex.: 2 e 1/3)."
+      "Uma <b>fração</b> representa partes iguais de um todo (a unidade). O <b>denominador</b> (em baixo) diz em quantas partes iguais se dividiu o todo; o <b>numerador</b> (em cima) diz quantas dessas partes se consideram (ex.: em 3/8 de uma pizza, a pizza foi dividida em 8 fatias iguais e consideram-se 3).",
+      "Uma fração também é uma divisão: 3/4 = 3 ÷ 4 = 0,75. Por isso, cada fração tem o seu lugar na <b>reta numérica</b>.",
+      "Uma fração é <b>própria</b> quando o numerador é menor do que o denominador (vale menos do que 1, ex.: 3/4) e <b>imprópria</b> quando é maior ou igual (vale 1 ou mais, ex.: 7/4). Uma fração imprópria pode escrever-se como <b>número misto</b>: 7/4 = 1 e 3/4, porque 7 ÷ 4 = 1 e sobram 3.",
+      "Duas frações dizem-se uma <b>fração equivalente</b> da outra quando representam a mesma quantidade (ex.: 1/2 = 2/4 = 3/6). Obtêm-se multiplicando ou dividindo o numerador e o denominador pelo mesmo número (diferente de zero). <b>Simplificar</b> é dividir os dois pelo mesmo número; a fração fica na forma <b>irredutível</b> quando se divide pelo m.d.c. (ex.: 18/24 = 3/4, dividindo por 6).",
+      "Para <b>comparar</b> frações: com o mesmo denominador, é maior a que tem maior numerador; com o mesmo numerador, é maior a que tem <b>menor</b> denominador (1/6 > 1/8, porque as partes são maiores); nos outros casos, escrevem-se com o mesmo denominador.",
+      "Para calcular a <b>fração de uma quantidade</b>, divide-se a quantidade pelo denominador e multiplica-se pelo numerador (ex.: 3/4 de 20 = 20 ÷ 4 × 3 = 15).",
+      "Para <b>somar ou subtrair</b> frações, os denominadores têm de ser iguais: reduzem-se ao mesmo denominador (normalmente o m.m.c. dos denominadores) e depois somam-se ou subtraem-se só os numeradores. O denominador mantém-se (ex.: 1/2 + 1/3 = 3/6 + 2/6 = 5/6).",
+      "Para <b>multiplicar</b> frações, multiplicam-se os numeradores entre si e os denominadores entre si (ex.: 2/3 × 3/5 = 6/15 = 2/5). Multiplicar por uma fração própria dá um resultado <b>menor</b>: é calcular uma parte.",
+      "Para <b>dividir</b> por uma fração, multiplica-se pelo <b>inverso</b> dessa fração (troca-se o numerador com o denominador: o inverso de 3/4 é 4/3). Dividir por uma fração própria dá um resultado <b>maior</b>: 3 ÷ 1/2 = 6, porque em 3 pizzas cabem 6 metades."
     ],
     gloss:[
-      ["fração","Representa uma parte de um todo dividido em partes iguais: numerador sobre denominador."],
-      ["numerador","O número de cima na fração — quantas partes se consideram."],
-      ["denominador","O número de baixo na fração — em quantas partes o todo foi dividido."],
-      ["fração equivalente","Uma fração diferente que representa a mesma quantidade."],
-      ["fração irredutível","Uma fração que já não se pode simplificar mais."],
-      ["número misto","Um número com uma parte inteira e uma fração, escritas juntas."],
-      ["inverso de uma fração","A fração com o numerador e o denominador trocados."]
+      ["fração","Partes iguais de um todo, escritas como numerador sobre denominador (ex.: 3/8)."],
+      ["numerador","O número de cima na fração: quantas partes se consideram."],
+      ["denominador","O número de baixo na fração: em quantas partes iguais se dividiu o todo."],
+      ["unidade","O todo que se divide em partes iguais: uma pizza, uma barra, uma turma inteira."],
+      ["fração própria","Fração com o numerador menor do que o denominador; vale menos do que 1 (ex.: 3/4)."],
+      ["fração imprópria","Fração com o numerador maior ou igual ao denominador; vale 1 ou mais (ex.: 7/4)."],
+      ["número misto","Um número com uma parte inteira e uma fração, escritas juntas (ex.: 1 e 3/4)."],
+      ["fração equivalente","Uma fração escrita de outra forma que representa a mesma quantidade (ex.: 2/4 é equivalente a 1/2)."],
+      ["simplificar","Dividir o numerador e o denominador pelo mesmo número, para obter uma fração equivalente mais simples."],
+      ["fração irredutível","Uma fração que já não se pode simplificar: o m.d.c. do numerador e do denominador é 1."],
+      ["inverso","A fração com o numerador e o denominador trocados (o inverso de 3/4 é 4/3). Uma fração vezes o seu inverso dá 1."],
+      ["reta numérica","Uma reta com os números por ordem, onde cada fração tem o seu lugar (1/2 fica a meio entre 0 e 1)."],
+      ["contraexemplo","Um exemplo que mostra que uma afirmação é falsa: 6 × 1/2 = 3 mostra que «multiplicar dá sempre mais» é falso."]
     ],
     quiz:[
-      {q:"O que representa uma fração?", opts:["Uma parte de um todo dividido em partes iguais","Um número sempre maior que 1","A soma de dois números naturais","Um número primo"], correct:0, explain:"Uma fração representa uma parte de um todo dividido em partes iguais: o numerador sobre o denominador."},
-      {q:"Numa fração, o que é o numerador?", opts:["O número de cima, que indica quantas partes se consideram","O número de baixo, que indica em quantas partes o todo foi dividido","O resultado da divisão","A soma do numerador e do denominador"], correct:0, explain:"O numerador é o número de cima da fração."},
-      {q:"Quando é que duas frações são equivalentes?", opts:["Quando representam a mesma quantidade, mesmo escritas de forma diferente","Quando têm o mesmo numerador","Quando têm o mesmo denominador","Quando a soma dá 1"], correct:0, explain:"Frações equivalentes representam a mesma quantidade (ex.: 1/2 = 2/4 = 3/6)."},
-      {q:"Qual destas frações é equivalente a 1/2?", opts:["2/4","1/3","3/5","2/3"], correct:0, explain:"2/4 simplifica-se para 1/2, por isso são equivalentes."},
-      {q:"Quando é que uma fração está na forma irredutível?", opts:["Quando o numerador e o denominador não têm divisores comuns além do 1","Quando o numerador é 1","Quando o denominador é 100","Quando é maior que 1"], correct:0, explain:"Uma fração irredutível já não se pode simplificar mais."},
-      {q:"Para somar duas frações com denominadores diferentes, o que se deve fazer primeiro?", opts:["Reduzi-las ao mesmo denominador","Multiplicar os numeradores","Simplificar só uma delas","Transformá-las em números mistos"], correct:0, explain:"Reduz-se primeiro ao mesmo denominador, normalmente usando o m.m.c."},
-      {q:"Como se multiplicam duas frações?", opts:["Multiplicam-se os numeradores entre si e os denominadores entre si","Multiplicam-se só os numeradores","Soma-se o numerador de uma com o denominador da outra","Multiplica-se pelo inverso"], correct:0, explain:"Na multiplicação de frações, numeradores multiplicam-se entre si e denominadores entre si."},
-      {q:"Como se divide uma fração por outra?", opts:["Multiplica-se pelo inverso da segunda fração","Divide-se numerador por numerador e denominador por denominador","Soma-se o inverso","Subtrai-se uma da outra"], correct:0, explain:"Para dividir frações, multiplica-se a primeira pelo inverso da segunda."},
-      {q:"O que é um número misto?", opts:["Um número com uma parte inteira e uma fração, escritos juntos","Uma fração com numerador maior que o denominador","Um número decimal","Uma fração equivalente a outra"], correct:0, explain:"Um número misto combina uma parte inteira com uma fração (ex.: 2 e 1/3)."},
-      {q:"Qual é o inverso da fração 3/4?", opts:["4/3","3/4","4/4","3/3"], correct:0, explain:"O inverso troca o numerador com o denominador: o inverso de 3/4 é 4/3."}
+      {q:"Uma pizza foi cortada em 8 fatias iguais e comeste 3. Que fração da pizza comeste?", opts:["3/8","5/8","3/5","8/3"], correct:0, explain:"A pizza (o todo) tem 8 partes iguais: o denominador é 8. Comeste 3: o numerador é 3. 5/8 é a parte que sobrou. 3/5 compara o que comeste com o que sobrou, não com a pizza toda. E 8/3 está trocada: seria mais do que uma pizza inteira."},
+      {q:"Qual é maior: 1/6 ou 1/8 de uma tablete de chocolate?", opts:["1/8, porque 8 é maior do que 6","1/6, porque as partes são maiores","São iguais, porque o numerador é o mesmo","Não se pode saber sem desenhar"], correct:1, explain:"Com o mesmo numerador, é maior a fração com menor denominador. Dividir em 6 partes dá partes maiores do que dividir em 8. Pensar «8 é maior do que 6, por isso 1/8 é maior» é um erro muito comum."},
+      {q:"Qual destas frações é equivalente a 2/3?", opts:["3/4","4/5","4/6","2/6"], correct:2, explain:"Multiplica o numerador e o denominador pelo mesmo número: 2 × 2 = 4 e 3 × 2 = 6, por isso 2/3 = 4/6. 3/4 e 4/5 obtêm-se somando 1 ou 2 em cima e em baixo, e somar não dá frações equivalentes. 2/6 só mudou o denominador: vale um terço de 2/3."},
+      {q:"Quanto é 1/2 + 1/3?", opts:["2/5","5/6","2/6","1/5"], correct:1, explain:"Primeiro, o mesmo denominador (m.m.c. de 2 e 3 = 6): 1/2 = 3/6 e 1/3 = 2/6. Depois soma os numeradores: 3/6 + 2/6 = 5/6. O erro 2/5 vem de somar em cima e em baixo. Verifica: 2/5 é menos do que 1/2, mas somar 1/3 a 1/2 tem de dar mais do que 1/2."},
+      {q:"Quanto é 5/6 − 1/3?", opts:["4/3","4/6","1/2","1/3"], correct:2, explain:"Mesmo denominador: 1/3 = 2/6. Então 5/6 − 2/6 = 3/6 = 1/2 (simplificado, dividindo por 3). 4/3 vem de subtrair em cima e em baixo (5 − 1 e 6 − 3). 4/6 vem de subtrair os numeradores sem igualar os denominadores."},
+      {q:"Quanto é 3/4 de 20 rebuçados?", opts:["5","15","60","23"], correct:1, explain:"Divide os 20 rebuçados em 4 partes iguais: 20 ÷ 4 = 5 (isto é 1/4). Três dessas partes: 5 × 3 = 15. O 5 é só 1/4, o 60 é 3 × 20 (mais do que os rebuçados todos) e o 23 é 20 + 3."},
+      {q:"Quanto é 2/3 × 3/5?", opts:["5/8","2/5","10/9","6/8"], correct:1, explain:"Numerador × numerador e denominador × denominador: 2 × 3 = 6 e 3 × 5 = 15. Fica 6/15 = 2/5, simplificando por 3. 5/8 soma em vez de multiplicar. 10/9 é o resultado da divisão 2/3 ÷ 3/5, não da multiplicação."},
+      {q:"Quantos copos de 1/4 de litro consegues encher com 3 litros de água?", opts:["3/4","12","7","4"], correct:1, explain:"A pergunta é «quantos 1/4 cabem em 3?»: 3 ÷ 1/4 = 3 × 4 = 12. Verifica: 12 copos × 1/4 de litro = 3 litros. 3/4 é o resultado de multiplicar (3 × 1/4), que não é o que se pergunta. Dividir por uma fração própria dá um resultado maior."},
+      {q:"«Multiplicar dá sempre um número maior.» Verdadeiro ou falso? Escolhe a resposta com a justificação certa.", opts:["Verdadeiro. Multiplicar é somar várias vezes.","Verdadeiro. 2 × 3 = 6, que é maior do que 2 e do que 3.","Falso. 6 × 1/2 = 3, que é menor do que 6.","Falso. 6 × 2 = 12, que é maior do que 6."], correct:2, explain:"Basta um contraexemplo: 6 × 1/2 = 3, que é menor do que 6. Multiplicar por uma fração própria é calcular uma parte, e uma parte é menor do que o todo. Os exemplos em que dá maior (2 × 3) não provam que é sempre assim, e 6 × 2 = 12 não mostra que a afirmação é falsa."},
+      {q:"Como se escreve o número misto 2 e 3/4 como fração?", opts:["5/4","6/4","11/4","23/4"], correct:2, explain:"Cada inteiro tem 4 quartos, por isso 2 inteiros = 8/4. Mais 3/4: 8/4 + 3/4 = 11/4. Verifica: 11 ÷ 4 = 2 e sobram 3. 5/4 soma 2 + 3, 6/4 multiplica 2 × 3, e 23/4 junta os algarismos 2 e 3."}
+    ],
+    posters:[
+      {title:"🟰 Exemplo 1 — Frações equivalentes e simplificar", svg:'<svg class="poster-svg" viewBox="0 0 300 120" style="max-width:300px;margin:0 auto" role="img" aria-label="Duas barras do mesmo tamanho. A de cima está dividida em 4 partes iguais, com 3 pintadas: 3/4. A de baixo está dividida em 8 partes iguais, com 6 pintadas: 6/8. A parte pintada é do mesmo tamanho nas duas.">'+
+        '<g stroke="currentColor" stroke-width="2"><rect x="20" y="16" width="60" height="32" fill="var(--wc)"/><rect x="80" y="16" width="60" height="32" fill="var(--wc)"/><rect x="140" y="16" width="60" height="32" fill="var(--wc)"/><rect x="200" y="16" width="60" height="32" fill="var(--surface)"/>'+
+        '<rect x="20" y="68" width="30" height="32" fill="var(--wc)"/><rect x="50" y="68" width="30" height="32" fill="var(--wc)"/><rect x="80" y="68" width="30" height="32" fill="var(--wc)"/><rect x="110" y="68" width="30" height="32" fill="var(--wc)"/><rect x="140" y="68" width="30" height="32" fill="var(--wc)"/><rect x="170" y="68" width="30" height="32" fill="var(--wc)"/><rect x="200" y="68" width="30" height="32" fill="var(--surface)"/><rect x="230" y="68" width="30" height="32" fill="var(--surface)"/></g>'+
+        '<g font-family="Lexend, sans-serif" font-size="16" font-weight="700"><text x="268" y="38">3/4</text><text x="268" y="90">6/8</text></g></svg>'+
+        '<ul class="wheel-legend">'+
+        '<li><span aria-hidden="true">🎯</span><span><b>O que queremos descobrir:</b> frações equivalentes a 3/4, e escrever 18/24 da forma mais simples.</span></li>'+
+        '<li><span aria-hidden="true">🚦</span><span><b>Como começar:</b> olha para o desenho. Se partires cada quarto ao meio, ficas com 8 partes e 6 pintadas. A parte pintada não mudou.</span></li>'+
+        '<li><span aria-hidden="true">👣</span><span><b>Passo a passo:</b><br>Multiplica em cima e em baixo pelo mesmo número:<br>3/4 = (3 × 2)/(4 × 2) = 6/8<br>3/4 = (3 × 3)/(4 × 3) = 9/12<br>Para simplificar 18/24, divide em cima e em baixo pelo m.d.c.(18, 24) = 6:<br>18 ÷ 6 = 3 e 24 ÷ 6 = 4.</span></li>'+
+        '<li><span aria-hidden="true">✅</span><span><b>Resultado:</b> 3/4 = 6/8 = 9/12, e 18/24 = 3/4 (forma irredutível: 3 e 4 só têm o 1 como divisor comum).</span></li>'+
+        '<li><span aria-hidden="true">🔍</span><span><b>Verificar:</b> multiplica em cruz. 3 × 8 = 24 e 4 × 6 = 24: são iguais, por isso 3/4 = 6/8. Atenção: somar o mesmo número em cima e em baixo não funciona (3/4 e 4/5 não são equivalentes).</span></li>'+
+        '</ul>'},
+      {title:"⚖️ Exemplo 2 — Comparar 3/4 e 5/6", svg:'<ul class="wheel-legend">'+
+        '<li><span aria-hidden="true">🎯</span><span><b>O que queremos descobrir:</b> qual é maior, 3/4 ou 5/6.</span></li>'+
+        '<li><span aria-hidden="true">🚦</span><span><b>Como começar:</b> os denominadores são diferentes (4 e 6), por isso as partes têm tamanhos diferentes. Escreve as duas frações com o mesmo denominador: o m.m.c.(4, 6) = 12.</span></li>'+
+        '<li><span aria-hidden="true">👣</span><span><b>Passo a passo:</b><br>3/4 = (3 × 3)/(4 × 3) = 9/12<br>5/6 = (5 × 2)/(6 × 2) = 10/12<br>Agora as partes são do mesmo tamanho: compara os numeradores. 9 é menor do que 10.</span></li>'+
+        '<li><span aria-hidden="true">✅</span><span><b>Resultado:</b> 3/4 < 5/6.</span></li>'+
+        '<li><span aria-hidden="true">🔍</span><span><b>Verificar:</b> pensa no que falta para 1. A 3/4 falta 1/4 e a 5/6 falta 1/6. Como 1/6 é menor do que 1/4, 5/6 está mais perto de 1. Truque para o mesmo numerador: 1/6 > 1/8, porque partir em 6 dá partes maiores do que partir em 8.</span></li>'+
+        '</ul>'},
+      {title:"➕ Exemplo 3 — Somar 2/3 + 1/4 e subtrair 1 − 3/8", svg:'<ul class="wheel-legend">'+
+        '<li><span aria-hidden="true">🎯</span><span><b>O que queremos descobrir:</b> quanto é 2/3 + 1/4 e quanto é 1 − 3/8.</span></li>'+
+        '<li><span aria-hidden="true">🚦</span><span><b>Como começar:</b> só se somam partes do mesmo tamanho. Procura um denominador comum: o m.m.c.(3, 4) = 12. Estima primeiro: 2/3 + 1/4 é menos do que 1, porque 2/3 + 1/3 = 1 e 1/4 é menos do que 1/3.</span></li>'+
+        '<li><span aria-hidden="true">👣</span><span><b>Passo a passo:</b><br>2/3 = 8/12 e 1/4 = 3/12<br>8/12 + 3/12 = 11/12 (somam-se os numeradores; o denominador fica 12)<br>Para 1 − 3/8, escreve o 1 como 8/8:<br>8/8 − 3/8 = 5/8</span></li>'+
+        '<li><span aria-hidden="true">✅</span><span><b>Resultado:</b> 2/3 + 1/4 = 11/12 e 1 − 3/8 = 5/8.</span></li>'+
+        '<li><span aria-hidden="true">🔍</span><span><b>Verificar:</b> 11/12 é menos do que 1, como estimaste. E 5/8 + 3/8 = 8/8 = 1. Erro a evitar: 2/3 + 1/4 não é 3/7. Somar em cima e em baixo dá menos do que 2/3, o que não faz sentido.</span></li>'+
+        '</ul>'},
+      {title:"🍬 Exemplo 4 — Fração de uma quantidade: 3/4 de 20", svg:'<ul class="wheel-legend">'+
+        '<li><span aria-hidden="true">🎯</span><span><b>O que queremos descobrir:</b> a Ana tem 20 rebuçados e dá 3/4 aos amigos. Quantos rebuçados dá?</span></li>'+
+        '<li><span aria-hidden="true">🚦</span><span><b>Como começar:</b> o denominador 4 diz que os 20 rebuçados se dividem em 4 grupos iguais.</span></li>'+
+        '<li><span aria-hidden="true">👣</span><span><b>Passo a passo:</b><br>1/4 de 20: 20 ÷ 4 = 5 rebuçados em cada grupo<br>3/4 de 20: 3 grupos, 5 × 3 = 15<br>Também se pode fazer como multiplicação: 3/4 × 20 = 60/4 = 15.</span></li>'+
+        '<li><span aria-hidden="true">✅</span><span><b>Resultado:</b> a Ana dá 15 rebuçados e fica com 5 (o 1/4 que sobra).</span></li>'+
+        '<li><span aria-hidden="true">🔍</span><span><b>Verificar:</b> 15 + 5 = 20. E 3/4 é menos do que o todo, por isso a resposta tem de ser menor do que 20.</span></li>'+
+        '</ul>'},
+      {title:"✖️ Exemplo 5 — Multiplicar: 2/3 de 3/4 de uma pizza", svg:'<ul class="wheel-legend">'+
+        '<li><span aria-hidden="true">🎯</span><span><b>O que queremos descobrir:</b> sobraram 3/4 de uma pizza e comeste 2/3 do que sobrou. Que fração da pizza inteira comeste?</span></li>'+
+        '<li><span aria-hidden="true">🚦</span><span><b>Como começar:</b> «2/3 de» quer dizer «2/3 vezes». A conta é 2/3 × 3/4.</span></li>'+
+        '<li><span aria-hidden="true">👣</span><span><b>Passo a passo:</b><br>Numeradores: 2 × 3 = 6<br>Denominadores: 3 × 4 = 12<br>2/3 × 3/4 = 6/12<br>Simplifica: m.d.c.(6, 12) = 6, por isso 6/12 = 1/2</span></li>'+
+        '<li><span aria-hidden="true">✅</span><span><b>Resultado:</b> comeste 1/2 (metade) da pizza inteira.</span></li>'+
+        '<li><span aria-hidden="true">🔍</span><span><b>Verificar:</b> 3/4 da pizza são 3 fatias de um quarto; 2/3 dessas 3 fatias são 2 fatias, ou seja, 2/4 = 1/2. E o resultado (1/2) é menor do que 3/4: multiplicar por uma fração própria dá sempre menos.</span></li>'+
+        '</ul>'},
+      {title:"➗ Exemplo 6 — Dividir: quantas metades cabem em 3?", svg:'<ul class="wheel-legend">'+
+        '<li><span aria-hidden="true">🎯</span><span><b>O que queremos descobrir:</b> quanto é 3 ÷ 1/2 e quantas garrafas de 3/4 de litro se enchem com 6 litros (6 ÷ 3/4).</span></li>'+
+        '<li><span aria-hidden="true">🚦</span><span><b>Como começar:</b> lê a divisão como uma pergunta: «quantas vezes cabe 1/2 em 3?». Imagina 3 pizzas, cada uma cortada ao meio.</span></li>'+
+        '<li><span aria-hidden="true">👣</span><span><b>Passo a passo:</b><br>3 pizzas × 2 metades = 6 metades, por isso 3 ÷ 1/2 = 6<br>Regra: dividir por uma fração é multiplicar pelo seu inverso.<br>3 ÷ 1/2 = 3 × 2/1 = 6<br>6 ÷ 3/4 = 6 × 4/3 = 24/3 = 8</span></li>'+
+        '<li><span aria-hidden="true">✅</span><span><b>Resultado:</b> 3 ÷ 1/2 = 6 e enchem-se 8 garrafas de 3/4 de litro.</span></li>'+
+        '<li><span aria-hidden="true">🔍</span><span><b>Verificar:</b> faz a conta ao contrário. 6 × 1/2 = 3 e 8 × 3/4 = 24/4 = 6 litros. Dividir por uma fração própria dá um resultado maior: em 6 litros cabem mais garrafas pequenas do que litros.</span></li>'+
+        '</ul>'}
     ],
     compare:{
-      left:{title:"✖️ Multiplicar frações", points:["Multiplicam-se os numeradores entre si","Multiplicam-se os denominadores entre si","Não é preciso igualar denominadores"]},
-      right:{title:"➗ Dividir frações", points:["Multiplica-se pelo inverso da segunda fração","Depois segue-se a regra da multiplicação","Também não é preciso igualar denominadores"]}
+      left:{title:"✖️ Multiplicar frações", points:["Numeradores × numeradores e denominadores × denominadores","Não é preciso igualar denominadores","Por uma fração própria, o resultado fica menor (ex.: 6 × 1/2 = 3)"]},
+      right:{title:"➗ Dividir frações", points:["Multiplica-se pelo inverso da segunda fração","Também não é preciso igualar denominadores","Por uma fração própria, o resultado fica maior (ex.: 3 ÷ 1/2 = 6)"]}
     },
     resources:[
       {icon:"🔬", title:"Build a Fraction", desc:"Simulação interativa para montar frações e ver frações equivalentes a formarem-se.", site:"PhET Interactive Simulations", url:"https://phet.colorado.edu/en/simulations/build-a-fraction"},
-      {icon:"🎮", title:"Jogos de frações", desc:"Vários jogos curtos para praticar frações, equivalências e operações.", site:"Math Playground", url:"https://www.mathplayground.com/index_fractions.html"}
+      {icon:"🎮", title:"Jogos de frações", desc:"Vários jogos curtos para praticar frações, equivalências e operações. Tem publicidade.", site:"Math Playground", url:"https://www.mathplayground.com/index_fractions.html"}
     ],
     boss:"Ficha de avaliação — página a confirmar no manual"
   },
