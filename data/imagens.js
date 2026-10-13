@@ -44,9 +44,12 @@ const MISSAO_IMAGENS = {
     {f:"img/c4/esfregaco-sangue.jpg", t:"Uma gota de sangue ao microscópio da escola", m:"otico",
       d:"É assim que se vê o sangue num microscópio ótico: milhares de glóbulos vermelhos, cor-de-rosa. Os glóbulos brancos são muito menos numerosos.",
       cred:"Nbnidhi", lic:"BY40", src:COMMONS+"Blood_smear.jpg"},
-    {f:"img/c4/modelo-coracao.jpg", t:"Modelo do coração humano",
-      d:"Um modelo usado nas aulas. Vê-se o músculo do coração, os grandes vasos que saem por cima (a artéria aorta e a artéria pulmonar) e as artérias coronárias, que levam sangue ao próprio coração.",
-      cred:"Ekko (Wikimedia Commons)", lic:"PD", src:COMMONS+"Heart_frontally_PDA.jpg"}
+    {f:"img/c4/coracao-exterior.jpg", t:"O coração visto por fora", il:true,
+      d:"O coração tem o tamanho aproximado de um punho fechado e é feito de músculo. Por cima saem e chegam os grandes vasos sanguíneos: a artéria aorta (o arco grande ao centro), que leva sangue a todo o corpo, e as veias cavas (à esquerda), que trazem o sangue de volta. As pequenas artérias vermelhas à superfície são as artérias coronárias: alimentam o próprio músculo do coração. Atenção: o coração está virado para ti, por isso o lado direito do coração aparece do lado esquerdo da imagem.",
+      cred:"Patrick J. Lynch, ilustrador médico", lic:"BY25", src:COMMONS+"Heart_anterior_exterior_view.jpg"},
+    {f:"img/c4/coracao-interior.jpg", t:"O coração por dentro: ventrículos e válvulas", il:true,
+      d:"O coração aberto pela frente. À esquerda da imagem fica o ventrículo direito, que envia o sangue pobre em oxigénio para os pulmões; à direita, o ventrículo esquerdo, com a parede muito mais grossa, porque tem de empurrar o sangue rico em oxigénio para todo o corpo. As válvulas são como portas que só abrem num sentido; os fios brancos são as cordas tendinosas, que seguram a válvula para ela não abrir ao contrário. O azul e o vermelho são só uma convenção: o sangue é sempre vermelho, mais escuro quando tem pouco oxigénio.",
+      cred:"Patrick J. Lynch, ilustrador médico", lic:"BY25", src:COMMONS+"Heart_anterior_ventricles_valves.jpg"}
   ],
   c5: [
     {f:"img/c5/glomerulo.jpg", t:"Um glomérulo do rim", m:"otico",
