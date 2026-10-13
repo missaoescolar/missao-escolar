@@ -142,11 +142,38 @@ async function units(){
     assert.equal(JSON.parse(e.data.get('arena')).xp,45);
     assert.deepEqual(JSON.parse(e.data.get('arena')).medalhas,['primeira']);
   });
-  await test('Web Locks: warning is visible throughout the pending lock wait', async()=>{
+  await test('Web Locks: a long lock wait shows the warning until the save completes', async()=>{
     const e=environment({locks:true}),t=e.tab();
+    let release;const held=new Promise(r=>{release=r;});
+    t.context.navigator.locks.request('missao-escolar:math_missions',()=>held);   // another tab keeps the lock
     t.api.atualizarPendente('math_missions',{},st=>{st['n1-0']=true;return st;});
-    assert(t.api.temPendentes());assert.equal(t.document.body.children.length,1);
-    await drain();assert.equal(t.api.temPendentes(),false);assert.equal(t.document.body.children.length,0);
+    await drain();
+    assert(t.api.temPendentes());assert.equal(t.document.body.children.length,0);   // a short wait shows nothing
+    [...t.timers.values()].forEach(fn=>fn());                                         // the wait passes 2 s
+    assert.equal(t.document.body.children.length,1);
+    assert.equal(t.document.body.children[0].attributes.role,'alert');
+    release();await drain();
+    assert.equal(t.api.temPendentes(),false);assert.equal(t.document.body.children.length,0);
+    assert.deepEqual(JSON.parse(e.data.get('math_missions')),{'n1-0':true});
+  });
+  await test('Successful saves never show the save warning (missions, Arena, activity; with and without Web Locks)', async()=>{
+    for(const locks of [true,false]){
+      const e=environment({locks}),t=e.tab(),a=t.arena();
+      const ops=[
+        ()=>t.api.atualizarPendente('math_missions',{},st=>{st['n1-0']=true;return st;}),
+        ()=>a.change(s=>{s.xp+=10;s.certas++;s.medalhas.push('primeira');}),
+        ()=>t.api.registarAtividade('2026-10-11')
+      ];
+      for(const op of ops){
+        op();
+        assert.equal(t.document.body.children.length,0,'no warning right after a save starts (locks='+locks+')');
+        await drain();
+        assert.equal(t.api.temPendentes(),false);
+        assert.equal(t.document.body.children.length,0,'no warning after a successful save (locks='+locks+')');
+        assert.equal(t.timers.size,0,'no warning or retry timer left behind (locks='+locks+')');
+      }
+      assert.equal(JSON.parse(e.data.get('arena')).xp,10);
+    }
   });
   await test('Web Locks: rapid queued gains and both failed tabs recover without duplication', async()=>{
     const e=environment({locks:true}),t=e.tab(),u=e.tab(),a=t.arena(),b=u.arena();
@@ -357,6 +384,17 @@ async function browser(){
     const change=async(c,code)=>c.eval('window.__arenaTest.change(s=>{'+code+'});');
     await test('Edge: page loads without JavaScript exceptions; Web Locks available',async()=>{
       assert.equal(await a.eval('!!navigator.locks'),true);assert.deepEqual(a.errors,[]);assert.deepEqual(b.errors,[]);
+    });
+    await test('Edge: successful mission and Arena saves never show the save warning',async()=>{
+      await a.eval('window.__avisos=0;window.__obs=new MutationObserver(ms=>ms.forEach(m=>m.addedNodes.forEach(n=>{if(n.classList&&n.classList.contains("armazem-aviso"))window.__avisos++;})));window.__obs.observe(document.body,{childList:true,subtree:true});');
+      await a.eval('document.getElementById("cb-n7-0").click()');await wait(a,'!MissaoArmazem.temPendentes()');
+      await a.eval('document.getElementById("cb-n7-0").click()');await wait(a,'!MissaoArmazem.temPendentes()');
+      await change(a,'');await wait(a,'!MissaoArmazem.temPendentes()');
+      await delay(2500);   // longer than the long-wait threshold
+      assert.equal(await a.eval('window.__avisos'),0);
+      assert.equal(await a.eval('!!document.querySelector(".armazem-aviso")'),false);
+      assert.equal((await saved(a,'math_missions'))['n7-0'],false);
+      await a.eval('window.__obs.disconnect()');
     });
     await test('Edge: failed mission stays pending, label clear, confirmed XP unchanged',async()=>{
       await block(a,'quota');

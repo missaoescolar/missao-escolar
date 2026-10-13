@@ -215,6 +215,8 @@
   .mission .mtitle{ font-family:"Lexend",sans-serif; font-weight:700; font-size:0.95rem; grid-column:2; }
   .mission .mtitle.done{ text-decoration:line-through; opacity:0.55; }
   .mission .mdetail{ grid-column:2; font-size:0.86rem; color:var(--text-muted); }
+  .mission .mtask, .mission .msteps{ color:var(--text); }
+  .mission .msteps{ margin:4px 0 0; padding-left:1.2em; display:flex; flex-direction:column; gap:3px; line-height:1.45; }
   .mission .mxp{
     grid-column:3; grid-row:1 / span 2; align-self:center; font-family:"Lexend",sans-serif;
     font-weight:700; font-size:0.78rem; color:var(--wc); background:var(--surface);
@@ -832,6 +834,9 @@
     .pane[hidden]{ display:flex !important; }
   }
   .subhead small{ white-space:nowrap; }
+  /* how-to hints next to a section title ("toca nas palavras sublinhadas"…): essential, so readable size and full contrast; they may wrap on a phone */
+  .subhead small.muted{ font-size:0.95em; color:var(--text); white-space:normal; }
+  .subhead{ flex-wrap:wrap; }
 
   /* ---------- ⚠️ progress could not be saved (armazem.js) — calm, at the bottom, never blocks ---------- */
   .armazem-aviso{

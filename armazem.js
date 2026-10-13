@@ -9,6 +9,9 @@ const MissaoArmazem = (function(){
   const lidos = new Map();
   const CHAVES = ['pt_missions','math_missions','eng_missions','hgp_missions','cn_missions','cn7_missions','arena','activity_log','banco_srs','banco_hoje','banco_hoje_7','mundos_vistos','ws_tab','ws_draft','ws_saved','ty_best','ty_count','ty_prefs','challenge_mode','curio_cards_off','active_subject','active_subject_7','home_year','anim_narrar'];
   let disponivel = true, aviso = null, esperaDOM = false, retryTimer = null;
+  // a normal save waits a few milliseconds for the lock: only a wait longer than this shows the warning
+  const ESPERA_LONGA_MS = 2000;
+  let esperaTimer = null, esperaLonga = false;
 
   function copia(valor){ return valor === undefined ? valor : JSON.parse(JSON.stringify(valor)); }
   function tipoDeErro(e){
@@ -20,8 +23,18 @@ const MissaoArmazem = (function(){
       if(!esperaDOM){ esperaDOM = true; document.addEventListener("DOMContentLoaded", function(){ esperaDOM = false; atualizarAviso(); }); }
       return;
     }
+    if(!pendentes.size){
+      if(esperaTimer !== null){ clearTimeout(esperaTimer); esperaTimer = null; }
+      esperaLonga = false;
+    }
     if(!falhas.size && !pendentes.size){
       if(aviso){ aviso.remove(); aviso = null; }
+      return;
+    }
+    // Pending without any failure: a normal save in progress. Warn only if it takes too long;
+    // a warning already on screen (after a failure) stays until everything is saved.
+    if(!falhas.size && !aviso && !esperaLonga){
+      if(esperaTimer === null) esperaTimer = setTimeout(function(){ esperaTimer = null; esperaLonga = true; atualizarAviso(); }, ESPERA_LONGA_MS);
       return;
     }
     if(!aviso){

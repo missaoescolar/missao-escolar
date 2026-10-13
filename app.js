@@ -38,6 +38,26 @@
 
   function stripHtml(html){ const t=document.createElement("div"); t.innerHTML=html; return t.textContent || t.innerText || ""; }
 
+  /* text for "Ouvir este mundo", in the order of the page: introduction, worked examples (posters), summary.
+     Drawings and decorative icons are skipped so nothing is read twice; a line break becomes a pause. */
+  function paraOuvir(html){
+    const t = document.createElement("div"); t.innerHTML = html;
+    const desenhos = Array.prototype.map.call(t.querySelectorAll("svg"), function(s){ return s.getAttribute("aria-label") || ""; });
+    t.querySelectorAll("svg, [aria-hidden='true']").forEach(function(n){ n.remove(); });
+    t.querySelectorAll("br").forEach(function(b){ b.replaceWith(". "); });
+    t.querySelectorAll("li").forEach(function(li){ li.append(". "); });
+    let texto = t.textContent.replace(/\s+/g, " ").trim();
+    if(!texto) texto = desenhos.filter(Boolean).join(". ");   // a drawing with no text beside it: read its description
+    return texto.replace(/([.?!:;])\s*\.(?=\s|$)/g, "$1").trim();
+  }
+  function textoParaOuvir(w){
+    const semIcones = function(s){ return String(s).replace(/[\u{1F000}-\u{1FAFF}\u{2600}-\u{27BF}]️?/gu, "").trim(); };
+    const partes = [w.lead];
+    (w.posters || []).forEach(function(p){ partes.push(semIcones(p.title)+". "+paraOuvir(p.svg)); });
+    w.resumo.forEach(function(l){ partes.push(paraOuvir(l)); });
+    return partes.filter(Boolean).join(". ").replace(/([.?!:;])\s*\.(?=\s|$)/g, "$1");
+  }
+
   function normTerm(s){
     return s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/["'()]/g,"").replace(/:$/,"").trim();
   }
@@ -705,7 +725,7 @@
       listen.title = "Ouvir este mundo"; listen.setAttribute("aria-label","Ouvir este mundo");
       listen.addEventListener("click", function(){
         if(window.speechSynthesis && window.speechSynthesis.speaking){ window.speechSynthesis.cancel(); return; }
-        speak(w.lead+". "+w.resumo.map(stripHtml).join(". "));
+        speak(textoParaOuvir(w));
       });
       tools.appendChild(listen);
       if(curios.length){
@@ -942,7 +962,14 @@
         cb.checked = !!state[key];
         const title = el("label","mtitle"+(cb.checked?" done":""), "Q"+(i+1)+" — "+m.t);
         title.htmlFor = cb.id;
-        const detail = el("div","mdetail", m.d+" · <i>"+m.f+"</i>");
+        // what to do, in plain (not italic) text; instructions written on several lines become short steps
+        const detail = el("div","mdetail", m.d);
+        const passos = String(m.f).split("\n");
+        if(passos.length > 1){
+          const ul = el("ul","msteps");
+          passos.forEach(function(p){ ul.appendChild(el("li","",p)); });
+          detail.appendChild(ul);
+        } else detail.appendChild(el("span","mtask"," · "+m.f));
         const xp = el("span","mxp","+"+m.xp+" XP");
         cb.addEventListener("change", function(){
           pendingMissions.set(key, cb.checked);
@@ -1329,7 +1356,15 @@
     showView(subject, "mundos");
     SUBJ[subject].show(part || null, stage);
   }
-  function keepInView(){
+  function keepInView(part){
+    // a world was opened (from the map, a link or the address): bring its start to the top of the screen,
+    // so on a phone the child does not land on the page header with the world below the fold
+    const world = part && part!=="arena" && part!=="escrita" ? document.getElementById(part) : null;
+    if(world && !world.hidden){
+      const top = world.getBoundingClientRect().top;
+      if(top < 0 || top > 80) world.scrollIntoView({block:"start"});
+      return;
+    }
     const tabs = document.getElementById("subject-tabs");
     if(tabs && tabs.getBoundingClientRect().top < 0) tabs.scrollIntoView({block:"start"});
   }
@@ -1338,7 +1373,7 @@
     route(subject, part, stage);
     const h = "#"+subject+(part ? "/"+part : "")+(stage && stage!=="aprender" ? "/"+stage : "");
     if(location.hash !== h){ skipHash = h; location.hash = h; }
-    keepInView();
+    keepInView(part);
   }
   function openView(subject, view){ go(subject, view==="mundos" ? null : view); }
   window.MissaoNav = {ir: go};
@@ -1355,12 +1390,12 @@
   let initial = MISSAO_SUBJECTS[0].key;
   const saved = MissaoArmazem.lerTexto(KEY_SUBJECT, null); if(panels[saved]) initial = saved;
   const h0 = fromHash();
-  if(h0) route(h0.subject, h0.part, h0.stage); else route(initial);
+  if(h0){ route(h0.subject, h0.part, h0.stage); keepInView(h0.part); } else route(initial);
   window.addEventListener("hashchange", function(){
     if(location.hash === skipHash){ skipHash = null; return; }
     skipHash = null;
     const h = fromHash();
-    if(h){ route(h.subject, h.part, h.stage); keepInView(); }
+    if(h){ route(h.subject, h.part, h.stage); keepInView(h.part); }
   });
 
 })();
