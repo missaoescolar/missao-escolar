@@ -11,13 +11,26 @@
 <div class="page">
   <header class="home-hero">
     <div class="home-logo" aria-hidden="true">🗺️</div>
-    <h1>Missão Escolar</h1>
-    <p>A tua plataforma de estudo, ao teu ritmo.</p>
+    <h1>O que queres fazer agora?</h1>
+    <p>Escolhe um ponto de partida. Não há caminhos bloqueados, ordem obrigatória nem respostas com penalização.</p>
     <p class="home-streak" id="home-streak"></p>
   </header>
 
-  <div class="year-tabs" id="year-tabs" role="tablist" aria-label="Ano de escolaridade"></div>
-  <div id="year-panels"></div>
+  <a class="home-resume" id="home-resume" hidden></a>
+
+  <h2 class="home-step">1. Escolhe o objetivo</h2>
+  <div class="intent-grid" id="intent-grid" role="group" aria-label="Objetivo"></div>
+
+  <h2 class="home-step">2. O teu ano</h2>
+  <div class="year-pick" id="year-pick"></div>
+
+  <div class="home-step-row" id="subject-step">
+    <h2 class="home-step">3. Escolhe a disciplina</h2>
+    <button type="button" class="link-btn" id="show-soon" aria-expanded="false">Ver o que está em construção</button>
+  </div>
+  <div class="subject-grid" id="subject-grid"></div>
+  <p class="intent-extra" id="intent-extra"></p>
+  <p class="soon-years" id="soon-years" hidden></p>
 
   <section class="home-tools">
     <a class="tool-card" href="resumo.html"><span aria-hidden="true">📄</span><b>Páginas-resumo</b><small>A matéria de cada mundo numa folha, pronta a imprimir</small></a>

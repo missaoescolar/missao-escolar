@@ -1,8 +1,8 @@
 /* Imagens reais ("📷 Ver de perto") de cada mundo.
-   Todas vêm do Wikimedia Commons, com licença livre (domínio público ou Creative Commons) — o crédito e a licença
+   Vêm do Wikimedia Commons, do Smithsonian Open Access e da NASA, com licença livre (domínio público, CC0 ou Creative Commons) — o crédito e a licença
    aparecem por baixo de cada imagem, como as licenças exigem. As cores das imagens de microscópio eletrónico
    foram acrescentadas pelos cientistas (os eletrões não "veem" cores).
-   Campos: f ficheiro · t título · d legenda · m "otico" | "eletronico" (imagem de microscópio) · cred autor · lic licença · src página original */
+   Campos: f ficheiro · t título · d legenda · m "otico" | "eletronico" (imagem de microscópio) · cred autor · lic licença · src página original · fonte nome do site de origem (sem ele: Wikimedia Commons) */
 const LIC = {
   PD: ["Domínio público", ""],
   CC0: ["CC0", "https://creativecommons.org/publicdomain/zero/1.0/"],

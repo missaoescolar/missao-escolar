@@ -41,9 +41,15 @@ Object.assign(MISSAO_IMAGENS, {
   g5: [
     {f:"img/g5/placas-mapa.jpg", t:"Mapa das placas tectónicas",
       d:"A litosfera está dividida em grandes placas. Procura a placa Euroasiática (onde está Portugal continental), a Africana e a Norte-Americana — os Açores ficam perto do ponto onde as três se encontram.",
-      cred:"U.S. Geological Survey (USGS)", lic:"PD", src:COMMONS+"Tectonic_plates.png"}
+      cred:"U.S. Geological Survey (USGS)", lic:"PD", src:COMMONS+"Tectonic_plates.png"},
+    {f:"img/g5/meteorito-ferro.jpg", t:"Um meteorito de ferro (Canyon Diablo, Arizona)",
+      d:"Este pedaço de metal caiu do espaço há cerca de 50 000 anos, quando um asteroide abriu a Cratera do Meteoro, nos EUA. É feito quase só de ferro e níquel, como o núcleo da Terra. Ninguém consegue ir ao núcleo; por isso, os meteoritos de ferro são uma das pistas que os cientistas usam para saber de que é feito.",
+      cred:"Smithsonian, National Museum of Natural History", lic:"CC0", src:"http://n2t.net/ark:/65665/339f2e9c7-1016-46b0-827c-095952a4888b", fonte:"Smithsonian Open Access"}
   ],
   g6: [
+    {f:"img/g6/sarychev-iss.jpg", t:"Uma erupção vista do espaço: vulcão Sarychev",
+      d:"Erupção explosiva do vulcão Sarychev (ilhas Curilas, Rússia), fotografada por astronautas da Estação Espacial Internacional a 12 de junho de 2009. A coluna castanha é feita de cinzas e gases. O «chapéu» branco e liso no topo é uma nuvem que se forma quando a coluna empurra o ar húmido para cima.",
+      cred:"NASA, Expedição 20 da Estação Espacial Internacional", lic:"PD", src:"https://images.nasa.gov/details/iss020e009048", fonte:"NASA Image Library"},
     {f:"img/g6/capelinhos.jpg", t:"O vulcão dos Capelinhos, Faial (Açores)",
       d:"Nasceu de uma erupção no mar em 1957–1958 e aumentou a ilha. Ainda hoje a paisagem de cinzas e escórias está quase sem vegetação.",
       cred:"manateedugong", lic:"SA20", src:COMMONS+"Capelinhos_Volcano_in_Faial_Island_(21508142443).jpg"},

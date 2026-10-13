@@ -531,6 +531,44 @@
   .subject-done{ font-family:"Lexend",sans-serif; font-weight:700; color:var(--wc) !important; }
   .subject-card.soon{ border-style:dashed; border-color:var(--border); background:var(--surface-2); box-shadow:none; opacity:0.75; cursor:default; }
   .subject-card.soon:hover{ transform:none; }
+  /* home: choose a goal (intent), then the year, then the subject */
+  .home-step{ font-family:"Lexend",sans-serif; font-weight:800; font-size:1rem; text-align:center; margin:22px 0 12px; }
+  .home-step-row{ display:flex; align-items:baseline; justify-content:space-between; gap:8px 12px; flex-wrap:wrap; }
+  .home-step-row .home-step{ text-align:left; }
+  .link-btn{ font:inherit; font-family:"Lexend",sans-serif; font-weight:700; font-size:0.85rem; background:none; border:none; padding:4px 2px; color:var(--text-muted); text-decoration:underline; cursor:pointer; }
+  .link-btn:focus-visible{ outline:3px solid var(--accent); outline-offset:2px; border-radius:6px; }
+  .intent-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:12px; }
+  .intent-card{
+    display:flex; flex-direction:column; gap:6px; text-align:left; font:inherit; color:var(--text); cursor:pointer;
+    padding:16px 18px; border-radius:18px; border:2px solid var(--border); background:var(--surface);
+  }
+  .intent-card b{ font-family:"Lexend",sans-serif; font-size:1.05rem; }
+  .intent-icon{ font-size:1.8rem; }
+  .intent-sub{ font-family:"Lexend",sans-serif; font-weight:700; font-size:0.82rem; color:var(--text-muted); }
+  .intent-card small{ color:var(--text-muted); font-size:0.84rem; line-height:1.45; }
+  .intent-card.on{ border-color:var(--accent); background:var(--surface-2); box-shadow:var(--shadow); }
+  .intent-card.on .intent-sub{ color:var(--accent); }
+  .intent-card:focus-visible{ outline:3px solid var(--accent); outline-offset:3px; }
+  .year-pick .year-tabs{ margin-bottom:6px; }
+  .year-chosen{ text-align:center; margin:0; font-family:"Lexend",sans-serif; font-size:1.05rem; }
+  .home-resume{
+    display:flex; align-items:center; justify-content:space-between; gap:12px 18px; flex-wrap:wrap; text-decoration:none; color:var(--text);
+    padding:14px 18px; margin:4px 0 6px; border-radius:16px; border:2px solid var(--m4); background:var(--m4-bg); box-shadow:var(--shadow);
+  }
+  .home-resume b{ display:block; font-family:"Lexend",sans-serif; }
+  .home-resume small{ display:block; color:var(--text-muted); margin-top:2px; }
+  .home-resume .go{ font-family:"Lexend",sans-serif; font-weight:700; color:var(--m4); white-space:nowrap; }
+  .home-resume:focus-visible{ outline:3px solid var(--m4); outline-offset:3px; }
+  .subject-go{ font-family:"Lexend",sans-serif; font-weight:700; font-size:0.82rem; margin-top:6px; color:var(--text); }
+  .intent-extra, .soon-years{ text-align:center; color:var(--text-muted); margin:-10px auto 22px; font-size:0.92rem; }
+  .intent-extra a{ color:var(--accent); font-weight:700; }
+  @media (max-width:560px){
+    .intent-grid{ grid-template-columns:1fr; gap:8px; }
+    .intent-card{ display:grid; grid-template-columns:auto 1fr; column-gap:12px; align-items:center; padding:12px 14px; }
+    .intent-icon{ grid-row:1 / span 2; font-size:1.6rem; }
+    .intent-card small{ display:none; }
+  }
+
   .home-tools{ display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:12px; margin-bottom:20px; }
   .tool-card{
     display:flex; flex-direction:column; gap:4px; padding:16px 18px; border-radius:16px; text-decoration:none; color:var(--text);
@@ -885,6 +923,13 @@
   .lb-d{ margin:0 0 8px; line-height:1.55; }
   .lb-cred{ margin:0; font-size:0.78rem; color:var(--text-muted); }
   .lb-cred a{ color:var(--accent); }
+  /* 👀🤔❓ Vê, Pensa, Pergunta-te: looking comes first; the explanation appears on request */
+  .lb-vpp{ margin:0 0 10px; padding:10px 12px; border-radius:12px; background:var(--bg); }
+  .lb-vpp p{ margin:0 0 6px; font-weight:700; }
+  .lb-vpp ul{ list-style:none; margin:0 0 10px; padding:0; display:flex; flex-direction:column; gap:5px; }
+  .lb-vpp li{ display:flex; gap:8px; line-height:1.45; }
+  .lb-overlay:not(.revealed) .lb-d{ display:none; }
+  .lb-overlay.revealed .lb-vpp{ display:none; }
   @media print{ .galeria, .lb-overlay{ display:none !important; } }
 
   /* ---------- 🎯 Missão de hoje · 🔔 Lembrete · more school years ---------- */

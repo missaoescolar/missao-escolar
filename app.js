@@ -568,13 +568,20 @@
       lb.innerHTML = '<div class="lb-box"><div class="lb-top"><p class="lb-n"></p><button type="button" class="lb-btn" data-a="zoom">🔍 Aproximar</button><button type="button" class="lb-btn" data-a="x" aria-label="Fechar">✕</button></div>'+
         '<div class="lb-stage"><img alt=""></div>'+
         '<div class="lb-nav"><button type="button" class="lb-btn" data-a="ant">← Anterior</button><button type="button" class="lb-btn" data-a="seg">Seguinte →</button></div>'+
-        '<h3 class="lb-t"></h3><p class="lb-d"></p><p class="lb-cred"></p></div>';
+        '<h3 class="lb-t"></h3>'+
+        '<div class="lb-vpp"><p>Antes de leres a explicação, olha com calma:</p><ul>'+
+        '<li><span aria-hidden="true">👀</span><span><b>Vê:</b> o que vês? Cores, formas, tamanhos, pormenores.</span></li>'+
+        '<li><span aria-hidden="true">🤔</span><span><b>Pensa:</b> o que achas que é, ou o que aconteceu? Porquê?</span></li>'+
+        '<li><span aria-hidden="true">❓</span><span><b>Pergunta-te:</b> o que gostavas de saber sobre isto?</span></li></ul>'+
+        '<button type="button" class="lb-btn" data-a="ver">💡 Ver a explicação</button></div>'+
+        '<p class="lb-d" tabindex="-1"></p><p class="lb-cred"></p></div>';
       document.body.appendChild(lb);
       lb.addEventListener("click", function(e){
         const b = e.target.closest("button");
         if(e.target === lb || (b && b.dataset.a === "x")) return closeLightbox();
         if(!b) return;
         if(b.dataset.a === "zoom"){ const on = lb.classList.toggle("zoomed"); b.textContent = on ? "↩️ Afastar" : "🔍 Aproximar"; }
+        if(b.dataset.a === "ver"){ lb.classList.add("revealed"); lb.querySelector(".lb-d").focus({preventScroll:true}); }
         if(b.dataset.a === "ant") showLb(lb._i - 1);
         if(b.dataset.a === "seg") showLb(lb._i + 1);
       });
@@ -593,14 +600,15 @@
     const list = lb._list, n = list.length;
     i = (i + n) % n; lb._i = i;
     const im = list[i], lic = LIC[im.lic] || [im.lic, ""];
-    lb.classList.remove("zoomed"); lb.querySelector('[data-a="zoom"]').textContent = "🔍 Aproximar";
+    // "Vê, Pensa, Pergunta-te": each image starts with the explanation hidden, so the child looks first
+    lb.classList.remove("zoomed", "revealed"); lb.querySelector('[data-a="zoom"]').textContent = "🔍 Aproximar";
     lb.classList.toggle("micro", !!im.m);
     const img = lb.querySelector(".lb-stage img"); img.src = im.f; img.alt = im.t;
     lb.querySelector(".lb-n").textContent = (i+1)+" / "+n+(im.m ? " · "+MICRO_TXT[im.m] : "");
     lb.querySelector(".lb-t").textContent = im.t;
     lb.querySelector(".lb-d").textContent = im.d;
     lb.querySelector(".lb-cred").innerHTML = "📷 "+escXml(im.cred)+" · "+(lic[1] ? '<a href="'+lic[1]+'" target="_blank" rel="noopener noreferrer">'+lic[0]+'</a>' : lic[0])+
-      ' · <a href="'+escXml(im.src)+'" target="_blank" rel="noopener noreferrer">Wikimedia Commons ↗</a>';
+      ' · <a href="'+escXml(im.src)+'" target="_blank" rel="noopener noreferrer">'+escXml(im.fonte || "Wikimedia Commons")+' ↗</a>';
     lb.querySelector(".lb-nav").hidden = n < 2;
   }
   function closeLightbox(){

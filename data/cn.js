@@ -102,9 +102,6 @@
       left:{title:"🧑 Digestão humana", points:["Estômago com uma única câmara, com suco gástrico ácido","Não consegue digerir a celulose (fibra das plantas)","Tubo digestivo relativamente mais curto"]},
       right:{title:"🐄 Digestão de um ruminante (ex.: vaca)", points:["Estômago com 4 compartimentos: rúmen, retículo, omaso, abomaso","Usa microrganismos para digerir a celulose","Tubo digestivo muito mais longo"]}
     },
-    resources:[
-      {icon:"🫀", title:"Explorar o corpo humano em 3D", desc:"Vê o sistema digestivo (e outros sistemas) num modelo 3D interativo. Pode pedir um registo gratuito.", site:"BioDigital Human", url:"https://human.biodigital.com/"}
-    ],
     boss:"Ficha de avaliação — Manual 1: Resumo pág. 68 · Avaliação pág. 69"
   },
   {
@@ -154,9 +151,6 @@
       left:{title:"⬆️ Inspiração", points:["O diafragma contrai-se e desce","O volume do tórax aumenta","O ar entra nos pulmões"]},
       right:{title:"⬇️ Expiração", points:["O diafragma relaxa e sobe","O volume do tórax diminui","O ar sai dos pulmões"]}
     },
-    resources:[
-      {icon:"🫀", title:"Explorar o corpo humano em 3D", desc:"Vê o sistema respiratório (e outros sistemas) num modelo 3D interativo. Pode pedir um registo gratuito.", site:"BioDigital Human", url:"https://human.biodigital.com/"}
-    ],
     boss:"Ficha de avaliação — Manual 1: Resumo pág. 98 · Avaliação pág. 99"
   },
   {
@@ -207,9 +201,6 @@
       left:{title:"🔴 Artérias", points:["Levam sangue do coração para o corpo","Paredes mais espessas e elásticas","Geralmente sangue rico em oxigénio"]},
       right:{title:"🔵 Veias", points:["Trazem sangue de volta ao coração","Paredes mais finas, com válvulas","Geralmente sangue pobre em oxigénio"]}
     },
-    resources:[
-      {icon:"🫀", title:"Explorar o corpo humano em 3D", desc:"Vê o sistema circulatório (e outros sistemas) num modelo 3D interativo. Pode pedir um registo gratuito.", site:"BioDigital Human", url:"https://human.biodigital.com/"}
-    ],
     boss:"Ficha de avaliação — Manual 1: Resumo pág. 124 · Avaliação pág. 125"
   },
   {
@@ -258,9 +249,6 @@
       left:{title:"🧴 Pele", points:["Elimina substâncias através do suor","Ajuda a regular a temperatura do corpo","É o maior órgão do corpo"]},
       right:{title:"💧 Rins", points:["Filtram o sangue","Produzem a urina","Fazem parte do sistema urinário"]}
     },
-    resources:[
-      {icon:"🫀", title:"Explorar o corpo humano em 3D", desc:"Vê o sistema urinário (e outros sistemas) num modelo 3D interativo. Pode pedir um registo gratuito.", site:"BioDigital Human", url:"https://human.biodigital.com/"}
-    ],
     boss:"Ficha de avaliação — Manual 2: Resumo pág. 23 · Avaliação pág. 24"
   },
   {
@@ -364,9 +352,6 @@
       left:{title:"♀️ Sistema reprodutor feminino", points:["Ovários — produzem óvulos","Útero — onde um bebé se pode desenvolver","Ciclo menstrual mensal, a partir da puberdade"]},
       right:{title:"♂️ Sistema reprodutor masculino", points:["Testículos — produzem espermatozoides","Produção contínua de espermatozoides, a partir da puberdade","Sem ciclo mensal equivalente"]}
     },
-    resources:[
-      {icon:"🫀", title:"Explorar o corpo humano em 3D", desc:"Vê o sistema reprodutor (e outros sistemas) num modelo 3D interativo. Pode pedir um registo gratuito.", site:"BioDigital Human", url:"https://human.biodigital.com/"}
-    ],
     boss:"Ficha de avaliação — Manual 2: Resumo pág. 48 · Avaliação pág. 49"
   },
   {
