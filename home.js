@@ -18,12 +18,13 @@
 
   /* the three goals, shown after the year. Saved as home_intent: app.js reads it to open each theme at the right stage */
   const INTENTS = [
-    {id:"perceber", icon:"📖", t:"Quero perceber", s:"Explicações passo a passo", d:"Cada tema abre no 📖 Aprender: exemplos resolvidos, animações e resumo."},
+    {id:"perceber", icon:"📖", t:"Quero aprender", s:"Explicações passo a passo", d:"Cada tema abre no 📖 Aprender: exemplos resolvidos, animações e resumo."},
     {id:"rever", icon:"🔁", t:"Quero rever", s:"Uma parte de cada vez", d:"Cada tema abre no 🎯 Praticar, só com esse tema. Há também a Missão de hoje."},
     {id:"teste", icon:"📝", t:"Tenho teste", s:"Praticar o que já sei", d:"Teste sobre um tema: abre-o no 🎯 Praticar. Sobre tudo: a 🏆 Revisão Final."}
   ];
-  let intent = MissaoArmazem.lerTexto("home_intent", "perceber");
-  if(!INTENTS.some(I => I.id === intent)) intent = "perceber";
+  // asked on every visit (today it may be a test, tomorrow a new theme): nothing is pre-selected,
+  // and the subjects only appear once a goal is chosen. The last choice is still saved for app.js.
+  let intent = null;
 
   function progress(s){
     const state = load(s.store, {});
@@ -127,8 +128,11 @@
     }
 
     const Y = YEARS.find(Y => Y.y === year);
-    grid.hidden = !Y; document.getElementById("subject-step").hidden = !Y; document.getElementById("intent-step").hidden = !Y;
-    grid.innerHTML = Y ? cards(Y.list) + (showSoon && Y.soon ? soonCards(Y.soon) : '') : '';
+    document.getElementById("intent-step").hidden = !Y;
+    const showSubjects = !!(Y && intent);
+    grid.hidden = !showSubjects; document.getElementById("subject-step").hidden = !showSubjects;
+    document.getElementById("intent-hint").hidden = !Y || !!intent;
+    grid.innerHTML = showSubjects ? cards(Y.list) + (showSoon && Y.soon ? soonCards(Y.soon) : '') : '';
     soonBtn.textContent = showSoon ? "Esconder o que está em construção" : "Ver o que está em construção";
     soonBtn.setAttribute("aria-expanded", showSoon);
     soonYears.hidden = !showSoon;

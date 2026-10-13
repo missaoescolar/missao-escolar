@@ -694,7 +694,7 @@
     }
     /* the goal chosen on the home page ("O que queres fazer agora?"). Every world stays open and in any order;
        the goal only decides where a world opens — "rever" and "teste" go straight to 🎯 Praticar */
-    const GOALS = [["perceber","📖","Quero perceber","Explicações passo a passo","Toca no tema que quiseres: abre no 📖 Aprender, com exemplos resolvidos, animações e resumo."],
+    const GOALS = [["perceber","📖","Quero aprender","Explicações passo a passo","Toca no tema que quiseres: abre no 📖 Aprender, com exemplos resolvidos, animações e resumo."],
                    ["rever","🔁","Quero rever","Uma parte de cada vez","Toca no tema que queres rever: abre no 🎯 Praticar, só com esse tema."],
                    ["teste","📝","Tenho teste","Praticar o que já sei","Teste sobre um tema? Toca nesse tema: abre no 🎯 Praticar. Teste sobre tudo? Usa a 🏆 Revisão Final."]];
     function goal(){ const g = MissaoArmazem.lerTexto("home_intent", "perceber"); return GOALS.some(function(x){ return x[0]===g; }) ? g : "perceber"; }
