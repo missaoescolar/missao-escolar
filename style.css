@@ -537,18 +537,6 @@
   .home-step-row .home-step{ text-align:left; }
   .link-btn{ font:inherit; font-family:"Lexend",sans-serif; font-weight:700; font-size:0.85rem; background:none; border:none; padding:4px 2px; color:var(--text-muted); text-decoration:underline; cursor:pointer; }
   .link-btn:focus-visible{ outline:3px solid var(--accent); outline-offset:2px; border-radius:6px; }
-  .intent-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:12px; }
-  .intent-card{
-    display:flex; flex-direction:column; gap:6px; text-align:left; font:inherit; color:var(--text); cursor:pointer;
-    padding:16px 18px; border-radius:18px; border:2px solid var(--border); background:var(--surface);
-  }
-  .intent-card b{ font-family:"Lexend",sans-serif; font-size:1.05rem; }
-  .intent-icon{ font-size:1.8rem; }
-  .intent-sub{ font-family:"Lexend",sans-serif; font-weight:700; font-size:0.82rem; color:var(--text-muted); }
-  .intent-card small{ color:var(--text-muted); font-size:0.84rem; line-height:1.45; }
-  .intent-card.on{ border-color:var(--accent); background:var(--surface-2); box-shadow:var(--shadow); }
-  .intent-card.on .intent-sub{ color:var(--accent); }
-  .intent-card:focus-visible{ outline:3px solid var(--accent); outline-offset:3px; }
   .year-pick .year-tabs{ margin-bottom:6px; }
   .year-chosen{ text-align:center; margin:0; font-family:"Lexend",sans-serif; font-size:1.05rem; }
   .home-resume{
@@ -560,14 +548,7 @@
   .home-resume .go{ font-family:"Lexend",sans-serif; font-weight:700; color:var(--m4); white-space:nowrap; }
   .home-resume:focus-visible{ outline:3px solid var(--m4); outline-offset:3px; }
   .subject-go{ font-family:"Lexend",sans-serif; font-weight:700; font-size:0.82rem; margin-top:6px; color:var(--text); }
-  .intent-extra, .soon-years{ text-align:center; color:var(--text-muted); margin:-10px auto 22px; font-size:0.92rem; }
-  .intent-extra a{ color:var(--accent); font-weight:700; }
-  @media (max-width:560px){
-    .intent-grid{ grid-template-columns:1fr; gap:8px; }
-    .intent-card{ display:grid; grid-template-columns:auto 1fr; column-gap:12px; align-items:center; padding:12px 14px; }
-    .intent-icon{ grid-row:1 / span 2; font-size:1.6rem; }
-    .intent-card small{ display:none; }
-  }
+  .soon-years{ text-align:center; color:var(--text-muted); margin:-10px auto 22px; font-size:0.92rem; }
 
   .home-tools{ display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:12px; margin-bottom:20px; }
   .tool-card{
@@ -773,6 +754,26 @@
   .tile.done{ background:var(--wc-bg); }
   .tile.done .ic{ background:var(--wc); color:#fff; }
   .tile.next{ outline:3px solid var(--accent); outline-offset:2px; }
+  /* goal bar above each subject map: the goal decides where a world opens, never which worlds are open */
+  .map-goal{ margin:0 0 14px; padding:12px 14px; border-radius:16px; background:var(--surface-2); }
+  .map-goal-t{ margin:0 0 8px; font-family:"Lexend",sans-serif; font-weight:800; font-size:1rem; }
+  .map-goal-opts{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; }
+  .map-goal .chip{ display:grid; grid-template-columns:auto 1fr; column-gap:10px; align-items:center; text-align:left; font:inherit; padding:10px 12px; border-radius:14px; border:2px solid var(--border); background:var(--surface); color:var(--text); cursor:pointer; }
+  .map-goal .chip .gi{ grid-row:1 / span 2; font-size:1.5rem; }
+  .map-goal .chip b{ font-family:"Lexend",sans-serif; font-size:0.95rem; }
+  .map-goal .chip .gs{ font-family:"Lexend",sans-serif; font-weight:700; font-size:0.76rem; color:var(--text-muted); }
+  .map-goal .chip.on{ border-color:var(--accent); box-shadow:var(--shadow); }
+  .map-goal .chip.on .gs{ color:var(--accent); }
+  .map-goal .chip:focus-visible{ outline:3px solid var(--accent); outline-offset:2px; }
+  @media (max-width:560px){ .map-goal-opts{ grid-template-columns:1fr; } }
+  .map-goal small{ display:block; margin-top:8px; color:var(--text); font-size:0.88rem; }
+  /* inside a world: every theme one tap away */
+  .wjump{ display:flex; flex-wrap:wrap; align-items:center; gap:6px; margin:0 0 12px; }
+  .wjump-t{ font-family:"Lexend",sans-serif; font-weight:700; font-size:0.82rem; color:var(--text-muted); margin-right:2px; }
+  .wjump .wj{ display:inline-flex; align-items:center; gap:4px; min-height:36px; padding:4px 10px; border-radius:999px; border:1.5px solid var(--border); background:var(--surface); color:var(--text); text-decoration:none; font-family:"Lexend",sans-serif; font-weight:700; font-size:0.82rem; }
+  .wjump .wj:hover{ border-color:var(--wc, var(--accent)); }
+  .wjump .wj.on{ border-color:var(--wc, var(--accent)); background:var(--wc-bg, var(--surface-2)); box-shadow:0 0 0 1px var(--wc, var(--accent)) inset; }
+  .wjump .wj:focus-visible{ outline:3px solid var(--accent); outline-offset:2px; }
   .tile.review{ border-style:dashed; }
   @media (prefers-reduced-motion: reduce){ .tile{ transition:none; } .tile:hover{ transform:none; } }
 
@@ -915,7 +916,7 @@
   .lb-stage{ background:#111; border-radius:14px; overflow:auto; max-height:62vh; display:flex; align-items:center; justify-content:center; }
   .lb-stage img{ max-width:100%; max-height:62vh; display:block; }
   .lb-overlay.zoomed .lb-stage{ display:block; }
-  .lb-overlay.zoomed .lb-stage img{ max-width:none; max-height:none; width:200%; }
+  .lb-overlay.zoomed .lb-stage img{ max-width:none; max-height:none; }   /* the width is set by app.js: real size of a photo, double for a drawing */
   .lb-overlay.micro:not(.zoomed) .lb-stage{ background:#111; padding:10px; }
   .lb-overlay.micro:not(.zoomed) .lb-stage img{ border-radius:50%; aspect-ratio:1; object-fit:cover; max-height:58vh; border:10px solid #2B2924; box-shadow:0 0 0 3px #555; }
   .lb-nav{ display:flex; justify-content:space-between; margin:10px 0 4px; }
@@ -957,8 +958,5 @@
   .sim-cred a{ color:var(--accent); }
   @media print{ .sims{ display:none !important; } }
 
-  .lgp{ margin:12px 0 0; padding-top:10px; border-top:1px dashed var(--border); font-family:"Lexend",sans-serif; font-weight:700; font-size:0.88rem; }
-  .lgp a{ color:var(--accent); }
-  .lgp small{ display:block; font-family:inherit; font-weight:400; font-size:0.75rem; color:var(--text-muted); margin-top:2px; }
 
   .tab-soon{ flex:none; white-space:nowrap; font-family:"Lexend",sans-serif; font-weight:700; font-size:0.85rem; padding:10px 14px; color:var(--text-muted); opacity:0.55; cursor:default; }

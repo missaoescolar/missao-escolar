@@ -2,9 +2,11 @@
    Vêm do Wikimedia Commons, do Smithsonian Open Access e da NASA, com licença livre (domínio público, CC0 ou Creative Commons) — o crédito e a licença
    aparecem por baixo de cada imagem, como as licenças exigem. As cores das imagens de microscópio eletrónico
    foram acrescentadas pelos cientistas (os eletrões não "veem" cores).
-   Campos: f ficheiro · t título · d legenda · m "otico" | "eletronico" (imagem de microscópio) · cred autor · lic licença · src página original · fonte nome do site de origem (sem ele: Wikimedia Commons) */
+   Campos: f ficheiro · t título · d legenda · m "otico" | "eletronico" (imagem de microscópio) · cred autor · lic licença · src página original · fonte nome do site de origem (sem ele: Wikimedia Commons)
+   il true = desenho nosso (SVG), marcado na galeria como ilustração; não tem src */
 const LIC = {
   PD: ["Domínio público", ""],
+  ORIG: ["ilustração original, livre para usar na escola", ""],
   CC0: ["CC0", "https://creativecommons.org/publicdomain/zero/1.0/"],
   BY20: ["CC BY 2.0", "https://creativecommons.org/licenses/by/2.0/"],
   BY25: ["CC BY 2.5", "https://creativecommons.org/licenses/by/2.5/"],
@@ -33,6 +35,9 @@ const MISSAO_IMAGENS = {
       cred:"Nephron", lic:"SA30", src:COMMONS+"Small_intestine_low_mag.jpg"}
   ],
   c4: [
+    {f:"img/c4/arteria-corte.svg", t:"Corte de uma artéria", il:true,
+      d:"Uma artéria cortada, vista de frente. A parede tem três camadas: a externa, que a protege; a média, a mais grossa, com músculo e fibras elásticas que aguentam a pressão do sangue que sai do coração; e a interna, fina e lisa. No meio fica o lúmen, por onde passa o sangue. Compara: as veias têm a parede muito mais fina.",
+      cred:"Missão Escolar", lic:"ORIG"},
     {f:"img/c4/celulas-sangue.jpg", t:"Células do sangue", m:"eletronico",
       d:"Os discos achatados são glóbulos vermelhos (transportam o oxigénio); a célula redonda e rugosa é um glóbulo branco (defende o corpo); os pedacinhos pequenos são plaquetas (ajudam a coagular). Cada glóbulo vermelho mede cerca de 7 micrómetros — 0,007 mm.",
       cred:"Bruce Wetzel e Harry Schaefer, National Cancer Institute (EUA)", lic:"PD", src:COMMONS+"SEM_blood_cells.jpg"},

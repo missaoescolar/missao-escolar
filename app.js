@@ -542,6 +542,8 @@
   /* ---------- 📷 Ver de perto: real photos and micrographs of each world (data/imagens.js) ---------- */
   function imgList(w){ return (typeof MISSAO_IMAGENS !== "undefined" && MISSAO_IMAGENS[w.id]) || []; }
   const MICRO_TXT = {otico:"🔬 microscópio ótico", eletronico:"🔬 microscópio eletrónico"};
+  // our own drawings say so, so that a child never takes them for a photograph or a micrograph
+  const ILUSTRACAO_TXT = "✏️ ilustração, não é fotografia";
   function buildGaleria(w){
     const list = imgList(w);
     if(!list.length) return null;
@@ -551,7 +553,7 @@
     list.forEach(function(im, i){
       const b = el("button","gal-item"+(im.m ? " micro" : ""),
         '<span class="gal-pic"><img src="'+im.f+'" alt="" loading="lazy"></span>'+
-        '<span class="gal-cap">'+escXml(im.t)+(im.m ? '<small>'+MICRO_TXT[im.m]+'</small>' : '')+'</span>');
+        '<span class="gal-cap">'+escXml(im.t)+(im.m ? '<small>'+MICRO_TXT[im.m]+'</small>' : im.il ? '<small>'+ILUSTRACAO_TXT+'</small>' : '')+'</span>');
       b.type = "button";
       b.setAttribute("aria-label", im.t+" — ampliar");
       b.addEventListener("click", function(){ openLightbox(list, i, b); });
@@ -580,7 +582,13 @@
         const b = e.target.closest("button");
         if(e.target === lb || (b && b.dataset.a === "x")) return closeLightbox();
         if(!b) return;
-        if(b.dataset.a === "zoom"){ const on = lb.classList.toggle("zoomed"); b.textContent = on ? "↩️ Afastar" : "🔍 Aproximar"; }
+        if(b.dataset.a === "zoom"){
+          // a photo is enlarged up to its real size (never stretched, which blurs it); a drawing (SVG) stays sharp at any size
+          const img = lb.querySelector(".lb-stage img"), shown = img.getBoundingClientRect().width;
+          const on = lb.classList.toggle("zoomed");
+          img.style.width = on ? (/\.svg$/i.test(img.src) ? shown*2 : Math.max(img.naturalWidth, shown))+"px" : "";
+          b.textContent = on ? "↩️ Afastar" : "🔍 Aproximar";
+        }
         if(b.dataset.a === "ver"){ lb.classList.add("revealed"); lb.querySelector(".lb-d").focus({preventScroll:true}); }
         if(b.dataset.a === "ant") showLb(lb._i - 1);
         if(b.dataset.a === "seg") showLb(lb._i + 1);
@@ -603,12 +611,12 @@
     // "Vê, Pensa, Pergunta-te": each image starts with the explanation hidden, so the child looks first
     lb.classList.remove("zoomed", "revealed"); lb.querySelector('[data-a="zoom"]').textContent = "🔍 Aproximar";
     lb.classList.toggle("micro", !!im.m);
-    const img = lb.querySelector(".lb-stage img"); img.src = im.f; img.alt = im.t;
-    lb.querySelector(".lb-n").textContent = (i+1)+" / "+n+(im.m ? " · "+MICRO_TXT[im.m] : "");
+    const img = lb.querySelector(".lb-stage img"); img.style.width = ""; img.src = im.f; img.alt = im.t;
+    lb.querySelector(".lb-n").textContent = (i+1)+" / "+n+(im.m ? " · "+MICRO_TXT[im.m] : im.il ? " · "+ILUSTRACAO_TXT : "");
     lb.querySelector(".lb-t").textContent = im.t;
     lb.querySelector(".lb-d").textContent = im.d;
-    lb.querySelector(".lb-cred").innerHTML = "📷 "+escXml(im.cred)+" · "+(lic[1] ? '<a href="'+lic[1]+'" target="_blank" rel="noopener noreferrer">'+lic[0]+'</a>' : lic[0])+
-      ' · <a href="'+escXml(im.src)+'" target="_blank" rel="noopener noreferrer">'+escXml(im.fonte || "Wikimedia Commons")+' ↗</a>';
+    lb.querySelector(".lb-cred").innerHTML = (im.il ? "✏️ " : "📷 ")+escXml(im.cred)+" · "+(lic[1] ? '<a href="'+lic[1]+'" target="_blank" rel="noopener noreferrer">'+lic[0]+'</a>' : lic[0])+
+      (im.src ? ' · <a href="'+escXml(im.src)+'" target="_blank" rel="noopener noreferrer">'+escXml(im.fonte || "Wikimedia Commons")+' ↗</a>' : '');
     lb.querySelector(".lb-nav").hidden = n < 2;
   }
   function closeLightbox(){
@@ -640,13 +648,6 @@
     return wrap;
   }
 
-  /* 🤟 every key word can be looked up in Língua Gestual Portuguesa (Spread the Sign, a European sign-language dictionary) */
-  function addLgp(term){
-    const body = document.querySelector(".modal-body");
-    if(!body) return;
-    body.insertAdjacentHTML("beforeend", '<p class="lgp"><a href="https://www.spreadthesign.com/pt.pt/search/?q='+encodeURIComponent(term)+'" target="_blank" rel="noopener noreferrer">🤟 Ver o gesto em Língua Gestual Portuguesa ↗</a>'+
-      '<small>Dicionário Spread the Sign. Algumas palavras muito técnicas podem ainda não ter gesto.</small></p>');
-  }
 
   function clickable(node, fn){
     node.tabIndex = 0;
@@ -691,19 +692,38 @@
       const m = document.getElementById("mcount-"+w.id);
       if(m) m.textContent = "· "+d+"/"+n+" feitas";
     }
+    /* "O que queres fazer agora?": chosen here, after the year and the subject. Every world stays open and in any order;
+       the goal only decides where a world opens — "rever" and "teste" go straight to 🎯 Praticar */
+    const GOALS = [["perceber","📖","Quero perceber","Explicações passo a passo","Toca no tema que quiseres: abre no 📖 Aprender, com exemplos resolvidos, animações e resumo."],
+                   ["rever","🔁","Quero rever","Uma parte de cada vez","Toca no tema que queres rever: abre no 🎯 Praticar, só com esse tema."],
+                   ["teste","📝","Tenho teste","Praticar o que já sei","Teste sobre um tema? Toca nesse tema: abre no 🎯 Praticar. Teste sobre tudo? Usa a 🏆 Revisão Final."]];
+    function goal(){ const g = MissaoArmazem.lerTexto("home_intent", "perceber"); return GOALS.some(function(x){ return x[0]===g; }) ? g : "perceber"; }
+    const goalBar = el("div","map-goal");
+    goalBar.setAttribute("role","group"); goalBar.setAttribute("aria-label","O que queres fazer agora?");
+    mapNav.parentNode.insertBefore(goalBar, mapNav);
+    goalBar.addEventListener("click", function(e){
+      const b = e.target.closest("[data-goal]"); if(!b) return;
+      MissaoArmazem.gravarTexto("home_intent", b.dataset.goal); renderMap();
+    });
     function renderMap(){
+      const g = goal(), stage = g==="perceber" ? "" : "/praticar";
+      goalBar.innerHTML = '<p class="map-goal-t">O que queres fazer agora?</p><div class="map-goal-opts">'+GOALS.map(function(x){
+        return '<button type="button" class="chip'+(x[0]===g ? ' on' : '')+'" data-goal="'+x[0]+'" aria-pressed="'+(x[0]===g)+'">'+
+          '<span class="gi" aria-hidden="true">'+x[1]+'</span><b>'+x[2]+'</b><span class="gs">'+x[3]+'</span></button>';
+      }).join("")+'</div><small>'+GOALS.find(function(x){ return x[0]===g; })[4]+'</small>';
       const nx = worlds.find(function(w){ return !isComplete(w); });
       let html = "";
       worlds.forEach(function(w){
         const d = worldDone(w), n = w.missions.length, done = isComplete(w), isNext = (w===nx);
-        html += '<a class="tile'+(done?' done':'')+(isNext?' next':'')+'" href="#'+cfg.key+'/'+w.id+'" style="--wc:var(--'+w.c+');--wc-bg:var(--'+w.c+'-bg)">'+
+        html += '<a class="tile'+(done?' done':'')+(isNext?' next':'')+'" href="#'+cfg.key+'/'+w.id+stage+'" style="--wc:var(--'+w.c+');--wc-bg:var(--'+w.c+'-bg)">'+
           '<span class="ic" aria-hidden="true">'+(done?'✓':w.icon)+'</span><small>Mundo '+w.num+'</small><b>'+w.title+'</b>'+
           '<span class="st">'+(done ? 'Concluído ⭐' : d+'/'+n+' missões')+(isNext ? ' · continua aqui' : '')+'</span></a>';
       });
-      html += '<a class="tile review" href="#'+cfg.key+'/revisao">'+
+      html += '<a class="tile review'+(g==="teste" ? ' next' : '')+'" href="#'+cfg.key+'/revisao">'+
         '<span class="ic" aria-hidden="true">🏆</span><small>Os '+worlds.length+' mundos</small><b>Revisão Final</b>'+
         '<span class="st">10 perguntas à mistura</span></a>';
       mapNav.innerHTML = html;
+      main.querySelectorAll(".wjump a[data-w]").forEach(function(a){ a.href = "#"+cfg.key+"/"+a.dataset.w+stage; });
     }
 
     function worldTop(w, backLabel){
@@ -748,6 +768,21 @@
       tools.appendChild(sheet);
       top.appendChild(tools);
       sec.appendChild(top);
+
+      /* --- jump to any theme: no order to follow (the hrefs follow the goal, set in renderMap) --- */
+      const jump = el("nav","wjump");
+      jump.setAttribute("aria-label","Ir para outro tema");
+      jump.appendChild(el("span","wjump-t","Temas:"));
+      worlds.forEach(function(o){
+        const a = el("a","wj"+(o===w ? " on" : ""), '<span aria-hidden="true">'+o.icon+'</span>'+o.num);
+        a.dataset.w = o.id; a.href = "#"+cfg.key+"/"+o.id;
+        a.title = "Mundo "+o.num+": "+o.title; a.setAttribute("aria-label", a.title);
+        if(o===w) a.setAttribute("aria-current","page");
+        jump.appendChild(a);
+      });
+      const jr = el("a","wj review",'<span aria-hidden="true">🏆</span>Revisão'); jr.href = "#"+cfg.key+"/revisao";
+      jump.appendChild(jr);
+      sec.appendChild(jump);
 
       /* --- the card with the 3 stages --- */
       const card = el("div","wcard");
@@ -943,7 +978,6 @@
             if(popup && popup.bio) openModal((popup.name||term), buildBioModalHtml(popup), c);
             else if(popup && popup.svg) openModal(term, buildDiagramModalHtml(def, popup), c);
             else openModal(term, buildGlossModalHtml(def, (popup&&popup.icon)||w.icon), c);
-            if(cfg.key !== "eng") addLgp(term);
           });
           chips.appendChild(c);
         });
