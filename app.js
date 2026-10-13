@@ -692,25 +692,19 @@
       const m = document.getElementById("mcount-"+w.id);
       if(m) m.textContent = "· "+d+"/"+n+" feitas";
     }
-    /* "O que queres fazer agora?": chosen here, after the year and the subject. Every world stays open and in any order;
+    /* the goal chosen on the home page ("O que queres fazer agora?"). Every world stays open and in any order;
        the goal only decides where a world opens — "rever" and "teste" go straight to 🎯 Praticar */
     const GOALS = [["perceber","📖","Quero perceber","Explicações passo a passo","Toca no tema que quiseres: abre no 📖 Aprender, com exemplos resolvidos, animações e resumo."],
                    ["rever","🔁","Quero rever","Uma parte de cada vez","Toca no tema que queres rever: abre no 🎯 Praticar, só com esse tema."],
                    ["teste","📝","Tenho teste","Praticar o que já sei","Teste sobre um tema? Toca nesse tema: abre no 🎯 Praticar. Teste sobre tudo? Usa a 🏆 Revisão Final."]];
     function goal(){ const g = MissaoArmazem.lerTexto("home_intent", "perceber"); return GOALS.some(function(x){ return x[0]===g; }) ? g : "perceber"; }
     const goalBar = el("div","map-goal");
-    goalBar.setAttribute("role","group"); goalBar.setAttribute("aria-label","O que queres fazer agora?");
     mapNav.parentNode.insertBefore(goalBar, mapNav);
-    goalBar.addEventListener("click", function(e){
-      const b = e.target.closest("[data-goal]"); if(!b) return;
-      MissaoArmazem.gravarTexto("home_intent", b.dataset.goal); renderMap();
-    });
     function renderMap(){
       const g = goal(), stage = g==="perceber" ? "" : "/praticar";
-      goalBar.innerHTML = '<p class="map-goal-t">O que queres fazer agora?</p><div class="map-goal-opts">'+GOALS.map(function(x){
-        return '<button type="button" class="chip'+(x[0]===g ? ' on' : '')+'" data-goal="'+x[0]+'" aria-pressed="'+(x[0]===g)+'">'+
-          '<span class="gi" aria-hidden="true">'+x[1]+'</span><b>'+x[2]+'</b><span class="gs">'+x[3]+'</span></button>';
-      }).join("")+'</div><small>'+GOALS.find(function(x){ return x[0]===g; })[4]+'</small>';
+      const G = GOALS.find(function(x){ return x[0]===g; });
+      goalBar.innerHTML = '<span class="gi" aria-hidden="true">'+G[1]+'</span><span><b>'+G[2]+'</b> · '+G[4]+'</span>'+
+        '<a class="link-btn" href="index.html">Mudar</a>';
       const nx = worlds.find(function(w){ return !isComplete(w); });
       let html = "";
       worlds.forEach(function(w){

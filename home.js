@@ -1,4 +1,4 @@
-/* Página inicial: escolher o ano e a disciplina (o objetivo escolhe-se depois, no mapa da disciplina) */
+/* Página inicial: escolher o ano, o objetivo (perceber, rever, teste) e a disciplina */
 (function(){
   function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
   function load(key, fallback){ return MissaoArmazem.ler(key, fallback); }
@@ -15,6 +15,15 @@
     {y:"8", ciclo:"3.º ciclo", soon:P3}, {y:"9", ciclo:"3.º ciclo", soon:P3}
   ];
   const READY = YEARS.filter(Y => Y.ready);
+
+  /* the three goals, shown after the year. Saved as home_intent: app.js reads it to open each theme at the right stage */
+  const INTENTS = [
+    {id:"perceber", icon:"📖", t:"Quero perceber", s:"Explicações passo a passo", d:"Cada tema abre no 📖 Aprender: exemplos resolvidos, animações e resumo."},
+    {id:"rever", icon:"🔁", t:"Quero rever", s:"Uma parte de cada vez", d:"Cada tema abre no 🎯 Praticar, só com esse tema. Há também a Missão de hoje."},
+    {id:"teste", icon:"📝", t:"Tenho teste", s:"Praticar o que já sei", d:"Teste sobre um tema: abre-o no 🎯 Praticar. Sobre tudo: a 🏆 Revisão Final."}
+  ];
+  let intent = MissaoArmazem.lerTexto("home_intent", "perceber");
+  if(!INTENTS.some(I => I.id === intent)) intent = "perceber";
 
   function progress(s){
     const state = load(s.store, {});
@@ -103,7 +112,12 @@
   const soonBtn = document.getElementById("show-soon");
   const soonYears = document.getElementById("soon-years");
 
+  const intentGrid = document.getElementById("intent-grid");
   function render(){
+    intentGrid.innerHTML = INTENTS.map(I =>
+      '<button type="button" class="intent-card'+(I.id===intent ? ' on' : '')+'" data-intent="'+I.id+'" aria-pressed="'+(I.id===intent)+'">'+
+        '<span class="intent-icon" aria-hidden="true">'+I.icon+'</span><b>'+I.t+'</b><span class="intent-sub">'+I.s+'</span><small>'+I.d+'</small>'+
+      '</button>').join("");
     if(picking){
       yearPick.innerHTML = '<div class="year-tabs">'+READY.map(Y =>
         '<button type="button" class="year-tab'+(Y.y===year ? ' active' : '')+'" data-year="'+Y.y+'" aria-pressed="'+(Y.y===year)+'">'+Y.y+'.º ano</button>').join("")+'</div>'+
@@ -113,7 +127,7 @@
     }
 
     const Y = YEARS.find(Y => Y.y === year);
-    grid.hidden = !Y; document.getElementById("subject-step").hidden = !Y;
+    grid.hidden = !Y; document.getElementById("subject-step").hidden = !Y; document.getElementById("intent-step").hidden = !Y;
     grid.innerHTML = Y ? cards(Y.list) + (showSoon && Y.soon ? soonCards(Y.soon) : '') : '';
     soonBtn.textContent = showSoon ? "Esconder o que está em construção" : "Ver o que está em construção";
     soonBtn.setAttribute("aria-expanded", showSoon);
@@ -127,5 +141,9 @@
     year = b.dataset.year; picking = false; MissaoArmazem.gravarTexto("home_year", year); render();
   });
   soonBtn.addEventListener("click", () => { showSoon = !showSoon; render(); });
+  intentGrid.addEventListener("click", e => {
+    const b = e.target.closest("[data-intent]"); if(!b) return;
+    intent = b.dataset.intent; MissaoArmazem.gravarTexto("home_intent", intent); render();
+  });
   render();
 })();

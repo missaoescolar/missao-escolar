@@ -12,7 +12,7 @@
   <header class="home-hero">
     <div class="home-logo" aria-hidden="true">🗺️</div>
     <h1>Missão Escolar</h1>
-    <p>Escolhe o teu ano e a disciplina. Depois escolhes o tema que quiseres: não há caminhos bloqueados, ordem obrigatória nem respostas com penalização.</p>
+    <p>Escolhe o teu ano, o que queres fazer e a disciplina. Depois escolhes o tema que quiseres: não há caminhos bloqueados, ordem obrigatória nem respostas com penalização.</p>
     <p class="home-streak" id="home-streak"></p>
   </header>
 
@@ -21,8 +21,13 @@
   <h2 class="home-step">1. O teu ano</h2>
   <div class="year-pick" id="year-pick"></div>
 
+  <div id="intent-step" hidden>
+    <h2 class="home-step">2. O que queres fazer agora?</h2>
+    <div class="intent-grid" id="intent-grid" role="group" aria-label="O que queres fazer agora?"></div>
+  </div>
+
   <div class="home-step-row" id="subject-step">
-    <h2 class="home-step">2. Escolhe a disciplina</h2>
+    <h2 class="home-step">3. Escolhe a disciplina</h2>
     <button type="button" class="link-btn" id="show-soon" aria-expanded="false">Ver o que está em construção</button>
   </div>
   <div class="subject-grid" id="subject-grid"></div>
