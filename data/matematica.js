@@ -209,39 +209,100 @@
     id:"n3", num:3, c:"m3", icon:"🏷️",
     title:"Loja e Percentagens",
     subtitle:"Números decimais e percentagens", pages:"manual a confirmar",
-    lead:"Toda a loja de um jogo tem preços com vírgulas e promoções em percentagem. Este mundo ensina a mexer com dízimas e a calcular descontos sem te enganares.",
+    lead:"Neste mundo vais aprender a comparar e a calcular com números decimais, a passar de frações para decimais e percentagens, e a resolver problemas com descontos e aumentos. Vê primeiro a animação e os 6 exemplos resolvidos, um de cada vez. No fim tens o resumo para o teste.",
     missions:[
-      {t:"Vírgulas no Preço", d:"Números decimais e operações", f:"Simular 5 compras numa loja com preços decimais", xp:10},
-      {t:"Desconto de Saldo", d:"Cálculo de percentagens", f:"Calcular o desconto de 3 promoções inventadas", xp:10},
-      {t:"Fração, Decimal ou Percentagem?", d:"Conversões entre representações", f:"Converter 6 números entre as três formas", xp:10}
+      {t:"Lista de Compras", d:"Somar números decimais e estimar", f:"Escolhe 5 produtos de um folheto de supermercado (ou de um talão).\nPrimeiro estima o total, arredondando cada preço ao euro mais próximo.\nDepois calcula o total exato, alinhando as vírgulas.\nVerifica: o total exato tem de ficar perto da tua estimativa.", xp:10},
+      {t:"Quem é Maior?", d:"Comparar e ordenar números decimais", f:"Ordena do menor para o maior: 0,5 · 0,45 · 0,405 · 0,54 · 0,4, como no Exemplo 1.\nMarca-os numa reta numérica entre 0,4 e 0,6.\nVerifica: escreve todos com 3 casas decimais (0,500 · 0,450…) e compara-os como se fossem números inteiros.", xp:10},
+      {t:"Saldos", d:"Descontos em percentagem", f:"Num folheto (ou inventados), escolhe 3 produtos com desconto em percentagem.\nCalcula o desconto e o preço final de duas maneiras, como no Exemplo 5.\nVerifica: o preço final mais o desconto tem de dar o preço inicial.", xp:15},
+      {t:"Três Formas do Mesmo Número", d:"Frações, decimais e percentagens", f:"Escreve como decimal e como percentagem: 1/2, 1/4, 3/5, 7/10, 1/3 e 2/3, como no Exemplo 4.\nAntes de dividires, prevê quais vão dar dízimas infinitas periódicas (usa a regra dos fatores 2 e 5).\nVerifica: confirma as tuas previsões com a calculadora.", xp:10}
     ],
     resumo:[
-      "Um <b>número decimal</b> representa partes de um todo usando a vírgula (ex.: 0,75).",
-      "Uma <b>dízima finita</b> tem um número limitado de casas decimais; uma <b>dízima infinita periódica</b> tem uma sequência de algarismos que se repete para sempre (ex.: 1/3 = 0,333...).",
-      "Uma <b>percentagem</b> é uma fração com denominador 100 (ex.: 25% = 25/100 = 0,25).",
-      "Para calcular a percentagem de um número, multiplica-se o número pela percentagem escrita em forma decimal (ex.: 20% de 50 = 0,20 × 50 = 10)."
+      "Num <b>número decimal</b>, os algarismos depois da vírgula são as <b>décimas</b>, as <b>centésimas</b> e as <b>milésimas</b> (em 2,375: 3 décimas, 7 centésimas e 5 milésimas).",
+      "Para <b>comparar</b> decimais, escrevem-se com o mesmo número de casas, acrescentando zeros à direita, que não mudam o valor: 0,3 = 0,30, e 0,30 > 0,25. Não se compara pelo «tamanho» do número depois da vírgula.",
+      "Para <b>somar e subtrair</b>, alinham-se as vírgulas (décimas por baixo de décimas). Para <b>multiplicar</b>, multiplica-se como se fossem inteiros e o resultado tem tantas casas decimais quantas os dois fatores juntos: 0,3 × 0,2 = 0,06. Multiplicar por um número entre 0 e 1 dá um resultado menor.",
+      "Para <b>dividir por um decimal</b>, multiplicam-se o dividendo e o divisor por 10, 100… até o divisor ser inteiro: 6 ÷ 0,5 = 60 ÷ 5 = 12. Dividir por um número entre 0 e 1 dá um resultado maior.",
+      "Uma fração escreve-se como decimal dividindo o numerador pelo denominador. Se a conta acaba, é uma <b>dízima finita</b> (3/4 = 0,75); se um grupo de algarismos se repete para sempre, é uma <b>dízima infinita periódica</b> (1/3 = 0,333…, com <b>período</b> 3). A fração irredutível dá dízima finita só quando o denominador não tem fatores primos além do 2 e do 5.",
+      "Uma <b>percentagem</b> é uma fração com denominador 100: 35% = 35/100 = 0,35. Para passar de decimal a percentagem, multiplica-se por 100 (0,4 = 40%).",
+      "Para calcular uma percentagem de uma quantidade, multiplica-se: 20% de 45 = 0,20 × 45 = 9. Com um <b>desconto</b> de p%, paga-se (100 − p)% do preço; com um <b>aumento</b> de p%, paga-se (100 + p)%.",
+      "Para saber que percentagem uma parte é do todo, divide-se a parte pelo todo e multiplica-se por 100: 15 em 25 → 15 ÷ 25 = 0,6 = 60%."
     ],
     gloss:[
-      ["número decimal","Um número que representa partes de um todo, usando vírgula."],
-      ["dízima finita","Um número decimal com um número limitado de casas depois da vírgula."],
-      ["dízima infinita periódica","Um número decimal em que um grupo de algarismos se repete para sempre."],
-      ["percentagem","Uma fração com denominador 100, escrita com o símbolo %."]
+      ["número decimal","Um número com parte inteira e parte decimal, separadas por uma vírgula (ex.: 2,375)."],
+      ["décimas","O primeiro algarismo depois da vírgula: partes de 1 dividido em 10."],
+      ["centésimas","O segundo algarismo depois da vírgula: partes de 1 dividido em 100."],
+      ["milésimas","O terceiro algarismo depois da vírgula: partes de 1 dividido em 1000."],
+      ["dízima finita","Um número decimal com um número limitado de casas depois da vírgula (ex.: 0,75)."],
+      ["dízima infinita periódica","Um número decimal em que um grupo de algarismos se repete para sempre (ex.: 0,333…)."],
+      ["período","O grupo de algarismos que se repete numa dízima infinita periódica (em 0,1818…, o período é 18)."],
+      ["percentagem","Uma fração com denominador 100, escrita com o símbolo % (35% = 35/100)."],
+      ["desconto","O que se tira ao preço. Com um desconto de 25%, paga-se 75% do preço."],
+      ["aumento","O que se junta ao preço. Com um aumento de 10%, paga-se 110% do preço."],
+      ["estimar","Calcular um valor aproximado, com números arredondados, para verificar se a conta exata faz sentido."]
     ],
     quiz:[
-      {q:"O que é um número decimal?", opts:["Um número que representa partes de um todo, usando a vírgula","Um número sem casas decimais","Um número sempre negativo","Uma fração imprópria"], correct:0, explain:"Um número decimal representa partes de um todo usando a vírgula (ex.: 0,75)."},
-      {q:"O que é uma dízima finita?", opts:["Um número decimal com um número limitado de casas decimais","Um número decimal que se repete para sempre","Um número inteiro","Uma percentagem"], correct:0, explain:"Uma dízima finita tem um número limitado de casas depois da vírgula."},
-      {q:"O que é uma dízima infinita periódica?", opts:["Um número decimal em que um grupo de algarismos se repete para sempre","Um número decimal com 2 casas decimais","Um número primo","Uma fração irredutível"], correct:0, explain:"Numa dízima infinita periódica, um grupo de algarismos repete-se para sempre (ex.: 1/3 = 0,333...)."},
-      {q:"Qual destas é uma dízima infinita periódica?", opts:["0,333...","0,75","0,5","0,25"], correct:0, explain:"0,333... repete o algarismo 3 para sempre, por isso é uma dízima infinita periódica."},
-      {q:"O que é uma percentagem?", opts:["Uma fração com denominador 100","Uma fração com denominador 10","Um número decimal sem vírgula","Um número primo"], correct:0, explain:"Uma percentagem é uma fração com denominador 100, escrita com o símbolo %."},
-      {q:"Como se escreve 25% em forma de fração?", opts:["25/100","100/25","25/10","2,5/100"], correct:0, explain:"25% significa 25 em cada 100, ou seja, 25/100."},
-      {q:"Como se escreve 25% em forma decimal?", opts:["0,25","2,5","25,0","0,025"], correct:0, explain:"25% = 25/100 = 0,25."},
-      {q:"Como se calcula a percentagem de um número?", opts:["Multiplica-se o número pela percentagem em forma decimal","Divide-se o número por 100","Soma-se 100 ao número","Subtrai-se a percentagem do número"], correct:0, explain:"Para calcular a percentagem, multiplica-se o número pela percentagem escrita em forma decimal."},
-      {q:"Quanto é 20% de 50?", opts:["10","20","5","100"], correct:0, explain:"20% de 50 é 0,20 × 50 = 10."},
-      {q:"Quanto é 10% de 200?", opts:["20","10","2","200"], correct:0, explain:"10% de 200 é 0,10 × 200 = 20."}
+      {q:"Qual é maior: 0,3 ou 0,25?", opts:["0,25, porque 25 é maior do que 3","0,3","São iguais","Não se podem comparar"], correct:1, explain:"Escreve os dois com as mesmas casas: 0,3 = 0,30. Como 30 centésimas é mais do que 25 centésimas, 0,3 > 0,25. Pensar «25 é maior do que 3» é o erro mais comum: 3 décimas valem mais do que 2 décimas e 5 centésimas."},
+      {q:"Quanto é 0,3 × 0,2?", opts:["0,6","0,06","6","0,5"], correct:1, explain:"3 × 2 = 6, e os fatores têm 1 + 1 = 2 casas decimais: 0,06. Faz sentido: 0,3 × 0,2 = 3/10 × 2/10 = 6/100. O 0,6 é o erro de contar só uma casa; 0,5 é a soma."},
+      {q:"Quanto é 6 ÷ 0,5?", opts:["3","12","0,3","1,2"], correct:1, explain:"Multiplica os dois por 10: 60 ÷ 5 = 12. Pensa: quantas metades cabem em 6? Doze. O 3 é o resultado de 6 × 0,5 (ou 6 ÷ 2): dividir por 0,5 não é dividir por 2."},
+      {q:"Quanto é 1,75 + 0,5?", opts:["1,80","2,25","2,30","1,25"], correct:1, explain:"Alinha as vírgulas: 1,75 + 0,50 = 2,25 (5 décimas juntam-se às 7 décimas). O 1,80 é o erro de alinhar os números pela direita, como se 0,5 fossem 5 centésimas."},
+      {q:"Como se escreve 3/4 em percentagem?", opts:["34%","75%","0,75%","43%"], correct:1, explain:"3 ÷ 4 = 0,75 = 75/100 = 75%. O 34% junta os algarismos da fração, e 0,75% esquece de multiplicar por 100."},
+      {q:"Qual destas frações dá uma dízima infinita periódica?", opts:["1/4","3/5","2/3","7/20"], correct:2, explain:"2/3 = 0,666…: o 6 repete-se para sempre. As outras acabam: 1/4 = 0,25, 3/5 = 0,6 e 7/20 = 0,35. A regra: na fração irredutível, se o denominador só tem os fatores primos 2 e 5 (4 = 2², 5, 20 = 2² × 5), a dízima é finita; o 3 não é 2 nem 5."},
+      {q:"Uma camisola custa 40 € e tem 15% de desconto. Quanto pagas?", opts:["34 €","25 €","6 €","46 €"], correct:0, explain:"Pagas 85% do preço: 0,85 × 40 = 34 €. (O desconto é 0,15 × 40 = 6 €, e 40 − 6 = 34.) O 25 € é o erro de tirar 15 euros em vez de 15%; o 6 € é só o desconto; o 46 € seria um aumento."},
+      {q:"Um jogo custa 100 €. O preço sobe 10% e, depois, desce 10%. Quanto fica a custar?", opts:["100 €","99 €","110 €","90 €"], correct:1, explain:"Sobe 10%: 100 × 1,10 = 110 €. Desce 10% de 110 (não de 100!): 110 × 0,90 = 99 €. Os 10% da descida calculam-se sobre um preço maior, por isso não se volta ao início."},
+      {q:"Numa turma de 25 alunos, 15 vêm a pé para a escola. Que percentagem vem a pé?", opts:["15%","60%","40%","25%"], correct:1, explain:"Parte ÷ todo: 15 ÷ 25 = 0,6 = 60%. O 15% confunde o número de alunos com a percentagem; 40% são os que não vêm a pé (10 em 25)."},
+      {q:"«Multiplicar por 0,5 é o mesmo que dividir por 2.» Verdadeiro ou falso? Escolhe a resposta com a justificação certa.", opts:["Verdadeiro. 0,5 = 1/2, por isso 8 × 0,5 = 4, que é o mesmo que 8 ÷ 2.","Falso. Multiplicar dá sempre um número maior.","Falso. 8 × 0,5 = 40.","Verdadeiro, mas só funciona com números pares."], correct:0, explain:"0,5 é metade, por isso multiplicar por 0,5 é calcular metade: 8 × 0,5 = 4 = 8 ÷ 2. Também funciona com ímpares: 7 × 0,5 = 3,5 = 7 ÷ 2. E multiplicar por um número menor do que 1 dá um resultado menor."}
+    ],
+    posters:[
+      {title:"⚖️ Exemplo 1 — Comparar 0,3 e 0,25", svg:'<svg class="poster-svg" viewBox="0 0 320 80" style="max-width:320px;margin:0 auto" role="img" aria-label="Reta numérica de 0,2 a 0,4, dividida em centésimas de 0,05 em 0,05: o 0,25 fica antes do 0,3.">'+
+        '<g stroke="currentColor" stroke-width="2"><line x1="20" y1="40" x2="300" y2="40"/>'+
+        '<line x1="20" y1="32" x2="20" y2="48"/><line x1="90" y1="34" x2="90" y2="46"/><line x1="160" y1="32" x2="160" y2="48"/><line x1="230" y1="34" x2="230" y2="46"/><line x1="300" y1="32" x2="300" y2="48"/></g>'+
+        '<g fill="var(--wc)"><circle cx="90" cy="40" r="6"/><circle cx="160" cy="40" r="6"/></g>'+
+        '<g font-family="Lexend, sans-serif" font-size="12" font-weight="700" text-anchor="middle"><text x="20" y="66">0,20</text><text x="90" y="24">0,25</text><text x="160" y="24">0,30</text><text x="230" y="66">0,35</text><text x="300" y="66">0,40</text></g></svg>'+
+        '<ul class="wheel-legend">'+
+        '<li><span aria-hidden="true">🎯</span><span><b>O que queremos descobrir:</b> qual é maior, 0,3 ou 0,25.</span></li>'+
+        '<li><span aria-hidden="true">🚦</span><span><b>Como começar:</b> escreve os dois números com o mesmo número de casas decimais. Um zero à direita não muda o valor: 0,3 = 0,30.</span></li>'+
+        '<li><span aria-hidden="true">👣</span><span><b>Passo a passo:</b><br>0,30 = 30 centésimas<br>0,25 = 25 centésimas<br>30 centésimas &gt; 25 centésimas</span></li>'+
+        '<li><span aria-hidden="true">✅</span><span><b>Resultado:</b> 0,3 &gt; 0,25.</span></li>'+
+        '<li><span aria-hidden="true">🔍</span><span><b>Verificar:</b> na reta numérica, 0,25 fica antes de 0,3. Pensa em dinheiro: 0,30 € são 30 cêntimos e 0,25 € são 25 cêntimos. Erro a evitar: «25 é maior do que 3, por isso 0,25 é maior».</span></li>'+
+        '</ul>'},
+      {title:"✖️ Exemplo 2 — Multiplicar decimais", svg:'<ul class="wheel-legend">'+
+        '<li><span aria-hidden="true">🎯</span><span><b>O que queremos descobrir:</b> quanto é 0,3 × 0,2 e quanto custam 2,5 kg de maçãs a 1,20 € o quilo.</span></li>'+
+        '<li><span aria-hidden="true">🚦</span><span><b>Como começar:</b> multiplica como se não houvesse vírgulas e, no fim, conta as casas decimais dos dois fatores.</span></li>'+
+        '<li><span aria-hidden="true">👣</span><span><b>Passo a passo:</b><br>0,3 × 0,2: 3 × 2 = 6; casas decimais: 1 + 1 = 2 → 0,06<br>2,5 × 1,20: 25 × 120 = 3000; casas decimais: 1 + 2 = 3 → 3,000 = 3</span></li>'+
+        '<li><span aria-hidden="true">✅</span><span><b>Resultado:</b> 0,3 × 0,2 = 0,06 e as maçãs custam 3,00 €.</span></li>'+
+        '<li><span aria-hidden="true">🔍</span><span><b>Verificar:</b> estima. 2,5 kg a pouco mais de 1 € dá pouco mais de 2,50 €: 3 € faz sentido. E 0,3 × 0,2 = 3/10 × 2/10 = 6/100 = 0,06. Multiplicar por um número menor do que 1 dá menos: 0,06 é menor do que 0,3.</span></li>'+
+        '</ul>'},
+      {title:"➗ Exemplo 3 — Dividir por um decimal", svg:'<ul class="wheel-legend">'+
+        '<li><span aria-hidden="true">🎯</span><span><b>O que queremos descobrir:</b> quantos copos de 0,5 litros se enchem com 6 litros (6 ÷ 0,5), e quanto é 4,8 ÷ 1,2.</span></li>'+
+        '<li><span aria-hidden="true">🚦</span><span><b>Como começar:</b> transforma o divisor num inteiro, multiplicando os dois números por 10. O resultado não muda.</span></li>'+
+        '<li><span aria-hidden="true">👣</span><span><b>Passo a passo:</b><br>6 ÷ 0,5 = 60 ÷ 5 = 12<br>4,8 ÷ 1,2 = 48 ÷ 12 = 4</span></li>'+
+        '<li><span aria-hidden="true">✅</span><span><b>Resultado:</b> enchem-se 12 copos, e 4,8 ÷ 1,2 = 4.</span></li>'+
+        '<li><span aria-hidden="true">🔍</span><span><b>Verificar:</b> faz a conta ao contrário: 12 × 0,5 = 6 e 4 × 1,2 = 4,8. Dividir por um número menor do que 1 dá um resultado maior: em 6 litros cabem 12 meios litros.</span></li>'+
+        '</ul>'},
+      {title:"🔁 Exemplo 4 — Fração, decimal e percentagem", svg:'<ul class="wheel-legend">'+
+        '<li><span aria-hidden="true">🎯</span><span><b>O que queremos descobrir:</b> escrever 3/4, 2/5 e 1/3 como decimal e como percentagem.</span></li>'+
+        '<li><span aria-hidden="true">🚦</span><span><b>Como começar:</b> uma fração é uma divisão: numerador ÷ denominador.</span></li>'+
+        '<li><span aria-hidden="true">👣</span><span><b>Passo a passo:</b><br>3/4 = 3 ÷ 4 = 0,75 = 75%<br>2/5 = 2 ÷ 5 = 0,4 = 40%<br>1/3 = 1 ÷ 3 = 0,333… ≈ 33,3% (o 3 repete-se para sempre)</span></li>'+
+        '<li><span aria-hidden="true">✅</span><span><b>Resultado:</b> 3/4 e 2/5 dão dízimas finitas; 1/3 dá uma dízima infinita periódica, de período 3.</span></li>'+
+        '<li><span aria-hidden="true">🔍</span><span><b>Verificar com o Mundo 1:</b> decompõe o denominador. 4 = 2² e 5 = 5 só têm fatores 2 e 5: dízima finita. 3 tem outro fator primo: dízima infinita periódica. Assim sabes a resposta antes de dividir!</span></li>'+
+        '</ul>'},
+      {title:"🏷️ Exemplo 5 — Descontos e aumentos", svg:'<ul class="wheel-legend">'+
+        '<li><span aria-hidden="true">🎯</span><span><b>O que queremos descobrir:</b> quanto se paga por um casaco de 45 € com 20% de desconto. E se um preço de 100 € subir 10% e depois descer 10%?</span></li>'+
+        '<li><span aria-hidden="true">🚦</span><span><b>Como começar:</b> escreve a percentagem como decimal: 20% = 0,20.</span></li>'+
+        '<li><span aria-hidden="true">👣</span><span><b>Passo a passo:</b><br>Maneira 1: desconto = 0,20 × 45 = 9 €; pagas 45 − 9 = 36 €<br>Maneira 2: pagas 80% do preço: 0,80 × 45 = 36 €<br>Sobe 10%: 100 × 1,10 = 110 €; desce 10%: 110 × 0,90 = 99 €</span></li>'+
+        '<li><span aria-hidden="true">✅</span><span><b>Resultado:</b> o casaco fica a 36 €. Subir 10% e descer 10% não volta ao mesmo: fica 99 €.</span></li>'+
+        '<li><span aria-hidden="true">🔍</span><span><b>Verificar:</b> preço final + desconto = 36 + 9 = 45 €. Os 10% da descida calculam-se sobre 110 €, um valor maior, por isso tiram mais do que os 10 € que se juntaram.</span></li>'+
+        '</ul>'},
+      {title:"📊 Exemplo 6 — Que percentagem é?", svg:'<ul class="wheel-legend">'+
+        '<li><span aria-hidden="true">🎯</span><span><b>O que queremos descobrir:</b> numa turma de 25 alunos, 15 vêm a pé. Que percentagem da turma vem a pé?</span></li>'+
+        '<li><span aria-hidden="true">🚦</span><span><b>Como começar:</b> escreve a fração «parte sobre todo»: 15/25.</span></li>'+
+        '<li><span aria-hidden="true">👣</span><span><b>Passo a passo:</b><br>15 ÷ 25 = 0,6<br>0,6 × 100 = 60%<br>Ou com frações equivalentes: 15/25 = 60/100 (multiplicando por 4).</span></li>'+
+        '<li><span aria-hidden="true">✅</span><span><b>Resultado:</b> 60% da turma vem a pé.</span></li>'+
+        '<li><span aria-hidden="true">🔍</span><span><b>Verificar:</b> 60% de 25 = 0,6 × 25 = 15 alunos. Os outros 10 alunos são 40%, e 60% + 40% = 100%.</span></li>'+
+        '</ul>'}
     ],
     compare:{
-      left:{title:"🔢 Dízima finita", points:["Tem um número limitado de casas decimais","Ex.: 0,75","Resulta, por exemplo, da fração 3/4"]},
-      right:{title:"🔁 Dízima infinita periódica", points:["Um grupo de algarismos repete-se para sempre","Ex.: 0,333... (1/3)","Resulta, por exemplo, da fração 1/3"]}
+      left:{title:"🔢 Dízima finita", points:["A divisão acaba: 3/4 = 0,75","Na fração irredutível, o denominador só tem os fatores primos 2 e 5","Ex.: 1/2, 2/5, 7/20"]},
+      right:{title:"🔁 Dízima infinita periódica", points:["Um grupo de algarismos repete-se: 1/3 = 0,333…","O denominador tem outros fatores primos (3, 7, 11…)","Ex.: 2/3, 1/6, 5/7"]}
     },
     boss:"Ficha de avaliação — página a confirmar no manual"
   },
