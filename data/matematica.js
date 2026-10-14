@@ -2,13 +2,14 @@
   {
     id:"n1", num:1, c:"m1", icon:"🧮",
     title:"Fábrica de Números",
-    subtitle:"Múltiplos, divisores e números primos", pages:"manual a confirmar",
-    lead:"Neste mundo vais aprender a reconhecer números primos, a decompor um número em fatores primos e a calcular o m.d.c. e o m.m.c. de dois números. Vê primeiro a animação e os 5 exemplos resolvidos, um de cada vez. No fim tens o resumo para o teste.",
+    subtitle:"Primos, potências e ordem das operações", pages:"manual a confirmar",
+    lead:"Neste mundo vais aprender a reconhecer números primos, a decompor um número em fatores primos, a calcular o m.d.c. e o m.m.c. de dois números, a multiplicar e dividir potências e a calcular expressões pela ordem certa. Vê primeiro a animação e os 7 exemplos resolvidos, um de cada vez. No fim tens o resumo para o teste.",
     missions:[
       {t:"Divisível ou Não?", d:"Critérios de divisibilidade por 2, 3, 5, 9 e 10", f:"Escreve 10 números de 2 ou 3 algarismos.\nPara cada um, usa os critérios do resumo e indica se é divisível por 2, 3, 5, 9 e 10.\nVerifica 3 deles com a calculadora: se for divisível, a divisão dá um número inteiro.", xp:10},
       {t:"Caça aos Primos", d:"Números primos e números compostos", f:"Escreve os números de 1 a 50, em linhas de 10.\nRisca o 1 e, como na animação do crivo, risca os múltiplos de 2, 3, 5 e 7 (mas não o 2, o 3, o 5 e o 7).\nVerifica: têm de sobrar 15 números primos.", xp:10},
       {t:"Árvore de Fatores", d:"Decomposição em fatores primos", f:"Faz a árvore de fatores de 36, 48 e 90, como no Exemplo 1.\nComeça sempre pelo menor primo que divide o número.\nVerifica: multiplica os primos das pontas dos ramos e tens de obter o número do início.", xp:10},
-      {t:"m.d.c. e m.m.c. em Problemas", d:"Máximo divisor comum (m.d.c.) e mínimo múltiplo comum (m.m.c.)", f:"Resolve, como nos Exemplos 4 e 5:\n(1) Com 20 rosas e 30 túlipas, queres fazer ramos iguais sem sobrar flores. Quantos ramos, no máximo?\n(2) Um sino toca de 6 em 6 minutos e outro de 8 em 8. Tocaram juntos agora. Daqui a quantos minutos voltam a tocar juntos?\nVerifica: em (1), 20 e 30 têm de dar divisões exatas pelo número de ramos; em (2), a tua resposta tem de dar divisões exatas por 6 e por 8.", xp:15}
+      {t:"m.d.c. e m.m.c. em Problemas", d:"Máximo divisor comum (m.d.c.) e mínimo múltiplo comum (m.m.c.)", f:"Resolve, como nos Exemplos 4 e 5:\n(1) Com 20 rosas e 30 túlipas, queres fazer ramos iguais sem sobrar flores. Quantos ramos, no máximo?\n(2) Um sino toca de 6 em 6 minutos e outro de 8 em 8. Tocaram juntos agora. Daqui a quantos minutos voltam a tocar juntos?\nVerifica: em (1), 20 e 30 têm de dar divisões exatas pelo número de ramos; em (2), a tua resposta tem de dar divisões exatas por 6 e por 8.", xp:15},
+      {t:"Jogo dos Dados", d:"Expressões numéricas e ordem das operações", f:"Lança um dado duas vezes e forma um número de dois algarismos (se sair 6 e depois 2, o número-alvo é 62).\nLança o dado mais cinco vezes e regista os cinco números. Usando os cinco, uma vez cada, com +, −, ×, ÷, parênteses e potências, escreve uma expressão que dê o número-alvo (ou o mais perto possível).\nVerifica: calcula a tua expressão pela ordem certa (parênteses, potências, × e ÷, + e −) e confirma numa calculadora científica.", xp:15}
     ],
     resumo:[
       "Um número é <b>múltiplo</b> de outro quando resulta de o multiplicar por 0, 1, 2, 3, … (ex.: 12 é múltiplo de 3, porque 3 × 4 = 12).",
@@ -18,7 +19,9 @@
       "Uma <b>potência</b> é uma multiplicação de fatores iguais escrita de forma curta: 2³ = 2 × 2 × 2 = 8. O 2 é a base e o 3 é o expoente.",
       "A <b>decomposição em fatores primos</b> escreve um número composto como um produto de números primos (ex.: 60 = 2 × 2 × 3 × 5 = 2² × 3 × 5). Cada número tem uma só decomposição: só a ordem dos fatores pode mudar.",
       "O <b>m.d.c.</b> (máximo divisor comum) de dois números é o maior número que divide os dois. Pela decomposição: multiplica os fatores primos comuns, cada um com o menor expoente.",
-      "O <b>m.m.c.</b> (mínimo múltiplo comum) de dois números é o menor múltiplo comum aos dois, diferente de zero. Pela decomposição: multiplica todos os fatores primos (comuns e não comuns), cada um com o maior expoente."
+      "O <b>m.m.c.</b> (mínimo múltiplo comum) de dois números é o menor múltiplo comum aos dois, diferente de zero. Pela decomposição: multiplica todos os fatores primos (comuns e não comuns), cada um com o maior expoente.",
+      "<b>Multiplicar e dividir potências.</b> Com a <b>mesma base</b>, fica a base e somam-se os expoentes (na multiplicação) ou subtraem-se (na divisão): 2³ × 2⁴ = 2⁷ e 5⁶ ÷ 5² = 5⁴. Com o <b>mesmo expoente</b>, fica o expoente e multiplicam-se (ou dividem-se) as bases: 2³ × 5³ = 10³ e 12⁴ ÷ 4⁴ = 3⁴.",
+      "<b>Prioridade das operações</b> numa expressão numérica: 1.º o que está dentro de <b>parênteses</b>; 2.º as <b>potências</b>; 3.º as <b>multiplicações e divisões</b>, da esquerda para a direita; 4.º as <b>adições e subtrações</b>, da esquerda para a direita. Ex.: 3 + 4 × 2² = 3 + 4 × 4 = 3 + 16 = 19."
     ],
     gloss:[
       ["múltiplo","O resultado de multiplicar um número por 0, 1, 2, 3, … (ex.: 0, 3, 6 e 9 são múltiplos de 3)."],
@@ -30,19 +33,22 @@
       ["m.m.c.","Mínimo múltiplo comum — o menor número, diferente de zero, que é múltiplo de dois números ao mesmo tempo."],
       ["potência","Uma multiplicação de fatores iguais escrita de forma curta: 5² = 5 × 5 = 25."],
       ["expoente","Numa potência, o número pequeno em cima: diz quantas vezes a base se multiplica (em 2³, o expoente é 3)."],
+      ["expressão numérica","Uma conta escrita com números, sinais de operações e, às vezes, parênteses e potências (ex.: 2 × (3 + 5)²)."],
+      ["prioridade das operações","A ordem por que se calcula uma expressão: parênteses, potências, multiplicações e divisões, adições e subtrações."],
       ["contraexemplo","Um exemplo que mostra que uma afirmação é falsa: o 2 é primo e par, por isso «todos os primos são ímpares» é falso."]
     ],
     quiz:[
-      {q:"O que é um múltiplo de um número?", opts:["Um número que o divide sem deixar resto","O resultado de multiplicar esse número por 0, 1, 2, 3, …","Um número primo relacionado com ele","A soma de todos os seus divisores"], correct:1, explain:"Um múltiplo obtém-se a multiplicar: 3 × 4 = 12, por isso 12 é múltiplo de 3. Um número que divide outro sem deixar resto é um divisor, não um múltiplo."},
+      {q:"Quanto é 2³ × 2⁴, escrito como uma só potência?", opts:["2¹²","4⁷","4¹²","2⁷"], correct:3, explain:"Com a mesma base, fica a base e somam-se os expoentes: 2³ × 2⁴ = 2³⁺⁴ = 2⁷. Por extenso: (2 × 2 × 2) × (2 × 2 × 2 × 2) são sete 2 a multiplicar. O 2¹² multiplica os expoentes, e o 4⁷ multiplica as bases: os dois são erros."},
       {q:"Qual destes números é múltiplo de 5?", opts:["22","27","20","23"], correct:2, explain:"Os múltiplos de 5 terminam em 0 ou em 5. O 20 termina em 0, e 5 × 4 = 20. O 22, o 27 e o 23 terminam em 2, 7 e 3, por isso não são múltiplos de 5."},
-      {q:"Qual é o critério de divisibilidade por 3?", opts:["O número termina em 3","A soma dos algarismos é múltiplo de 3","O número é ímpar","O número termina em 0"], correct:1, explain:"Soma os algarismos: em 123, 1 + 2 + 3 = 6, que é múltiplo de 3, por isso 123 é divisível por 3. «Termina em 3» não serve: 13 termina em 3, mas 13 ÷ 3 não dá uma divisão exata."},
+      {q:"Quanto é 3 + 4 × 2²?", opts:["28","196","11","19"], correct:3, explain:"Primeiro a potência: 2² = 4. Depois a multiplicação: 4 × 4 = 16. Por fim a adição: 3 + 16 = 19. O 28 faz primeiro 3 + 4; o 196 calcula tudo da esquerda para a direita; o 11 esquece a potência."},
       {q:"«Todos os números primos são ímpares.» Esta afirmação é verdadeira ou falsa? Escolhe a resposta com a justificação certa.", opts:["Verdadeira. Nenhum número par é primo.","Falsa. O 9 é ímpar e não é primo.","Falsa. O 2 é primo e é par.","Verdadeira. 3, 5, 7 e 11 são primos e ímpares."], correct:2, explain:"Basta um contraexemplo para mostrar que uma afirmação é falsa. Aqui, o contraexemplo tem de ser um número primo e par: o 2, que só tem os divisores 1 e 2. O 9 não serve, porque não é primo. E mostrar exemplos que funcionam (3, 5, 7, 11) não prova que é sempre verdade."},
       {q:"Qual destes números é primo?", opts:["15","21","17","27"], correct:2, explain:"Testa os primos 2 e 3: o 17 não é par, e 1 + 7 = 8 não é múltiplo de 3. Não é preciso testar mais, porque 5 × 5 = 25 já passa de 17. Por isso, 17 é primo. Os outros são compostos: 15 = 3 × 5, 21 = 3 × 7 e 27 = 3 × 9."},
       {q:"Qual é a decomposição em fatores primos de 36?", opts:["4 × 9","2² × 3²","6²","2 × 3²"], correct:1, explain:"36 = 2 × 18 = 2 × 2 × 9 = 2 × 2 × 3 × 3 = 2² × 3². «4 × 9» e «6²» também dão 36, mas 4, 9 e 6 não são números primos. E 2 × 3² = 18, não 36."},
       {q:"Quanto é 2³?", opts:["6","8","9","5"], correct:1, explain:"2³ quer dizer 2 × 2 × 2: o expoente 3 diz quantas vezes o 2 se multiplica. 2 × 2 = 4 e 4 × 2 = 8. Atenção: 2³ não é 2 × 3 = 6, nem 3² = 9."},
       {q:"Qual é o m.d.c. (máximo divisor comum) de 24 e 36?", opts:["6","72","12","4"], correct:2, explain:"24 = 2³ × 3 e 36 = 2² × 3². Os fatores comuns são o 2 e o 3, e escolhe-se o menor expoente de cada um: 2² × 3 = 12. Verifica: 24 ÷ 12 = 2 e 36 ÷ 12 = 3. O 6 e o 4 também dividem os dois, mas não são os maiores. O 72 é o m.m.c."},
       {q:"Dois faróis piscaram agora ao mesmo tempo. Um pisca de 4 em 4 segundos e o outro de 6 em 6 segundos. Daqui a quantos segundos voltam a piscar juntos pela primeira vez?", opts:["12","24","10","2"], correct:0, explain:"Procura-se o menor múltiplo comum de 4 e 6: o m.m.c. Múltiplos de 4: 4, 8, 12, … Múltiplos de 6: 6, 12, … O primeiro comum é 12. Pela decomposição: 4 = 2² e 6 = 2 × 3, por isso m.m.c. = 2² × 3 = 12. O 24 também é comum, mas não é o primeiro; 10 é a soma e 2 é o m.d.c."},
-      {q:"A Rita tem 18 rebuçados e 30 chocolates. Quer fazer sacos iguais: todos com o mesmo número de rebuçados e o mesmo número de chocolates, sem sobrar nada. Qual é o maior número de sacos que pode fazer?", opts:["3","90","6","2"], correct:2, explain:"O número de sacos tem de dividir o 18 e o 30 sem deixar resto. O maior é o m.d.c.: 18 = 2 × 3² e 30 = 2 × 3 × 5, então m.d.c. = 2 × 3 = 6. Cada saco leva 18 ÷ 6 = 3 rebuçados e 30 ÷ 6 = 5 chocolates. Com 2 ou 3 sacos também dá, mas não é o maior número."}
+      {q:"A Rita tem 18 rebuçados e 30 chocolates. Quer fazer sacos iguais: todos com o mesmo número de rebuçados e o mesmo número de chocolates, sem sobrar nada. Qual é o maior número de sacos que pode fazer?", opts:["3","90","6","2"], correct:2, explain:"O número de sacos tem de dividir o 18 e o 30 sem deixar resto. O maior é o m.d.c.: 18 = 2 × 3² e 30 = 2 × 3 × 5, então m.d.c. = 2 × 3 = 6. Cada saco leva 18 ÷ 6 = 3 rebuçados e 30 ÷ 6 = 5 chocolates. Com 2 ou 3 sacos também dá, mas não é o maior número."},
+      {q:"Quanto é 2³ × 5³?", opts:["10³ = 1000","10⁶","7³ = 343","10⁹"], correct:0, explain:"Com o mesmo expoente, fica o expoente e multiplicam-se as bases: 2³ × 5³ = (2 × 5)³ = 10³ = 1000. Verifica: 8 × 125 = 1000. O 10⁶ soma os expoentes, o que só se faz quando a base é a mesma."}
     ],
     // worked examples: shown in 📖 Aprender (and on the printable page) through the existing "posters" mechanism,
     // as plain text steps, so they do not depend on the drawing
@@ -89,6 +95,20 @@
         '<li><span aria-hidden="true">👣</span><span><b>Passo a passo:</b><br>Junta todos os fatores primos que aparecem, comuns e não comuns: o 2 e o 3.<br>De cada um, escolhe o <b>maior expoente</b>: 2² (do 12) e 3² (do 18).</span></li>'+
         '<li><span aria-hidden="true">✅</span><span><b>Resultado:</b> m.m.c.(12, 18) = 2² × 3² = 4 × 9 = 36.</span></li>'+
         '<li><span aria-hidden="true">🔍</span><span><b>Verificar:</b> 36 ÷ 12 = 3 e 36 ÷ 18 = 2, sem resto. Os múltiplos de 18 são 18, 36, … O 18 não é múltiplo de 12, por isso o 36 é o menor.</span></li>'+
+        '</ul>'},
+      {title:"✖️ Exemplo 6 — Multiplicar e dividir potências", svg:'<ul class="wheel-legend">'+
+        '<li><span aria-hidden="true">🎯</span><span><b>O que queremos descobrir:</b> escrever como uma só potência 2³ × 2⁴, 5⁶ ÷ 5² e 2³ × 5³, sem calcular cada potência primeiro.</span></li>'+
+        '<li><span aria-hidden="true">🚦</span><span><b>Como começar:</b> escreve as potências por extenso, para ver quantos fatores ficam. Depois repara: as bases são iguais, ou os expoentes são iguais?</span></li>'+
+        '<li><span aria-hidden="true">👣</span><span><b>Passo a passo:</b> <br>2³ × 2⁴ = (2 × 2 × 2) × (2 × 2 × 2 × 2) = 2⁷ → mesma base: somam-se os expoentes (3 + 4)<br>5⁶ ÷ 5² = (5 × 5 × 5 × 5 × 5 × 5) ÷ (5 × 5) = 5⁴ → mesma base: subtraem-se (6 − 2)<br>2³ × 5³ = (2 × 5) × (2 × 5) × (2 × 5) = 10³ → mesmo expoente: multiplicam-se as bases</span></li>'+
+        '<li><span aria-hidden="true">✅</span><span><b>Resultado:</b> 2⁷ = 128; 5⁴ = 625; 10³ = 1000.</span></li>'+
+        '<li><span aria-hidden="true">🔍</span><span><b>Verificar:</b> calcula de outra maneira: 2³ × 2⁴ = 8 × 16 = 128 ✓ e 5⁶ ÷ 5² = 15 625 ÷ 25 = 625 ✓. Erros a evitar: multiplicar os expoentes (2³ × 2⁴ não é 2¹²) e juntar potências com bases e expoentes diferentes (2³ × 5² não se escreve como uma só potência).</span></li>'+
+        '</ul>'},
+      {title:"🧮 Exemplo 7 — A ordem das operações", svg:'<ul class="wheel-legend">'+
+        '<li><span aria-hidden="true">🎯</span><span><b>O que queremos descobrir:</b> o valor de 2 × (3 + 5)² − 18 ÷ 3².</span></li>'+
+        '<li><span aria-hidden="true">🚦</span><span><b>Como começar:</b> segue a ordem: 1.º parênteses; 2.º potências; 3.º multiplicações e divisões, da esquerda para a direita; 4.º adições e subtrações.</span></li>'+
+        '<li><span aria-hidden="true">👣</span><span><b>Passo a passo:</b> <br>1. Parênteses: 3 + 5 = 8 → 2 × 8² − 18 ÷ 3²<br>2. Potências: 8² = 64 e 3² = 9 → 2 × 64 − 18 ÷ 9<br>3. × e ÷: 2 × 64 = 128 e 18 ÷ 9 = 2 → 128 − 2<br>4. − : 128 − 2 = 126</span></li>'+
+        '<li><span aria-hidden="true">✅</span><span><b>Resultado:</b> 2 × (3 + 5)² − 18 ÷ 3² = 126.</span></li>'+
+        '<li><span aria-hidden="true">🔍</span><span><b>Verificar:</b> escreve cada passo numa linha nova e confirma numa calculadora científica. Erro a evitar: fazer 2 × 8 = 16 antes da potência; o expoente só se aplica ao 8, por isso 16² = 256 está errado.</span></li>'+
         '</ul>'}
     ],
     compare:{
@@ -101,7 +121,7 @@
     id:"n2", num:2, c:"m2", icon:"🍕",
     title:"Inventário de Frações",
     subtitle:"Frações e operações", pages:"manual a confirmar",
-    lead:"Neste mundo vais aprender a encontrar frações equivalentes, a simplificar, a comparar frações, a calcular a fração de uma quantidade e a fazer as quatro operações com frações. Vê primeiro a animação e os 6 exemplos resolvidos, um de cada vez. No fim tens o resumo para o teste.",
+    lead:"Neste mundo vais aprender a encontrar frações equivalentes, a simplificar, a comparar frações, a calcular a fração de uma quantidade, a fazer as quatro operações com frações e a calcular potências de frações. Vê primeiro a animação e os 7 exemplos resolvidos, um de cada vez. No fim tens o resumo para o teste.",
     missions:[
       {t:"Iguais por Dentro", d:"Frações equivalentes e simplificação", f:"Escreve 3 frações equivalentes a 2/3, como no Exemplo 1.\nSimplifica até à forma irredutível: 12/18, 20/30 e 14/21. Usa o m.d.c. do Mundo 1.\nVerifica: duas frações a/b e c/d são equivalentes quando a × d = b × c (ex.: 2/3 e 4/6, porque 2 × 6 = 3 × 4).", xp:10},
       {t:"Quem É Maior?", d:"Comparar e ordenar frações", f:"Ordena do menor para o maior: 2/3, 3/4, 5/8 e 1/2, como no Exemplo 2.\nDesenha as quatro frações numa reta numérica entre 0 e 1.\nVerifica: escreve as quatro frações com denominador 24 e compara só os numeradores.", xp:10},
@@ -118,7 +138,8 @@
       "Para calcular a <b>fração de uma quantidade</b>, divide-se a quantidade pelo denominador e multiplica-se pelo numerador (ex.: 3/4 de 20 = 20 ÷ 4 × 3 = 15).",
       "Para <b>somar ou subtrair</b> frações, os denominadores têm de ser iguais: reduzem-se ao mesmo denominador (normalmente o m.m.c. dos denominadores) e depois somam-se ou subtraem-se só os numeradores. O denominador mantém-se (ex.: 1/2 + 1/3 = 3/6 + 2/6 = 5/6).",
       "Para <b>multiplicar</b> frações, multiplicam-se os numeradores entre si e os denominadores entre si (ex.: 2/3 × 3/5 = 6/15 = 2/5). Multiplicar por uma fração própria dá um resultado <b>menor</b>: é calcular uma parte.",
-      "Para <b>dividir</b> por uma fração, multiplica-se pelo <b>inverso</b> dessa fração (troca-se o numerador com o denominador: o inverso de 3/4 é 4/3). Dividir por uma fração própria dá um resultado <b>maior</b>: 3 ÷ 1/2 = 6, porque em 3 pizzas cabem 6 metades."
+      "Para <b>dividir</b> por uma fração, multiplica-se pelo <b>inverso</b> dessa fração (troca-se o numerador com o denominador: o inverso de 3/4 é 4/3). Dividir por uma fração própria dá um resultado <b>maior</b>: 3 ÷ 1/2 = 6, porque em 3 pizzas cabem 6 metades.",
+      "Uma <b>potência de uma fração</b> multiplica a fração por si própria: (2/3)² = 2/3 × 2/3 = 4/9. Eleva-se o numerador e eleva-se o denominador: (1/2)⁴ = 1⁴/2⁴ = 1/16. A potência de uma fração própria é menor do que a própria fração."
     ],
     gloss:[
       ["fração","Partes iguais de um todo, escritas como numerador sobre denominador (ex.: 3/8)."],
@@ -145,7 +166,8 @@
       {q:"Quanto é 2/3 × 3/5?", opts:["5/8","2/5","10/9","6/8"], correct:1, explain:"Numerador × numerador e denominador × denominador: 2 × 3 = 6 e 3 × 5 = 15. Fica 6/15 = 2/5, simplificando por 3. 5/8 soma em vez de multiplicar. 10/9 é o resultado da divisão 2/3 ÷ 3/5, não da multiplicação."},
       {q:"Quantos copos de 1/4 de litro consegues encher com 3 litros de água?", opts:["3/4","12","7","4"], correct:1, explain:"A pergunta é «quantos 1/4 cabem em 3?»: 3 ÷ 1/4 = 3 × 4 = 12. Verifica: 12 copos × 1/4 de litro = 3 litros. 3/4 é o resultado de multiplicar (3 × 1/4), que não é o que se pergunta. Dividir por uma fração própria dá um resultado maior."},
       {q:"«Multiplicar dá sempre um número maior.» Verdadeiro ou falso? Escolhe a resposta com a justificação certa.", opts:["Verdadeiro. Multiplicar é somar várias vezes.","Verdadeiro. 2 × 3 = 6, que é maior do que 2 e do que 3.","Falso. 6 × 1/2 = 3, que é menor do que 6.","Falso. 6 × 2 = 12, que é maior do que 6."], correct:2, explain:"Basta um contraexemplo: 6 × 1/2 = 3, que é menor do que 6. Multiplicar por uma fração própria é calcular uma parte, e uma parte é menor do que o todo. Os exemplos em que dá maior (2 × 3) não provam que é sempre assim, e 6 × 2 = 12 não mostra que a afirmação é falsa."},
-      {q:"Como se escreve o número misto 2 e 3/4 como fração?", opts:["5/4","6/4","11/4","23/4"], correct:2, explain:"Cada inteiro tem 4 quartos, por isso 2 inteiros = 8/4. Mais 3/4: 8/4 + 3/4 = 11/4. Verifica: 11 ÷ 4 = 2 e sobram 3. 5/4 soma 2 + 3, 6/4 multiplica 2 × 3, e 23/4 junta os algarismos 2 e 3."}
+      {q:"Como se escreve o número misto 2 e 3/4 como fração?", opts:["5/4","6/4","11/4","23/4"], correct:2, explain:"Cada inteiro tem 4 quartos, por isso 2 inteiros = 8/4. Mais 3/4: 8/4 + 3/4 = 11/4. Verifica: 11 ÷ 4 = 2 e sobram 3. 5/4 soma 2 + 3, 6/4 multiplica 2 × 3, e 23/4 junta os algarismos 2 e 3."},
+      {q:"Quanto é (3/4)²?", opts:["6/8","9/4","3/16","9/16"], correct:3, explain:"(3/4)² = 3/4 × 3/4 = (3 × 3)/(4 × 4) = 9/16. O 6/8 multiplica por 2 em vez de elevar ao quadrado; o 9/4 só eleva o numerador; o 3/16 só eleva o denominador. Repara: 9/16 é menor do que 3/4, como acontece sempre com uma fração própria."}
     ],
     posters:[
       {title:"🟰 Exemplo 1 — Frações equivalentes e simplificar", svg:'<svg class="poster-svg" viewBox="0 0 300 120" style="max-width:300px;margin:0 auto" role="img" aria-label="Duas barras do mesmo tamanho. A de cima está dividida em 4 partes iguais, com 3 pintadas: 3/4. A de baixo está dividida em 8 partes iguais, com 6 pintadas: 6/8. A parte pintada é do mesmo tamanho nas duas.">'+
@@ -193,6 +215,19 @@
         '<li><span aria-hidden="true">👣</span><span><b>Passo a passo:</b><br>3 pizzas × 2 metades = 6 metades, por isso 3 ÷ 1/2 = 6<br>Regra: dividir por uma fração é multiplicar pelo seu inverso.<br>3 ÷ 1/2 = 3 × 2/1 = 6<br>6 ÷ 3/4 = 6 × 4/3 = 24/3 = 8</span></li>'+
         '<li><span aria-hidden="true">✅</span><span><b>Resultado:</b> 3 ÷ 1/2 = 6 e enchem-se 8 garrafas de 3/4 de litro.</span></li>'+
         '<li><span aria-hidden="true">🔍</span><span><b>Verificar:</b> faz a conta ao contrário. 6 × 1/2 = 3 e 8 × 3/4 = 24/4 = 6 litros. Dividir por uma fração própria dá um resultado maior: em 6 litros cabem mais garrafas pequenas do que litros.</span></li>'+
+        '</ul>'},
+      {title:"🟦 Exemplo 7 — Potências de frações", svg:'<svg class="poster-svg" viewBox="0 0 180 180" style="max-width:200px;margin:0 auto" role="img" aria-label="Um quadrado partido ao meio vezes sem conta. A metade da esquerda é 1/2. Da metade da direita, a parte de cima é 1/4. Do que sobra, a parte da esquerda é 1/8, e por fim um retângulo pintado de 1/16.">'+
+        '<g stroke="currentColor" stroke-width="2" stroke-linejoin="round">'+
+        '<rect x="10" y="10" width="80" height="160" fill="var(--surface)"/><rect x="90" y="10" width="80" height="80" fill="var(--surface)"/>'+
+        '<rect x="90" y="90" width="40" height="80" fill="var(--surface)"/><rect x="130" y="90" width="40" height="40" fill="var(--wc)" fill-opacity="0.55"/>'+
+        '<rect x="130" y="130" width="40" height="40" fill="var(--surface)" stroke-dasharray="4 3"/></g>'+
+        '<g font-family="Lexend, sans-serif" font-size="14" font-weight="700" text-anchor="middle"><text x="50" y="95">1/2</text><text x="130" y="55">1/4</text><text x="110" y="135">1/8</text><text x="150" y="115" font-size="12">1/16</text></g></svg>'+
+        '<ul class="wheel-legend">'+
+        '<li><span aria-hidden="true">🎯</span><span><b>O que queremos descobrir:</b> num quadrado, pinta-se metade; da parte por pintar, pinta-se metade; e assim por diante. Que fração do quadrado é o 4.º retângulo (a cor)? E quanto é (2/3)²?</span></li>'+
+        '<li><span aria-hidden="true">🚦</span><span><b>Como começar:</b> cada retângulo novo é metade do anterior, ou seja, multiplica-se por 1/2 de cada vez. Multiplicar a mesma fração várias vezes é uma potência.</span></li>'+
+        '<li><span aria-hidden="true">👣</span><span><b>Passo a passo:</b> <br>1.º retângulo: 1/2<br>2.º: 1/2 × 1/2 = (1/2)² = 1/4<br>3.º: (1/2)³ = 1/8<br>4.º: (1/2)⁴ = (1 × 1 × 1 × 1)/(2 × 2 × 2 × 2) = 1/16<br>Da mesma forma: (2/3)² = 2/3 × 2/3 = (2 × 2)/(3 × 3) = 4/9</span></li>'+
+        '<li><span aria-hidden="true">✅</span><span><b>Resultado:</b> o 4.º retângulo é 1/16 do quadrado, e (2/3)² = 4/9.</span></li>'+
+        '<li><span aria-hidden="true">🔍</span><span><b>Verificar:</b> no desenho, o retângulo a cor cabe 16 vezes no quadrado. Erros a evitar: elevar só o numerador ((2/3)² não é 4/3) ou multiplicar pelo expoente ((2/3)² não é 4/6).</span></li>'+
         '</ul>'}
     ],
     compare:{

@@ -192,6 +192,13 @@ const ARENA = (function(){
       explicacao:"Multiplica numerador com numerador e denominador com denominador: "+a+" × "+c+" = "+n+" e "+b+" × "+d+" = "+m+". Resultado: <b>"+n+"/"+m+"</b>"+(g>1?" = "+(n/g)+"/"+(m/g):"")+".",
       dica:"Em cima × em cima, em baixo × em baixo."};
   }
+  function potFr(l){
+    const [a, b, n] = l===1 ? pick([[1,2,2],[1,2,3],[1,3,2],[2,3,2],[1,4,2],[3,4,2],[2,5,2],[1,2,4]]) : pick([[2,3,3],[1,3,3],[3,5,2],[4,5,2],[1,10,3],[2,7,2],[3,2,2],[5,4,2],[1,2,5]]);
+    const N = Math.pow(a,n), D = Math.pow(b,n), SUPS = {2:"²",3:"³",4:"⁴",5:"⁵"};
+    return {tipo:"fracao", texto:"Calcula: ("+fr(a,b)+")"+SUPS[n], resposta:{n:N,d:D},
+      explicacao:"Multiplica a fração por si própria "+n+" vezes: eleva o numerador e o denominador. "+a+SUPS[n]+" = "+N+" e "+b+SUPS[n]+" = "+D+". Resultado: <b>"+N+"/"+D+"</b>.",
+      dica:"("+a+"/"+b+")"+SUPS[n]+" = "+Array(n).fill(a+"/"+b).join(" × ")};
+  }
   function divFr(l){
     const a=rnd(1,5), b=rnd(2,6), c=rnd(1,5), d=rnd(2,6);
     const n=a*d, m=b*c, g=gcd(n,m);
@@ -872,6 +879,42 @@ const ARENA = (function(){
       explicacao:"A roleta tem "+N+" setores iguais e "+counts[ci]+" são "+CORES[ci][0]+"s: <b>"+counts[ci]+"/"+N+"</b>"+simp(counts[ci],N)+".", dica:"Conta os setores todos e os da cor pedida."};
   }
 
+  /* n1 — regras das potências e ordem das operações */
+  const SUP = {"0":"⁰","1":"¹","2":"²","3":"³","4":"⁴","5":"⁵","6":"⁶","7":"⁷","8":"⁸","9":"⁹"};
+  const sup = n => String(n).split("").map(d => SUP[d]).join("");
+  function potRegra(l){
+    const tipo = l===1 ? pick(["mult","div"]) : pick(["mult","div","exp","expDiv"]);
+    if(tipo==="mult"){ const a = rnd(2,9), m = rnd(2,6), n = rnd(2,6);
+      return {tipo:"num", texto:"Escreve como uma só potência: <b>"+a+sup(m)+" × "+a+sup(n)+" = "+a+"<sup>?</sup></b> Qual é o expoente?", resposta:m+n,
+        explicacao:"Mesma base: fica o "+a+" e somam-se os expoentes. "+m+" + "+n+" = <b>"+(m+n)+"</b>, por isso dá "+a+sup(m+n)+".", dica:"Escreve por extenso: quantos "+a+" ficam a multiplicar?"}; }
+    if(tipo==="div"){ const a = rnd(2,9), n = rnd(2,5), m = n + rnd(1,5);
+      return {tipo:"num", texto:"Escreve como uma só potência: <b>"+a+sup(m)+" ÷ "+a+sup(n)+" = "+a+"<sup>?</sup></b> Qual é o expoente?", resposta:m-n,
+        explicacao:"Mesma base: fica o "+a+" e subtraem-se os expoentes. "+m+" − "+n+" = <b>"+(m-n)+"</b>, por isso dá "+a+sup(m-n)+".", dica:"Na divisão, os fatores iguais «cortam-se»: quantos sobram?"}; }
+    const e = rnd(2,5);
+    if(tipo==="exp"){ const [a, b] = pick([[2,5],[2,3],[3,3],[4,5],[2,7],[5,6],[3,4]]);
+      return {tipo:"num", texto:"Escreve como uma só potência: <b>"+a+sup(e)+" × "+b+sup(e)+" = ?"+sup(e)+"</b> Qual é a base?", resposta:a*b,
+        explicacao:"Mesmo expoente: fica o expoente "+e+" e multiplicam-se as bases. "+a+" × "+b+" = <b>"+(a*b)+"</b>, por isso dá "+(a*b)+sup(e)+".", dica:"Quando o expoente é igual, junta as bases."}; }
+    const [a, b] = pick([[12,4],[10,5],[15,3],[18,6],[20,4],[21,7],[14,2]]);
+    return {tipo:"num", texto:"Escreve como uma só potência: <b>"+a+sup(e)+" ÷ "+b+sup(e)+" = ?"+sup(e)+"</b> Qual é a base?", resposta:a/b,
+      explicacao:"Mesmo expoente: fica o expoente "+e+" e dividem-se as bases. "+a+" ÷ "+b+" = <b>"+(a/b)+"</b>, por isso dá "+(a/b)+sup(e)+".", dica:"Quando o expoente é igual, divide as bases."};
+  }
+  function expressao(l){
+    let txt, passos, res;
+    if(l===1){ const a = rnd(2,20), b = rnd(2,9), c = rnd(2,9);
+      if(Math.random()<0.5){ res = a + b*c; txt = a+" + "+b+" × "+c; passos = "Primeiro a multiplicação: "+b+" × "+c+" = "+(b*c)+". Depois a adição: "+a+" + "+(b*c)+" = <b>"+res+"</b>."; }
+      else { const p = b*c; const d = rnd(1,p-1); res = p - d; txt = b+" × "+c+" − "+d; passos = "Primeiro a multiplicação: "+b+" × "+c+" = "+p+". Depois a subtração: "+p+" − "+d+" = <b>"+res+"</b>."; } }
+    else if(l===2){ const a = rnd(2,9), b = rnd(2,9), c = rnd(2,6), q = rnd(2,6), d = rnd(2,6);
+      const p = (a+b)*c, e = q*d;   // e ÷ d dá q, sem resto
+      res = p - q; txt = "("+a+" + "+b+") × "+c+" − "+e+" ÷ "+d;
+      passos = "Parênteses: "+a+" + "+b+" = "+(a+b)+". Multiplicação e divisão: "+(a+b)+" × "+c+" = "+p+" e "+e+" ÷ "+d+" = "+q+". Subtração: "+p+" − "+q+" = <b>"+res+"</b>."; }
+    else { const a = rnd(2,5), b = rnd(1,4), c = rnd(1,4), d = rnd(2,4);
+      const s = b+c, pw = s*s, p = a*pw, dd = d*d, k = rnd(1,5), e = dd*k;   // e ÷ d² dá k
+      res = p - k; txt = a+" × ("+b+" + "+c+")² − "+e+" ÷ "+d+"²";
+      passos = "Parênteses: "+b+" + "+c+" = "+s+". Potências: "+s+"² = "+pw+" e "+d+"² = "+dd+". Multiplicação e divisão: "+a+" × "+pw+" = "+p+" e "+e+" ÷ "+dd+" = "+k+". Subtração: "+p+" − "+k+" = <b>"+res+"</b>."; }
+    return {tipo:"num", texto:"Calcula: <b>"+txt+"</b>", resposta:res, explicacao:passos,
+      dica:"Ordem: parênteses → potências → × e ÷ → + e −."};
+  }
+
   /* ------------------------------ n9: rotações e simetrias ------------------------------ */
   // rosácea de n pétalas (com eixos) ou catavento de n pás (sem eixos), à volta de (80,80)
   function rosaceaSvg(n, catavento){
@@ -937,9 +980,9 @@ const ARENA = (function(){
   /* ------------------------------ temas ------------------------------ */
   // g = gerador, min = nível mínimo em que aparece
   const TEMAS = {
-    n1: [{g:divisivel,min:1},{g:primo,min:1},{g:mdc,min:1},{g:mmc,min:1},{g:selMultiplos,min:1},{g:selDivisores,min:2},{g:decomp,min:2},{g:selPrimos,min:3}],
+    n1: [{g:divisivel,min:1},{g:primo,min:1},{g:mdc,min:1},{g:mmc,min:1},{g:selMultiplos,min:1},{g:selDivisores,min:2},{g:decomp,min:2},{g:selPrimos,min:3},{g:potRegra,min:1},{g:expressao,min:1}],
     n2: [{g:fracVisual,min:1},{g:frBarra,min:1},{g:frConjunto,min:1},{g:frPintar,min:1},{g:frRetaLer,min:1},{g:frRetaColocar,min:1},{g:equiv,min:1},{g:somaFr,min:1},{g:simplif,min:1},
-         {g:frGrelha,min:2},{g:compFr,min:2},{g:multFr,min:2},{g:divFr,min:3}],
+         {g:frGrelha,min:2},{g:compFr,min:2},{g:multFr,min:2},{g:divFr,min:3},{g:potFr,min:1}],
     n3: [{g:percentOf,min:1},{g:desconto,min:1},{g:decOps,min:1},{g:fracPct,min:1},{g:maiorDec,min:1},{g:pctGrelha,min:1},{g:decReta,min:1},{g:pctPintar,min:2}],
     n4: [{g:nextTerm,min:1},{g:propTable,min:1},{g:regra3,min:1},{g:padrao,min:1},{g:nthTerm,min:2},{g:escala,min:2}],
     n5: [{g:compSup,min:1},{g:area,min:1},{g:perim,min:1},{g:classAngle,min:1},{g:angMedir,min:1},{g:angAbrir,min:1},{g:angReta,min:1},{g:areaGrelha,min:1},
