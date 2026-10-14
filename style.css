@@ -935,13 +935,10 @@
   .lb-d{ margin:0 0 8px; line-height:1.55; }
   .lb-cred{ margin:0; font-size:0.78rem; color:var(--text-muted); }
   .lb-cred a{ color:var(--accent); }
-  /* 👀🤔❓ Vê, Pensa, Pergunta-te: looking comes first; the explanation appears on request */
-  .lb-vpp{ margin:0 0 10px; padding:10px 12px; border-radius:12px; background:var(--bg); }
-  .lb-vpp p{ margin:0 0 6px; font-weight:700; }
-  .lb-vpp ul{ list-style:none; margin:0 0 10px; padding:0; display:flex; flex-direction:column; gap:5px; }
-  .lb-vpp li{ display:flex; gap:8px; line-height:1.45; }
-  .lb-overlay:not(.revealed) .lb-d{ display:none; }
-  .lb-overlay.revealed .lb-vpp{ display:none; }
+  /* ✏️ suggested activity under the explanation of each image */
+  .lb-act{ margin:0 0 10px; padding:10px 12px; border-radius:12px; background:var(--surface-2); border-left:4px solid var(--accent); }
+  .lb-act-t{ margin:0 0 4px; font-family:"Lexend",sans-serif; font-weight:800; font-size:0.92rem; }
+  .lb-act-d{ margin:0; line-height:1.55; font-size:0.93rem; }
   @media print{ .galeria, .lb-overlay{ display:none !important; } }
 
   /* ---------- 🎯 Missão de hoje · 🔔 Lembrete · more school years ---------- */

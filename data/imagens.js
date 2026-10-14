@@ -3,7 +3,8 @@
    aparecem por baixo de cada imagem, como as licenças exigem. As cores das imagens de microscópio eletrónico
    foram acrescentadas pelos cientistas (os eletrões não "veem" cores).
    Campos: f ficheiro · t título · d legenda · m "otico" | "eletronico" (imagem de microscópio) · cred autor · lic licença · src página original · fonte nome do site de origem (sem ele: Wikimedia Commons)
-   il true = desenho nosso (SVG), marcado na galeria como ilustração; não tem src */
+   il true = desenho nosso (SVG), marcado na galeria como ilustração; não tem src
+   act atividade própria desta imagem (sem ela, app.js escolhe uma pelo tipo de imagem e pela disciplina) */
 const LIC = {
   PD: ["Domínio público", ""],
   ORIG: ["ilustração original, livre para usar na escola", ""],
@@ -112,10 +113,10 @@ const MISSAO_IMAGENS = {
     {f:"img/c8/colonias.jpg", t:"Colónias de bactérias numa placa de Petri",
       d:"Cada mancha redonda começou com uma só bactéria, que se multiplicou milhões de vezes. É assim que os cientistas estudam microrganismos no laboratório.",
       cred:"HansN.", lic:"SA30", src:COMMONS+"Bacteria_on_agar_plate.jpg"},
-    {f:"img/c8/penicillium.jpg", t:"O bolor Penicillium",
+    {f:"img/c8/penicillium.jpg", t:"O bolor Penicillium", act:"<b>Desenhar o bolor</b>: em papel, com lápis de cor, desenha a placa como a vês: as colónias redondas que se juntam umas às outras, com o centro verde-acinzentado (onde estão os esporos) e a orla branca e fofa (o bolor a crescer). Legenda com setas e escreve a data. <b>Experiência com um adulto</b>: põe um pedaço de pão um pouco húmido num saco de plástico fechado, com a data. Durante uma semana, observa-o todos os dias <b>sem abrir o saco</b> e desenha o que muda. No fim, o adulto deita fora o saco fechado. Quem tem alergias ou asma não faz esta experiência.",
       d:"Foi com um bolor deste género que Alexander Fleming descobriu a penicilina, em 1928 — o primeiro antibiótico. Os antibióticos combatem bactérias, mas não vírus.",
       cred:"Crulina 98", lic:"SA30", src:COMMONS+"Penicillium_notatum.jpg"},
-    {f:"img/c8/lavar-maos.jpg", t:"Lavar as mãos",
+    {f:"img/c8/lavar-maos.jpg", t:"Lavar as mãos", act:"<b>Experiência dos «micróbios» com purpurina</b>: põe um pouco de purpurina ou de canela nas mãos (finge que são micróbios). Lava-as 5 segundos só com água e vê o que ficou. Depois lava 20 segundos com sabão, sem esquecer entre os dedos, os polegares e as unhas. Desenha as tuas mãos antes e depois.",
       d:"Com água e sabão, a esfregar pelo menos 20 segundos, sem esquecer entre os dedos, as unhas e os pulsos. É uma das formas mais eficazes de evitar doenças.",
       cred:"Angelsharum", lic:"SA30", src:COMMONS+"Handwashing.jpg"}
   ]

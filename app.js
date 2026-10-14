@@ -556,14 +556,33 @@
         '<span class="gal-cap">'+escXml(im.t)+(im.m ? '<small>'+MICRO_TXT[im.m]+'</small>' : im.il ? '<small>'+ILUSTRACAO_TXT+'</small>' : '')+'</span>');
       b.type = "button";
       b.setAttribute("aria-label", im.t+" — ampliar");
-      b.addEventListener("click", function(){ openLightbox(list, i, b); });
+      b.addEventListener("click", function(){ openLightbox(list, i, b, w.id); });
       row.appendChild(b);
     });
     wrap.appendChild(row);
     return wrap;
   }
   let lb = null;
-  function openLightbox(list, i, trigger){
+  /* ✏️ a suggested activity for every image: its own (im.act) or one that suits the kind of image and the subject */
+  const ATIVIDADES = {
+    micro: "<b>Desenho de observação</b>, como num caderno de ciências: desenha um círculo grande (é o que se vê pelo microscópio) e, dentro, só o que vês, a lápis; pinta com as cores verdadeiras. Põe 2 ou 3 legendas com setas e escreve o nome e o tipo de microscópio. Por baixo: a data, uma coisa que aprendeste e uma pergunta que te ficou.",
+    ilustracao: "<b>Desenhar de memória</b>: olha 1 minuto para a imagem, tapa-a e desenha-a com as legendas de que te lembrares. Depois destapa, compara e acrescenta com outra cor o que faltava. O que esqueceste é o que precisas de rever.",
+    ciencias: "<b>Esboço científico</b>: desenha o que vês a lápis, com rigor (a forma e o tamanho contam mais do que a beleza) e legenda 3 partes com setas. Ao lado, escreve a cor, a forma, a textura e o tamanho aproximado.",
+    historia: "<b>Detetive da imagem</b>: escreve no caderno: o que vejo (pessoas, objetos, lugares)? Quando foi? Onde? Porque é importante para a história de Portugal? Termina com uma legenda de jornal, numa só frase.",
+    matematica: "<b>A matemática escondida</b>: desenha a imagem e marca a matemática que encontras (formas, padrões, números, medidas). Depois inventa um problema com ela, resolve-o e dá-o a alguém da família para resolver.",
+    portugues: "<b>Descrever</b>: escreve um parágrafo de 5 frases sobre a imagem, do geral para o pormenor, com pelo menos 3 adjetivos e uma comparação («parece…», «como…»).",
+    ingles: "<b>Describe it in English</b>: write 3 sentences: «In this picture I can see…», «There is / There are…», «I think it is… because…». Then read them aloud.",
+    socorros: "<b>Ensinar alguém</b>: com um adulto, pratica o que vês na imagem e depois explica-o por palavras tuas, como se ensinasses um colega."
+  };
+  function atividade(im, wid){
+    if(im.act) return im.act;
+    if(im.m) return ATIVIDADES.micro;
+    if(wid === "c9") return ATIVIDADES.socorros;
+    const disc = {c:"ciencias", g:"ciencias", m:"historia", n:"matematica", p:"portugues", e:"ingles"}[String(wid).charAt(0)] || "ciencias";
+    if(im.il && disc === "ciencias") return ATIVIDADES.ilustracao;
+    return ATIVIDADES[disc];
+  }
+  function openLightbox(list, i, trigger, wid){
     if(!lb){
       lb = el("div","lb-overlay");
       lb.setAttribute("role","dialog"); lb.setAttribute("aria-modal","true"); lb.setAttribute("aria-label","Imagem ampliada");
@@ -571,12 +590,7 @@
         '<div class="lb-stage"><img alt=""></div>'+
         '<div class="lb-nav"><button type="button" class="lb-btn" data-a="ant">← Anterior</button><button type="button" class="lb-btn" data-a="seg">Seguinte →</button></div>'+
         '<h3 class="lb-t"></h3>'+
-        '<div class="lb-vpp"><p>Antes de leres a explicação, olha com calma:</p><ul>'+
-        '<li><span aria-hidden="true">👀</span><span><b>Vê:</b> o que vês? Cores, formas, tamanhos, pormenores.</span></li>'+
-        '<li><span aria-hidden="true">🤔</span><span><b>Pensa:</b> o que achas que é, ou o que aconteceu? Porquê?</span></li>'+
-        '<li><span aria-hidden="true">❓</span><span><b>Pergunta-te:</b> o que gostavas de saber sobre isto?</span></li></ul>'+
-        '<button type="button" class="lb-btn" data-a="ver">💡 Ver a explicação</button></div>'+
-        '<p class="lb-d" tabindex="-1"></p><p class="lb-cred"></p></div>';
+        '<p class="lb-d"></p><div class="lb-act"><p class="lb-act-t">✏️ Atividade</p><p class="lb-act-d"></p></div><p class="lb-cred"></p></div>';
       document.body.appendChild(lb);
       lb.addEventListener("click", function(e){
         const b = e.target.closest("button");
@@ -589,7 +603,6 @@
           img.style.width = on ? (/\.svg$/i.test(img.src) ? shown*2 : Math.max(img.naturalWidth, shown))+"px" : "";
           b.textContent = on ? "↩️ Afastar" : "🔍 Aproximar";
         }
-        if(b.dataset.a === "ver"){ lb.classList.add("revealed"); lb.querySelector(".lb-d").focus({preventScroll:true}); }
         if(b.dataset.a === "ant") showLb(lb._i - 1);
         if(b.dataset.a === "seg") showLb(lb._i + 1);
       });
@@ -599,7 +612,7 @@
         if(e.key === "ArrowRight") showLb(lb._i + 1);
       });
     }
-    lb._list = list; lb._trigger = trigger;
+    lb._list = list; lb._trigger = trigger; lb._wid = wid;
     lb.hidden = false; document.body.classList.add("lb-open");
     showLb(i);
     lb.querySelector('[data-a="x"]').focus();
@@ -608,13 +621,13 @@
     const list = lb._list, n = list.length;
     i = (i + n) % n; lb._i = i;
     const im = list[i], lic = LIC[im.lic] || [im.lic, ""];
-    // "Vê, Pensa, Pergunta-te": each image starts with the explanation hidden, so the child looks first
-    lb.classList.remove("zoomed", "revealed"); lb.querySelector('[data-a="zoom"]').textContent = "🔍 Aproximar";
+    lb.classList.remove("zoomed"); lb.querySelector('[data-a="zoom"]').textContent = "🔍 Aproximar";
     lb.classList.toggle("micro", !!im.m);
     const img = lb.querySelector(".lb-stage img"); img.style.width = ""; img.src = im.f; img.alt = im.t;
     lb.querySelector(".lb-n").textContent = (i+1)+" / "+n+(im.m ? " · "+MICRO_TXT[im.m] : im.il ? " · "+ILUSTRACAO_TXT : "");
     lb.querySelector(".lb-t").textContent = im.t;
     lb.querySelector(".lb-d").textContent = im.d;
+    lb.querySelector(".lb-act-d").innerHTML = atividade(im, lb._wid);
     lb.querySelector(".lb-cred").innerHTML = (im.il ? "✏️ " : "📷 ")+escXml(im.cred)+" · "+(lic[1] ? '<a href="'+lic[1]+'" target="_blank" rel="noopener noreferrer">'+lic[0]+'</a>' : lic[0])+
       (im.src ? ' · <a href="'+escXml(im.src)+'" target="_blank" rel="noopener noreferrer">'+escXml(im.fonte || "Wikimedia Commons")+' ↗</a>' : '');
     lb.querySelector(".lb-nav").hidden = n < 2;
