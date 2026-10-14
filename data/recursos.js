@@ -45,8 +45,6 @@ const MISSAO_LINKS = {
   const europeana = (q, txt) => ({icon:"🏛️", title:"Europeana: "+txt, desc:"Quadros, gravuras, fotografias e documentos dos arquivos e museus europeus. Muitas imagens são livres.", site:"europeana.eu", url:E(q)});
   const artes = (q, txt) => ({icon:"🖼️", title:"Google Arts & Culture: "+txt, desc:"Museus virtuais, obras de arte em alta resolução e exposições online.", site:"artsandculture.google.com", url:G(q)});
   const nhm = (q, txt) => ({icon:"🦖", title:"Natural History Museum: "+txt, desc:"O Museu de História Natural de Londres: artigos, imagens e curiosidades (em inglês).", site:"nhm.ac.uk", url:NHM(q)});
-  const SNACKS_VIDA = {icon:"🧪", title:"Exploratorium — experiências de ciências da vida", desc:"«Science Snacks»: experiências simples para fazer em casa ou na escola (em inglês).", site:"exploratorium.edu", url:"https://www.exploratorium.edu/snacks/subject/life-science"};
-  const SNACKS_TERRA = {icon:"🧪", title:"Exploratorium — experiências de ciências da Terra", desc:"«Science Snacks»: experiências simples sobre rochas, água e clima (em inglês).", site:"exploratorium.edu", url:"https://www.exploratorium.edu/snacks/subject/earth-science"};
   const MAIS = {
     m1: [europeana("terramoto Lisboa 1755","o terramoto de 1755"), artes("Palácio Nacional de Mafra","Palácio de Mafra")],
     m2: [europeana("D. Pedro IV","D. Pedro IV e o liberalismo")],
@@ -57,8 +55,8 @@ const MISSAO_LINKS = {
     m8: [europeana("União Europeia","a construção europeia")],
     p6: [artes("Fernando Pessoa","Fernando Pessoa"), artes("Luís de Camões","Luís de Camões")],
     p7: [artes("Teatro Nacional D. Maria II","o Teatro D. Maria II")],
-    c3: [SNACKS_VIDA], c4: [SNACKS_VIDA], c6: [SNACKS_VIDA, nhm("pollination","polinização")], c8: [SNACKS_VIDA, nhm("microbes","micróbios")],
-    g1: [nhm("minerals","minerais"), SNACKS_TERRA], g2: [SNACKS_TERRA], g3: [nhm("fossils","fósseis"), nhm("dinosaurs","dinossauros")],
+    c6: [nhm("pollination","polinização")], c8: [nhm("microbes","micróbios")],
+    g1: [nhm("minerals","minerais")], g3: [nhm("fossils","fósseis"), nhm("dinosaurs","dinossauros")],
     g4: [nhm("mass extinction","extinções em massa")],
     g8: [nhm("rock cycle","o ciclo das rochas")]
   };
