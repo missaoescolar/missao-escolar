@@ -41,10 +41,10 @@ const MISSAO_LINKS = {
 (function(){
   const E = q => "https://www.europeana.eu/pt/search?query="+encodeURIComponent(q);
   const G = q => "https://artsandculture.google.com/search?q="+encodeURIComponent(q);
-  const NHM = q => "https://www.nhm.ac.uk/search.html?q="+encodeURIComponent(q);
   const europeana = (q, txt) => ({icon:"🏛️", title:"Europeana: "+txt, desc:"Quadros, gravuras, fotografias e documentos dos arquivos e museus europeus. Muitas imagens são livres.", site:"europeana.eu", url:E(q)});
   const artes = (q, txt) => ({icon:"🖼️", title:"Google Arts & Culture: "+txt, desc:"Museus virtuais, obras de arte em alta resolução e exposições online.", site:"artsandculture.google.com", url:G(q)});
-  const nhm = (q, txt) => ({icon:"🦖", title:"Natural History Museum: "+txt, desc:"O Museu de História Natural de Londres: artigos, imagens e curiosidades (em inglês).", site:"nhm.ac.uk", url:NHM(q)});
+  // Natural History Museum (Londres): always a page about the theme itself, never a search (checked: open without an account)
+  const nhm = (pagina, txt, desc) => ({icon:"🦖", title:"Natural History Museum: "+txt, desc:desc+" Em inglês.", site:"nhm.ac.uk", url:"https://www.nhm.ac.uk/"+pagina});
   const MAIS = {
     m1: [europeana("terramoto Lisboa 1755","o terramoto de 1755"), artes("Palácio Nacional de Mafra","Palácio de Mafra")],
     m2: [europeana("D. Pedro IV","D. Pedro IV e o liberalismo")],
@@ -55,10 +55,15 @@ const MISSAO_LINKS = {
     m8: [europeana("União Europeia","a construção europeia")],
     p6: [artes("Fernando Pessoa","Fernando Pessoa"), artes("Luís de Camões","Luís de Camões")],
     p7: [artes("Teatro Nacional D. Maria II","o Teatro D. Maria II")],
-    c6: [nhm("pollination","polinização")], c8: [nhm("microbes","micróbios")],
-    g1: [nhm("minerals","minerais")], g3: [nhm("fossils","fósseis"), nhm("dinosaurs","dinossauros")],
-    g4: [nhm("mass extinction","extinções em massa")],
-    g8: [nhm("rock cycle","o ciclo das rochas")]
+    c6: [nhm("discover/Rainbow-nature-glory-of-green.html","porque é que as folhas são verdes","A clorofila apanha a luz para a fotossíntese e reflete o verde."),
+         nhm("discover/insect-pollination.html","os insetos polinizadores","Sete insetos que levam o pólen de flor em flor, e porque as plantas precisam deles.")],
+    c8: [nhm("discover/news/2022/june/worlds-largest-bacteria-are-visible-naked-eye.html","a maior bactéria do mundo","Uma bactéria tão grande que se vê a olho nu, ao contrário de quase todas as outras."),
+         nhm("discover/hidden-soil-life.html","a vida escondida no solo","Bactérias, fungos e outros seres minúsculos que vivem no solo e o mantêm saudável.")],
+    g1: [nhm("discover/minerals-sparkling-sensitive-and-toxic.html","os minerais","O que são os minerais e porque são tão diferentes uns dos outros.")],
+    g3: [nhm("discover/what-is-a-fossil.html","o que é um fóssil","Os tipos de fósseis e o que nos contam sobre a vida no passado."),
+         nhm("discover/how-are-fossils-formed.html","como se formam os fósseis","Passo a passo: do animal enterrado em sedimentos até ao osso transformado em pedra.")],
+    g4: [nhm("discover/what-is-mass-extinction-and-are-we-facing-a-sixth-one.html","as extinções em massa","As cinco grandes extinções da história da Terra e as suas causas.")],
+    g8: [nhm("take-part/identify-nature/beginners-guide-to-identifying-uk-rock-types.html","os tipos de rocha e o ciclo das rochas","Rochas magmáticas, sedimentares e metamórficas, e como umas se transformam nas outras.")]
   };
   Object.keys(MAIS).forEach(k => { MISSAO_LINKS[k] = (MISSAO_LINKS[k] || []).concat(MAIS[k]); });
 })();
