@@ -632,40 +632,97 @@
   {
     id:"n7", num:7, c:"m7", icon:"🧱",
     title:"Blocos em 3D",
-    subtitle:"Volume de sólidos", pages:"manual a confirmar",
-    lead:"Cada construção em Minecraft ocupa um número certo de blocos — isso é volume. Este mundo ensina a calcular quanto espaço uma construção realmente ocupa.",
+    subtitle:"Sólidos e volumes", pages:"manual a confirmar",
+    lead:"Neste mundo vais aprender a reconhecer sólidos e as suas planificações, a calcular o volume de paralelepípedos, cubos, prismas e cilindros, e a passar de volume para capacidade (litros). Vê primeiro a animação e os 6 exemplos resolvidos, um de cada vez. No fim tens o resumo para o teste.",
     missions:[
-      {t:"Contar Blocos", d:"Volume do paralelepípedo e do cubo", f:"Calcular quantos blocos cabem numa caixa real de casa", xp:10},
-      {t:"Construção 3D", d:"Volume de construções simples", f:"Desenhar uma construção e calcular o seu volume", xp:15},
-      {t:"Litros e Blocos", d:"Relação entre volume e capacidade", f:"Converter 3 medidas de capacidade em volume", xp:10}
+      {t:"Contar Blocos", d:"Volume com cubos", f:"Enche uma caixa pequena com cubos iguais (peças de encaixar, dados ou cubos de açúcar), camada a camada.\nConta quantos cabem numa camada e quantas camadas há, como no Exemplo 1.\nVerifica: comprimento × largura × altura (medidos em cubos) tem de dar o mesmo número que contaste.", xp:10},
+      {t:"Cubo de Cartolina", d:"Planificação do cubo", f:"Desenha numa cartolina uma planificação do cubo: 6 quadrados de 5 cm de lado, ligados pelos lados.\nRecorta, dobra e monta o cubo. Calcula o seu volume.\nVerifica: dobra antes de colar. Se não fechar, aquela figura não é uma planificação do cubo. O volume deve dar 5 × 5 × 5 = 125 cm³.", xp:15},
+      {t:"Litros Escondidos", d:"Volume e capacidade", f:"Mede com a régua um pacote de leite ou de sumo de 1 litro (comprimento, largura e altura, em cm).\nCalcula o volume em cm³ e passa para litros, como no Exemplo 4.\nVerifica: deve dar perto de 1000 cm³, ou seja 1 litro (um pouco mais, porque o pacote não vai cheio até cima).", xp:10},
+      {t:"A Lata", d:"Volume do cilindro", f:"Mede o diâmetro e a altura de uma lata de conserva ou de refrigerante.\nCalcula o volume, como no Exemplo 6 (primeiro o raio).\nVerifica: compara com o que diz no rótulo, sabendo que 1 mL = 1 cm³. O teu resultado deve ser um pouco maior: a lata nunca vai cheia até cima.", xp:15}
     ],
     resumo:[
-      "O <b>volume</b> mede o espaço ocupado por um sólido, em unidades cúbicas (ex.: cm³, m³).",
-      "<b>Volume do paralelepípedo retângulo</b> = comprimento × largura × altura. <b>Volume do cubo</b> = aresta × aresta × aresta (aresta³).",
-      "1 litro corresponde a 1 dm³ — é assim que se relacionam as unidades de <b>volume</b> e de <b>capacidade</b>."
+      "Os <b>sólidos geométricos</b> dividem-se em <b>poliedros</b>, só com faces planas (prismas, pirâmides, o cubo), e não poliedros, com partes curvas (cilindro, cone, esfera). Num poliedro contam-se as <b>faces</b>, as <b>arestas</b> e os <b>vértices</b>.",
+      "Uma <b>planificação</b> é a figura plana que, dobrada, forma o sólido. A do cubo tem 6 quadrados, mas nem todas as maneiras de juntar 6 quadrados dão um cubo.",
+      "O <b>volume</b> é o espaço que um sólido ocupa. Mede-se em unidades cúbicas: 1 cm³ é o volume de um cubo com 1 cm de aresta.",
+      "<b>Paralelepípedo</b>: V = comprimento × largura × altura. <b>Cubo</b>: V = aresta × aresta × aresta. Se a aresta de um cubo duplicar, o volume fica 2 × 2 × 2 = 8 vezes maior.",
+      "<b>Prisma</b> e <b>cilindro</b>: V = área da base × altura. No cilindro, a base é um círculo: V = π × r² × altura.",
+      "1 m³ = 1000 dm³ e 1 dm³ = 1000 cm³ (cada unidade de volume é 1000 vezes a seguinte, e não 10 vezes).",
+      "A <b>capacidade</b> é a quantidade de líquido que cabe num recipiente: 1 <b>litro</b> = 1 dm³ e 1 mL = 1 cm³."
     ],
     gloss:[
-      ["volume","O espaço ocupado por um sólido, medido em unidades cúbicas."],
-      ["paralelepípedo","Um sólido com 6 faces retangulares, como uma caixa."],
-      ["cubo","Um paralelepípedo cujas faces são todas quadrados iguais."],
-      ["aresta","Cada uma das linhas onde duas faces de um sólido se encontram."],
-      ["capacidade","A quantidade de líquido ou de outra substância que um recipiente pode conter."]
+      ["sólidos geométricos","Figuras com três dimensões (comprimento, largura e altura), como o cubo ou o cilindro."],
+      ["poliedros","Sólidos só com faces planas, como os prismas e as pirâmides."],
+      ["prisma","Poliedro com duas bases iguais e paralelas, ligadas por faces retangulares."],
+      ["cilindro","Sólido com duas bases circulares iguais e uma superfície curva."],
+      ["faces","As superfícies planas que limitam um poliedro."],
+      ["arestas","Os segmentos onde duas faces se encontram."],
+      ["vértices","Os pontos onde várias arestas se encontram."],
+      ["planificação","A figura plana que, dobrada, forma um sólido."],
+      ["volume","O espaço ocupado por um sólido; mede-se em cm³, dm³, m³."],
+      ["paralelepípedo","Prisma com 6 faces retangulares, como uma caixa."],
+      ["cubo","Paralelepípedo com 6 faces quadradas iguais."],
+      ["capacidade","A quantidade de líquido que cabe num recipiente; mede-se em litros."],
+      ["litro","Unidade de capacidade: 1 L = 1 dm³ = 1000 cm³."]
     ],
     quiz:[
-      {q:"O que mede o volume de um sólido?", opts:["O espaço que ele ocupa, em unidades cúbicas","O seu peso","A sua área total","O número de faces"], correct:0, explain:"O volume mede o espaço ocupado por um sólido, em unidades cúbicas (ex.: cm³, m³)."},
-      {q:"Qual é a fórmula do volume do paralelepípedo retângulo?", opts:["Comprimento × largura × altura","Lado × lado","2 × (comprimento + largura)","Base × altura ÷ 2"], correct:0, explain:"O volume do paralelepípedo retângulo é comprimento × largura × altura."},
-      {q:"Qual é a fórmula do volume do cubo?", opts:["Aresta × aresta × aresta","Aresta × 4","Aresta × 6","Aresta ÷ 2"], correct:0, explain:"O volume do cubo é aresta × aresta × aresta (aresta³)."},
-      {q:"O que é uma aresta de um sólido?", opts:["Cada linha onde duas faces se encontram","Cada face do sólido","O centro do sólido","O volume do sólido"], correct:0, explain:"A aresta é cada uma das linhas onde duas faces de um sólido se encontram."},
-      {q:"O que é o cubo, em relação ao paralelepípedo?", opts:["Um paralelepípedo cujas faces são todas quadrados iguais","Um paralelepípedo sem faces","Uma figura plana","Um sólido sem arestas"], correct:0, explain:"O cubo é um paralelepípedo cujas faces são todas quadrados iguais."},
-      {q:"Uma caixa tem 2 m de comprimento, 3 m de largura e 1 m de altura. Qual é o seu volume?", opts:["6 m³","5 m³","6 m²","12 m³"], correct:0, explain:"2 m × 3 m × 1 m = 6 m³."},
-      {q:"Um cubo tem arestas de 3 cm. Qual é o seu volume?", opts:["27 cm³","9 cm³","12 cm³","6 cm³"], correct:0, explain:"3 cm × 3 cm × 3 cm = 27 cm³."},
-      {q:"A quantos dm³ corresponde 1 litro?", opts:["1 dm³","10 dm³","100 dm³","0,1 dm³"], correct:0, explain:"1 litro corresponde a 1 dm³."},
-      {q:"O que mede a capacidade de um recipiente?", opts:["A quantidade de líquido ou substância que pode conter","O seu peso vazio","O número de faces que tem","A sua altura"], correct:0, explain:"A capacidade é a quantidade de líquido ou de outra substância que um recipiente pode conter."},
-      {q:"Em que unidades se mede o volume?", opts:["Unidades cúbicas, como cm³ ou m³","Unidades quadradas, como cm²","Litros apenas","Graus"], correct:0, explain:"O volume mede-se em unidades cúbicas, como cm³ ou m³."}
+      {q:"Um cubo tem 4 cm de aresta. Qual é o seu volume?", opts:["16 cm³","12 cm³","64 cm³","96 cm³"], correct:2, explain:"V = 4 × 4 × 4 = 64 cm³. O 16 é a área de uma face (4 × 4), o 12 é 4 × 3, e o 96 é a área das 6 faces juntas (6 × 16), que se mede em cm², não em cm³."},
+      {q:"Uma caixa mede 5 cm × 2 cm × 3 cm. Qual é o seu volume?", opts:["10 cm³","30 cm³","62 cm²","30 cm²"], correct:1, explain:"V = 5 × 2 × 3 = 30 cm³. O 10 é a soma das medidas, o 62 cm² é a área de todas as faces, e «30 cm²» tem a unidade errada: o volume mede-se em cm³."},
+      {q:"Se a aresta de um cubo duplicar, o que acontece ao volume?", opts:["Fica 2 vezes maior","Fica 4 vezes maior","Fica 6 vezes maior","Fica 8 vezes maior"], correct:3, explain:"A aresta conta três vezes (comprimento, largura e altura): 2 × 2 × 2 = 8. Experimenta: aresta 1 → 1 cm³; aresta 2 → 8 cm³. O «4 vezes» é o que acontece à área de uma face."},
+      {q:"Quantos cm³ tem 1 litro?", opts:["10 cm³","100 cm³","1000 cm³","10 000 cm³"], correct:2, explain:"1 L = 1 dm³, que é um cubo de 10 cm × 10 cm × 10 cm = 1000 cm³. Por isso, 1 mL = 1 cm³."},
+      {q:"Quantos litros cabem num depósito de 2,5 m³?", opts:["25 L","250 L","2500 L","25 000 L"], correct:2, explain:"1 m³ = 1000 dm³ = 1000 L, por isso 2,5 m³ = 2500 L. O 25 e o 250 vêm de multiplicar por 10 ou por 100: nas unidades de volume, cada passo é × 1000."},
+      {q:"Um prisma tem uma base com 12 cm² de área e 5 cm de altura. Qual é o volume?", opts:["17 cm³","30 cm³","60 cm³","60 cm²"], correct:2, explain:"V = área da base × altura = 12 × 5 = 60 cm³. O 17 soma em vez de multiplicar, o 30 divide por 2 sem razão (isso é para a área do triângulo), e o volume mede-se em cm³."},
+      {q:"Um cilindro tem 2 cm de raio e 10 cm de altura. Qual é o volume? (π ≈ 3,14)", opts:["125,6 cm³","62,8 cm³","502,4 cm³","40 cm³"], correct:0, explain:"Área da base: 3,14 × 2 × 2 = 12,56 cm². Volume: 12,56 × 10 = 125,6 cm³. O 62,8 esquece de elevar o raio ao quadrado (usa 3,14 × 2 em vez de 3,14 × 2 × 2), e o 502,4 usa o diâmetro (4) como se fosse o raio."},
+      {q:"Quantos cubinhos de 1 cm de aresta cabem num cubo de 2 cm de aresta?", opts:["2","4","6","8"], correct:3, explain:"Numa camada cabem 2 × 2 = 4 cubinhos, e há 2 camadas: 4 × 2 = 8. O 4 só conta uma camada."},
+      {q:"Quantos quadrados tem a planificação de um cubo?", opts:["4","6","8","12"], correct:1, explain:"O cubo tem 6 faces, por isso a planificação tem 6 quadrados. O 8 é o número de vértices e o 12 o número de arestas."},
+      {q:"«Duas caixas com o mesmo volume têm a mesma forma.» Verdadeiro ou falso? Escolhe a resposta com a justificação certa.", opts:["Verdadeiro. O mesmo volume quer dizer as mesmas medidas.","Falso. Uma caixa de 2 × 2 × 6 e outra de 1 × 4 × 6 têm as duas 24 cm³, mas formas diferentes.","Verdadeiro. Duas caixas de 2 × 3 × 4 têm o mesmo volume.","Falso. O volume depende só da altura."], correct:1, explain:"Basta um contraexemplo: 2 × 2 × 6 = 24 e 1 × 4 × 6 = 24, mas uma é mais «quadrada» e a outra mais achatada. Um exemplo em que dá certo não prova que é sempre assim."}
+    ],
+    posters:[
+      {title:"🧊 Exemplo 1 — Contar cubos por camadas", svg:'<ul class="wheel-legend">'+
+        '<li><span aria-hidden="true">🎯</span><span><b>O que queremos descobrir:</b> quantos cubos de 1 cm de aresta cabem numa caixa de 4 cm × 3 cm × 2 cm.</span></li>'+
+        '<li><span aria-hidden="true">🚦</span><span><b>Como começar:</b> pensa por camadas. Primeiro enche o fundo da caixa.</span></li>'+
+        '<li><span aria-hidden="true">👣</span><span><b>Passo a passo:</b><br>Uma camada: 4 cubos de comprido × 3 de largura = 12 cubos<br>Camadas: a caixa tem 2 cm de altura, por isso cabem 2 camadas<br>Total: 12 × 2 = 24 cubos</span></li>'+
+        '<li><span aria-hidden="true">✅</span><span><b>Resultado:</b> cabem 24 cubos: o volume da caixa é 24 cm³.</span></li>'+
+        '<li><span aria-hidden="true">🔍</span><span><b>Verificar:</b> é a fórmula do paralelepípedo: 4 × 3 × 2 = 24. Comprimento × largura é a camada; vezes a altura é o número de camadas.</span></li>'+
+        '</ul>'},
+      {title:"📦 Exemplo 2 — Paralelepípedo e cubo", svg:'<ul class="wheel-legend">'+
+        '<li><span aria-hidden="true">🎯</span><span><b>O que queremos descobrir:</b> o volume de uma caixa de 5 cm × 4 cm × 3 cm, o de um cubo de 3 cm de aresta e o que acontece se a aresta do cubo duplicar.</span></li>'+
+        '<li><span aria-hidden="true">🚦</span><span><b>Como começar:</b> V = comprimento × largura × altura. No cubo, as três medidas são iguais.</span></li>'+
+        '<li><span aria-hidden="true">👣</span><span><b>Passo a passo:</b><br>Caixa: 5 × 4 × 3 = 60 cm³<br>Cubo de 3 cm: 3 × 3 × 3 = 27 cm³<br>Cubo de 6 cm (aresta a dobrar): 6 × 6 × 6 = 216 cm³</span></li>'+
+        '<li><span aria-hidden="true">✅</span><span><b>Resultado:</b> 60 cm³ e 27 cm³. Com a aresta a dobrar, o cubo passa a ter 216 cm³: 8 vezes mais (216 ÷ 27 = 8).</span></li>'+
+        '<li><span aria-hidden="true">🔍</span><span><b>Verificar:</b> duplicar a aresta duplica o comprimento, a largura e a altura: 2 × 2 × 2 = 8. Erro a evitar: pensar que o volume só duplica.</span></li>'+
+        '</ul>'},
+      {title:"🔁 Exemplo 3 — Converter unidades de volume", svg:'<ul class="wheel-legend">'+
+        '<li><span aria-hidden="true">🎯</span><span><b>O que queremos descobrir:</b> quantos cm³ são 2,5 dm³, e quantos dm³ são 3000 cm³.</span></li>'+
+        '<li><span aria-hidden="true">🚦</span><span><b>Como começar:</b> 1 dm³ é um cubo de 10 cm de aresta: 10 × 10 × 10 = 1000 cm³. Cada unidade de volume é 1000 vezes a seguinte.</span></li>'+
+        '<li><span aria-hidden="true">👣</span><span><b>Passo a passo:</b><br>2,5 dm³ = 2,5 × 1000 = 2500 cm³<br>3000 cm³ = 3000 ÷ 1000 = 3 dm³<br>Da mesma forma, 1 m³ = 1000 dm³</span></li>'+
+        '<li><span aria-hidden="true">✅</span><span><b>Resultado:</b> 2,5 dm³ = 2500 cm³ e 3000 cm³ = 3 dm³.</span></li>'+
+        '<li><span aria-hidden="true">🔍</span><span><b>Verificar:</b> passar para uma unidade mais pequena dá um número maior (2,5 → 2500). Erro a evitar: multiplicar só por 10, como nos comprimentos. Nos volumes são três dimensões: 10 × 10 × 10.</span></li>'+
+        '</ul>'},
+      {title:"🐠 Exemplo 4 — Volume e capacidade", svg:'<ul class="wheel-legend">'+
+        '<li><span aria-hidden="true">🎯</span><span><b>O que queremos descobrir:</b> quantos litros de água leva um aquário de 40 cm × 25 cm × 30 cm, cheio até cima.</span></li>'+
+        '<li><span aria-hidden="true">🚦</span><span><b>Como começar:</b> calcula o volume em cm³ e lembra-te: 1 L = 1 dm³ = 1000 cm³.</span></li>'+
+        '<li><span aria-hidden="true">👣</span><span><b>Passo a passo:</b><br>V = 40 × 25 × 30 = 30 000 cm³<br>30 000 cm³ = 30 000 ÷ 1000 = 30 dm³<br>30 dm³ = 30 L</span></li>'+
+        '<li><span aria-hidden="true">✅</span><span><b>Resultado:</b> o aquário leva 30 litros.</span></li>'+
+        '<li><span aria-hidden="true">🔍</span><span><b>Verificar:</b> com as medidas em dm (4 × 2,5 × 3), o volume dá logo 30 dm³ = 30 L. Faz sentido: um garrafão de 5 L é muito mais pequeno do que este aquário.</span></li>'+
+        '</ul>'},
+      {title:"🔺 Exemplo 5 — O volume de um prisma", svg:'<ul class="wheel-legend">'+
+        '<li><span aria-hidden="true">🎯</span><span><b>O que queremos descobrir:</b> o volume de um prisma triangular (como certas barras de chocolate em forma de triângulo). A base é um triângulo com 4 cm de base e 3 cm de altura; o prisma tem 10 cm de comprimento.</span></li>'+
+        '<li><span aria-hidden="true">🚦</span><span><b>Como começar:</b> em qualquer prisma, V = área da base × altura do prisma. A «altura do prisma» é a distância entre as duas bases: aqui, os 10 cm.</span></li>'+
+        '<li><span aria-hidden="true">👣</span><span><b>Passo a passo:</b><br>Área da base (triângulo): 4 × 3 ÷ 2 = 6 cm²<br>Volume: 6 × 10 = 60 cm³</span></li>'+
+        '<li><span aria-hidden="true">✅</span><span><b>Resultado:</b> o prisma tem 60 cm³.</span></li>'+
+        '<li><span aria-hidden="true">🔍</span><span><b>Verificar:</b> o prisma é metade de uma caixa de 4 × 3 × 10 = 120 cm³, cortada na diagonal: 120 ÷ 2 = 60. ✓ A mesma regra serve para o paralelepípedo: a base é o retângulo do fundo.</span></li>'+
+        '</ul>'},
+      {title:"🥫 Exemplo 6 — O volume de um cilindro", svg:'<ul class="wheel-legend">'+
+        '<li><span aria-hidden="true">🎯</span><span><b>O que queremos descobrir:</b> o volume de uma lata com 8 cm de diâmetro e 10 cm de altura. (π ≈ 3,14)</span></li>'+
+        '<li><span aria-hidden="true">🚦</span><span><b>Como começar:</b> o cilindro é como um prisma de base redonda: V = área da base × altura. Primeiro o raio: 8 ÷ 2 = 4 cm.</span></li>'+
+        '<li><span aria-hidden="true">👣</span><span><b>Passo a passo:</b><br>Área da base: 3,14 × 4 × 4 = 50,24 cm²<br>Volume: 50,24 × 10 = 502,4 cm³<br>Em mL: 502,4 cm³ ≈ 502 mL</span></li>'+
+        '<li><span aria-hidden="true">✅</span><span><b>Resultado:</b> a lata tem cerca de 502 cm³, um pouco mais de meio litro.</span></li>'+
+        '<li><span aria-hidden="true">🔍</span><span><b>Verificar:</b> a lata cabe numa caixa de 8 × 8 × 10 = 640 cm³, por isso o volume tem de ser menor: 502,4 &lt; 640 ✓. Erro a evitar: usar o diâmetro como raio (dava 2009,6 cm³, mais do que a caixa à volta!).</span></li>'+
+        '</ul>'}
     ],
     compare:{
-      left:{title:"📦 Paralelepípedo retângulo", points:["Tem 6 faces retangulares","Volume = comprimento × largura × altura","As faces podem ter tamanhos diferentes"]},
-      right:{title:"🧊 Cubo", points:["Tem 6 faces quadradas iguais","Volume = aresta × aresta × aresta","É um caso especial de paralelepípedo"]}
+      left:{title:"🟩 Área", points:["Mede uma superfície (duas dimensões)","Unidades quadradas: cm², m²","Ex.: o papel para embrulhar uma caixa"]},
+      right:{title:"🧊 Volume", points:["Mede o espaço ocupado (três dimensões)","Unidades cúbicas: cm³, m³ (e litros)","Ex.: o que cabe dentro da caixa"]}
     },
     boss:"Ficha de avaliação — página a confirmar no manual"
   },
