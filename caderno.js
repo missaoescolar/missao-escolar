@@ -20,5 +20,5 @@
     });
   });
   document.getElementById("caderno").innerHTML = total ? html :
-    '<p class="cad-vazio">O teu caderno ainda está vazio.<br>No fim do 🎯 Praticar de cada mundo há um <b>🎫 Bilhete de saída</b>: escreve lá e toca em «Guardar no caderno».</p>';
+    '<p class="cad-vazio">O teu caderno ainda está vazio. Escolhe um mundo que já estudaste, vai ao fim do 🎯 Praticar e preenche o teu primeiro 🎫 Bilhete de saída.</p>';
 })();
