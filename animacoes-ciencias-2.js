@@ -345,39 +345,52 @@
       : ["Fase pós-ovulatória (ou lútea)","o corpo amarelo produz progesterona · o endométrio fica pronto"];
     const esp = d => d<=5 ? 3 : d<=14 ? 3 + (d-5)*1.1 : 13;
     const leg = (x, cor, txt) => r(x,272,12,12,{rx:3, fill:cor})+t(x+16,282,txt,{ta:"start", fs:9.5, fw:600});
+    /* the egg's way: out of the ovary, caught by the fimbriae, along the Fallopian tube (it does not reach the uterus unless fertilised) */
+    const TRAJ = "M204,110 L206,100 C212,88 222,83 238,84";
+    const viagem = S => { S.limpar("#viagem"); S.mostrar("#trajeto, #lTrompa"); S.esconder("#ovo"); S.fluxo("#viagem", TRAJ, 1, 3.5, "#E0A800", 6.5); };
+    const semViagem = S => { S.limpar("#viagem"); S.esconder("#trajeto, #ovo"); };
     A.def({id:"ciclo-menstrual", mundo:"c7", cor:"m7", titulo:"O ciclo menstrual e as suas fases", h:296,
       cena: () =>
         arco("aMen",1,5,COR.men)+arco("aPre",6,13,COR.pre)+arco("aOv",14,14,COR.ov)+arco("aPos",15,28,COR.pos)+
         g({id:"pont", style:"transform-origin:"+CX+"px "+CY+"px; transform:rotate(0deg)"}, l(CX,CY,CX,CY-R+4,{stroke:"currentColor", sw:3, lc:"round"})+c(CX,CY-R+4,6,{fill:"currentColor"}))+
         c(CX,CY,30,{fill:"var(--surface)", stroke:"var(--border)", sw:1})+t(CX,CY-2,"dia",{fs:10, fw:400})+t(CX,CY+14,"1",{id:"dia", fs:16})+
         t(CX,30,"um ciclo ≈ 28 dias",{fs:11})+
-        p("M254,96 C230,80 214,84 206,100 M346,96 C370,80 386,84 394,100",{stroke:"#C22B5C", sw:3})+
-        el(204,112,11,8,{fill:"#F4D7A8", stroke:"#B07800", sw:1.5})+el(394,112,11,8,{fill:"#F4D7A8", stroke:"#B07800", sw:1.5})+
+        p("M254,96 C230,80 214,84 206,100 M346,96 C366,80 378,84 386,100",{stroke:"#C22B5C", sw:10, lc:"round"})+
+        p("M254,96 C230,80 214,84 206,100 M346,96 C366,80 378,84 386,100",{stroke:"#FBE6EB", sw:6, lc:"round"})+
+        p("M206,100 l-7,-4 M206,100 l-8,2 M206,100 l-4,-8 M386,100 l7,-4 M386,100 l8,2 M386,100 l4,-8",{stroke:"#C22B5C", sw:2})+
+        g({id:"trajeto", cls:"an-h"}, p(TRAJ,{stroke:"#7B3FA8", sw:2.5, da:"5 4"})+p("M243,85 l-9,-5 l1,10 z",{fill:"#7B3FA8"}))+
+        t(236,70,"trompa de Falópio",{id:"lTrompa", cls:"an-h", fs:9.5})+
+        el(204,112,11,8,{fill:"#F4D7A8", stroke:"#B07800", sw:1.5})+el(386,112,11,8,{fill:"#F4D7A8", stroke:"#B07800", sw:1.5})+
         c(204,112,4,{id:"foliculo", cls:"an-h", fill:"#FFF1C2", stroke:"#B07800", sw:1})+c(204,112,5,{id:"corpoAm", cls:"an-h", fill:"#F5C342", stroke:"#B07800", sw:1})+
         p(UT,{fill:"#F6C9D3", stroke:"#C22B5C", sw:2})+
         p("M262,100 Q300,92 338,100 Q338,138 300,164 Q262,138 262,100 Z",{id:"endo", fill:"#FBE6EB", stroke:"#D1495B", sw:3})+
-        c(206,112,5,{id:"ovo", cls:"an-h", fill:"#FFF1C2", stroke:"#B07800", sw:1})+
+        c(206,112,6.5,{id:"ovo", cls:"an-h", fill:"#FFE08A", stroke:"#8A5A00", sw:1.5})+
+        g({id:"viagem"})+
         g({id:"gotas"})+
         t(300,30,"",{id:"fase", fs:12.5})+t(300,46,"",{id:"fase2", fs:9.5, fw:400})+
-        t(300,238,"útero (endométrio por dentro)",{fs:10.5})+t(206,136,"ovário",{fs:10})+t(394,136,"ovário",{fs:10})+
+        t(300,238,"útero (endométrio por dentro)",{fs:10.5})+t(206,136,"ovário",{fs:10})+t(374,136,"ovário",{fs:10})+
         leg(4,COR.men,"menstrual (1–5)")+leg(106,COR.pre,"pré-ovulatória (6–13)")+leg(222,COR.ov,"ovulação (≈14)")+leg(310,COR.pos,"pós-ovulatória"),
       passos:[
         {t:"Depois da <b>menarca</b> (a primeira menstruação), o corpo repete um <b>ciclo menstrual</b>. Em média dura <b>28 dias</b>, mas é normal variar — e nos primeiros anos é muitas vezes irregular. Tem quatro momentos, cada um com o seu nome.", f:S => {}},
         {t:"<b>Fase menstrual</b> (dias 1 a 5, mais ou menos): é a <b>menstruação</b>. A camada interior do útero, o <b>endométrio</b>, desprende-se e sai pela vagina com um pouco de sangue. Dura normalmente de 2 a 7 dias.", f:S => {
-          S.cls("#aMen","an-pulse"); S.texto("#fase","Fase menstrual"); S.texto("#fase2","dias 1 a 5 · o endométrio desprende-se"); S.attr("#endo","stroke-width",3);
+          semViagem(S); S.cls("#aMen","an-pulse"); S.texto("#fase","Fase menstrual"); S.texto("#fase2","dias 1 a 5 · o endométrio desprende-se"); S.attr("#endo","stroke-width",3);
           S.fluxo("#gotas","M300,170 L300,214",3,2.4,"#D1495B",3); }},
         {t:"<b>Fase pré-ovulatória</b> (ou <b>folicular</b>): num ovário, um <b>folículo</b> amadurece com um óvulo lá dentro e produz a hormona <b>estrogénio</b>. No útero, o endométrio volta a <b>engrossar</b>.", f:S => {
-          S.cls("#aMen","an-pulse",false); S.cls("#aPre","an-pulse"); S.limpar("#gotas"); S.mostrar("#foliculo");
+          semViagem(S); S.cls("#aMen","an-pulse",false); S.cls("#aPre","an-pulse"); S.limpar("#gotas"); S.mostrar("#foliculo");
           S.mover("#pont","rotate("+(ang(10)+90)+"deg)"); S.texto("#dia","10"); S.texto("#fase","Fase pré-ovulatória (folicular)"); S.texto("#fase2","um folículo amadurece · o endométrio engrossa"); S.attr("#endo","stroke-width",8); }},
-        {t:"<b>Ovulação</b>, por volta do <b>dia 14</b>: o folículo rompe-se e o ovário liberta o <b>óvulo</b>, que segue pela <b>trompa de Falópio</b>. São os dias em que pode haver fecundação.", f:S => {
+        {t:"<b>Ovulação</b>, por volta do <b>dia 14</b>: o folículo rompe-se e o ovário liberta o <b>óvulo</b> (o ponto amarelo). As «franjas» da ponta da trompa, as <b>fímbrias</b>, apanham-no e ele entra na <b>trompa de Falópio</b>. Segue o tracejado: é o seu caminho.", f:S => {
           S.cls("#aPre","an-pulse",false); S.cls("#aOv","an-pulse"); S.esconder("#foliculo");
-          S.mover("#pont","rotate("+(ang(14)+90)+"deg)"); S.texto("#dia","14"); S.texto("#fase","Ovulação"); S.texto("#fase2","o ovário liberta um óvulo"); S.attr("#endo","stroke-width",12);
-          S.mostrar("#ovo"); S.mover("#ovo","translate(46px,-14px)"); }},
+          S.mover("#pont","rotate("+(ang(14)+90)+"deg)"); S.texto("#dia","14"); S.texto("#fase","Ovulação"); S.texto("#fase2","o ovário liberta um óvulo, que entra na trompa"); S.attr("#endo","stroke-width",12);
+          viagem(S); }},
+        {t:"<b>A viagem na trompa</b>: o óvulo avança devagar pela trompa, em direção ao útero. É <b>na trompa</b> que pode encontrar espermatozoides e ser <b>fecundado</b>. Se isso não acontecer, o óvulo <b>desfaz-se em cerca de um dia</b>, ainda pelo caminho.", f:S => {
+          S.cls("#aOv","an-pulse"); S.cls("#lTrompa","an-pulse");
+          S.mover("#pont","rotate("+(ang(15)+90)+"deg)"); S.texto("#dia","15"); S.texto("#fase","O óvulo na trompa"); S.texto("#fase2","pode ser fecundado aqui (ou desfaz-se)");
+          viagem(S); }},
         {t:"<b>Fase pós-ovulatória</b> (ou <b>lútea</b>): o folículo vazio transforma-se no <b>corpo amarelo</b> (corpo lúteo), que produz <b>progesterona</b>. O endométrio fica espesso e cheio de vasos sanguíneos, pronto a receber um possível bebé.", f:S => {
-          S.cls("#aOv","an-pulse",false); S.cls("#aPos","an-pulse"); S.esconder("#ovo"); S.mostrar("#corpoAm");
+          S.cls("#aOv","an-pulse",false); S.cls("#lTrompa","an-pulse",false); S.cls("#aPos","an-pulse"); semViagem(S); S.esconder("#lTrompa"); S.mostrar("#corpoAm");
           S.mover("#pont","rotate("+(ang(22)+90)+"deg)"); S.texto("#dia","22"); S.texto("#fase","Fase pós-ovulatória (lútea)"); S.texto("#fase2","o corpo amarelo produz progesterona"); S.attr("#endo","stroke-width",13); }},
         {t:"Se o óvulo <b>não</b> for fecundado, o corpo amarelo desaparece, as hormonas baixam e o endométrio volta a desprender-se: começa uma nova <b>fase menstrual</b> — e um novo ciclo.", f:S => {
-          S.cls("#aPos","an-pulse",false); S.esconder("#corpoAm");
+          S.cls("#aPos","an-pulse",false); semViagem(S); S.esconder("#corpoAm");
           S.mover("#pont","rotate(360deg)"); S.texto("#dia","1"); S.texto("#fase","Novo ciclo: fase menstrual"); S.texto("#fase2","as hormonas baixam · o endométrio desprende-se"); S.attr("#endo","stroke-width",3);
           S.fluxo("#gotas","M300,170 L300,214",3,2.4,"#D1495B",3); }},
         {t:"Experimenta: arrasta para mudar o <b>dia do ciclo</b> e vê o nome da fase. Uma app ou um calendário ajudam a saber quando vem a próxima menstruação.", f:S => {
@@ -389,7 +402,9 @@
             S.limpar("#gotas"); if(d<=5) S.fluxo("#gotas","M300,170 L300,214",3,2.4,"#D1495B",3);
             if(d>=6 && d<=13) S.mostrar("#foliculo"); else S.esconder("#foliculo");
             if(d>=15) S.mostrar("#corpoAm"); else S.esconder("#corpoAm");
-            if(d>=14 && d<=16){ S.mostrar("#ovo"); S.mover("#ovo","translate("+((d-13)*18)+"px,"+(-(d-13)*5)+"px)"); } else S.esconder("#ovo");
+            S.limpar("#viagem");
+            if(d===14 || d===15){ S.mostrar("#ovo, #trajeto, #lTrompa"); S.mover("#ovo", d===14 ? "translate(0px,-12px)" : "translate(26px,-27px)"); }
+            else S.esconder("#ovo, #trajeto, #lTrompa");
           }); }}
       ]});
   })();
