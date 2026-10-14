@@ -366,4 +366,6 @@
       renderThemes("tipos");
     }
   };
+  const pedido = new URLSearchParams(location.search).get("tipo");   // from a Português world: "Agora tu: escrever…"
+  if(pedido) window.MissaoEscrita.comecar(pedido);
 })();

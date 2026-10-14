@@ -2,11 +2,128 @@
 <html lang="pt-PT">
 <head>
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Oficina de Escrita — Missão Escolar</title>
-<!-- A Oficina de Escrita passou a viver dentro do separador Português do 6.º ano. Esta página só reencaminha links antigos. -->
-<meta http-equiv="refresh" content="0; url=6ano.html#pt/escrita">
+<link rel="stylesheet" href="style.css?v=20261014-0845">
+<link rel="stylesheet" href="escrita.css?v=20261014-0845">
 </head>
 <body>
-<p>A Oficina de Escrita está agora dentro do Português do 6.º ano. <a href="6ano.html#pt/escrita">Abrir a Oficina</a></p>
-</body>
-</html>
+
+<div class="page">
+  <!-- the Oficina is for everyone (diário feliz, histórias, poemas, teclado), not only for Português -->
+  <div class="topbar">
+    <p class="crumbs"><a href="index.html">🏠 Início</a> › Oficina de Escrita</p>
+    <a class="ghost" href="pais.html">👪 Para pais</a>
+  </div>
+
+    <div class="ws-head">
+      <div>
+        <h2>✍️ Oficina de Escrita</h2>
+        <p>Treina os dedos no teclado e as ideias no papel — ao teu ritmo.</p>
+      </div>
+      <button type="button" class="ws-btn" id="ws-curio-open">💡 Sabias que…?</button>
+    </div>
+
+    <div class="tabs ws-tabs" role="tablist">
+      <button class="tab-btn" type="button" role="tab" data-tab="teclado">⌨️ Treino de teclado</button>
+      <button class="tab-btn" type="button" role="tab" data-tab="escrever">✍️ Escrever</button>
+    </div>
+
+    <section id="tab-teclado" class="ws-panel" data-panel="teclado">
+      <div class="ws-card">
+        <div class="ws-row">
+          <label>Frases de
+            <select id="ty-source">
+              <option value="mix">🎲 Tudo misturado</option>
+              <option value="fun">😄 Frases divertidas</option>
+              <option value="pt">📖 Português</option>
+              <option value="hgp">📜 HGP</option>
+              <option value="math">🔢 Matemática</option>
+              <option value="cn">🔬 Ciências</option>
+              <option value="eng">🌐 Inglês</option>
+            </select>
+          </label>
+          <label>Tamanho
+            <select id="ty-level">
+              <option value="short">🌱 Curtas</option>
+              <option value="medium">🌿 Médias</option>
+              <option value="long">🌳 Longas</option>
+            </select>
+          </label>
+          <label class="ws-check"><input type="checkbox" id="ty-accents"> Ignorar acentos</label>
+          <label class="ws-check"><input type="checkbox" id="ty-clock"> Mostrar relógio</label>
+        </div>
+        <p class="ty-target" id="ty-target" aria-live="polite"></p>
+        <textarea id="ty-input" class="ty-input" rows="3" spellcheck="false" autocomplete="off" autocapitalize="off"
+          placeholder="Começa a escrever aqui — o tempo só conta depois da primeira letra."></textarea>
+        <div class="ws-row ty-status">
+          <span id="ty-live"></span>
+          <button type="button" class="ws-btn" id="ty-next">Outra frase ↻</button>
+        </div>
+        <div id="ty-result" class="ty-result" hidden></div>
+      </div>
+      <details class="ws-card ws-tips">
+        <summary>🖐️ Dicas para escrever sem olhar para o teclado</summary>
+        <ul>
+          <li>Pousa os dedos na <b>fila do meio</b>: mão esquerda em <kbd>A</kbd> <kbd>S</kbd> <kbd>D</kbd> <kbd>F</kbd>, mão direita em <kbd>J</kbd> <kbd>K</kbd> <kbd>L</kbd> <kbd>Ç</kbd>.</li>
+          <li>Sente os pequenos relevos no <kbd>F</kbd> e no <kbd>J</kbd>: são as tuas "casas".</li>
+          <li>Os polegares ficam na barra de espaços.</li>
+          <li>Primeiro acerta, depois acelera. A velocidade vem sozinha com o treino.</li>
+          <li>Acentos: no teclado português, carrega primeiro na tecla do acento (´ ` ^ ~) e depois na letra.</li>
+        </ul>
+      </details>
+    </section>
+
+    <section id="tab-escrever" class="ws-panel" data-panel="escrever" hidden>
+      <div class="ws-card">
+        <p class="ws-step">1. Escolhe um tema</p>
+        <div class="ws-chips" id="wr-cats" role="group" aria-label="Categorias de temas">
+          <button type="button" class="ws-chip" data-cat="feliz">😊 Diário feliz</button>
+          <button type="button" class="ws-chip" data-cat="atualidade">🌍 Atualidade</button>
+          <button type="button" class="ws-chip" data-cat="passado">🏛️ Viagem ao passado</button>
+          <button type="button" class="ws-chip" data-cat="tipos">📚 Por tipo de texto</button>
+          <button type="button" class="ws-chip" data-cat="surpresa">🎲 Surpreende-me</button>
+        </div>
+        <div class="ws-themes" id="wr-themes"></div>
+      </div>
+      <div class="ws-card">
+        <div class="ws-row">
+          <label>2. Tipo de texto
+            <select id="wr-type"></select>
+          </label>
+          <span class="wr-count" id="wr-count"></span>
+        </div>
+        <ol class="wr-steps" id="wr-steps"></ol>
+        <input id="wr-title" class="wr-title" type="text" placeholder="Título (podes mudar quando quiseres)" aria-label="Título">
+        <textarea id="wr-text" class="wr-text" rows="14" placeholder="Escreve aqui. Se ficares sem ideias, toca em 💡 E agora?" aria-label="O teu texto"></textarea>
+        <div class="wr-idle" id="wr-idle" hidden>Estás a pensar? Toca em <b>💡 E agora?</b> para uma pista.</div>
+        <div class="wr-hint" id="wr-hint" aria-live="polite" hidden></div>
+        <div class="ws-row wr-actions">
+          <button type="button" class="ws-btn primary" id="wr-next">💡 E agora?</button>
+          <button type="button" class="ws-btn" id="wr-twist">🎲 Reviravolta</button>
+          <button type="button" class="ws-btn" id="wr-done">✅ Terminei!</button>
+          <span class="wr-spacer"></span>
+          <button type="button" class="ws-btn" id="wr-download">⬇️ Guardar .txt</button>
+          <button type="button" class="ws-btn" id="wr-print">🖨️ Imprimir</button>
+          <button type="button" class="ws-btn" id="wr-new">📄 Novo texto</button>
+        </div>
+        <p class="ws-note">O texto fica guardado sozinho neste computador, mesmo que feches a página.</p>
+      </div>
+      <div class="ws-card">
+        <p class="ws-step">📚 Os meus textos</p>
+        <ul class="wr-saved" id="wr-saved"></ul>
+      </div>
+    </section>
+</div>
+
+<script src="armazem.js?v=20261014-0845"></script>
+<!-- the subject data gives the typing sentences («Frases de Português, HGP…») -->
+<script src="data/portugues.js?v=20261014-0845"></script>
+<script src="data/hgp.js?v=20261014-0845"></script>
+<script src="data/matematica.js?v=20261014-0845"></script>
+<script src="data/cn.js?v=20261014-0845"></script>
+<script src="data/ingles.js?v=20261014-0845"></script>
+<script src="data/escrita.js?v=20261014-0845"></script>
+<script src="escrita.js?v=20261014-0845"></script>
+
+</body></html>

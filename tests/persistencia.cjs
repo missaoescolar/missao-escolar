@@ -370,7 +370,8 @@ async function browser(){
       const c=await connect(targets.find(t=>t.id===targetId).webSocketDebuggerUrl);
       await c.call('Runtime.enable');await c.call('Page.enable');
       await c.call('Page.navigate',{url:targetUrl});
-      for(let i=0;i<100;i++){if(await c.eval(targetUrl.includes('pais.html') ? '!!window.MissaoArmazem && !!document.getElementById("progresso-exportar")' : '!!window.__arenaTest && !!document.getElementById("cb-n2-0")'))return c;await delay(50);}
+      const ready=targetUrl.includes('pais.html') ? '!!window.MissaoArmazem && !!document.getElementById("progresso-exportar")' : targetUrl.includes('escrita.html') ? '!!window.MissaoEscrita && !!document.getElementById("wr-text")' : '!!window.__arenaTest && !!document.getElementById("cb-n2-0")';
+      for(let i=0;i<100;i++){if(await c.eval(ready))return c;await delay(50);}
       throw new Error('Page did not load');
     };
     const wait=async(c,expression)=>{
@@ -483,9 +484,10 @@ async function browser(){
       assert.equal((await saved(a,'pt_missions'))['p1-0'],true);await unblock(b);
     });
     await test('Edge: Oficina API still archives and restores a text',async()=>{
-      await a.eval('const text=document.getElementById("wr-text");text.value="O meu texto de teste.";text.dispatchEvent(new Event("input",{bubbles:true}));document.getElementById("wr-title").value="Teste";document.getElementById("wr-title").dispatchEvent(new Event("input",{bubbles:true}));document.getElementById("wr-done").click();document.getElementById("wr-archive").click();');
-      assert.equal((await saved(a,'ws_saved'))[0].text,'O meu texto de teste.');
-      assert.equal((await saved(a,'ws_draft')).text,'');
+      const o=await open(url.replace('6ano.html','escrita.html'));
+      await o.eval('const text=document.getElementById("wr-text");text.value="O meu texto de teste.";text.dispatchEvent(new Event("input",{bubbles:true}));document.getElementById("wr-title").value="Teste";document.getElementById("wr-title").dispatchEvent(new Event("input",{bubbles:true}));document.getElementById("wr-done").click();document.getElementById("wr-archive").click();');
+      assert.equal((await saved(o,'ws_saved'))[0].text,'O meu texto de teste.');
+      assert.equal((await saved(o,'ws_draft')).text,'');
     });
     await test('Edge: progress survives page reload and a newly opened tab',async()=>{
       await a.call('Page.reload');

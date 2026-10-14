@@ -1067,8 +1067,7 @@
       if(OFICINA[w.id]){
         const of = OFICINA[w.id];
         P.appendChild(bigLink("✍️", "Agora tu: escrever "+of[1], "Na Oficina de Escrita, com pistas quando ficares sem ideias.", function(){
-          openView("pt", "escrita");
-          if(window.MissaoEscrita) window.MissaoEscrita.comecar(of[0]);
+          location.href = "escrita.html?tipo=" + encodeURIComponent(of[0]);
         }));
       }
       if(typeof MATH_WORLDS !== "undefined" && MATH_WORLDS.indexOf(w) !== -1){
@@ -1388,7 +1387,8 @@
   function route(subject, part, stage){
     if(!panels[subject]) return;
     activate(subject);
-    if(part==="arena" || part==="escrita"){ showView(subject, part); return; }
+    if(part==="escrita"){ location.replace("escrita.html"); return; }   // the Oficina has its own page now
+    if(part==="arena"){ showView(subject, part); return; }
     showView(subject, "mundos");
     SUBJ[subject].show(part || null, stage);
   }
@@ -1416,7 +1416,7 @@
 
   tabBtns.forEach(function(b){ b.addEventListener("click", function(){ go(b.dataset.subject); }); });
   Object.keys(panels).forEach(function(k){
-    panels[k].querySelectorAll(".subtab").forEach(function(b){ b.addEventListener("click", function(){ openView(k, b.dataset.view); }); });
+    panels[k].querySelectorAll(".subtab[data-view]").forEach(function(b){ b.addEventListener("click", function(){ openView(k, b.dataset.view); }); });
   });
 
   function fromHash(){
