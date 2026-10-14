@@ -602,6 +602,10 @@
         passos(["<b>Afirmação:</b> responde numa frase. «Eu afirmo que…»",
                 "<b>Prova:</b> o que mostra que é verdade? Uma imagem do 📷 Ver de perto, uma animação ou uma experiência. «A prova é…»",
                 "<b>Raciocínio:</b> porque é que essa prova mostra que tens razão? Usa uma regra da ciência. «Isto acontece porque…»"]);
+      const m = (typeof MISSAO_CER !== "undefined") && MISSAO_CER[w.id];
+      if(m) corpo += '<details class="modelo"><summary>👀 Ver uma resposta-modelo <small>(só depois de escreveres a tua)</small></summary>'+
+        '<p><b>Afirmação:</b> '+escXml(m.a)+'</p><p><b>Prova:</b> '+escXml(m.p)+'</p><p><b>Raciocínio:</b> '+escXml(m.r)+'</p>'+
+        '<p class="modelo-nota">Compara com a tua: tens as três partes? A tua prova é uma observação ou uma experiência? O teu raciocínio usa uma regra da ciência?</p></details>';
     } else if(key === "hgp"){
       titulo = "🧠 Pensa como um historiador"; origem = "o método «Ler como um historiador» da Universidade de Stanford (EUA)";
       corpo = '<p><b>Fonte:</b> uma imagem do 📷 Ver de perto deste mundo, ou um documento do teu manual.</p>'+
@@ -629,6 +633,19 @@
     return d;
   }
 
+  /* ---------- 🧩 «Problema primeiro»: try alone, then compare two ways (neriage), then the rule in one sentence (matome) ---------- */
+  function buildProblema(pr){
+    const box = el("div","problema");
+    box.innerHTML = '<p class="problema-t">🧩 Problema primeiro <small>tenta sozinho antes de leres a explicação, como nas aulas de Matemática no Japão</small></p>'+
+      '<p class="problema-q">'+escXml(pr.q)+'</p>'+
+      '<details><summary>💡 Preciso de uma pista</summary><p>'+escXml(pr.dica)+'</p></details>'+
+      '<details><summary>👀 Já tentei: ver duas maneiras de resolver</summary><div class="problema-maneiras">'+
+        pr.maneiras.map(function(x, i){ return '<div><b>Maneira '+(i+1)+': '+escXml(x[0])+'</b><p>'+x[1]+'</p></div>'; }).join("")+
+      '</div><p><b>Resposta:</b> '+escXml(pr.resposta)+'</p><p class="problema-pergunta">Compara as duas maneiras: qual usaste? Qual achas mais rápida? E mais fácil de explicar?</p>'+
+      '<p class="problema-regra"><b>📌 A regra numa frase:</b> '+escXml(pr.regra)+'</p></details>';
+    return box;
+  }
+
   /* ---------- 🎫 Bilhete de saída (Japanese furikaeri / US exit ticket), saved per world in the "caderno" ---------- */
   function buildBilhete(w){
     const box = el("div","bilhete");
@@ -636,7 +653,7 @@
     const guardado = (MissaoArmazem.ler("caderno", {}) || {})[w.id] || {};
     box.innerHTML = '<p class="bilhete-t">🎫 Bilhete de saída <small>antes de saíres deste mundo: olhar para trás, como nas escolas do Japão</small></p>'+
       PERG.map(function(p){ return '<label><b>'+p[1]+'</b>'+(p[2] ? ' <small>('+p[2]+')</small>' : '')+'<textarea rows="2" data-k="'+p[0]+'">'+escXml(guardado[p[0]] || "")+'</textarea></label>'; }).join("")+
-      '<div class="bilhete-fim"><button type="button" class="ghost">💾 Guardar no caderno</button><small class="bilhete-ok">'+(guardado.data ? 'Guardado a '+escXml(guardado.data) : '')+'</small></div>';
+      '<div class="bilhete-fim"><button type="button" class="ghost">💾 Guardar no caderno</button><small class="bilhete-ok">'+(guardado.data ? 'Guardado a '+escXml(guardado.data) : '')+'</small><a class="bilhete-link" href="caderno.html">📓 Ver o meu caderno</a></div>';
     box.querySelector("button").addEventListener("click", function(){
       const e = {}; box.querySelectorAll("textarea").forEach(function(t){ e[t.dataset.k] = t.value.trim(); });
       e.data = new Date().toLocaleDateString("pt-PT");
@@ -906,6 +923,8 @@
       /* ===== 1. 📖 Aprender ===== */
       const A = panes.aprender;
       A.appendChild(el("p","lead",w.lead));
+      const prob = (typeof MISSAO_PROBLEMAS !== "undefined") && MISSAO_PROBLEMAS[w.id];
+      if(prob) A.appendChild(buildProblema(prob));
 
       const anims = window.MissaoAnim ? MissaoAnim.doMundo(w.id) : [];
       if(anims.length){

@@ -946,6 +946,23 @@
   .bilhete label{ display:block; margin:0 0 8px; font-size:0.9rem; }
   .bilhete textarea{ display:block; width:100%; margin-top:4px; font:inherit; padding:8px 10px; border-radius:10px; border:1.5px solid var(--border); background:var(--bg); color:var(--text); resize:vertical; }
   .bilhete-fim{ display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+  .bilhete-link{ margin-left:auto; color:var(--accent); font-family:"Lexend",sans-serif; font-weight:700; font-size:0.88rem; }
+  .modelo{ margin-top:10px; padding:8px 10px; border-radius:10px; background:var(--surface-2); }
+  .modelo summary{ cursor:pointer; font-family:"Lexend",sans-serif; font-weight:700; }
+  .modelo p{ margin:6px 0 0; line-height:1.5; }
+  .modelo-nota{ font-style:italic; color:var(--text-muted); }
+  /* 🧩 problem first (Maths) */
+  .problema{ border:2px solid var(--wc, var(--accent)); border-radius:16px; background:var(--wc-bg, var(--surface-2)); padding:12px 14px; }
+  .problema-t{ margin:0 0 6px; font-family:"Lexend",sans-serif; font-weight:800; display:flex; flex-direction:column; gap:2px; }
+  .problema-t small{ font-family:inherit; font-weight:400; font-size:0.82rem; color:var(--text-muted); }
+  .problema-q{ margin:0 0 8px; font-size:1.02rem; line-height:1.55; }
+  .problema details{ margin-top:6px; padding:8px 10px; border-radius:10px; background:var(--surface); }
+  .problema summary{ cursor:pointer; font-family:"Lexend",sans-serif; font-weight:700; }
+  .problema details p{ margin:6px 0 0; line-height:1.55; }
+  .problema-maneiras{ display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:8px; margin-top:8px; }
+  .problema-maneiras > div{ padding:8px 10px; border-radius:10px; border:1.5px solid var(--border); }
+  .problema-regra{ padding:8px 10px; border-radius:10px; background:var(--wc-bg, var(--surface-2)); }
+  .problema-pergunta{ font-style:italic; color:var(--text-muted); }
 
   /* ✏️ suggested activity under the explanation of each image */
   .lb-act{ margin:0 0 10px; padding:10px 12px; border-radius:12px; background:var(--surface-2); border-left:4px solid var(--accent); }
