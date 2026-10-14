@@ -568,7 +568,7 @@
     micro: "<b>Desenho de observação</b>, como num caderno de ciências: desenha um círculo grande (é o que se vê pelo microscópio) e, dentro, só o que vês, a lápis; pinta com as cores verdadeiras. Põe 2 ou 3 legendas com setas e escreve o nome e o tipo de microscópio. Por baixo: a data, uma coisa que aprendeste e uma pergunta que te ficou.",
     ilustracao: "<b>Desenhar de memória</b>: olha 1 minuto para a imagem, tapa-a e desenha-a com as legendas de que te lembrares. Depois destapa, compara e acrescenta com outra cor o que faltava. O que esqueceste é o que precisas de rever.",
     ciencias: "<b>Esboço científico</b>: desenha o que vês a lápis, com rigor (a forma e o tamanho contam mais do que a beleza) e legenda 3 partes com setas. Ao lado, escreve a cor, a forma, a textura e o tamanho aproximado.",
-    historia: "<b>Detetive da imagem</b>: escreve no caderno: o que vejo (pessoas, objetos, lugares)? Quando foi? Onde? Porque é importante para a história de Portugal? Termina com uma legenda de jornal, numa só frase.",
+    historia: "<b>Detetive da imagem</b>: escreve no caderno: o que vejo (pessoas, objetos, lugares)? Quando foi? Onde? Quem fez esta imagem, e para quê: para informar, para elogiar alguém, para convencer? Porque é importante para a história de Portugal? Termina com uma legenda de jornal, numa só frase.",
     matematica: "<b>A matemática escondida</b>: desenha a imagem e marca a matemática que encontras (formas, padrões, números, medidas). Depois inventa um problema com ela, resolve-o e dá-o a alguém da família para resolver.",
     portugues: "<b>Descrever</b>: escreve um parágrafo de 5 frases sobre a imagem, do geral para o pormenor, com pelo menos 3 adjetivos e uma comparação («parece…», «como…»).",
     ingles: "<b>Describe it in English</b>: write 3 sentences: «In this picture I can see…», «There is / There are…», «I think it is… because…». Then read them aloud.",
@@ -582,6 +582,70 @@
     if(im.il && disc === "ciencias") return ATIVIDADES.ilustracao;
     return ATIVIDADES[disc];
   }
+  /* ---------- 🧠 "Pensa como…": one thinking routine per subject, tied to the world's own content ---------- */
+  const semIcone = s => String(s).replace(/^[^A-Za-zÀ-ÿ0-9]+/, "").trim();
+  function passos(lista){ return '<ol class="metodo-passos">'+lista.map(function(p){ return '<li>'+p+'</li>'; }).join("")+'</ol>'; }
+  function buildMetodo(w, key){
+    let titulo, origem, corpo;
+    const cmp = w.compare ? [semIcone(w.compare.left.title), semIcone(w.compare.right.title)] : null;
+    if(key === "math"){
+      titulo = "🧠 Pensa como um matemático"; origem = "a resolução de problemas das aulas de Matemática no Japão";
+      const ex = (w.posters || [])[0];
+      corpo = '<p><b>Problema:</b> '+(ex ? 'o «'+escXml(semIcone(ex.title))+'», no 📖 Aprender. Tapa a resolução.' : 'a pergunta do Testa-te que achaste mais difícil.')+'</p>'+
+        passos(["<b>Sozinho primeiro:</b> tenta resolver sem ajuda, durante uns minutos. Errar faz parte.",
+                "<b>De outra maneira:</b> resolve outra vez, com outro caminho (um desenho, uma tabela, outra conta).",
+                "<b>Compara</b> as duas maneiras: dão o mesmo resultado? Qual é a mais rápida? Qual é a mais fácil de explicar?",
+                "<b>A regra numa frase:</b> escreve no caderno o que aprendeste, como se fosse para um colega."]);
+    } else if(key === "cn" || key === "cn7"){
+      titulo = "🧠 Pensa como um cientista"; origem = "a escrita científica das escolas dos EUA: afirmação, prova e raciocínio";
+      corpo = '<p><b>Pergunta:</b> '+(cmp ? 'qual é a diferença mais importante entre «'+escXml(cmp[0])+'» e «'+escXml(cmp[1])+'»?' : 'escolhe uma frase do resumo «Para o teste» e prova-a.')+'</p>'+
+        passos(["<b>Afirmação:</b> responde numa frase. «Eu afirmo que…»",
+                "<b>Prova:</b> o que mostra que é verdade? Uma imagem do 📷 Ver de perto, uma animação ou uma experiência. «A prova é…»",
+                "<b>Raciocínio:</b> porque é que essa prova mostra que tens razão? Usa uma regra da ciência. «Isto acontece porque…»"]);
+    } else if(key === "hgp"){
+      titulo = "🧠 Pensa como um historiador"; origem = "o método «Ler como um historiador» da Universidade de Stanford (EUA)";
+      corpo = '<p><b>Fonte:</b> uma imagem do 📷 Ver de perto deste mundo, ou um documento do teu manual.</p>'+
+        passos(["<b>Quem fez a fonte?</b> Quando, e para quê? Essa pessoa tinha interesse em contar a história de certa maneira?",
+                "<b>Contexto:</b> o que se passava em Portugal nessa altura? Usa a linha do tempo deste mundo.",
+                "<b>Confirma:</b> outra fonte, ou o resumo, diz o mesmo? Em que é que diferem?",
+                "<b>Lê com atenção:</b> que palavras ou pormenores mostram o ponto de vista de quem a fez?"]);
+    } else {
+      const g = (w.gloss || [])[Math.floor(Math.random() * (w.gloss || []).length)];
+      const ing = key === "eng";
+      titulo = ing ? "🧠 Word map" : "🧠 Mapa da palavra"; origem = "o «modelo de Frayer», usado nas escolas dos EUA para aprender vocabulário";
+      corpo = (g ? '<p><b>'+(ing ? "Word" : "Palavra")+':</b> «'+escXml(g[0])+'»</p>' : '')+
+        '<p>Num quadrado dividido em quatro, com a palavra no meio, escreve:</p>'+
+        passos(ing ? ["<b>Meaning</b> in English, with your own words (then check the glossary).",
+                      "<b>A drawing</b> or a symbol that helps you remember it.",
+                      "<b>Examples:</b> 2 sentences using the word.",
+                      "<b>Non-examples:</b> a word that is NOT the same, and why."]
+                   : ["<b>O que quer dizer</b>, por palavras tuas (depois confirma no glossário).",
+                      "<b>Características:</b> o que tem sempre?",
+                      "<b>Exemplos:</b> 2 exemplos, ou uma frase de um texto.",
+                      "<b>Não-exemplos:</b> uma coisa parecida que não é isto, e porquê."]);
+    }
+    const d = el("details","metodo");
+    d.innerHTML = '<summary><b>'+titulo+'</b><small>Como fazem as escolas lá fora: '+origem+'</small></summary><div class="metodo-corpo">'+corpo+'</div>';
+    return d;
+  }
+
+  /* ---------- 🎫 Bilhete de saída (Japanese furikaeri / US exit ticket), saved per world in the "caderno" ---------- */
+  function buildBilhete(w){
+    const box = el("div","bilhete");
+    const PERG = [["a","O que aprendi","escreve de memória, sem espreitar o resumo"],["b","O que ainda não percebi bem",""],["c","O que quero saber a seguir",""]];
+    const guardado = (MissaoArmazem.ler("caderno", {}) || {})[w.id] || {};
+    box.innerHTML = '<p class="bilhete-t">🎫 Bilhete de saída <small>antes de saíres deste mundo: olhar para trás, como nas escolas do Japão</small></p>'+
+      PERG.map(function(p){ return '<label><b>'+p[1]+'</b>'+(p[2] ? ' <small>('+p[2]+')</small>' : '')+'<textarea rows="2" data-k="'+p[0]+'">'+escXml(guardado[p[0]] || "")+'</textarea></label>'; }).join("")+
+      '<div class="bilhete-fim"><button type="button" class="ghost">💾 Guardar no caderno</button><small class="bilhete-ok">'+(guardado.data ? 'Guardado a '+escXml(guardado.data) : '')+'</small></div>';
+    box.querySelector("button").addEventListener("click", function(){
+      const e = {}; box.querySelectorAll("textarea").forEach(function(t){ e[t.dataset.k] = t.value.trim(); });
+      e.data = new Date().toLocaleDateString("pt-PT");
+      const r = MissaoArmazem.atualizar("caderno", {}, function(c){ c[w.id] = e; return c; });
+      box.querySelector(".bilhete-ok").textContent = (r && r.ok === false) ? "⚠️ Não foi possível guardar agora" : "✅ Guardado a "+e.data;
+    });
+    return box;
+  }
+
   function openLightbox(list, i, trigger, wid){
     if(!lb){
       lb = el("div","lb-overlay");
@@ -1089,6 +1153,8 @@
           if(window.MissaoArena) window.MissaoArena.start(w.id);
         }));
       }
+      P.appendChild(buildMetodo(w, cfg.key));
+      P.appendChild(buildBilhete(w));
       P.appendChild(cta("Explorar mais →", "explorar"));
 
       /* ===== 3. 🔭 Explorar ===== */

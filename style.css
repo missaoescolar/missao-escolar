@@ -935,6 +935,18 @@
   .lb-d{ margin:0 0 8px; line-height:1.55; }
   .lb-cred{ margin:0; font-size:0.78rem; color:var(--text-muted); }
   .lb-cred a{ color:var(--accent); }
+  /* 🧠 thinking routine of the subject and 🎫 exit ticket, at the end of 🎯 Praticar */
+  .metodo, .bilhete{ border:1.5px solid var(--border); border-radius:14px; background:var(--surface); padding:12px 14px; }
+  .metodo summary{ cursor:pointer; display:flex; flex-direction:column; gap:2px; font-family:"Lexend",sans-serif; }
+  .metodo summary small, .bilhete small{ font-family:inherit; font-weight:400; font-size:0.8rem; color:var(--text-muted); }
+  .metodo[open] summary{ margin-bottom:8px; }
+  .metodo-corpo p{ margin:0 0 6px; }
+  .metodo-passos{ margin:0; padding-left:1.3em; display:flex; flex-direction:column; gap:6px; line-height:1.5; }
+  .bilhete-t{ margin:0 0 8px; font-family:"Lexend",sans-serif; font-weight:800; }
+  .bilhete label{ display:block; margin:0 0 8px; font-size:0.9rem; }
+  .bilhete textarea{ display:block; width:100%; margin-top:4px; font:inherit; padding:8px 10px; border-radius:10px; border:1.5px solid var(--border); background:var(--bg); color:var(--text); resize:vertical; }
+  .bilhete-fim{ display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+
   /* ✏️ suggested activity under the explanation of each image */
   .lb-act{ margin:0 0 10px; padding:10px 12px; border-radius:12px; background:var(--surface-2); border-left:4px solid var(--accent); }
   .lb-act-t{ margin:0 0 4px; font-family:"Lexend",sans-serif; font-weight:800; font-size:0.92rem; }
