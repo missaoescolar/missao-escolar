@@ -415,48 +415,112 @@
     id:"n5", num:5, c:"m5", icon:"📐",
     title:"Ângulos e Polígonos",
     subtitle:"Ângulos, perímetro e área", pages:"manual a confirmar",
-    lead:"Construir em Minecraft é sempre uma questão de ângulos certos e paredes com o tamanho certo. Este mundo ensina a medir os cantos e as superfícies das tuas construções.",
+    lead:"Neste mundo vais aprender a medir e classificar ângulos, a descobrir ângulos desconhecidos, e a calcular o perímetro e a área de polígonos e de figuras compostas. Vê primeiro as animações e os 6 exemplos resolvidos, um de cada vez. No fim tens o resumo para o teste.",
     missions:[
-      {t:"Medir com o Transferidor", d:"Ângulos e sua classificação", f:"Medir 5 ângulos de objetos à tua volta", xp:10},
-      {t:"À Volta do Bloco", d:"Perímetro de polígonos", f:"Calcular o perímetro de 3 divisões da tua casa", xp:10},
-      {t:"Área do Terreno", d:"Área do retângulo, triângulo, paralelogramo e trapézio", f:"Calcular a área de 4 figuras diferentes", xp:15}
+      {t:"Caça aos Ângulos", d:"Medir e classificar ângulos", f:"Escolhe 5 ângulos à tua volta: uma tesoura aberta, os ponteiros de um relógio, um livro aberto…\nPara cada um, estima primeiro, depois mede com o transferidor e classifica-o (agudo, reto, obtuso ou raso).\nVerifica: para saber se um ângulo é reto, encosta-lhe o canto de uma folha A4.", xp:10},
+      {t:"Os 180° do Triângulo", d:"Soma dos ângulos de um triângulo", f:"Desenha um triângulo qualquer numa folha e pinta os três cantos com cores diferentes.\nRecorta-o, rasga os três cantos e junta-os lado a lado, com os bicos no mesmo ponto.\nVerifica: os três cantos formam uma linha reta, um ângulo raso de 180°. Repete com outro triângulo diferente.", xp:10},
+      {t:"O Meu Quarto", d:"Perímetro e área", f:"Mede o comprimento e a largura do teu quarto (ou da sala), em metros.\nCalcula o perímetro (o comprimento do rodapé) e a área (o chão), como no Exemplo 4.\nVerifica: estima antes de calcular, e confirma as unidades: o perímetro em m e a área em m².", xp:15},
+      {t:"Figura Composta", d:"Área de figuras compostas", f:"Numa folha quadriculada, desenha uma figura em forma de L (ou uma casa: um retângulo com um triângulo por cima).\nCalcula a área de duas maneiras diferentes, como no Exemplo 6.\nVerifica: as duas maneiras dão o mesmo resultado; confirma contando os quadradinhos.", xp:10}
     ],
     resumo:[
-      "Um <b>ângulo</b> mede-se em graus (°). Dois ângulos dizem-se um <b>ângulo complementar</b> do outro quando somam 90°; dizem-se um <b>ângulo suplementar</b> do outro quando somam 180°. <b>Ângulos verticalmente opostos</b> são sempre iguais.",
-      "Um <b>polígono</b> é uma figura plana fechada com lados retos. O <b>perímetro</b> é a soma de todos os lados.",
-      "<b>Área do retângulo</b> = comprimento × largura. <b>Área do paralelogramo</b> = base × altura. <b>Área do triângulo</b> = (base × altura) ÷ 2. <b>Área do trapézio</b> = ((Base maior + Base menor) × altura) ÷ 2."
+      "Um <b>ângulo</b> mede-se em graus (°) com o transferidor. Classifica-se em <b>agudo</b> (menos de 90°), <b>reto</b> (90°), <b>obtuso</b> (entre 90° e 180°) e <b>raso</b> (180°).",
+      "Dois ângulos são <b>complementares</b> se somam 90° e <b>suplementares</b> se somam 180°. Quando duas retas se cruzam, os <b>ângulos verticalmente opostos</b> são iguais e os ângulos lado a lado somam 180°.",
+      "A soma dos ângulos internos de um <b>triângulo</b> é sempre 180°; a de um <b>quadrilátero</b> é 360° (divide-se em dois triângulos).",
+      "Um <b>polígono</b> é uma figura plana fechada, só com lados retos. O <b>perímetro</b> é a soma dos lados e mede-se em unidades de comprimento (cm, m). A <b>área</b> é a medida da superfície e mede-se em unidades quadradas (cm², m²); 1 m² = 10 000 cm².",
+      "Áreas: <b>retângulo</b> = comprimento × largura; <b>paralelogramo</b> = base × altura; <b>triângulo</b> = base × altura ÷ 2; <b>trapézio</b> = (base maior + base menor) × altura ÷ 2.",
+      "A <b>altura</b> é sempre perpendicular à base: não é o lado inclinado. Num triângulo obtusângulo, a altura pode ficar fora do triângulo.",
+      "A área de uma <b>figura composta</b> calcula-se dividindo-a em figuras conhecidas e somando as áreas, ou calculando uma figura maior e subtraindo o que falta."
     ],
     gloss:[
-      ["ângulo","Mede-se em graus (°) e forma-se entre duas semirretas com a mesma origem."],
-      ["ângulo complementar","Um ângulo que, somado a outro, dá 90°."],
-      ["ângulo suplementar","Um ângulo que, somado a outro, dá 180°."],
-      ["ângulos verticalmente opostos","Dois ângulos formados por duas retas que se cruzam, sempre iguais entre si."],
-      ["perímetro","A soma de todos os lados de uma figura."],
-      ["área do retângulo","Calcula-se multiplicando o comprimento pela largura."],
-      ["área do paralelogramo","Calcula-se multiplicando a base pela altura."],
-      ["área do triângulo","Calcula-se multiplicando a base pela altura e dividindo por 2."],
-      ["área do trapézio","Calcula-se somando a base maior com a base menor, multiplicando pela altura e dividindo por 2."],
-      ["área","O espaço ocupado por uma figura, medido em unidades quadradas."],
-      ["polígono","Uma figura plana e fechada, feita só de lados retos."]
+      ["ângulo","A abertura entre duas semirretas com a mesma origem (o vértice), medida em graus."],
+      ["agudo","Ângulo com menos de 90°."],
+      ["reto","Ângulo de 90°, como o canto de uma folha."],
+      ["obtuso","Ângulo com mais de 90° e menos de 180°."],
+      ["raso","Ângulo de 180°: as duas semirretas formam uma linha reta."],
+      ["complementares","Dois ângulos que somam 90°."],
+      ["suplementares","Dois ângulos que somam 180°."],
+      ["ângulos verticalmente opostos","Ângulos frente a frente quando duas retas se cruzam; são sempre iguais."],
+      ["polígono","Uma figura plana e fechada, só com lados retos."],
+      ["perímetro","A soma dos comprimentos de todos os lados; mede-se em cm, m…"],
+      ["área","A medida da superfície de uma figura; mede-se em cm², m²…"],
+      ["altura","O segmento perpendicular à base, até ao vértice oposto (ou ao lado oposto)."],
+      ["figura composta","Uma figura feita de várias figuras simples juntas."]
     ],
     quiz:[
-      {q:"Em que unidade se medem os ângulos?", opts:["Graus (°)","Metros","Litros","Gramas"], correct:0, explain:"Os ângulos medem-se em graus (°)."},
-      {q:"Quando é que dois ângulos são complementares?", opts:["Quando a soma é 90°","Quando a soma é 180°","Quando são iguais","Quando a soma é 360°"], correct:0, explain:"Dois ângulos complementares somam 90°."},
-      {q:"Quando é que dois ângulos são suplementares?", opts:["Quando a soma é 180°","Quando a soma é 90°","Quando são opostos pelo vértice","Quando a soma é 0°"], correct:0, explain:"Dois ângulos suplementares somam 180°."},
-      {q:"O que se pode dizer sobre ângulos verticalmente opostos?", opts:["São sempre iguais","Somam sempre 90°","Somam sempre 180°","São sempre diferentes"], correct:0, explain:"Os ângulos verticalmente opostos, formados por duas retas que se cruzam, são sempre iguais entre si."},
-      {q:"O que é um polígono?", opts:["Uma figura plana fechada com lados retos","Uma linha curva","Um sólido com volume","Um ângulo maior que 180°"], correct:0, explain:"Um polígono é uma figura plana fechada, feita só de lados retos."},
-      {q:"O que é o perímetro de um polígono?", opts:["A soma de todos os seus lados","A sua área","O número de lados","A soma dos seus ângulos"], correct:0, explain:"O perímetro é a soma de todos os lados da figura."},
-      {q:"Qual é a fórmula da área do retângulo?", opts:["Comprimento × largura","Base × altura ÷ 2","Lado × lado × lado","2 × (comprimento + largura)"], correct:0, explain:"A área do retângulo calcula-se multiplicando o comprimento pela largura."},
-      {q:"Qual é a fórmula da área do triângulo?", opts:["(Base × altura) ÷ 2","Base × altura","Lado × 4","Comprimento × largura"], correct:0, explain:"A área do triângulo é (base × altura) ÷ 2."},
-      {q:"Um retângulo tem 5 cm de comprimento e 3 cm de largura. Qual é a sua área?", opts:["15 cm²","8 cm²","16 cm²","10 cm²"], correct:0, explain:"5 cm × 3 cm = 15 cm²."},
-      {q:"Qual é a fórmula da área do trapézio?", opts:["((Base maior + Base menor) × altura) ÷ 2","Base × altura","(Base maior × Base menor) ÷ 2","Base maior + Base menor"], correct:0, explain:"A área do trapézio é ((Base maior + Base menor) × altura) ÷ 2."}
+      {q:"Um ângulo mede 35°. Quanto mede o seu complementar?", opts:["145°","55°","65°","35°"], correct:1, explain:"Complementares somam 90°: 90° − 35° = 55°. O 145° é o suplementar (180° − 35°), que soma 180°."},
+      {q:"Um ângulo mede 120°. Quanto mede o seu suplementar?", opts:["60°","30°","240°","120°"], correct:0, explain:"Suplementares somam 180°: 180° − 120° = 60°. Um ângulo de 120° não tem complementar, porque já passa dos 90°."},
+      {q:"Um triângulo tem dois ângulos de 40° e 75°. Quanto mede o terceiro?", opts:["115°","65°","245°","35°"], correct:1, explain:"Os três somam 180°: 180° − 40° − 75° = 65°. O 115° é só a soma dos dois que se conhecem; o 245° usa 360°, que é a soma de um quadrilátero."},
+      {q:"Um quadrilátero tem ângulos de 90°, 90° e 100°. Quanto mede o quarto ângulo?", opts:["100°","260°","80°","170°"], correct:2, explain:"Num quadrilátero, os ângulos somam 360°: 360° − 90° − 90° − 100° = 80°. Lembra-te: um quadrilátero divide-se em dois triângulos, por isso 2 × 180° = 360°."},
+      {q:"Duas retas cruzam-se e um dos ângulos mede 65°. Quanto medem os outros três?", opts:["65°, 65° e 65°","65°, 115° e 115°","25°, 65° e 25°","115°, 115° e 115°"], correct:1, explain:"O ângulo em frente (verticalmente oposto) também mede 65°. Os dois ao lado são suplementares de 65°: 180° − 65° = 115° cada. Verifica: 65 + 115 + 65 + 115 = 360°, uma volta completa."},
+      {q:"Um retângulo tem 5 cm de comprimento e 3 cm de largura. Quais são o perímetro e a área?", opts:["P = 15 cm e A = 16 cm²","P = 16 cm e A = 15 cm²","P = 8 cm e A = 15 cm²","P = 16 cm² e A = 15 cm"], correct:1, explain:"Perímetro: 5 + 3 + 5 + 3 = 16 cm. Área: 5 × 3 = 15 cm². O 8 cm só soma dois lados. E as unidades contam: o perímetro é um comprimento (cm) e a área uma superfície (cm²)."},
+      {q:"Um triângulo tem 10 cm de base e 6 cm de altura. Qual é a sua área?", opts:["60 cm²","30 cm","16 cm²","30 cm²"], correct:3, explain:"Base × altura ÷ 2 = 10 × 6 ÷ 2 = 30 cm². O 60 cm² esquece de dividir por 2 (seria a área do retângulo à volta). O «30 cm» tem a unidade errada: as áreas medem-se em cm²."},
+      {q:"Um paralelogramo tem 7 cm de base, lados inclinados de 5 cm e 4 cm de altura. Qual é a área?", opts:["35 cm²","28 cm²","14 cm²","24 cm²"], correct:1, explain:"Área = base × altura = 7 × 4 = 28 cm². O 35 cm² usa o lado inclinado (5 cm) em vez da altura, e o 24 é o perímetro: 2 × (7 + 5)."},
+      {q:"Quantos cm² tem 1 m²?", opts:["100 cm²","1000 cm²","10 000 cm²","10 cm²"], correct:2, explain:"1 m² é um quadrado de 1 m × 1 m, ou seja 100 cm × 100 cm = 10 000 cm². O 100 cm² é o erro mais comum: esquece que se multiplica pelo 100 duas vezes (comprimento e largura)."},
+      {q:"«Se uma figura tem maior perímetro, também tem maior área.» Verdadeiro ou falso? Escolhe a resposta com a justificação certa.", opts:["Verdadeiro. Mais lado quer dizer mais superfície.","Falso. Um retângulo de 10 × 2 tem P = 24 e A = 20; um de 6 × 4 tem P = 20 e A = 24.","Verdadeiro. Um quadrado de 4 cm tem mais perímetro e mais área do que um de 2 cm.","Falso. O perímetro e a área são sempre iguais."], correct:1, explain:"Basta um contraexemplo: o retângulo 10 × 2 tem mais perímetro (24 cm) mas menos área (20 cm²) do que o 6 × 4 (20 cm e 24 cm²). Um exemplo em que dá certo (os quadrados) não prova que é sempre assim."}
+    ],
+    posters:[
+      {title:"📐 Exemplo 1 — Complementares e suplementares", svg:'<ul class="wheel-legend">'+
+        '<li><span aria-hidden="true">🎯</span><span><b>O que queremos descobrir:</b> o complementar e o suplementar de um ângulo de 35°.</span></li>'+
+        '<li><span aria-hidden="true">🚦</span><span><b>Como começar:</b> lembra-te: complementar «completa» até 90° (um ângulo reto); suplementar «completa» até 180° (uma linha reta).</span></li>'+
+        '<li><span aria-hidden="true">👣</span><span><b>Passo a passo:</b><br>Complementar: 90° − 35° = 55°<br>Suplementar: 180° − 35° = 145°</span></li>'+
+        '<li><span aria-hidden="true">✅</span><span><b>Resultado:</b> o complementar mede 55° e o suplementar mede 145°.</span></li>'+
+        '<li><span aria-hidden="true">🔍</span><span><b>Verificar:</b> 35 + 55 = 90 e 35 + 145 = 180. O suplementar é sempre 90° maior do que o complementar (145 − 55 = 90).</span></li>'+
+        '</ul>'},
+      {title:"✖️ Exemplo 2 — Duas retas que se cruzam", svg:'<svg class="poster-svg" viewBox="0 0 240 140" style="max-width:240px;margin:0 auto" role="img" aria-label="Duas retas cruzam-se. Um dos ângulos mede 70°; o ângulo em frente também mede 70°; os outros dois, marcados a e b, medem 110° cada.">'+
+        '<g stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="30" y1="70" x2="210" y2="70"/><line x1="96" y1="136" x2="144" y2="4"/></g>'+
+        '<g fill="none" stroke="var(--wc)" stroke-width="2"><path d="M146,70 A26,26 0 0 0 128.9,45.6"/><path d="M94,70 A26,26 0 0 0 111.1,94.4"/></g>'+
+        '<g font-family="Lexend, sans-serif" font-size="12" font-weight="700" text-anchor="middle"><text x="152" y="55">70°</text><text x="88" y="96">70°</text><text x="98" y="48">a</text><text x="144" y="98">b</text></g></svg>'+
+        '<ul class="wheel-legend">'+
+        '<li><span aria-hidden="true">🎯</span><span><b>O que queremos descobrir:</b> duas retas cruzam-se e um dos ângulos mede 70°. Quanto medem os ângulos a e b?</span></li>'+
+        '<li><span aria-hidden="true">🚦</span><span><b>Como começar:</b> o ângulo a está ao lado do de 70°, sobre a mesma reta: juntos formam um ângulo raso.</span></li>'+
+        '<li><span aria-hidden="true">👣</span><span><b>Passo a passo:</b><br>a + 70° = 180°, por isso a = 110°<br>b está em frente de a (verticalmente opostos), por isso b = 110°<br>O ângulo em frente do de 70° também mede 70°.</span></li>'+
+        '<li><span aria-hidden="true">✅</span><span><b>Resultado:</b> a = 110° e b = 110°.</span></li>'+
+        '<li><span aria-hidden="true">🔍</span><span><b>Verificar:</b> os quatro ângulos à volta do ponto dão uma volta completa: 70 + 110 + 70 + 110 = 360°.</span></li>'+
+        '</ul>'},
+      {title:"🔺 Exemplo 3 — Ângulos de triângulos e quadriláteros", svg:'<ul class="wheel-legend">'+
+        '<li><span aria-hidden="true">🎯</span><span><b>O que queremos descobrir:</b> o terceiro ângulo de um triângulo com ângulos de 50° e 60°, e o quarto ângulo de um quadrilátero com 90°, 90° e 100°.</span></li>'+
+        '<li><span aria-hidden="true">🚦</span><span><b>Como começar:</b> os ângulos de um triângulo somam 180°. Um quadrilátero divide-se em dois triângulos pela diagonal, por isso os seus ângulos somam 2 × 180° = 360°.</span></li>'+
+        '<li><span aria-hidden="true">👣</span><span><b>Passo a passo:</b><br>Triângulo: 180° − 50° − 60° = 70°<br>Quadrilátero: 360° − 90° − 90° − 100° = 80°</span></li>'+
+        '<li><span aria-hidden="true">✅</span><span><b>Resultado:</b> o triângulo tem um ângulo de 70°; o quadrilátero tem um de 80°.</span></li>'+
+        '<li><span aria-hidden="true">🔍</span><span><b>Verificar:</b> 50 + 60 + 70 = 180 e 90 + 90 + 100 + 80 = 360. Experimenta a missão «Os 180° do Triângulo»: rasga os cantos e junta-os.</span></li>'+
+        '</ul>'},
+      {title:"🟩 Exemplo 4 — Perímetro ou área?", svg:'<ul class="wheel-legend">'+
+        '<li><span aria-hidden="true">🎯</span><span><b>O que queremos descobrir:</b> o perímetro e a área de um retângulo de 6 cm × 4 cm e de outro de 10 cm × 2 cm.</span></li>'+
+        '<li><span aria-hidden="true">🚦</span><span><b>Como começar:</b> pergunta-te o que se mede. Perímetro: o contorno (uma vedação, um rodapé). Área: a superfície (o chão, a relva).</span></li>'+
+        '<li><span aria-hidden="true">👣</span><span><b>Passo a passo:</b><br>6 × 4: P = 6 + 4 + 6 + 4 = 20 cm; A = 6 × 4 = 24 cm²<br>10 × 2: P = 10 + 2 + 10 + 2 = 24 cm; A = 10 × 2 = 20 cm²</span></li>'+
+        '<li><span aria-hidden="true">✅</span><span><b>Resultado:</b> o segundo retângulo tem mais perímetro (24 cm), mas menos área (20 cm²).</span></li>'+
+        '<li><span aria-hidden="true">🔍</span><span><b>Verificar:</b> as unidades. O perímetro é um comprimento (cm) e a área é uma superfície (cm²). E mais contorno não quer dizer mais superfície!</span></li>'+
+        '</ul>'},
+      {title:"📏 Exemplo 5 — A altura de um triângulo", svg:'<svg class="poster-svg" viewBox="0 45 230 105" style="max-width:230px;margin:0 auto" role="img" aria-label="Triângulo obtusângulo com base de 8 cm. A altura, de 5 cm, é perpendicular ao prolongamento da base e fica fora do triângulo.">'+
+        '<polygon points="30,120 130,120 190,57.5" fill="var(--wc-bg, #eee)" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>'+
+        '<g stroke="var(--wc)" stroke-width="2" stroke-dasharray="5 4"><line x1="130" y1="120" x2="190" y2="120"/><line x1="190" y1="57.5" x2="190" y2="120"/></g>'+
+        '<path d="M190,110 L180,110 L180,120" fill="none" stroke="var(--wc)" stroke-width="1.5"/>'+
+        '<g font-family="Lexend, sans-serif" font-size="12" font-weight="700" text-anchor="middle"><text x="80" y="138">base 8 cm</text><text x="214" y="90">5 cm</text><text x="214" y="104" font-size="10" font-weight="400">altura</text></g></svg>'+
+        '<ul class="wheel-legend">'+
+        '<li><span aria-hidden="true">🎯</span><span><b>O que queremos descobrir:</b> a área deste triângulo, com base de 8 cm e altura de 5 cm.</span></li>'+
+        '<li><span aria-hidden="true">🚦</span><span><b>Como começar:</b> encontra a altura: é o segmento perpendicular à base (faz um ângulo reto com ela) que vai até ao vértice oposto. Aqui fica fora do triângulo, por isso prolonga-se a base (a tracejado).</span></li>'+
+        '<li><span aria-hidden="true">👣</span><span><b>Passo a passo:</b><br>Área = base × altura ÷ 2<br>8 × 5 = 40<br>40 ÷ 2 = 20</span></li>'+
+        '<li><span aria-hidden="true">✅</span><span><b>Resultado:</b> a área é 20 cm².</span></li>'+
+        '<li><span aria-hidden="true">🔍</span><span><b>Verificar:</b> o triângulo ocupa metade de um paralelogramo com a mesma base e a mesma altura (8 × 5 = 40 cm²). Erro a evitar: usar o lado inclinado do triângulo como altura.</span></li>'+
+        '</ul>'},
+      {title:"🧩 Exemplo 6 — A área de uma figura composta", svg:'<svg class="poster-svg" viewBox="-26 0 246 150" style="max-width:246px;margin:0 auto" role="img" aria-label="Figura em forma de L: um retângulo de 10 m por 6 m ao qual falta, no canto de cima à direita, um retângulo de 4 m por 3 m.">'+
+        '<polygon points="20,20 110,20 110,65 170,65 170,110 20,110" fill="var(--wc-bg, #eee)" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>'+
+        '<rect x="110" y="20" width="60" height="45" fill="none" stroke="var(--wc)" stroke-width="1.5" stroke-dasharray="4 4"/>'+
+        '<g font-family="Lexend, sans-serif" font-size="11" font-weight="700" text-anchor="middle"><text x="95" y="128">10 m</text><text x="-22" y="69" text-anchor="start">6 m</text><text x="140" y="46" fill="var(--wc)">4 × 3</text><text x="65" y="14">6 m</text><text x="184" y="91">3 m</text></g></svg>'+
+        '<ul class="wheel-legend">'+
+        '<li><span aria-hidden="true">🎯</span><span><b>O que queremos descobrir:</b> a área de um terreno em L: um retângulo de 10 m × 6 m ao qual falta um canto de 4 m × 3 m.</span></li>'+
+        '<li><span aria-hidden="true">🚦</span><span><b>Como começar:</b> há duas maneiras. Ou se calcula o retângulo inteiro e se tira o canto, ou se divide o L em dois retângulos.</span></li>'+
+        '<li><span aria-hidden="true">👣</span><span><b>Passo a passo:</b><br>Maneira 1 (subtrair): 10 × 6 = 60; 4 × 3 = 12; 60 − 12 = 48<br>Maneira 2 (decompor): faixa de baixo 10 × 3 = 30; faixa de cima, sem o canto, 6 × 3 = 18; 30 + 18 = 48</span></li>'+
+        '<li><span aria-hidden="true">✅</span><span><b>Resultado:</b> o terreno tem 48 m².</span></li>'+
+        '<li><span aria-hidden="true">🔍</span><span><b>Verificar:</b> as duas maneiras dão o mesmo. Numa folha quadriculada (1 quadradinho = 1 m²), também podes contar: 48 quadradinhos.</span></li>'+
+        '</ul>'}
     ],
     compare:{
-      left:{title:"➕ Ângulo complementar", points:["Soma 90° com outro ângulo","Ex.: 30° e 60° são complementares","Comum em esquadros e cantos retos"]},
-      right:{title:"➕ Ângulo suplementar", points:["Soma 180° com outro ângulo","Ex.: 110° e 70° são suplementares","Comum em linhas retas divididas por outra reta"]}
+      left:{title:"📏 Perímetro", points:["É o contorno: a soma dos lados","Mede-se em cm, m (comprimento)","Ex.: a vedação de um quintal, o rodapé"]},
+      right:{title:"🟩 Área", points:["É a superfície: o que fica dentro","Mede-se em cm², m² (unidades quadradas)","Ex.: a relva do quintal, o chão"]}
     },
     resources:[
-      {icon:"🎮", title:"Jogos de geometria", desc:"Jogos curtos para praticar ângulos, perímetro e área de figuras.", site:"Math Playground", url:"https://www.mathplayground.com/index_geometry.html"}
+      {icon:"🎮", title:"Jogos de geometria", desc:"Jogos curtos para praticar ângulos, perímetro e área. Tem publicidade.", site:"Math Playground", url:"https://www.mathplayground.com/index_geometry.html"}
     ],
     boss:"Ficha de avaliação — página a confirmar no manual"
   },
