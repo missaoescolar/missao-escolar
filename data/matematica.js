@@ -528,40 +528,104 @@
     id:"n6", num:6, c:"m6", icon:"⭕",
     title:"Mundo Redondo",
     subtitle:"Circunferência e círculo", pages:"manual a confirmar",
-    lead:"Nem tudo num jogo é feito de blocos quadrados — rodas, escudos redondos, radares. Este mundo é sobre medir tudo o que é redondo.",
+    lead:"Neste mundo vais aprender os elementos da circunferência, de onde vem o número π, e a calcular o perímetro e a área do círculo, também em figuras com partes redondas. Vê primeiro a animação e os 6 exemplos resolvidos, um de cada vez. No fim tens o resumo para o teste.",
     missions:[
-      {t:"À Volta do Círculo", d:"Elementos da circunferência: centro, raio, diâmetro", f:"Medir o raio de 3 objetos redondos em casa", xp:10},
-      {t:"O Perímetro Redondo", d:"Perímetro da circunferência", f:"Calcular o perímetro de 3 círculos diferentes", xp:10},
-      {t:"A Área Redonda", d:"Área do círculo", f:"Calcular a área de 3 círculos diferentes", xp:15}
+      {t:"Descobrir o π", d:"O número π", f:"Escolhe 3 objetos redondos: uma lata, um prato, uma tampa…\nMede a volta de cada um com um fio (e depois o fio com a régua) e mede o diâmetro. Divide o perímetro pelo diâmetro, como no Exemplo 3.\nVerifica: deve dar sempre perto de 3,1. Quanto mais cuidado nas medições, mais perto de 3,14.", xp:10},
+      {t:"Rodas e Voltas", d:"Perímetro do círculo", f:"Mede o diâmetro da roda de uma bicicleta ou de uma trotinete.\nCalcula quanto anda numa volta e em 100 voltas, como no Exemplo 2.\nVerifica: marca a roda e o chão com giz, empurra até a roda dar uma volta completa e mede no chão.", xp:10},
+      {t:"Uma Pizza Grande ou Duas Médias?", d:"Área do círculo", f:"Compara: uma pizza de 30 cm de diâmetro ou duas pizzas de 20 cm de diâmetro. Qual dá mais pizza?\nCalcula as áreas como no Exemplo 5 (primeiro o raio: r = d ÷ 2).\nVerifica: confirma que usaste o raio e não o diâmetro, e que cada área fica entre 2r² e 4r².", xp:15},
+      {t:"Janela Redonda", d:"Figuras com partes redondas", f:"Com régua e compasso, desenha uma janela: um quadrado com um semicírculo por cima, com as medidas que quiseres.\nCalcula a área total, como no Exemplo 6.\nVerifica: desenha-a numa folha quadriculada e conta os quadradinhos (os cortados contam como meios): deve dar perto.", xp:10}
     ],
     resumo:[
-      "A <b>circunferência</b> é a linha que forma o contorno de um círculo; o <b>círculo</b> é a superfície que ela delimita.",
-      "O <b>raio</b> é a distância do centro a qualquer ponto da circunferência; o <b>diâmetro</b> é o dobro do raio e passa pelo centro.",
-      "O perímetro da circunferência calcula-se com a fórmula <b>P = 2 × π × r</b> (π ≈ 3,14).",
-      "A área do círculo calcula-se com a fórmula <b>A = π × r²</b>."
+      "A <b>circunferência</b> é a linha formada pelos pontos que estão todos à mesma distância de um ponto, o <b>centro</b>. O <b>círculo</b> é a superfície que a circunferência limita. Desenha-se com o compasso, com uma abertura igual ao raio.",
+      "O <b>raio</b> vai do centro a um ponto da circunferência. Uma <b>corda</b> une dois pontos da circunferência; o <b>diâmetro</b> é a corda que passa pelo centro, a maior de todas, e mede o dobro do raio: d = 2 × r.",
+      "Em qualquer círculo, o perímetro a dividir pelo diâmetro dá sempre o mesmo número: <b>π</b> (pi). π ≈ 3,14, mas não é exatamente 3,14: tem infinitas casas decimais, que não se repetem.",
+      "<b>Perímetro do círculo</b>: P = π × d, ou seja, P = 2 × π × r. É o comprimento da circunferência e mede-se em cm, m…",
+      "<b>Área do círculo</b>: A = π × r², em que r² = r × r (não é 2 × r!). Mede-se em cm², m²… Para verificar: a área fica sempre entre 2 × r² (o quadrado de dentro) e 4 × r² (o quadrado de fora).",
+      "Num <b>semicírculo</b>, a área é metade da do círculo. Nas figuras com partes redondas, divide-se a figura em partes conhecidas e somam-se as áreas."
     ],
     gloss:[
-      ["circunferência","A linha curva que forma o contorno de um círculo."],
-      ["círculo","A superfície plana delimitada por uma circunferência."],
-      ["raio","A distância do centro do círculo a qualquer ponto da circunferência."],
-      ["diâmetro","A distância entre dois pontos opostos da circunferência, passando pelo centro — o dobro do raio."],
-      ["π (pi)","Um número que relaciona o perímetro de qualquer círculo com o seu diâmetro, aproximadamente 3,14."]
+      ["circunferência","A linha curva formada pelos pontos à mesma distância do centro."],
+      ["círculo","A superfície limitada por uma circunferência."],
+      ["centro","O ponto que está à mesma distância de todos os pontos da circunferência."],
+      ["raio","O segmento que vai do centro a um ponto da circunferência; é metade do diâmetro."],
+      ["corda","Um segmento que une dois pontos da circunferência."],
+      ["diâmetro","A corda que passa pelo centro: a maior corda, o dobro do raio."],
+      ["π (pi)","O perímetro de qualquer círculo a dividir pelo seu diâmetro; π ≈ 3,14."],
+      ["perímetro do círculo","O comprimento da circunferência: P = π × d = 2 × π × r."],
+      ["área do círculo","A medida da superfície do círculo: A = π × r²."],
+      ["semicírculo","Metade de um círculo, cortado por um diâmetro."],
+      ["compasso","Instrumento para desenhar circunferências; a abertura é o raio."]
     ],
     quiz:[
-      {q:"Qual é a diferença entre circunferência e círculo?", opts:["A circunferência é a linha do contorno; o círculo é a superfície que ela delimita","São exatamente a mesma coisa","A circunferência é maior que o círculo","O círculo não tem área"], correct:0, explain:"A circunferência é a linha curva; o círculo é a superfície plana que ela delimita."},
-      {q:"O que é o raio de um círculo?", opts:["A distância do centro a qualquer ponto da circunferência","A distância entre dois pontos opostos da circunferência","O perímetro do círculo","A área do círculo"], correct:0, explain:"O raio vai do centro até à circunferência."},
-      {q:"O que é o diâmetro de um círculo?", opts:["O dobro do raio, passando pelo centro","A metade do raio","O mesmo que o perímetro","A área do círculo"], correct:0, explain:"O diâmetro é o dobro do raio e passa pelo centro."},
-      {q:"Qual é a fórmula do perímetro da circunferência?", opts:["P = 2 × π × r","P = π × r²","P = r × r","P = 2 × r"], correct:0, explain:"O perímetro da circunferência calcula-se com P = 2 × π × r."},
-      {q:"Qual é a fórmula da área do círculo?", opts:["A = π × r²","A = 2 × π × r","A = π × r","A = r²"], correct:0, explain:"A área do círculo calcula-se com A = π × r²."},
-      {q:"Qual é o valor aproximado de π (pi)?", opts:["3,14","3,41","1,34","4,13"], correct:0, explain:"π (pi) tem um valor aproximado de 3,14."},
-      {q:"Se o raio de um círculo é 4 cm, qual é o diâmetro?", opts:["8 cm","4 cm","2 cm","16 cm"], correct:0, explain:"O diâmetro é o dobro do raio: 2 × 4 cm = 8 cm."},
-      {q:"Qual é o perímetro aproximado de uma circunferência com raio 10 cm (usando π ≈ 3,14)?", opts:["62,8 cm","31,4 cm","314 cm","20 cm"], correct:0, explain:"P = 2 × 3,14 × 10 = 62,8 cm."},
-      {q:"Qual é a área aproximada de um círculo com raio 2 cm (usando π ≈ 3,14)?", opts:["12,56 cm²","6,28 cm²","4 cm²","25,12 cm²"], correct:0, explain:"A = π × r² = 3,14 × 2² = 3,14 × 4 = 12,56 cm²."},
-      {q:"O que relaciona o número π (pi)?", opts:["O perímetro de qualquer círculo com o seu diâmetro","A área com o perímetro","O raio com a área","O diâmetro com a área"], correct:0, explain:"π relaciona o perímetro de qualquer círculo com o seu diâmetro."}
+      {q:"Um círculo tem 4 cm de raio. Quanto mede o diâmetro?", opts:["2 cm","8 cm","16 cm","12,56 cm"], correct:1, explain:"O diâmetro é o dobro do raio: 2 × 4 = 8 cm. O 2 cm é metade (seria o raio de um diâmetro de 4 cm), e 16 seria 4 × 4."},
+      {q:"Qual é o perímetro de uma circunferência com 10 cm de raio? (π ≈ 3,14)", opts:["31,4 cm","62,8 cm","314 cm","20 cm"], correct:1, explain:"P = 2 × π × r = 2 × 3,14 × 10 = 62,8 cm. O 31,4 esquece o «2 ×» (é π × r), e o 314 é a área (π × r²), que não é um perímetro."},
+      {q:"Uma roda tem 50 cm de diâmetro. Qual é o seu perímetro? (π ≈ 3,14)", opts:["157 cm","78,5 cm","314 cm","1962,5 cm"], correct:0, explain:"Com o diâmetro, P = π × d = 3,14 × 50 = 157 cm. O 78,5 usa metade do diâmetro sem multiplicar por 2, e o 1962,5 cm é a área, com unidade errada."},
+      {q:"Qual é a área de um círculo com 3 cm de raio? (π ≈ 3,14)", opts:["18,84 cm²","28,26 cm²","9,42 cm²","113,04 cm²"], correct:1, explain:"A = π × r² = 3,14 × 3 × 3 = 3,14 × 9 = 28,26 cm². O 18,84 calcula r² como 2 × r (3,14 × 6), o erro mais comum; o 113,04 usa o diâmetro (6) em vez do raio. Verifica: 28,26 fica entre 2 × 9 = 18 e 4 × 9 = 36."},
+      {q:"Qual é a área de um círculo com 10 cm de diâmetro? (π ≈ 3,14)", opts:["314 cm²","78,5 cm²","31,4 cm²","15,7 cm²"], correct:1, explain:"Primeiro o raio: 10 ÷ 2 = 5 cm. A = 3,14 × 5 × 5 = 78,5 cm². O 314 cm² usa o diâmetro como se fosse o raio (dá 4 vezes mais), e o 31,4 é o perímetro."},
+      {q:"Se o raio de um círculo duplicar, o que acontece à área?", opts:["Fica 2 vezes maior","Fica 4 vezes maior","Fica igual","Fica 8 vezes maior"], correct:1, explain:"A área depende de r × r. Se o raio passa a 2r, a área passa a π × 2r × 2r = 4 × π × r²: 4 vezes maior. Experimenta: r = 1 → 3,14; r = 2 → 12,56. O perímetro, esse, só duplica."},
+      {q:"Uma circunferência tem 31,4 cm de perímetro. Quanto mede o raio? (π ≈ 3,14)", opts:["10 cm","5 cm","3,14 cm","15,7 cm"], correct:1, explain:"P = π × d, por isso d = 31,4 ÷ 3,14 = 10 cm, e o raio é metade: 5 cm. O 10 cm é o diâmetro, não o raio."},
+      {q:"Qual é a área de um semicírculo com 2 cm de raio? (π ≈ 3,14)", opts:["12,56 cm²","6,28 cm²","3,14 cm²","25,12 cm²"], correct:1, explain:"O círculo inteiro tem 3,14 × 2 × 2 = 12,56 cm²; o semicírculo é metade: 6,28 cm². O 12,56 esquece que é só metade."},
+      {q:"Divide-se o perímetro de um círculo pelo seu diâmetro. O que se obtém?", opts:["Depende do tamanho do círculo","Sempre o mesmo número, π ≈ 3,14","Sempre 2","O raio"], correct:1, explain:"Em qualquer círculo, pequeno ou grande, P ÷ d dá sempre π. É por isso que π é um número tão especial, e foi o que descobriste (ou vais descobrir) na missão «Descobrir o π»."},
+      {q:"«π é exatamente igual a 3,14.» Verdadeiro ou falso? Escolhe a resposta com a justificação certa.", opts:["Verdadeiro. π é 3,14.","Falso. 3,14 é só um valor aproximado: π tem infinitas casas decimais que não se repetem (3,14159…).","Falso. π é exatamente 3.","Verdadeiro, porque a calculadora mostra 3,14."], correct:1, explain:"π = 3,14159265… e as casas decimais nunca acabam nem se repetem. Usamos 3,14 porque chega para os cálculos do dia a dia, mas é uma aproximação. Por isso se escreve π ≈ 3,14, com o sinal «≈»."}
+    ],
+    posters:[
+      {title:"⭕ Exemplo 1 — Os elementos da circunferência", svg:'<svg class="poster-svg" viewBox="0 0 300 175" style="max-width:300px;margin:0 auto" role="img" aria-label="Circunferência com o centro, um raio de 5 cm, um diâmetro de 10 cm e uma corda.">'+
+        '<circle cx="120" cy="85" r="65" fill="var(--wc-bg, #eee)" stroke="currentColor" stroke-width="2.5"/>'+
+        '<line x1="55" y1="85" x2="185" y2="85" stroke="var(--wc)" stroke-width="3"/>'+
+        '<line x1="120" y1="85" x2="161.8" y2="35.2" stroke="currentColor" stroke-width="2.5" stroke-dasharray="6 3"/>'+
+        '<line x1="58.9" y1="107.2" x2="152.5" y2="141.3" stroke="currentColor" stroke-width="2.5"/>'+
+        '<circle cx="120" cy="85" r="4" fill="currentColor"/>'+
+        '<g font-family="Lexend, sans-serif" font-size="11.5" font-weight="700"><text x="191" y="89" fill="var(--wc)">diâmetro = 10 cm</text><text x="167" y="31">raio = 5 cm</text><text x="114" y="102" text-anchor="end">centro</text><text x="158" y="156">corda</text></g></svg>'+
+        '<ul class="wheel-legend">'+
+        '<li><span aria-hidden="true">🎯</span><span><b>O que queremos descobrir:</b> o raio de um círculo com 10 cm de diâmetro, e a diferença entre raio, diâmetro e corda.</span></li>'+
+        '<li><span aria-hidden="true">🚦</span><span><b>Como começar:</b> olha para o desenho. O raio vai do centro à circunferência; o diâmetro atravessa o círculo passando pelo centro.</span></li>'+
+        '<li><span aria-hidden="true">👣</span><span><b>Passo a passo:</b><br>O diâmetro é feito de dois raios: d = 2 × r<br>r = d ÷ 2 = 10 ÷ 2 = 5 cm<br>A corda une dois pontos da circunferência, mas não passa pelo centro: é mais curta do que o diâmetro.</span></li>'+
+        '<li><span aria-hidden="true">✅</span><span><b>Resultado:</b> o raio mede 5 cm. O diâmetro é a maior corda de todas.</span></li>'+
+        '<li><span aria-hidden="true">🔍</span><span><b>Verificar:</b> 5 + 5 = 10 cm. Para desenhar esta circunferência com o compasso, abre-o 5 cm (o raio), não 10 cm.</span></li>'+
+        '</ul>'},
+      {title:"📏 Exemplo 2 — O perímetro do círculo", svg:'<ul class="wheel-legend">'+
+        '<li><span aria-hidden="true">🎯</span><span><b>O que queremos descobrir:</b> o perímetro de um círculo com 5 cm de raio. (π ≈ 3,14)</span></li>'+
+        '<li><span aria-hidden="true">🚦</span><span><b>Como começar:</b> escolhe a fórmula. Com o raio: P = 2 × π × r. Com o diâmetro: P = π × d. Dão o mesmo, porque d = 2r.</span></li>'+
+        '<li><span aria-hidden="true">👣</span><span><b>Passo a passo:</b><br>Com o raio: P = 2 × 3,14 × 5 = 31,4 cm<br>Com o diâmetro (d = 10): P = 3,14 × 10 = 31,4 cm</span></li>'+
+        '<li><span aria-hidden="true">✅</span><span><b>Resultado:</b> o perímetro é 31,4 cm.</span></li>'+
+        '<li><span aria-hidden="true">🔍</span><span><b>Verificar:</b> o perímetro é sempre um pouco mais de 3 diâmetros: 3 × 10 = 30, e 31,4 é um pouco mais. ✓</span></li>'+
+        '</ul>'},
+      {title:"🥫 Exemplo 3 — De onde vem o π?", svg:'<ul class="wheel-legend">'+
+        '<li><span aria-hidden="true">🎯</span><span><b>O que queremos descobrir:</b> o que dá o perímetro de uma lata a dividir pelo seu diâmetro.</span></li>'+
+        '<li><span aria-hidden="true">🚦</span><span><b>Como começar:</b> dá uma volta à lata com um fio e marca onde se encontra. Mede o fio com a régua. Depois mede o diâmetro da tampa.</span></li>'+
+        '<li><span aria-hidden="true">👣</span><span><b>Passo a passo:</b><br>Perímetro (o fio): 22 cm<br>Diâmetro: 7 cm<br>22 ÷ 7 ≈ 3,14</span></li>'+
+        '<li><span aria-hidden="true">✅</span><span><b>Resultado:</b> dá cerca de 3,14: é o número π.</span></li>'+
+        '<li><span aria-hidden="true">🔍</span><span><b>Verificar:</b> experimenta com um prato e com uma moeda. Com qualquer círculo, grande ou pequeno, P ÷ d dá sempre perto de 3,14. As pequenas diferenças vêm das medições.</span></li>'+
+        '</ul>'},
+      {title:"🟠 Exemplo 4 — A área do círculo", svg:'<ul class="wheel-legend">'+
+        '<li><span aria-hidden="true">🎯</span><span><b>O que queremos descobrir:</b> a área de um círculo com 3 cm de raio. (π ≈ 3,14)</span></li>'+
+        '<li><span aria-hidden="true">🚦</span><span><b>Como começar:</b> usa A = π × r². Atenção: r² quer dizer r × r.</span></li>'+
+        '<li><span aria-hidden="true">👣</span><span><b>Passo a passo:</b><br>r² = 3 × 3 = 9<br>A = 3,14 × 9 = 28,26 cm²</span></li>'+
+        '<li><span aria-hidden="true">✅</span><span><b>Resultado:</b> a área é 28,26 cm².</span></li>'+
+        '<li><span aria-hidden="true">🔍</span><span><b>Verificar:</b> o círculo cabe num quadrado de lado 6 cm (área 36) e tem lá dentro um quadrado de área 18 (2 × r²). A área tem de ficar entre 18 e 36: 28,26 fica. ✓ Erro a evitar: 3,14 × 6 = 18,84 (calcular r² como 2 × r).</span></li>'+
+        '</ul>'},
+      {title:"🍕 Exemplo 5 — Área a partir do diâmetro", svg:'<ul class="wheel-legend">'+
+        '<li><span aria-hidden="true">🎯</span><span><b>O que queremos descobrir:</b> a área de uma pizza com 30 cm de diâmetro. (π ≈ 3,14)</span></li>'+
+        '<li><span aria-hidden="true">🚦</span><span><b>Como começar:</b> a fórmula usa o raio, não o diâmetro. Primeiro, r = 30 ÷ 2 = 15 cm.</span></li>'+
+        '<li><span aria-hidden="true">👣</span><span><b>Passo a passo:</b><br>r² = 15 × 15 = 225<br>A = 3,14 × 225 = 706,5 cm²</span></li>'+
+        '<li><span aria-hidden="true">✅</span><span><b>Resultado:</b> a pizza tem 706,5 cm².</span></li>'+
+        '<li><span aria-hidden="true">🔍</span><span><b>Verificar:</b> fica entre 2 × 225 = 450 e 4 × 225 = 900. ✓ Se usasses o diâmetro como raio, darias 3,14 × 900 = 2826 cm², 4 vezes mais: maior do que o quadrado à volta da pizza, o que é impossível!</span></li>'+
+        '</ul>'},
+      {title:"🪟 Exemplo 6 — Uma janela com uma parte redonda", svg:'<svg class="poster-svg" viewBox="0 0 170 205" style="max-width:170px;margin:0 auto" role="img" aria-label="Janela formada por um quadrado de 2 m de lado com um semicírculo de 2 m de diâmetro por cima.">'+
+        '<path d="M30,180 L30,80 A50,50 0 0 1 130,80 L130,180 Z" fill="var(--wc-bg, #eee)" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>'+
+        '<line x1="30" y1="80" x2="130" y2="80" stroke="var(--wc)" stroke-width="2" stroke-dasharray="5 4"/>'+
+        '<g font-family="Lexend, sans-serif" font-size="11" font-weight="700" text-anchor="middle"><text x="80" y="197">2 m</text><text x="148" y="134">2 m</text><text x="80" y="134">quadrado</text><text x="80" y="66">semicírculo</text></g></svg>'+
+        '<ul class="wheel-legend">'+
+        '<li><span aria-hidden="true">🎯</span><span><b>O que queremos descobrir:</b> a área de vidro de uma janela: um quadrado de 2 m de lado com um semicírculo por cima. (π ≈ 3,14)</span></li>'+
+        '<li><span aria-hidden="true">🚦</span><span><b>Como começar:</b> divide a janela em duas partes conhecidas. O semicírculo tem o diâmetro igual ao lado do quadrado: 2 m, por isso o raio é 1 m.</span></li>'+
+        '<li><span aria-hidden="true">👣</span><span><b>Passo a passo:</b><br>Quadrado: 2 × 2 = 4 m²<br>Círculo inteiro: 3,14 × 1 × 1 = 3,14 m²<br>Semicírculo: 3,14 ÷ 2 = 1,57 m²<br>Total: 4 + 1,57 = 5,57 m²</span></li>'+
+        '<li><span aria-hidden="true">✅</span><span><b>Resultado:</b> a janela tem 5,57 m² de vidro.</span></li>'+
+        '<li><span aria-hidden="true">🔍</span><span><b>Verificar:</b> a parte redonda é menos de metade do quadrado (1,57 &lt; 2), como se vê no desenho. Erro a evitar: usar o círculo inteiro em vez de metade.</span></li>'+
+        '</ul>'}
     ],
     compare:{
-      left:{title:"📏 Raio", points:["Vai do centro até à circunferência","É a metade do diâmetro","Usado nas fórmulas P=2πr e A=πr²"]},
-      right:{title:"📐 Diâmetro", points:["Vai de um extremo ao outro, passando pelo centro","É o dobro do raio","Divide o círculo em duas partes iguais"]}
+      left:{title:"📏 Perímetro do círculo", points:["É o comprimento da circunferência (o contorno)","P = π × d = 2 × π × r","Mede-se em cm, m"]},
+      right:{title:"🟠 Área do círculo", points:["É a superfície do círculo","A = π × r² (r² = r × r)","Mede-se em cm², m²"]}
     },
     boss:"Ficha de avaliação — página a confirmar no manual"
   },
