@@ -309,42 +309,105 @@
   {
     id:"n4", num:4, c:"m4", icon:"🧩",
     title:"Padrões e Proporção",
-    subtitle:"Sequências e proporcionalidade direta", pages:"manual a confirmar",
-    lead:"Nos jogos de crafting, se dobrares os ingredientes, dobras o resultado — isso é proporcionalidade direta. Este mundo é sobre encontrar a regra escondida atrás de um padrão.",
+    subtitle:"Sequências, expressões e proporcionalidade direta", pages:"manual a confirmar",
+    lead:"Neste mundo vais aprender a descobrir a regra de uma sequência e a escrevê-la com letras, a reconhecer grandezas diretamente proporcionais, a resolver problemas com a redução à unidade e a regra de três, e a usar escalas em mapas. Vê primeiro a animação e os 6 exemplos resolvidos, um de cada vez. No fim tens o resumo para o teste.",
     missions:[
-      {t:"Qual É a Regra?", d:"Sequências e regularidades", f:"Continuar 3 sequências e explicar a regra usada", xp:10},
-      {t:"Receita Escalada", d:"Proporcionalidade direta", f:"Duplicar ou triplicar uma receita ou lista de crafting", xp:10},
-      {t:"Regra de Três", d:"Resolução de problemas com regra de três simples", f:"Resolver 3 problemas do dia a dia", xp:15}
+      {t:"Padrão de Palitos", d:"Sequências e termo geral", f:"Com palitos (ou a desenhar), faz uma fila de triângulos encostados: 1 triângulo, 2 triângulos, 3, 4…\nRegista numa tabela quantos palitos usa cada figura e descobre o termo geral, como no Exemplo 2.\nVerifica: usa a tua fórmula para prever a figura 5 e depois constrói-a e conta.", xp:10},
+      {t:"Receita Escalada", d:"Proporcionalidade direta", f:"Escolhe uma receita de casa para 4 pessoas.\nFaz uma tabela com as quantidades para 2, 6 e 10 pessoas, como nos Exemplos 3 e 4.\nVerifica: em cada ingrediente, quantidade ÷ número de pessoas dá sempre o mesmo valor.", xp:10},
+      {t:"Detetive de Mapas", d:"Escalas", f:"Num mapa com escala (um atlas, ou um mapa impresso da tua cidade), mede com a régua 3 distâncias entre sítios que conheces.\nCalcula as distâncias reais, como no Exemplo 5.\nVerifica: compara com a distância que uma app de mapas indica. Devem ser parecidas (a estrada tem curvas, por isso a da app é um pouco maior).", xp:15},
+      {t:"É ou Não É Proporcional?", d:"Reconhecer a proporcionalidade direta", f:"Inventa ou pesquisa 3 situações: o preço da fruta ao quilo, o preço de uma viagem de táxi e a altura de uma pessoa com a idade.\nPara cada uma, faz uma tabela com 3 valores e decide se é proporcional, como no Exemplo 3.\nVerifica: só é proporcional se o quociente der sempre o mesmo número.", xp:10}
     ],
     resumo:[
-      "Uma <b>sequência</b> é uma lista ordenada de números ou figuras que segue uma regra — uma <b>regularidade</b>. O <b>termo geral</b> permite calcular qualquer termo sem escrever todos os anteriores.",
-      "Duas grandezas são <b>diretamente proporcionais</b> quando, ao multiplicar uma por um número, a outra fica multiplicada pelo mesmo número — a razão entre elas mantém-se constante (a <b>constante de proporcionalidade</b>).",
-      "A <b>regra de três simples</b> é um método para resolver problemas de proporcionalidade direta.",
-      "Uma <b>expressão algébrica</b> usa letras para representar números desconhecidos ou variáveis (ex.: 2×a + b)."
+      "Uma <b>sequência</b> é uma lista ordenada de números ou figuras que segue uma regra. Cada elemento é um <b>termo</b>. O <b>termo geral</b> é uma expressão com a letra n (a ordem do termo) que dá qualquer termo sem escrever os anteriores: em 3, 7, 11, 15, … soma-se 4 de cada vez e o termo geral é 4n − 1.",
+      "Uma <b>expressão algébrica</b> usa letras para representar números (ex.: 3n + 2, «o triplo de n mais 2»). Para saber o seu valor, substitui-se a letra por um número: se n = 5, 3 × 5 + 2 = 17.",
+      "Duas grandezas são <b>diretamente proporcionais</b> quando o quociente entre os valores correspondentes é sempre o mesmo. Esse número é a <b>constante de proporcionalidade</b> (ex.: o preço por quilo). Atenção: duas grandezas podem aumentar ao mesmo tempo sem serem proporcionais.",
+      "Problemas de proporcionalidade direta resolvem-se pela <b>redução à unidade</b> (quanto vale 1?) ou pela <b>regra de três simples</b>: se 5 kg custam 6 €, 8 kg custam 8 × 6 ÷ 5 = 9,60 €.",
+      "No <b>referencial cartesiano</b>, cada ponto tem <b>coordenadas</b> (x, y): primeiro o valor no eixo horizontal, depois no vertical. O gráfico de duas grandezas diretamente proporcionais é formado por pontos sobre uma reta que passa pela <b>origem</b> (0, 0).",
+      "A <b>escala</b> de um mapa compara a distância no mapa com a distância real. Na escala 1 : 50 000, 1 cm no mapa representa 50 000 cm na realidade, ou seja, 500 m."
     ],
     gloss:[
       ["sequência","Uma lista ordenada de números ou figuras que segue uma regra."],
-      ["termo geral","A fórmula que permite calcular qualquer termo de uma sequência."],
-      ["proporcionalidade direta","Quando duas grandezas aumentam ou diminuem sempre na mesma proporção."],
-      ["constante de proporcionalidade","O número fixo que relaciona duas grandezas diretamente proporcionais."],
-      ["regra de três simples","Um método para resolver problemas de proporcionalidade direta."],
-      ["expressão algébrica","Uma expressão matemática que usa letras para representar números."]
+      ["termo","Cada elemento de uma sequência. O 1.º termo, o 2.º termo…"],
+      ["termo geral","A expressão com n que dá o termo de ordem n (ex.: 4n − 1)."],
+      ["expressão algébrica","Uma expressão com letras que representam números (ex.: 3n + 2)."],
+      ["diretamente proporcionais","Duas grandezas cujo quociente entre valores correspondentes é sempre o mesmo."],
+      ["constante de proporcionalidade","O quociente que se mantém entre duas grandezas diretamente proporcionais (ex.: 2,50 € por quilo)."],
+      ["redução à unidade","Calcular primeiro quanto corresponde a 1 (1 kg, 1 pessoa…) e depois multiplicar."],
+      ["regra de três simples","Um método para encontrar o valor desconhecido numa proporção: 5 → 6 e 8 → x, por isso x = 8 × 6 ÷ 5."],
+      ["referencial cartesiano","Dois eixos perpendiculares, com números, que servem para localizar pontos."],
+      ["coordenadas","O par de números (x, y) que localiza um ponto no referencial."],
+      ["origem","O ponto (0, 0), onde os dois eixos se cruzam."],
+      ["escala","A relação entre uma distância no mapa e a distância real (ex.: 1 : 50 000)."]
     ],
     quiz:[
-      {q:"O que é uma sequência, em matemática?", opts:["Uma lista ordenada de números ou figuras que segue uma regra","Um conjunto de números sem ordem","Uma fração equivalente","Um número primo"], correct:0, explain:"Uma sequência é uma lista ordenada que segue uma regularidade."},
-      {q:"O que permite calcular o termo geral de uma sequência?", opts:["Calcular qualquer termo sem escrever todos os anteriores","Multiplicar sempre por 2","Somar todos os termos","Dividir pelo número de termos"], correct:0, explain:"O termo geral é a fórmula que permite calcular diretamente qualquer termo da sequência."},
-      {q:"Quando é que duas grandezas são diretamente proporcionais?", opts:["Quando, ao multiplicar uma por um número, a outra fica multiplicada pelo mesmo número","Quando uma aumenta e a outra diminui sempre","Quando têm sempre o mesmo valor","Quando uma é sempre o dobro da outra menos 1"], correct:0, explain:"Em grandezas diretamente proporcionais, a razão entre elas mantém-se constante."},
-      {q:"O que é a constante de proporcionalidade?", opts:["O número fixo que relaciona duas grandezas diretamente proporcionais","Um número que varia sempre","O resultado de uma soma","O maior dos dois números"], correct:0, explain:"A constante de proporcionalidade é o número fixo que relaciona as duas grandezas."},
-      {q:"Se 2 kg de maçãs custam 3€, quanto custam 4 kg, mantendo a mesma proporção?", opts:["6€","4€","8€","3€"], correct:0, explain:"Duplicando a quantidade (2kg → 4kg), duplica também o preço (3€ → 6€)."},
-      {q:"Para que serve a regra de três simples?", opts:["Para resolver problemas de proporcionalidade direta","Para calcular médias","Para simplificar frações","Para calcular áreas"], correct:0, explain:"A regra de três simples é um método para resolver problemas de proporcionalidade direta."},
-      {q:"O que é uma expressão algébrica?", opts:["Uma expressão matemática que usa letras para representar números","Uma fração irredutível","Um número decimal","Uma sequência de números pares"], correct:0, explain:"Uma expressão algébrica usa letras para representar números desconhecidos ou variáveis."},
-      {q:"Qual destas é uma expressão algébrica?", opts:["2×a + b","2 + 2 = 4","0,75","3/4"], correct:0, explain:"2×a + b usa a letra \"a\" para representar um número desconhecido ou variável."},
-      {q:"Numa receita, se dobrares a quantidade de todos os ingredientes, mantendo a proporção, o que acontece ao resultado final?", opts:["Também duplica","Mantém-se igual","Reduz-se a metade","Triplica"], correct:0, explain:"Como os ingredientes e o resultado são diretamente proporcionais, dobrar os ingredientes duplica o resultado."},
-      {q:"Numa sequência em que cada termo é o anterior mais 3, começando em 2 (2, 5, 8, 11...), qual é o 5.º termo?", opts:["14","11","17","12"], correct:0, explain:"A sequência é 2, 5, 8, 11, 14 — o 5.º termo é 14."}
+      {q:"Na sequência 5, 8, 11, 14, … qual é o termo seguinte?", opts:["15","17","18","28"], correct:1, explain:"De um termo para o seguinte soma-se 3: 14 + 3 = 17. O 15 soma só 1, e o 28 é o dobro de 14: a regra não é dobrar."},
+      {q:"Qual é o termo geral da sequência 4, 8, 12, 16, …?", opts:["n + 4","4n","4n + 4","2n + 2"], correct:1, explain:"São os múltiplos de 4: o termo de ordem n é 4 × n. Testa: n = 1 → 4, n = 3 → 12. Com n + 4 dava 5, 6, 7…, e com 4n + 4 dava 8, 12, 16… (falta o 4)."},
+      {q:"Qual é o 10.º termo da sequência de termo geral 2n + 1?", opts:["12","20","21","30"], correct:2, explain:"Substitui n por 10: 2 × 10 + 1 = 21. O 12 vem de somar em vez de multiplicar (2 + 10), e o 20 esquece o «+ 1»."},
+      {q:"Um táxi cobra 4 € por 1 km, 5 € por 2 km e 6 € por 3 km. O preço é diretamente proporcional à distância?", opts:["Sim, porque quando os quilómetros aumentam o preço também aumenta","Não, porque o quociente muda: 4 ÷ 1 = 4, 5 ÷ 2 = 2,5 e 6 ÷ 3 = 2","Sim, e a constante é 1","Não, porque os números são pequenos"], correct:1, explain:"Para ser proporcional, o quociente tinha de ser sempre o mesmo, e não é. O táxi tem um valor fixo à partida (a bandeirada), por isso 2 km não custam o dobro de 1 km. Aumentar ao mesmo tempo não chega para ser proporcional."},
+      {q:"3 kg de maçãs custam 7,50 €. Qual é o preço de 1 kg?", opts:["22,50 €","0,40 €","2,50 €","4,50 €"], correct:2, explain:"Redução à unidade: 7,50 ÷ 3 = 2,50 € por quilo, que é a constante de proporcionalidade. O 22,50 multiplica em vez de dividir, e o 0,40 divide ao contrário (3 ÷ 7,50 dá quilos por euro)."},
+      {q:"Num mapa à escala 1 : 100 000, duas aldeias estão a 3 cm uma da outra. Qual é a distância real?", opts:["300 m","3 km","30 km","3 m"], correct:1, explain:"3 × 100 000 = 300 000 cm. Como 100 000 cm = 1 km, são 3 km. O 300 m e o 30 km vêm de converter mal as unidades (1 m = 100 cm; 1 km = 100 000 cm)."},
+      {q:"Uma receita para 4 pessoas leva 200 g de farinha. Quanta farinha é precisa para 6 pessoas?", opts:["202 g","300 g","400 g","1200 g"], correct:1, explain:"Cada pessoa leva 200 ÷ 4 = 50 g, por isso 6 pessoas levam 6 × 50 = 300 g. O 202 g é o erro de somar: «de 4 para 6 são mais 2, por isso mais 2 g». Na proporcionalidade multiplica-se, não se soma."},
+      {q:"Num referencial cartesiano, como é o gráfico de duas grandezas diretamente proporcionais?", opts:["Pontos sobre uma reta que passa pela origem","Pontos sobre uma reta que não passa pela origem","Pontos sobre uma curva que sobe","Pontos sobre uma reta horizontal"], correct:0, explain:"Se não compras nada, não pagas nada: o ponto (0, 0) faz parte do gráfico. E como o quociente é sempre o mesmo, os pontos ficam alinhados. Uma reta que não passa pela origem é o caso do táxi: há um valor à partida."},
+      {q:"O Rui tem n berlindes. A Ana tem o triplo dos berlindes do Rui, mais 2. Que expressão dá os berlindes da Ana?", opts:["3(n + 2)","n + 3 + 2","3n + 2","5n"], correct:2, explain:"«O triplo de n» é 3n, e «mais 2» junta-se depois: 3n + 2. A expressão 3(n + 2) seria o triplo de (n + 2), que dá mais 4 berlindes."},
+      {q:"«Se duas grandezas aumentam ao mesmo tempo, são diretamente proporcionais.» Verdadeiro ou falso? Escolhe a resposta com a justificação certa.", opts:["Verdadeiro. Se uma aumenta e a outra também, são proporcionais.","Falso. No táxi, a distância e o preço aumentam juntos, mas 2 km não custam o dobro de 1 km.","Verdadeiro. O preço da fruta e o peso aumentam juntos.","Falso. Grandezas proporcionais nunca aumentam."], correct:1, explain:"Basta um contraexemplo: no táxi, a distância e o preço aumentam juntos, mas o quociente muda, por isso não são proporcionais. Um exemplo em que dá certo (a fruta) não prova que é sempre assim."}
+    ],
+    posters:[
+      {title:"🔢 Exemplo 1 — O termo geral de uma sequência", svg:'<ul class="wheel-legend">'+
+        '<li><span aria-hidden="true">🎯</span><span><b>O que queremos descobrir:</b> o termo geral da sequência 3, 7, 11, 15, … e se o número 100 pertence a ela.</span></li>'+
+        '<li><span aria-hidden="true">🚦</span><span><b>Como começar:</b> vê quanto se soma de um termo para o seguinte: 7 − 3 = 4, 11 − 7 = 4. Soma-se sempre 4, por isso o termo geral tem «4n».</span></li>'+
+        '<li><span aria-hidden="true">👣</span><span><b>Passo a passo:</b><br>4n dá 4, 8, 12, 16…: cada termo tem 1 a mais do que a sequência.<br>Então o termo geral é 4n − 1.<br>10.º termo: 4 × 10 − 1 = 39<br>O 100 pertence? Seria 4n − 1 = 100, ou seja 4n = 101. Mas 101 não é múltiplo de 4.</span></li>'+
+        '<li><span aria-hidden="true">✅</span><span><b>Resultado:</b> o termo geral é 4n − 1, o 10.º termo é 39 e o 100 não pertence à sequência.</span></li>'+
+        '<li><span aria-hidden="true">🔍</span><span><b>Verificar:</b> testa com os primeiros termos. n = 1: 4 − 1 = 3 ✓; n = 2: 8 − 1 = 7 ✓; n = 4: 16 − 1 = 15 ✓.</span></li>'+
+        '</ul>'},
+      {title:"🔺 Exemplo 2 — Uma sequência de figuras", svg:'<svg class="poster-svg" viewBox="0 0 320 80" style="max-width:320px;margin:0 auto" role="img" aria-label="Figuras feitas de palitos: 1 quadrado usa 4 palitos, 2 quadrados encostados usam 7, 3 quadrados usam 10.">'+
+        '<g fill="none" stroke="var(--wc)" stroke-width="3" stroke-linecap="round"><rect x="10" y="20" width="30" height="30"/><rect x="70" y="20" width="30" height="30"/><rect x="100" y="20" width="30" height="30"/><rect x="160" y="20" width="30" height="30"/><rect x="190" y="20" width="30" height="30"/><rect x="220" y="20" width="30" height="30"/></g>'+
+        '<g font-family="Lexend, sans-serif" font-size="11" font-weight="700" text-anchor="middle"><text x="25" y="70">4 palitos</text><text x="100" y="70">7 palitos</text><text x="205" y="70">10 palitos</text></g></svg>'+
+        '<ul class="wheel-legend">'+
+        '<li><span aria-hidden="true">🎯</span><span><b>O que queremos descobrir:</b> quantos palitos são precisos para uma fila de 20 quadrados encostados.</span></li>'+
+        '<li><span aria-hidden="true">🚦</span><span><b>Como começar:</b> faz uma tabela. 1 quadrado: 4 palitos · 2 quadrados: 7 · 3 quadrados: 10. Cada quadrado novo junta 3 palitos.</span></li>'+
+        '<li><span aria-hidden="true">👣</span><span><b>Passo a passo:</b><br>Junta-se 3 de cada vez, por isso o termo geral tem «3n».<br>3n dá 3, 6, 9…: falta sempre 1 (o primeiro palito, à esquerda).<br>Termo geral: 3n + 1<br>20 quadrados: 3 × 20 + 1 = 61 palitos</span></li>'+
+        '<li><span aria-hidden="true">✅</span><span><b>Resultado:</b> são precisos 61 palitos.</span></li>'+
+        '<li><span aria-hidden="true">🔍</span><span><b>Verificar:</b> testa com a figura 3: 3 × 3 + 1 = 10 ✓. Erro a evitar: «1 quadrado usa 4, por isso 20 usam 80». Os quadrados encostados partilham palitos.</span></li>'+
+        '</ul>'},
+      {title:"⚖️ Exemplo 3 — É ou não é proporcional?", svg:'<ul class="wheel-legend">'+
+        '<li><span aria-hidden="true">🎯</span><span><b>O que queremos descobrir:</b> se o preço é diretamente proporcional à quantidade em duas situações: cadernos (1 → 1,50 €, 2 → 3 €, 3 → 4,50 €) e táxi (1 km → 4 €, 2 km → 5 €, 3 km → 6 €).</span></li>'+
+        '<li><span aria-hidden="true">🚦</span><span><b>Como começar:</b> divide cada preço pela quantidade correspondente.</span></li>'+
+        '<li><span aria-hidden="true">👣</span><span><b>Passo a passo:</b><br>Cadernos: 1,50 ÷ 1 = 1,50 · 3 ÷ 2 = 1,50 · 4,50 ÷ 3 = 1,50 → sempre igual<br>Táxi: 4 ÷ 1 = 4 · 5 ÷ 2 = 2,50 · 6 ÷ 3 = 2 → muda</span></li>'+
+        '<li><span aria-hidden="true">✅</span><span><b>Resultado:</b> os cadernos são proporcionais (constante 1,50 € por caderno); o táxi não é, porque tem um valor fixo à partida.</span></li>'+
+        '<li><span aria-hidden="true">🔍</span><span><b>Verificar:</b> nos cadernos, o dobro da quantidade custa o dobro (2 → 3 €; 4 → 6 €). No táxi, 2 km não custam o dobro de 1 km (5 € e não 8 €). Aumentarem juntos não chega!</span></li>'+
+        '</ul>'},
+      {title:"🍊 Exemplo 4 — Redução à unidade e regra de três", svg:'<ul class="wheel-legend">'+
+        '<li><span aria-hidden="true">🎯</span><span><b>O que queremos descobrir:</b> 5 kg de laranjas custam 6 €. Quanto custam 8 kg?</span></li>'+
+        '<li><span aria-hidden="true">🚦</span><span><b>Como começar:</b> o preço e o peso são diretamente proporcionais (o preço por quilo é sempre o mesmo).</span></li>'+
+        '<li><span aria-hidden="true">👣</span><span><b>Passo a passo:</b><br>Maneira 1 (redução à unidade): 1 kg custa 6 ÷ 5 = 1,20 €; 8 kg custam 8 × 1,20 = 9,60 €<br>Maneira 2 (regra de três): 5 kg → 6 € e 8 kg → x; x = 8 × 6 ÷ 5 = 48 ÷ 5 = 9,60 €</span></li>'+
+        '<li><span aria-hidden="true">✅</span><span><b>Resultado:</b> 8 kg custam 9,60 €.</span></li>'+
+        '<li><span aria-hidden="true">🔍</span><span><b>Verificar:</b> o quociente mantém-se: 6 ÷ 5 = 1,20 e 9,60 ÷ 8 = 1,20. E faz sentido: um pouco mais de peso, um pouco mais caro.</span></li>'+
+        '</ul>'},
+      {title:"🗺️ Exemplo 5 — A escala de um mapa", svg:'<ul class="wheel-legend">'+
+        '<li><span aria-hidden="true">🎯</span><span><b>O que queremos descobrir:</b> num mapa à escala 1 : 50 000, duas aldeias estão a 4 cm. Qual é a distância real? E quantos centímetros ocupam 3 km nesse mapa?</span></li>'+
+        '<li><span aria-hidden="true">🚦</span><span><b>Como começar:</b> 1 : 50 000 quer dizer que 1 cm no mapa são 50 000 cm na realidade.</span></li>'+
+        '<li><span aria-hidden="true">👣</span><span><b>Passo a passo:</b><br>4 cm × 50 000 = 200 000 cm<br>200 000 cm = 2000 m = 2 km<br>Ao contrário: 3 km = 300 000 cm; 300 000 ÷ 50 000 = 6 cm</span></li>'+
+        '<li><span aria-hidden="true">✅</span><span><b>Resultado:</b> as aldeias estão a 2 km, e 3 km ocupam 6 cm no mapa.</span></li>'+
+        '<li><span aria-hidden="true">🔍</span><span><b>Verificar:</b> as conversões. 1 m = 100 cm e 1 km = 100 000 cm. A escala é uma proporcionalidade direta: o dobro de centímetros no mapa é o dobro da distância real.</span></li>'+
+        '</ul>'},
+      {title:"📈 Exemplo 6 — O gráfico da proporcionalidade", svg:'<svg class="poster-svg" viewBox="0 0 240 190" style="max-width:240px;margin:0 auto" role="img" aria-label="Referencial cartesiano com o número de bilhetes no eixo horizontal e o preço em euros no vertical. Os pontos (1, 2), (2, 4) e (3, 6) estão sobre uma reta que passa pela origem.">'+
+        '<g stroke="currentColor" stroke-width="0.6" opacity="0.3"><line x1="40" y1="130" x2="220" y2="130"/><line x1="40" y1="100" x2="220" y2="100"/><line x1="40" y1="70" x2="220" y2="70"/><line x1="40" y1="40" x2="220" y2="40"/><line x1="80" y1="20" x2="80" y2="160"/><line x1="120" y1="20" x2="120" y2="160"/><line x1="160" y1="20" x2="160" y2="160"/><line x1="200" y1="20" x2="200" y2="160"/></g>'+
+        '<g stroke="currentColor" stroke-width="1.8"><line x1="40" y1="160" x2="225" y2="160"/><line x1="40" y1="160" x2="40" y2="15"/></g>'+
+        '<line x1="40" y1="160" x2="200" y2="40" stroke="var(--wc)" stroke-width="2" stroke-dasharray="5 4"/>'+
+        '<g fill="var(--wc)"><circle cx="80" cy="130" r="5"/><circle cx="120" cy="100" r="5"/><circle cx="160" cy="70" r="5"/><circle cx="40" cy="160" r="4"/></g>'+
+        '<g font-family="Lexend, sans-serif" font-size="10" text-anchor="middle"><text x="80" y="174">1</text><text x="120" y="174">2</text><text x="160" y="174">3</text><text x="200" y="174">4</text><text x="34" y="133" text-anchor="end">2</text><text x="34" y="103" text-anchor="end">4</text><text x="34" y="73" text-anchor="end">6</text><text x="34" y="43" text-anchor="end">8</text>'+
+        '<text x="140" y="187" font-weight="700">bilhetes</text><text x="12" y="12" text-anchor="start" font-weight="700">€</text><text x="40" y="174" font-weight="700">0</text></g></svg>'+
+        '<ul class="wheel-legend">'+
+        '<li><span aria-hidden="true">🎯</span><span><b>O que queremos descobrir:</b> como é o gráfico do preço de bilhetes de autocarro a 2 € cada.</span></li>'+
+        '<li><span aria-hidden="true">🚦</span><span><b>Como começar:</b> faz a tabela: 0 bilhetes → 0 €, 1 → 2 €, 2 → 4 €, 3 → 6 €. Cada par é um ponto (x, y): x = bilhetes, y = preço.</span></li>'+
+        '<li><span aria-hidden="true">👣</span><span><b>Passo a passo:</b><br>Marca os pontos (0, 0), (1, 2), (2, 4) e (3, 6).<br>Para cada ponto: anda primeiro na horizontal (x), depois sobe (y).<br>Liga os pontos com uma régua.</span></li>'+
+        '<li><span aria-hidden="true">✅</span><span><b>Resultado:</b> os pontos ficam numa reta que passa pela origem (0, 0). É assim o gráfico de duas grandezas diretamente proporcionais.</span></li>'+
+        '<li><span aria-hidden="true">🔍</span><span><b>Verificar:</b> por cada bilhete a mais, a reta sobe 2 € (a constante de proporcionalidade). Erro a evitar: trocar a ordem das coordenadas; (2, 4) não é o mesmo ponto que (4, 2).</span></li>'+
+        '</ul>'}
     ],
     compare:{
-      left:{title:"📈 Diretamente proporcionais", points:["A razão entre as duas grandezas é sempre igual","Se uma duplica, a outra também duplica","Ex.: preço e quantidade de um mesmo produto"]},
-      right:{title:"📉 Não proporcionais", points:["A razão entre as duas grandezas varia","Duplicar uma não duplica necessariamente a outra","Ex.: idade e altura de uma pessoa"]}
+      left:{title:"📈 Diretamente proporcionais", points:["O quociente é sempre o mesmo","O dobro de uma dá o dobro da outra","Ex.: o preço da fruta ao quilo; o gráfico é uma reta que passa pela origem"]},
+      right:{title:"📉 Não proporcionais", points:["O quociente muda","Podem aumentar juntas sem ser o dobro","Ex.: o táxi com bandeirada; a altura de uma pessoa com a idade"]}
     },
     boss:"Ficha de avaliação — página a confirmar no manual"
   },
