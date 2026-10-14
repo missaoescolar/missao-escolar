@@ -20,6 +20,7 @@
     --m6:#C22B5C; --m6-bg:#F9E3EC; --m6-bg-solid:#F3CBDD;
     --m7:#7F4C9C; --m7-bg:#F1E7F6; --m7-bg-solid:#E9D8F1;
     --m8:#3C7A73; --m8-bg:#E3EFEC; --m8-bg-solid:#D3E5E0;
+    --m9:#66721C; --m9-bg:#F1F3DF; --m9-bg-solid:#E6EACB;
 
     color-scheme: light;
   }
@@ -38,6 +39,7 @@
       --m6:#E87FA6; --m6-bg:#3A2430; --m6-bg-solid:#472C3B;
       --m7:#CB9EE2; --m7-bg:#332639; --m7-bg-solid:#402E48;
       --m8:#7FC2B8; --m8-bg:#1F2E2B; --m8-bg-solid:#263B36;
+      --m9:#C5D07A; --m9-bg:#2A2D1C; --m9-bg-solid:#343824;
       color-scheme: dark;
     }
   }
@@ -54,6 +56,7 @@
     --m6:#E87FA6; --m6-bg:#3A2430; --m6-bg-solid:#472C3B;
     --m7:#CB9EE2; --m7-bg:#332639; --m7-bg-solid:#402E48;
     --m8:#7FC2B8; --m8-bg:#1F2E2B; --m8-bg-solid:#263B36;
+    --m9:#C5D07A; --m9-bg:#2A2D1C; --m9-bg-solid:#343824;
     color-scheme: dark;
   }
 

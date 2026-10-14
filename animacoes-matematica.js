@@ -233,4 +233,42 @@
         }}
       ]});
   })();
+  /* n9 — rodar um triângulo 90° à volta de O, até formar uma rosácea */
+  (function(){
+    // O = (200,130); quadrícula de 20 px. Coordenadas do triângulo relativas a O (y para baixo):
+    // A(40,-20) B(80,-20) C(40,-60). Rodar 90° no sentido positivo leva A a A'(-20,-40), B a B'(-20,-80), C a C'(-60,-40).
+    const TRI = "40,-20 80,-20 40,-60";
+    const em = (deg, inner, o) => g(Object.assign({style:"transform:translate(200px,130px) rotate("+deg+"deg)"}, o||{}), inner);
+    const tri = o => '<polygon points="'+TRI+'"'+Object.entries(o).map(([k,v]) => ' '+k+'="'+v+'"').join("")+'/>';
+    const grelha = () => { let s = ""; for(let x=100;x<=300;x+=20) s += l(x,30,x,230,{sw:0.6, op:0.22}); for(let y=30;y<=230;y+=20) s += l(100,y,300,y,{sw:0.6, op:0.22}); return s; };
+    const RA = 44.72;   // OA = √(40² + 20²)
+    A.def({id:"rotacao", mundo:"n9", cor:"m9", arena:"n9", titulo:"Rodar uma figura à volta de um ponto",
+      cena: () => grelha()+
+        c(200,130,RA,{id:"circ", fill:"none", stroke:"var(--wc)", sw:1.8, da:"5 5", cls:"an-h"})+
+        g({id:"ghosts", cls:"an-h"}, em(-90, tri({fill:"var(--wc)", "fill-opacity":"0.25", stroke:"var(--wc)", "stroke-width":"2"}))+em(-180, tri({fill:"var(--wc)", "fill-opacity":"0.25", stroke:"var(--wc)", "stroke-width":"2"}))+em(-270, tri({fill:"var(--wc)", "fill-opacity":"0.25", stroke:"var(--wc)", "stroke-width":"2"})))+
+        em(0, tri({fill:"var(--surface-2)", stroke:"currentColor", "stroke-width":"2.5", "stroke-linejoin":"round"}))+
+        em(0, tri({fill:"var(--wc)", "fill-opacity":"0.45", stroke:"var(--wc)", "stroke-width":"2.5", "stroke-linejoin":"round"}), {id:"copia"})+
+        l(200,130,240,110,{id:"oa", sw:2.5, cls:"an-h"})+l(200,130,180,90,{id:"oa2", sw:2.5, cls:"an-h"})+
+        p("M200,130 m11.2,-5.6 l-5.6,-11.2 l-11.2,5.6",{id:"reto", stroke:"currentColor", sw:1.5, cls:"an-h"})+
+        c(200,130,4,{fill:"currentColor"})+t(192,148,"O",{fs:14})+
+        t(246,124,"A",{fs:13})+t(290,124,"B",{fs:13})+t(250,68,"C",{fs:13})+
+        g({id:"lbl2", cls:"an-h"}, t(158,104,"A'",{fs:13, fill:"var(--wc)"})+t(170,52,"B'",{fs:13, fill:"var(--wc)"})+t(138,104,"C'",{fs:13, fill:"var(--wc)"}))+
+        t(355,60,"90°",{id:"ang", fs:22, fill:"var(--wc)"})+t(355,82,"sentido positivo",{fs:11, fw:400})+
+        p("M372,124 A18,18 0 1 0 338,124",{stroke:"currentColor", sw:2})+p("M338,124 l-5.3,-4.6 M338,124 l1.3,-6.9",{stroke:"currentColor", sw:2, lc:"round"}),
+      passos:[
+        {t:"Temos um triângulo ABC e um ponto <b>O</b>, o <b>centro de rotação</b>. Vamos rodar o triângulo <b>90°</b> no <b>sentido positivo</b>: o contrário ao dos ponteiros do relógio.", f:S => {}},
+        {t:"Cada ponto roda à volta de O <b>sem se afastar nem se aproximar</b>: anda sobre uma circunferência de centro O. Olha para o vértice A.", f:S => S.mostrar(["#circ","#oa"])},
+        {t:"Rodamos… um quarto de volta!", dur:3000, f:S => S.mover("#copia", "translate(200px,130px) rotate(-90deg)")},
+        {t:"A imagem de A é <b>A'</b>. O ângulo AOA' mede <b>90°</b> e <b>OA' = OA</b>: A' está na mesma circunferência.", f:S => { S.mover("#copia", "translate(200px,130px) rotate(-90deg)"); S.mostrar(["#oa2","#reto","#lbl2"]); }},
+        {t:"A imagem A'B'C' tem os <b>mesmos lados e os mesmos ângulos</b> que ABC: só mudou a posição. Por isso a rotação é uma <b>isometria</b>.", f:S => { S.mover("#copia", "translate(200px,130px) rotate(-90deg)"); S.mostrar("#lbl2"); S.esconder(["#oa","#oa2","#reto","#circ"]); }},
+        {t:"E se continuarmos a rodar 90° de cada vez? Ao fim de <b>4 rotações</b> voltamos ao início: 4 × 90° = 360°. As cópias formam uma <b>rosácea</b> com simetria de rotação de 90°!", dur:6000, f:S => {
+          S.esconder("#lbl2");
+          if(S.instant){ S.mover("#copia", "translate(200px,130px) rotate(-360deg)"); S.mostrar("#ghosts"); return; }
+          S.mover("#copia", "translate(200px,130px) rotate(-180deg)");
+          S.depois(() => S.mover("#copia", "translate(200px,130px) rotate(-270deg)"), 1600);
+          S.depois(() => S.mover("#copia", "translate(200px,130px) rotate(-360deg)"), 3200);
+          S.depois(() => S.mostrar("#ghosts"), 4600);
+        }}
+      ]});
+  })();
 })();

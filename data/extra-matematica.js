@@ -212,5 +212,31 @@ const MATH_EXTRA = {
       {t:"A teoria das probabilidades nasceu em 1654, em cartas trocadas entre os matemáticos franceses Blaise Pascal e Pierre de Fermat sobre como dividir o prémio de um jogo interrompido.", fonte:"Encyclopaedia Britannica"},
       {t:"Numa turma de 23 pessoas, a probabilidade de duas fazerem anos no mesmo dia é de mais de 50%. Chama-se 'paradoxo do aniversário' porque quase toda a gente acha que seria muito menos.", fonte:"Encyclopaedia Britannica"}
     ]
+  },
+  n9: {
+    desafio: [
+      {q:"Uma estrela tem 12 pontas iguais, igualmente espaçadas. Qual é o ângulo mínimo de rotação que a deixa igual?", opts:["30°","12°","15°","60°"], correct:0, explain:"360° ÷ 12 = 30°. O 15° vem de dividir 180° em vez de 360°."},
+      {q:"Um floco de neve tem 6 eixos de simetria. Qual é o ângulo mínimo de rotação?", opts:["60°","30°","6°","90°"], correct:0, explain:"Com eixos, o número de eixos é igual ao número de posições iguais: 360° ÷ 6 = 60°."},
+      {q:"Quantos graus roda o ponteiro das horas em 3 horas?", opts:["90°","180°","30°","45°"], correct:0, explain:"O ponteiro das horas dá uma volta (360°) em 12 horas: 30° por hora. 3 × 30° = 90°."},
+      {q:"O ponto A está 2 quadrículas acima de O. Roda-se A 180° à volta de O. Onde fica A'?", opts:["2 quadrículas abaixo de O","2 quadrículas à direita de O","4 quadrículas acima de O","No ponto O"], correct:0, explain:"Meia volta leva «acima» para «abaixo», à mesma distância de O."},
+      {q:"Quantas rotações de 30° são precisas para dar meia volta?", opts:["6","12","3","30"], correct:0, explain:"Meia volta são 180°: 180 ÷ 30 = 6. (Uma volta inteira seriam 12.)"}
+    ],
+    explorar: {
+      proximo: "Mais à frente vais estudar outra isometria, a translação (fazer deslizar uma figura sem a rodar), e juntar várias isometrias para criar padrões que se repetem, como os dos azulejos.",
+      pontos: [
+        "Porque é que os flocos de neve têm quase sempre 6 pontas?",
+        "Que logótipos conheces com simetria de rotação? Têm também eixos de simetria?",
+        "Nos azulejos e na calçada portuguesa, onde encontras rotações?"
+      ],
+      links: [
+        {s:"khan", q:"simetria de rotação"},
+        {s:"bitesize", q:"rotational symmetry"},
+        {u:"https://www.mathsisfun.com/geometry/symmetry-rotational.html", n:"Math is Fun — simetria de rotação, com exemplos e animações (em inglês; tem publicidade)"}
+      ]
+    },
+    curiosidades: [
+      {t:"Os flocos de neve têm 6 pontas porque, ao congelar, as moléculas de água arrumam-se em hexágonos. Por isso um floco bem formado tem simetria de rotação de 60°.", fonte:"SnowCrystals.com (Kenneth Libbrecht, Caltech)"},
+      {t:"A maior parte das estrelas-do-mar tem 5 braços à volta do centro: rodando 72° (360° ÷ 5), o corpo fica quase igual. Chama-se simetria pentarradial.", fonte:"Encyclopaedia Britannica"}
+    ]
   }
 };

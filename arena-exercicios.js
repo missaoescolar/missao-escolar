@@ -872,6 +872,68 @@ const ARENA = (function(){
       explicacao:"A roleta tem "+N+" setores iguais e "+counts[ci]+" são "+CORES[ci][0]+"s: <b>"+counts[ci]+"/"+N+"</b>"+simp(counts[ci],N)+".", dica:"Conta os setores todos e os da cor pedida."};
   }
 
+  /* ------------------------------ n9: rotações e simetrias ------------------------------ */
+  // rosácea de n pétalas (com eixos) ou catavento de n pás (sem eixos), à volta de (80,80)
+  function rosaceaSvg(n, catavento){
+    let s = '<svg class="ar-svg" viewBox="0 0 160 160" width="180" role="img" aria-label="'+(catavento ? "Catavento com "+n+" pás iguais, todas a apontar para o mesmo lado" : "Rosácea com "+n+" pétalas iguais")+'"><g fill="var(--wc)" fill-opacity="0.35" stroke="currentColor" stroke-width="2" stroke-linejoin="round">';
+    const rx = Math.min(12, round(80/n, 1));
+    for(let k=0;k<n;k++){
+      const tr = ' transform="rotate('+round(k*360/n, 2)+' 80 80)"';
+      s += catavento ? '<polygon points="80,80 80,18 '+(80+Math.min(30, round(150/n, 1)))+',48"'+tr+'/>'
+                     : '<ellipse cx="80" cy="47" rx="'+rx+'" ry="27"'+tr+'/>';
+    }
+    return s+'</g><circle cx="80" cy="80" r="5" fill="currentColor"/></svg>';
+  }
+  function angMinimo(l){
+    if(l===1){ const n = pick([3,4,5,6,8]);
+      return {tipo:"num", unidade:"°", texto:"Esta rosácea tem <b>"+n+" pétalas</b> iguais, igualmente espaçadas. Qual é o <b>ângulo mínimo de rotação</b> que a deixa igual?", visual:rosaceaSvg(n), resposta:360/n,
+        explicacao:"Numa volta (360°), a rosácea fica igual "+n+" vezes: 360 ÷ "+n+" = <b>"+(360/n)+"°</b>.", dica:"Divide a volta inteira (360°) pelo número de pétalas."}; }
+    const n = pick([5,6,8,9,10,12,15,18,20]);
+    if(l===2) return {tipo:"num", unidade:"°", texto:"Uma rosácea tem <b>"+n+"</b> cópias iguais de um desenho à volta do centro. Qual é o <b>ângulo mínimo de rotação</b>?", resposta:360/n,
+      explicacao:"360 ÷ "+n+" = <b>"+(360/n)+"°</b>. Verifica: "+n+" × "+(360/n)+"° = 360°.", dica:"360° a dividir pelo número de cópias."};
+    return {tipo:"num", texto:"O ângulo mínimo de rotação de uma rosácea é <b>"+(360/n)+"°</b>. Quantas cópias do desenho tem a rosácea?", resposta:n,
+      explicacao:"Cada cópia ocupa "+(360/n)+"° e a volta tem 360°: 360 ÷ "+(360/n)+" = <b>"+n+"</b>.", dica:"Quantas vezes cabe esse ângulo em 360°?"};
+  }
+  function eixosRos(l){
+    const n = pick(l===1 ? [3,4,6,8] : [5,9,10,12]);
+    if(l<3) return {tipo:"num", unidade:"°", texto:"Uma rosácea com simetria de reflexão tem <b>"+n+" eixos de simetria</b>. Qual é o seu <b>ângulo mínimo de rotação</b>?", resposta:360/n,
+      explicacao:"Numa rosácea com eixos, o número de eixos é igual ao número de posições iguais numa volta: 360 ÷ "+n+" = <b>"+(360/n)+"°</b>.", dica:"Tantos eixos quantas as posições iguais numa volta."};
+    return {tipo:"num", texto:"Uma rosácea com simetria de reflexão tem ângulo mínimo de rotação de <b>"+(360/n)+"°</b>. Quantos <b>eixos de simetria</b> tem?", resposta:n,
+      explicacao:"Fica igual em 360 ÷ "+(360/n)+" = "+n+" posições, por isso tem <b>"+n+"</b> eixos.", dica:"Primeiro descobre quantas posições iguais há numa volta."};
+  }
+  function relogio(l){
+    if(l===1){ const m = pick([5,10,15,20,30,40,45]);
+      return {tipo:"num", unidade:"°", texto:"Quantos graus roda o <b>ponteiro dos minutos</b> em <b>"+m+" minutos</b>?", resposta:6*m,
+        explicacao:"Numa hora (60 min) dá uma volta (360°): 6° por minuto. "+m+" × 6° = <b>"+(6*m)+"°</b>, no sentido negativo (o dos ponteiros do relógio).", dica:"Primeiro descobre quantos graus roda num minuto."}; }
+    const h = pick([1,2,3,4,5,6,9]);
+    return {tipo:"num", unidade:"°", texto:"Quantos graus roda o <b>ponteiro das horas</b> em <b>"+h+(h===1?" hora":" horas")+"</b>?", resposta:30*h,
+      explicacao:"O ponteiro das horas dá uma volta (360°) em 12 horas: 30° por hora. "+h+" × 30° = <b>"+(30*h)+"°</b>.", dica:"360° em 12 horas: quantos graus numa hora?"};
+  }
+  function sentidoEq(l){
+    const a = pick([30,45,60,90,120,135,150]), neg = Math.random()<0.5;
+    return {tipo:"num", unidade:"°", texto:"Rodar uma figura <b>"+a+"° no sentido "+(neg?"negativo":"positivo")+"</b> dá a mesma imagem que rodá-la quantos graus no sentido <b>"+(neg?"positivo":"negativo")+"</b>?", resposta:360-a,
+      explicacao:"Os dois ângulos completam uma volta: "+a+" + "+(360-a)+" = 360. Resposta: <b>"+(360-a)+"°</b>.", dica:"Quanto falta para dar uma volta inteira?"};
+  }
+  function rotGrelha(l){
+    const dirs = ["à direita de","acima de","à esquerda de","abaixo de"];   // por ordem, no sentido positivo
+    const i = rnd(0,3), k = rnd(2,5), rot = pick(l===1 ? ["+90","-90"] : ["+90","-90","180"]);
+    const j = (i + (rot==="+90" ? 1 : rot==="-90" ? 3 : 2)) % 4;
+    const nome = rot==="+90" ? "90° no sentido positivo" : rot==="-90" ? "90° no sentido negativo" : "180°";
+    const op = d => k+" quadrículas "+dirs[d]+" O";
+    return choice("Numa quadrícula, o ponto A está "+op(i)+". Roda-se A <b>"+nome+"</b> à volta de O. Onde fica A'?", op(j), [0,1,2,3].filter(d => d!==j).map(op),
+      {explicacao:"O sentido positivo é o contrário ao dos ponteiros do relógio: a ordem é direita → acima → esquerda → abaixo. "+(rot==="180" ? "Meia volta passa para o lado oposto" : "Um quarto de volta avança uma posição "+(rot==="+90" ? "nessa ordem" : "na ordem contrária"))+": A' fica <b>"+op(j)+"</b>, à mesma distância.",
+       dica:"Imagina os ponteiros do relógio: o sentido negativo é o deles."});
+  }
+  function helice(l){
+    const n = pick([3,4,5,6]), cat = Math.random()<0.5, ang = 360/n;
+    const certa = cat ? "Simetria de rotação de "+ang+"° e nenhum eixo de simetria" : "Simetria de rotação de "+ang+"° e "+n+" eixos de simetria";
+    return choice("Que simetrias tem esta figura?", certa,
+      [cat ? "Simetria de rotação de "+ang+"° e "+n+" eixos de simetria" : "Simetria de rotação de "+ang+"° e nenhum eixo de simetria",
+       "Simetria de rotação de "+(180/n)+"° e "+n+" eixos de simetria", "Não tem simetria de rotação"],
+      {visual:rosaceaSvg(n, cat), explicacao:"Fica igual em "+n+" posições: 360 ÷ "+n+" = "+ang+"°. "+(cat ? "As pás apontam todas para o mesmo lado, por isso nenhuma reta a divide em metades iguais: <b>não tem eixos</b>." : "Cada pétala é simétrica, por isso tem <b>"+n+" eixos</b>, tantos como as pétalas."),
+       dica:"Conta as posições iguais numa volta. Depois pergunta-te: se dobrar a figura, as metades coincidem?"});
+  }
+
   /* ------------------------------ temas ------------------------------ */
   // g = gerador, min = nível mínimo em que aparece
   const TEMAS = {
@@ -884,7 +946,8 @@ const ARENA = (function(){
          {g:triAngle,min:2},{g:angPonto,min:2},{g:angOpostos,min:2},{g:areaTriGrelha,min:2},{g:areaL,min:2},{g:quadradoLado,min:2},{g:areaMoldura,min:3}],
     n6: [{g:raioDiam,min:1},{g:circP,min:1},{g:circA,min:2}],
     n7: [{g:volCubo,min:1},{g:volCaixa,min:1},{g:volCubinhos,min:1},{g:conv,min:1},{g:aquario,min:2}],
-    n8: [{g:media,min:1},{g:moda,min:1},{g:prob,min:1},{g:certoImp,min:1},{g:grafBarras,min:1},{g:pictograma,min:1},{g:roleta,min:1},{g:mediana,min:2},{g:amplitude,min:2}]
+    n8: [{g:media,min:1},{g:moda,min:1},{g:prob,min:1},{g:certoImp,min:1},{g:grafBarras,min:1},{g:pictograma,min:1},{g:roleta,min:1},{g:mediana,min:2},{g:amplitude,min:2}],
+    n9: [{g:angMinimo,min:1},{g:eixosRos,min:1},{g:relogio,min:1},{g:rotGrelha,min:1},{g:sentidoEq,min:2},{g:helice,min:2}]
   };
 
   let last = null;

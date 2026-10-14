@@ -49,5 +49,11 @@ const MISSAO_PROBLEMAS = {
        maneiras:[["A média","A: (10 + 12 + 11 + 9 + 13) ÷ 5 = 55 ÷ 5 = 11.<br>B: (2 + 20 + 15 + 8 + 10) ÷ 5 = 55 ÷ 5 = 11.<br>A média é igual!"],
                  ["A amplitude","A: 13 − 9 = 4 pontos de diferença.<br>B: 20 − 2 = 18 pontos de diferença.<br>A equipa A é muito mais regular."]],
        resposta:"As duas têm a mesma média (11), mas a equipa A é mais regular. Qual é «melhor» depende do que queres: uma equipa certinha ou uma que às vezes brilha.",
-       regra:"A média resume os dados, mas não diz tudo: a amplitude mostra se os valores estão próximos ou muito espalhados."}
+       regra:"A média resume os dados, mas não diz tudo: a amplitude mostra se os valores estão próximos ou muito espalhados."},
+  n9: {q:"Uma roda gigante tem 8 cabinas, igualmente espaçadas à volta do centro. A roda gira até a cabina 1 ficar exatamente onde estava a cabina 2. Quantos graus rodou? Quantas vezes tem de fazer este movimento para a cabina 1 voltar ao sítio de partida?",
+       dica:"Uma volta inteira tem 360°. Entre duas cabinas seguidas há sempre o mesmo ângulo.",
+       maneiras:[["Dividir a volta","As 8 cabinas repartem 360° em 8 partes iguais: 360 ÷ 8 = 45°.<br>Para voltar ao início: 360 ÷ 45 = 8 movimentos."],
+                 ["Ir partindo ao meio","Meia volta (180°) leva a cabina 1 até à 5: são 4 espaços.<br>Um quarto de volta (90°) são 2 espaços.<br>Um espaço é metade disso: 90 ÷ 2 = 45°."]],
+       resposta:"Rodou 45°; são precisos 8 movimentos para dar a volta completa.",
+       regra:"Quando uma figura tem n partes iguais à volta de um centro, o ângulo mínimo de rotação é 360° ÷ n."}
 };

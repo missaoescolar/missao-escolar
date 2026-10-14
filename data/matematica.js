@@ -832,5 +832,137 @@
       right:{title:"🎯 Mediana", points:["É o valor do meio, depois de ordenar","Quase não muda com um valor extremo: em 1, 2, 3, 4, 100 a mediana é 3","Divide os dados em duas metades"]}
     },
     boss:"Ficha de avaliação — página a confirmar no manual"
+  },
+  {
+    id:"n9", num:9, c:"m9", icon:"🏵️",
+    title:"Rodas e Rosáceas",
+    subtitle:"Rotações e simetrias", pages:"manual a confirmar",
+    lead:"Neste mundo vais aprender a rodar figuras à volta de um ponto, a descobrir as simetrias de rotação e de reflexão de uma rosácea e a construir as tuas próprias rosáceas. Precisas de régua, compasso e transferidor (e, se tiveres, papel vegetal). Vê primeiro a animação e os 6 exemplos resolvidos, um de cada vez. No fim tens o resumo para o teste.",
+    missions:[
+      {t:"Caça às Rosáceas", d:"Simetrias à tua volta", f:"Procura 5 objetos que fiquem iguais quando rodam um bocadinho: a jante de um carro, uma flor, uma tampa, um logótipo, um desenho da calçada…\nDesenha cada um e regista: quantas vezes fica igual numa volta inteira, qual é o ângulo mínimo (360° ÷ esse número) e quantos eixos de simetria tem.\nVerifica: em cada objeto, o número de eixos ou é igual ao número de posições iguais, ou é 0 (como num catavento).", xp:10},
+      {t:"Rodar com Compasso", d:"A imagem de um triângulo por rotação", f:"Desenha um triângulo ABC e um ponto O fora dele. Vais rodá-lo 90° no sentido positivo (contrário ao dos ponteiros do relógio), como no Exemplo 2.\nPara cada vértice: une-o a O, mede 90° com o transferidor a partir desse segmento, e marca com o compasso, nessa nova semirreta, a mesma distância a O.\nVerifica: decalca o triângulo em papel vegetal, espeta a ponta do lápis em O e roda a folha um quarto de volta. O decalque tem de cair exatamente em cima de A'B'C'.", xp:15},
+      {t:"A Minha Rosácea", d:"Construir uma rosácea por rotações", f:"Desenha uma circunferência e, dentro dela, uma pétala ou um desenho simples encostado ao centro.\nEscolhe quantas cópias queres (5, 6 ou 8) e calcula o ângulo: 360° ÷ número de cópias. Com o transferidor, roda o desenho esse ângulo, vezes sem conta, até dar a volta. Pinta.\nVerifica: o número de cópias × o ângulo tem de dar 360°, e a última rotação tem de cair em cima do primeiro desenho.", xp:10},
+      {t:"Rosácea em Scratch", d:"Pensamento computacional", f:"Abre o editor do Scratch (no passo 🔭 Explorar; não precisas de conta). Em Definições escolhe Português e junta a extensão «Caneta» (botão no canto de baixo, à esquerda).\nFaz um programa que desenha um quadrado e roda 45 graus, repetido 8 vezes: «repete 8 vezes: desenha o quadrado; gira 45 graus».\nVerifica: 8 × 45° = 360°. Muda para 6 vezes e 60 graus e prevê antes o que vai aparecer.", xp:15}
+    ],
+    resumo:[
+      "Uma <b>rotação</b> faz girar uma figura à volta de um ponto fixo, o <b>centro de rotação</b>. Para a definir são precisos três dados: o <b>centro</b>, a <b>amplitude do ângulo</b> e o <b>sentido</b>.",
+      "O sentido <b>positivo</b> é o contrário ao dos ponteiros do relógio; o sentido <b>negativo</b> é o dos ponteiros do relógio. Rodar 90° num sentido é o mesmo que rodar 270° no outro (90 + 270 = 360).",
+      "Na rotação de centro O, cada ponto A e a sua imagem A' ficam à <b>mesma distância de O</b>: OA = OA'. Por isso todas as imagens de A, com ângulos diferentes, estão numa <b>circunferência de centro O</b>. O centro é o único ponto que não se mexe.",
+      "Para construir a imagem de um polígono, roda-se <b>cada vértice</b> (com régua, compasso e transferidor) e unem-se as imagens. A rotação é uma <b>isometria</b>: a figura e a imagem têm os mesmos comprimentos e os mesmos ângulos; só muda a posição.",
+      "Uma figura tem <b>simetria de rotação</b> quando fica igual a si própria depois de uma rotação de menos de 360°. O <b>ângulo mínimo</b> de rotação é 360° ÷ o número de posições em que fica igual numa volta (ex.: 6 pétalas iguais → 60°).",
+      "Uma figura tem <b>simetria de reflexão</b> quando um <b>eixo de simetria</b> a divide em duas metades que coincidem dobrando a folha (como num espelho).",
+      "Uma <b>rosácea</b> é uma figura com simetria de rotação, feita de cópias de um desenho à volta de um centro. Se tiver simetria de reflexão, o número de eixos é igual ao número de cópias: 4 eixos → ângulo mínimo de 360° ÷ 4 = 90°. Há rosáceas sem eixos, como um catavento.",
+      "Para <b>construir uma rosácea</b> com n cópias, roda-se o desenho 360° ÷ n, sucessivamente, até completar a volta."
+    ],
+    gloss:[
+      ["rotação","Movimento que faz girar uma figura à volta de um ponto fixo, com um certo ângulo e um certo sentido."],
+      ["centro de rotação","O ponto fixo à volta do qual a figura roda; é o único ponto que fica no mesmo sítio."],
+      ["sentido positivo","O sentido contrário ao dos ponteiros do relógio."],
+      ["sentido negativo","O sentido dos ponteiros do relógio."],
+      ["imagem","A figura (ou o ponto) que se obtém depois da rotação; escreve-se com plica: A'."],
+      ["isometria","Uma transformação que mantém os comprimentos e os ângulos, como a rotação e a reflexão."],
+      ["simetria de rotação","Uma figura tem-na quando fica igual a si própria depois de uma rotação de menos de 360°."],
+      ["ângulo mínimo de rotação","O menor ângulo que faz a figura ficar igual a si própria; é 360° a dividir pelo número de posições iguais."],
+      ["eixo de simetria","Uma reta que divide a figura em duas metades que coincidem quando se dobra por ela."],
+      ["rosácea","Uma figura feita de cópias de um desenho à volta de um centro, com simetria de rotação."]
+    ],
+    quiz:[
+      {q:"O ponto A está a 3 cm do ponto O. Roda-se A 90° à volta de O. A que distância de O fica a imagem A'?", opts:["6 cm","90 cm","Depende do sentido","3 cm"], correct:3, explain:"Numa rotação, cada ponto anda sobre uma circunferência de centro O: não se afasta nem se aproxima. OA' = OA = 3 cm, seja qual for o ângulo e o sentido."},
+      {q:"Das 10h00 às 10h15, quanto roda o ponteiro dos minutos e em que sentido?", opts:["90°, sentido negativo","90°, sentido positivo","15°, sentido negativo","180°, sentido negativo"], correct:0, explain:"Uma hora é uma volta (360°), por isso 15 minutos são um quarto de volta: 360° ÷ 4 = 90°. Os ponteiros rodam no sentido dos ponteiros do relógio, que é o sentido negativo. O «15°» confunde minutos com graus."},
+      {q:"Uma jante tem 5 raios iguais, igualmente espaçados. Qual é o ângulo mínimo de rotação que a deixa igual?", opts:["5°","36°","72°","90°"], correct:2, explain:"Numa volta, a jante fica igual em 5 posições: 360° ÷ 5 = 72°. O 36° vem de dividir 180° (meia volta) em vez de 360°."},
+      {q:"Uma rosácea com simetria de reflexão tem 8 eixos de simetria. Qual é o ângulo mínimo de rotação?", opts:["8°","22,5°","45°","90°"], correct:2, explain:"Numa rosácea com eixos, o número de eixos é igual ao número de posições iguais numa volta: 360° ÷ 8 = 45°. O 22,5° vem de dividir 180° por 8."},
+      {q:"O ângulo mínimo de rotação de uma rosácea é 40°. Quantas cópias do desenho tem a rosácea?", opts:["4","40","36","9"], correct:3, explain:"Cada cópia ocupa 40° e a volta inteira tem 360°: 360 ÷ 40 = 9 cópias. Verifica: 9 × 40° = 360°."},
+      {q:"Rodar uma figura 270° no sentido positivo dá a mesma imagem que…", opts:["rodar 90° no sentido positivo","rodar 90° no sentido negativo","rodar 270° no sentido negativo","rodar 180°"], correct:1, explain:"270° num sentido mais 90° no outro dão a volta completa: 270 + 90 = 360. Por isso chega-se ao mesmo sítio rodando só 90° no sentido negativo (o dos ponteiros do relógio)."},
+      {q:"Roda-se um triângulo 60° à volta de um ponto. O que é verdade sobre a imagem?", opts:["Fica maior, porque se afasta do centro","Os ângulos aumentam 60°","Fica virada ao contrário, como num espelho","Tem os mesmos lados e os mesmos ângulos; só muda a posição"], correct:3, explain:"A rotação é uma isometria: mantém os comprimentos e os ângulos. E, ao contrário da reflexão, não troca a figura «ao espelho»: a letra R rodada continua a ler-se R."},
+      {q:"Numa quadrícula, o ponto A está 3 quadrículas à direita de O. Roda-se A 90° no sentido positivo, à volta de O. Onde fica A'?", opts:["3 quadrículas acima de O","3 quadrículas abaixo de O","3 quadrículas à esquerda de O","3 à direita e 3 acima de O"], correct:0, explain:"No sentido positivo (contrário ao dos ponteiros do relógio), um quarto de volta leva a «direita» para «cima». «Abaixo» seria o sentido negativo e «à esquerda» seria uma rotação de 180°."},
+      {q:"Um catavento de 3 pás iguais (todas a apontar para o mesmo lado) fica igual quando roda 120°. Que simetrias tem?", opts:["Simetria de rotação de 120° e 3 eixos de simetria","Não tem simetria nenhuma","Simetria de rotação de 120° e nenhum eixo de simetria","Simetria de rotação de 60° e 3 eixos"], correct:2, explain:"Tem simetria de rotação (360° ÷ 3 = 120°). Mas as pás «puxam» todas para o mesmo lado, por isso nenhuma reta o divide em metades iguais: não tem eixos. Nem todas as rosáceas têm simetria de reflexão!"},
+      {q:"«Se uma figura tem simetria de rotação de 90°, também tem simetria de rotação de 180°.» Verdadeiro ou falso? Escolhe a resposta com a justificação certa.", opts:["Falso. 180° é outro ângulo.","Verdadeiro. Rodar 180° é rodar 90° duas vezes, e cada vez a figura fica igual.","Verdadeiro, mas só se for um quadrado.","Falso. Só tem a simetria de 90°."], correct:1, explain:"Se depois de 90° a figura fica igual, rodando mais 90° volta a ficar igual: 90 + 90 = 180°. Pela mesma razão tem também 270°. Os ângulos de simetria são sempre múltiplos do ângulo mínimo."}
+    ],
+    posters:[
+      {title:"🔄 Exemplo 1 — Rodar um ponto", svg:'<svg class="poster-svg" viewBox="60 20 160 125" style="max-width:240px;margin:0 auto" role="img" aria-label="Ponto O, centro de rotação. O ponto A está 80 unidades à direita de O. A imagem A\' está 80 unidades acima de O. Um arco tracejado de A para A\', no sentido contrário ao dos ponteiros do relógio, e um ângulo reto em O.">'+
+        '<path d="M180,120 A80,80 0 0 0 100,40" fill="none" stroke="var(--wc)" stroke-width="2" stroke-dasharray="5 4"/>'+
+        '<path d="M107,35 L100,40 L107,45" fill="none" stroke="var(--wc)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>'+
+        '<g stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="100" y1="120" x2="180" y2="120"/><line x1="100" y1="120" x2="100" y2="40"/></g>'+
+        '<polyline points="114,120 114,106 100,106" fill="none" stroke="currentColor" stroke-width="1.5"/>'+
+        '<g fill="currentColor"><circle cx="100" cy="120" r="4"/><circle cx="180" cy="120" r="4"/><circle cx="100" cy="40" r="4"/></g>'+
+        '<g font-family="Lexend, sans-serif" font-size="12" font-weight="700" text-anchor="middle"><text x="92" y="136">O</text><text x="186" y="136">A</text><text x="88" y="38">A\'</text><text x="128" y="101">90°</text></g></svg>'+
+        '<ul class="wheel-legend">'+
+        '<li><span aria-hidden="true">🎯</span><span><b>O que queremos descobrir:</b> a imagem do ponto A pela rotação de centro O, 90° no sentido positivo.</span></li>'+
+        '<li><span aria-hidden="true">🚦</span><span><b>Como começar:</b> uma rotação precisa de três dados: o centro (O), o ângulo (90°) e o sentido (positivo: contrário ao dos ponteiros do relógio).</span></li>'+
+        '<li><span aria-hidden="true">👣</span><span><b>Passo a passo:</b><br>1. Une O a A com a régua.<br>2. Com o transferidor centrado em O, marca 90° a partir de OA, no sentido contrário ao dos ponteiros do relógio, e traça essa semirreta.<br>3. Com o compasso em O e abertura OA, marca nessa semirreta o ponto A\'.</span></li>'+
+        '<li><span aria-hidden="true">✅</span><span><b>Resultado:</b> A\' fica «por cima» de O, à mesma distância a que A está de O.</span></li>'+
+        '<li><span aria-hidden="true">🔍</span><span><b>Verificar:</b> OA\' = OA (mede com a régua) e o ângulo AOA\' mede 90°. A anda sobre uma circunferência de centro O: o arco tracejado.</span></li>'+
+        '</ul>'},
+      {title:"🔺 Exemplo 2 — Rodar um triângulo numa quadrícula", svg:'<svg class="poster-svg" viewBox="10 20 200 145" style="max-width:300px;margin:0 auto" role="img" aria-label="Quadrícula com o centro O. O triângulo ABC tem A 2 quadrículas à direita e 1 acima de O, B 4 à direita e 1 acima, C 2 à direita e 3 acima. A imagem A\'B\'C\', rodada 90° no sentido positivo, tem A\' 1 à esquerda e 2 acima de O, B\' 1 à esquerda e 4 acima, C\' 3 à esquerda e 2 acima.">'+
+        '<g stroke="currentColor" stroke-width="0.6" opacity="0.25">'+
+        '<line x1="20" y1="30" x2="20" y2="150"/><line x1="40" y1="30" x2="40" y2="150"/><line x1="60" y1="30" x2="60" y2="150"/><line x1="80" y1="30" x2="80" y2="150"/><line x1="100" y1="30" x2="100" y2="150"/><line x1="120" y1="30" x2="120" y2="150"/><line x1="140" y1="30" x2="140" y2="150"/><line x1="160" y1="30" x2="160" y2="150"/><line x1="180" y1="30" x2="180" y2="150"/><line x1="200" y1="30" x2="200" y2="150"/>'+
+        '<line x1="20" y1="30" x2="200" y2="30"/><line x1="20" y1="50" x2="200" y2="50"/><line x1="20" y1="70" x2="200" y2="70"/><line x1="20" y1="90" x2="200" y2="90"/><line x1="20" y1="110" x2="200" y2="110"/><line x1="20" y1="130" x2="200" y2="130"/><line x1="20" y1="150" x2="200" y2="150"/></g>'+
+        '<path d="M140,110 A44.72,44.72 0 0 0 80,90" fill="none" stroke="var(--wc)" stroke-width="1.8" stroke-dasharray="4 4"/>'+
+        '<polygon points="140,110 180,110 140,70" fill="var(--wc-bg, #eee)" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>'+
+        '<polygon points="80,90 80,50 40,90" fill="var(--wc)" fill-opacity="0.35" stroke="var(--wc)" stroke-width="2.5" stroke-linejoin="round"/>'+
+        '<circle cx="100" cy="130" r="4" fill="currentColor"/>'+
+        '<g font-family="Lexend, sans-serif" font-size="11" font-weight="700" text-anchor="middle"><text x="100" y="146">O</text><text x="146" y="124">A</text><text x="190" y="124">B</text><text x="148" y="66">C</text><text x="88" y="104">A\'</text><text x="90" y="48">B\'</text><text x="30" y="104">C\'</text></g></svg>'+
+        '<ul class="wheel-legend">'+
+        '<li><span aria-hidden="true">🎯</span><span><b>O que queremos descobrir:</b> a imagem do triângulo ABC pela rotação de centro O, 90° no sentido positivo.</span></li>'+
+        '<li><span aria-hidden="true">🚦</span><span><b>Como começar:</b> roda-se cada vértice e depois unem-se as imagens. Numa quadrícula, conta-se: um quarto de volta no sentido positivo transforma «para a direita» em «para cima» e «para cima» em «para a esquerda».</span></li>'+
+        '<li><span aria-hidden="true">👣</span><span><b>Passo a passo:</b><br>A: 2 à direita e 1 acima de O → A\': 2 acima e 1 à esquerda<br>B: 4 à direita e 1 acima → B\': 4 acima e 1 à esquerda<br>C: 2 à direita e 3 acima → C\': 2 acima e 3 à esquerda<br>Une A\', B\' e C\'.</span></li>'+
+        '<li><span aria-hidden="true">✅</span><span><b>Resultado:</b> o triângulo A\'B\'C\' (a cor), «deitado» para a esquerda de O.</span></li>'+
+        '<li><span aria-hidden="true">🔍</span><span><b>Verificar:</b> AB é horizontal e mede 2 quadrículas; A\'B\' é vertical e também mede 2. Os lados e os ângulos são os mesmos: só a posição mudou. Confirma com papel vegetal, como na missão «Rodar com Compasso».</span></li>'+
+        '</ul>'},
+      {title:"🕒 Exemplo 3 — Os ponteiros do relógio", svg:'<ul class="wheel-legend">'+
+        '<li><span aria-hidden="true">🎯</span><span><b>O que queremos descobrir:</b> das 10h00 às 10h20, quanto roda o ponteiro dos minutos, e em que sentido? E o ponteiro das horas?</span></li>'+
+        '<li><span aria-hidden="true">🚦</span><span><b>Como começar:</b> o ponteiro dos minutos dá uma volta inteira (360°) numa hora; o das horas dá uma volta em 12 horas. Os dois rodam no sentido dos ponteiros do relógio: o sentido <b>negativo</b>.</span></li>'+
+        '<li><span aria-hidden="true">👣</span><span><b>Passo a passo:</b><br>Minutos: 360° ÷ 60 = 6° por minuto; 20 × 6° = 120°<br>Horas: 360° ÷ 12 = 30° por hora; 20 minutos são 1/3 de hora: 30° ÷ 3 = 10°</span></li>'+
+        '<li><span aria-hidden="true">✅</span><span><b>Resultado:</b> o ponteiro dos minutos roda 120° e o das horas roda 10°, os dois no sentido negativo.</span></li>'+
+        '<li><span aria-hidden="true">🔍</span><span><b>Verificar:</b> 15 minutos dão 15 × 6° = 90°, um quarto de volta, e 20 minutos são um terço da volta: 360° ÷ 3 = 120°. Rodar 120° no sentido negativo leva ao mesmo sítio que rodar 240° no positivo (120 + 240 = 360).</span></li>'+
+        '</ul>'},
+      {title:"🌼 Exemplo 4 — A simetria de rotação", svg:'<svg class="poster-svg" viewBox="20 12 160 140" style="max-width:220px;margin:0 auto" role="img" aria-label="Flor com 6 pétalas iguais à volta do centro. Uma seta em arco mostra uma rotação de 60 graus, de uma pétala para a seguinte, no sentido contrário ao dos ponteiros do relógio.">'+
+        '<g fill="var(--wc-bg, #eee)" stroke="currentColor" stroke-width="2">'+
+        '<ellipse cx="100" cy="55" rx="13" ry="28"/><ellipse cx="100" cy="55" rx="13" ry="28" transform="rotate(60 100 85)"/><ellipse cx="100" cy="55" rx="13" ry="28" transform="rotate(120 100 85)"/>'+
+        '<ellipse cx="100" cy="55" rx="13" ry="28" transform="rotate(180 100 85)"/><ellipse cx="100" cy="55" rx="13" ry="28" transform="rotate(240 100 85)"/><ellipse cx="100" cy="55" rx="13" ry="28" transform="rotate(300 100 85)"/></g>'+
+        '<circle cx="100" cy="85" r="10" fill="var(--wc)" stroke="currentColor" stroke-width="2"/>'+
+        '<path d="M100,20 A65,65 0 0 0 43.7,52.5" fill="none" stroke="var(--wc)" stroke-width="2.2"/>'+
+        '<path d="M43.7,52.5 l7.8,-4.5 M43.7,52.5 l0,-9" fill="none" stroke="var(--wc)" stroke-width="2.2" stroke-linecap="round"/>'+
+        '<text x="60" y="22" font-family="Lexend, sans-serif" font-size="12" font-weight="700" text-anchor="middle" fill="var(--wc)">60°</text></svg>'+
+        '<ul class="wheel-legend">'+
+        '<li><span aria-hidden="true">🎯</span><span><b>O que queremos descobrir:</b> se esta flor tem simetria de rotação, qual é o ângulo mínimo e quais são todos os ângulos que a deixam igual.</span></li>'+
+        '<li><span aria-hidden="true">🚦</span><span><b>Como começar:</b> roda a flor (a imaginar, ou com um decalque) e conta em quantas posições fica igual numa volta inteira. Aqui as 6 pétalas são iguais e estão igualmente espaçadas.</span></li>'+
+        '<li><span aria-hidden="true">👣</span><span><b>Passo a passo:</b><br>Numa volta, a flor fica igual 6 vezes.<br>Ângulo mínimo: 360° ÷ 6 = 60°<br>Os outros são múltiplos: 120°, 180°, 240° e 300°.</span></li>'+
+        '<li><span aria-hidden="true">✅</span><span><b>Resultado:</b> tem simetria de rotação; o ângulo mínimo é 60°, e também fica igual com 120°, 180°, 240° e 300°.</span></li>'+
+        '<li><span aria-hidden="true">🔍</span><span><b>Verificar:</b> 6 × 60° = 360°: ao fim de 6 rotações, cada pétala volta ao seu lugar. (A rotação de 360° deixa qualquer figura igual, por isso não conta como simetria.)</span></li>'+
+        '</ul>'},
+      {title:"🪞 Exemplo 5 — Eixos de simetria e ângulo mínimo", svg:'<svg class="poster-svg" viewBox="0 10 240 145" style="max-width:300px;margin:0 auto" role="img" aria-label="À esquerda, uma flor de 4 pétalas com 4 eixos de simetria tracejados: vertical, horizontal e as duas diagonais. À direita, um catavento de 4 pás iguais, todas a apontar para o mesmo lado, sem eixos de simetria.">'+
+        '<g fill="var(--wc-bg, #eee)" stroke="currentColor" stroke-width="2">'+
+        '<ellipse cx="60" cy="49" rx="12" ry="22"/><ellipse cx="60" cy="49" rx="12" ry="22" transform="rotate(90 60 75)"/><ellipse cx="60" cy="49" rx="12" ry="22" transform="rotate(180 60 75)"/><ellipse cx="60" cy="49" rx="12" ry="22" transform="rotate(270 60 75)"/></g>'+
+        '<g stroke="var(--wc)" stroke-width="1.6" stroke-dasharray="5 4"><line x1="60" y1="20" x2="60" y2="130"/><line x1="5" y1="75" x2="115" y2="75"/><line x1="21.1" y1="36.1" x2="98.9" y2="113.9"/><line x1="21.1" y1="113.9" x2="98.9" y2="36.1"/></g>'+
+        '<g fill="var(--wc-bg, #eee)" stroke="currentColor" stroke-width="2" stroke-linejoin="round">'+
+        '<polygon points="180,75 180,27 204,51"/><polygon points="180,75 180,27 204,51" transform="rotate(90 180 75)"/><polygon points="180,75 180,27 204,51" transform="rotate(180 180 75)"/><polygon points="180,75 180,27 204,51" transform="rotate(270 180 75)"/></g>'+
+        '<circle cx="60" cy="75" r="4" fill="currentColor"/><circle cx="180" cy="75" r="4" fill="currentColor"/>'+
+        '<g font-family="Lexend, sans-serif" font-size="11" font-weight="700" text-anchor="middle"><text x="60" y="148">4 eixos · 90°</text><text x="180" y="148">0 eixos · 90°</text></g></svg>'+
+        '<ul class="wheel-legend">'+
+        '<li><span aria-hidden="true">🎯</span><span><b>O que queremos descobrir:</b> quantos eixos de simetria e qual o ângulo mínimo de rotação de cada figura: a flor de 4 pétalas e o catavento de 4 pás.</span></li>'+
+        '<li><span aria-hidden="true">🚦</span><span><b>Como começar:</b> para os eixos, pergunta-te: «se dobrar por esta reta, as duas metades coincidem?». Para a rotação, conta as posições iguais numa volta.</span></li>'+
+        '<li><span aria-hidden="true">👣</span><span><b>Passo a passo:</b><br>Flor: 4 posições iguais → 360° ÷ 4 = 90°. Eixos: 2 passam pelas pétalas e 2 passam entre elas → 4 eixos.<br>Catavento: também 4 posições iguais → 90°. Mas as pás apontam todas para o mesmo lado: dobrando por qualquer reta, as metades não coincidem → 0 eixos.</span></li>'+
+        '<li><span aria-hidden="true">✅</span><span><b>Resultado:</b> as duas têm simetria de rotação de 90°; a flor tem 4 eixos e o catavento não tem nenhum.</span></li>'+
+        '<li><span aria-hidden="true">🔍</span><span><b>Verificar:</b> numa rosácea com eixos, o número de eixos é igual ao número de posições iguais: 4 eixos e 360° ÷ 4 = 90°. Num catavento não há eixos, mas a rotação continua lá.</span></li>'+
+        '</ul>'},
+      {title:"✏️ Exemplo 6 — Construir uma rosácea", svg:'<ul class="wheel-legend">'+
+        '<li><span aria-hidden="true">🎯</span><span><b>O que queremos descobrir:</b> como desenhar uma rosácea com 5 pétalas iguais, igualmente espaçadas.</span></li>'+
+        '<li><span aria-hidden="true">🚦</span><span><b>Como começar:</b> as 5 pétalas repartem a volta inteira, 360°, em 5 partes iguais. Esse é o ângulo de cada rotação.</span></li>'+
+        '<li><span aria-hidden="true">👣</span><span><b>Passo a passo:</b><br>360° ÷ 5 = 72°<br>Desenha a 1.ª pétala encostada ao centro O.<br>Com o transferidor em O, roda-a 72° e desenha a 2.ª; roda a 2.ª 72° e desenha a 3.ª… até à 5.ª.<br>Em Scratch: «repete 5 vezes: desenha a pétala; gira 72 graus».</span></li>'+
+        '<li><span aria-hidden="true">✅</span><span><b>Resultado:</b> uma rosácea com simetria de rotação de 72°. Se a pétala for simétrica, a rosácea tem também 5 eixos de simetria.</span></li>'+
+        '<li><span aria-hidden="true">🔍</span><span><b>Verificar:</b> 5 × 72° = 360°: a 6.ª rotação cairia em cima da 1.ª pétala. Erro a evitar: usar 180° ÷ 5 = 36°; as 5 pétalas ficariam todas em metade da flor.</span></li>'+
+        '</ul>'}
+    ],
+    compare:{
+      left:{title:"🔄 Rotação", points:["Gira a figura à volta de um ponto (o centro)","Precisa do centro, do ângulo e do sentido","A figura não fica «ao espelho»: um R rodado continua a ler-se R"]},
+      right:{title:"🪞 Reflexão", points:["Vira a figura sobre uma reta (o eixo), como um espelho","Precisa só do eixo","A figura fica «ao espelho»: um R refletido fica Я"]}
+    },
+    resources:[
+      {icon:"📐", title:"GeoGebra — Geometria", desc:"Desenha um polígono e usa a ferramenta de rotação à volta de um ponto (em «Mais», nas transformações). Grátis, sem conta; em português.", site:"geogebra.org", url:"https://www.geogebra.org/geometry"},
+      {icon:"🎨", title:"Symmetry Artist", desc:"Desenha e vê o desenho repetir-se em simetria de rotação (escolhe 2 a 9) ou de reflexão. Em inglês; tem publicidade.", site:"Math is Fun", url:"https://www.mathsisfun.com/geometry/symmetry-artist.html"},
+      {icon:"🐱", title:"Scratch — editor", desc:"Para a missão «Rosácea em Scratch». Funciona sem conta (só não guarda online). Muda a língua em Definições.", site:"scratch.mit.edu", url:"https://scratch.mit.edu/projects/editor/"}
+    ],
+    boss:"Ficha de avaliação — página a confirmar no manual"
   }
   ];
