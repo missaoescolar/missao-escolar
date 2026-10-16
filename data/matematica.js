@@ -2,7 +2,7 @@
   {
     id:"n1", num:1, c:"m1", icon:"🧮",
     title:"Fábrica de Números",
-    subtitle:"Primos, potências e ordem das operações", pages:"manual a confirmar",
+    subtitle:"Primos, potências e ordem das operações", pages:"manual, vol. 1, cap. 1 «Números naturais», pp. 8–45",
     lead:"Neste mundo vais aprender a reconhecer números primos, a decompor um número em fatores primos, a calcular o m.d.c. e o m.m.c. de dois números, a multiplicar e dividir potências e a calcular expressões pela ordem certa. Vê primeiro a animação e os 7 exemplos resolvidos, um de cada vez. No fim tens o resumo para o teste.",
     missions:[
       {t:"Divisível ou Não?", d:"Critérios de divisibilidade por 2, 3, 5, 9 e 10", f:"Escreve 10 números de 2 ou 3 algarismos.\nPara cada um, usa os critérios do resumo e indica se é divisível por 2, 3, 5, 9 e 10.\nVerifica 3 deles com a calculadora: se for divisível, a divisão dá um número inteiro.", xp:10},
@@ -115,12 +115,12 @@
       left:{title:"✖️ Múltiplo", points:["Resulta de multiplicar um número por outro","Um número tem infinitos múltiplos","Ex.: 12 é múltiplo de 3"]},
       right:{title:"➗ Divisor", points:["Divide o número sem deixar resto","Um número tem um número limitado de divisores","Ex.: 3 é divisor de 12"]}
     },
-    boss:"Ficha de avaliação — página a confirmar no manual"
+    boss:"«Avalia o que sabes» do cap. 1 — manual, vol. 1, p. 42"
   },
   {
     id:"n2", num:2, c:"m2", icon:"🍕",
     title:"Inventário de Frações",
-    subtitle:"Frações e operações", pages:"manual a confirmar",
+    subtitle:"Frações e operações", pages:"manual, vol. 1, cap. 3 «Frações», pp. 108–149",
     lead:"Neste mundo vais aprender a encontrar frações equivalentes, a simplificar, a comparar frações, a calcular a fração de uma quantidade, a fazer as quatro operações com frações e a calcular potências de frações. Vê primeiro a animação e os 7 exemplos resolvidos, um de cada vez. No fim tens o resumo para o teste.",
     missions:[
       {t:"Iguais por Dentro", d:"Frações equivalentes e simplificação", f:"Escreve 3 frações equivalentes a 2/3, como no Exemplo 1.\nSimplifica até à forma irredutível: 12/18, 20/30 e 14/21. Usa o m.d.c. do Mundo 1.\nVerifica: duas frações a/b e c/d são equivalentes quando a × d = b × c (ex.: 2/3 e 4/6, porque 2 × 6 = 3 × 4).", xp:10},
@@ -238,12 +238,12 @@
       {icon:"🔬", title:"Build a Fraction", desc:"Simulação interativa para montar frações e ver frações equivalentes a formarem-se.", site:"PhET Interactive Simulations", url:"https://phet.colorado.edu/en/simulations/build-a-fraction"},
       {icon:"🎮", title:"Jogos de frações", desc:"Vários jogos curtos para praticar frações, equivalências e operações. Tem publicidade.", site:"Math Playground", url:"https://www.mathplayground.com/index_fractions.html"}
     ],
-    boss:"Ficha de avaliação — página a confirmar no manual"
+    boss:"«Avalia o que sabes» do cap. 3 — manual, vol. 1, p. 146"
   },
   {
     id:"n3", num:3, c:"m3", icon:"🏷️",
     title:"Loja e Percentagens",
-    subtitle:"Números decimais e percentagens", pages:"manual a confirmar",
+    subtitle:"Números decimais e percentagens", pages:"revisão do 5.º ano: o manual do 6.º ano não tem capítulo próprio",
     lead:"Neste mundo vais aprender a comparar e a calcular com números decimais, a passar de frações para decimais e percentagens, e a resolver problemas com descontos e aumentos. Vê primeiro a animação e os 6 exemplos resolvidos, um de cada vez. No fim tens o resumo para o teste.",
     missions:[
       {t:"Lista de Compras", d:"Somar números decimais e estimar", f:"Escolhe 5 produtos de um folheto de supermercado (ou de um talão).\nPrimeiro estima o total, arredondando cada preço ao euro mais próximo.\nDepois calcula o total exato, alinhando as vírgulas.\nVerifica: o total exato tem de ficar perto da tua estimativa.", xp:10},
@@ -339,12 +339,12 @@
       left:{title:"🔢 Dízima finita", points:["A divisão acaba: 3/4 = 0,75","Na fração irredutível, o denominador só tem os fatores primos 2 e 5","Ex.: 1/2, 2/5, 7/20"]},
       right:{title:"🔁 Dízima infinita periódica", points:["Um grupo de algarismos repete-se: 1/3 = 0,333…","O denominador tem outros fatores primos (3, 7, 11…)","Ex.: 2/3, 1/6, 5/7"]}
     },
-    boss:"Ficha de avaliação — página a confirmar no manual"
+    boss:"Sem ficha no manual do 6.º ano — usa o teste deste mundo e a Arena"
   },
   {
     id:"n4", num:4, c:"m4", icon:"🧩",
     title:"Padrões e Proporção",
-    subtitle:"Sequências, expressões e proporcionalidade direta", pages:"manual a confirmar",
+    subtitle:"Sequências, expressões e proporcionalidade direta", pages:"manual, vol. 2, cap. 4 «Sequências e regularidades. Proporcionalidade direta», pp. 6–41",
     lead:"Neste mundo vais aprender a descobrir a regra de uma sequência e a escrevê-la com letras, a reconhecer grandezas diretamente proporcionais, a resolver problemas com a redução à unidade e a regra de três, e a usar escalas em mapas. Vê primeiro a animação e os 6 exemplos resolvidos, um de cada vez. No fim tens o resumo para o teste.",
     missions:[
       {t:"Padrão de Palitos", d:"Sequências e termo geral", f:"Com palitos (ou a desenhar), faz uma fila de triângulos encostados: 1 triângulo, 2 triângulos, 3, 4…\nRegista numa tabela quantos palitos usa cada figura e descobre o termo geral, como no Exemplo 2.\nVerifica: usa a tua fórmula para prever a figura 5 e depois constrói-a e conta.", xp:10},
@@ -444,12 +444,12 @@
       left:{title:"📈 Diretamente proporcionais", points:["O quociente é sempre o mesmo","O dobro de uma dá o dobro da outra","Ex.: o preço da fruta ao quilo; o gráfico é uma reta que passa pela origem"]},
       right:{title:"📉 Não proporcionais", points:["O quociente muda","Podem aumentar juntas sem ser o dobro","Ex.: o táxi com bandeirada; a altura de uma pessoa com a idade"]}
     },
-    boss:"Ficha de avaliação — página a confirmar no manual"
+    boss:"«Avalia o que sabes» do cap. 4 — manual, vol. 2, p. 38"
   },
   {
     id:"n5", num:5, c:"m5", icon:"📐",
     title:"Ângulos e Polígonos",
-    subtitle:"Ângulos, perímetro e área", pages:"manual a confirmar",
+    subtitle:"Ângulos, perímetro e área", pages:"manual, vol. 1, cap. 2 «Figuras no plano», pp. 48–67 (polígonos e ângulos)",
     lead:"Neste mundo vais aprender a medir e classificar ângulos, a descobrir ângulos desconhecidos, e a calcular o perímetro e a área de polígonos e de figuras compostas. Vê primeiro as animações e os 6 exemplos resolvidos, um de cada vez. No fim tens o resumo para o teste.",
     missions:[
       {t:"Caça aos Ângulos", d:"Medir e classificar ângulos", f:"Escolhe 5 ângulos à tua volta: uma tesoura aberta, os ponteiros de um relógio, um livro aberto…\nPara cada um, estima primeiro, depois mede com o transferidor e classifica-o (agudo, reto, obtuso ou raso).\nVerifica: para saber se um ângulo é reto, encosta-lhe o canto de uma folha A4.", xp:10},
@@ -557,12 +557,12 @@
     resources:[
       {icon:"🎮", title:"Jogos de geometria", desc:"Jogos curtos para praticar ângulos, perímetro e área. Tem publicidade.", site:"Math Playground", url:"https://www.mathplayground.com/index_geometry.html"}
     ],
-    boss:"Ficha de avaliação — página a confirmar no manual"
+    boss:"«Avalia o que sabes» do cap. 2 — manual, vol. 1, p. 101"
   },
   {
     id:"n6", num:6, c:"m6", icon:"⭕",
     title:"Mundo Redondo",
-    subtitle:"Circunferência e círculo", pages:"manual a confirmar",
+    subtitle:"Circunferência e círculo", pages:"manual, vol. 1, cap. 2 «Figuras no plano», pp. 68–77 (perímetro e área do círculo)",
     lead:"Neste mundo vais aprender os elementos da circunferência, de onde vem o número π, e a calcular o perímetro e a área do círculo, também em figuras com partes redondas. Vê primeiro a animação e os 6 exemplos resolvidos, um de cada vez. No fim tens o resumo para o teste.",
     missions:[
       {t:"Descobrir o π", d:"O número π", f:"Escolhe 3 objetos redondos: uma lata, um prato, uma tampa…\nMede a volta de cada um com um fio (e depois o fio com a régua) e mede o diâmetro. Divide o perímetro pelo diâmetro, como no Exemplo 3.\nVerifica: deve dar sempre perto de 3,1. Quanto mais cuidado nas medições, mais perto de 3,14.", xp:10},
@@ -662,12 +662,12 @@
       left:{title:"📏 Perímetro do círculo", points:["É o comprimento da circunferência (o contorno)","P = π × d = 2 × π × r","Mede-se em cm, m"]},
       right:{title:"🟠 Área do círculo", points:["É a superfície do círculo","A = π × r² (r² = r × r)","Mede-se em cm², m²"]}
     },
-    boss:"Ficha de avaliação — página a confirmar no manual"
+    boss:"«Avalia o que sabes» do cap. 2 — manual, vol. 1, p. 101"
   },
   {
     id:"n7", num:7, c:"m7", icon:"🧱",
     title:"Blocos em 3D",
-    subtitle:"Sólidos e volumes", pages:"manual a confirmar",
+    subtitle:"Sólidos e volumes", pages:"manual, vol. 2, cap. 5 «Figuras no espaço», pp. 44–79",
     lead:"Neste mundo vais aprender a reconhecer sólidos e as suas planificações, a calcular o volume de paralelepípedos, cubos, prismas e cilindros, e a passar de volume para capacidade (litros). Vê primeiro a animação e os 6 exemplos resolvidos, um de cada vez. No fim tens o resumo para o teste.",
     missions:[
       {t:"Contar Blocos", d:"Volume com cubos", f:"Enche uma caixa pequena com cubos iguais (peças de encaixar, dados ou cubos de açúcar), camada a camada.\nConta quantos cabem numa camada e quantas camadas há, como no Exemplo 1.\nVerifica: comprimento × largura × altura (medidos em cubos) tem de dar o mesmo número que contaste.", xp:10},
@@ -759,12 +759,12 @@
       left:{title:"🟩 Área", points:["Mede uma superfície (duas dimensões)","Unidades quadradas: cm², m²","Ex.: o papel para embrulhar uma caixa"]},
       right:{title:"🧊 Volume", points:["Mede o espaço ocupado (três dimensões)","Unidades cúbicas: cm³, m³ (e litros)","Ex.: o que cabe dentro da caixa"]}
     },
-    boss:"Ficha de avaliação — página a confirmar no manual"
+    boss:"«Avalia o que sabes» do cap. 5 — manual, vol. 2, p. 76"
   },
   {
     id:"n8", num:8, c:"m8", icon:"📊",
     title:"Estatística do Servidor",
-    subtitle:"Dados e probabilidades", pages:"manual a confirmar",
+    subtitle:"Dados e probabilidades", pages:"manual, vol. 2, cap. 6 «Dados e probabilidades», pp. 82–125",
     lead:"Neste mundo vais aprender a organizar dados em tabelas e gráficos, a resumi-los com a média, a moda, a mediana e a amplitude, e a calcular probabilidades. Vê primeiro a animação e os 6 exemplos resolvidos, um de cada vez. No fim tens o resumo para o teste.",
     missions:[
       {t:"Inquérito à Família", d:"Recolha e organização de dados", f:"Faz uma pergunta a 10 pessoas (por exemplo: «Qual é a tua fruta preferida?»).\nOrganiza as respostas numa tabela com a frequência absoluta e a frequência relativa, como no Exemplo 1.\nVerifica: as frequências absolutas somam 10 e as relativas somam 100%.", xp:10},
@@ -866,12 +866,12 @@
       left:{title:"➗ Média", points:["Usa todos os valores","Muda muito com um valor extremo: em 1, 2, 3, 4, 100 a média é 22","Pode não ser nenhum dos valores"]},
       right:{title:"🎯 Mediana", points:["É o valor do meio, depois de ordenar","Quase não muda com um valor extremo: em 1, 2, 3, 4, 100 a mediana é 3","Divide os dados em duas metades"]}
     },
-    boss:"Ficha de avaliação — página a confirmar no manual"
+    boss:"«Avalia o que sabes» do cap. 6 — manual, vol. 2, p. 122"
   },
   {
     id:"n9", num:9, c:"m9", icon:"🏵️",
     title:"Rodas e Rosáceas",
-    subtitle:"Rotações e simetrias", pages:"manual a confirmar",
+    subtitle:"Rotações e simetrias", pages:"manual, vol. 1, cap. 2 «Figuras no plano», pp. 78–87 (rotação e simetrias)",
     lead:"Neste mundo vais aprender a rodar figuras à volta de um ponto, a descobrir as simetrias de rotação e de reflexão de uma rosácea e a construir as tuas próprias rosáceas. Precisas de régua, compasso e transferidor (e, se tiveres, papel vegetal). Vê primeiro a animação e os 6 exemplos resolvidos, um de cada vez. No fim tens o resumo para o teste.",
     missions:[
       {t:"Caça às Rosáceas", d:"Simetrias à tua volta", f:"Procura 5 objetos que fiquem iguais quando rodam um bocadinho: a jante de um carro, uma flor, uma tampa, um logótipo, um desenho da calçada…\nDesenha cada um e regista: quantas vezes fica igual numa volta inteira, qual é o ângulo mínimo (360° ÷ esse número) e quantos eixos de simetria tem.\nVerifica: em cada objeto, o número de eixos ou é igual ao número de posições iguais, ou é 0 (como num catavento).", xp:10},
@@ -998,6 +998,6 @@
       {icon:"🎨", title:"Symmetry Artist", desc:"Desenha e vê o desenho repetir-se em simetria de rotação (escolhe 2 a 9) ou de reflexão. Em inglês; tem publicidade.", site:"Math is Fun", url:"https://www.mathsisfun.com/geometry/symmetry-artist.html"},
       {icon:"🐱", title:"Scratch — editor", desc:"Para a missão «Rosácea em Scratch». Funciona sem conta (só não guarda online). Muda a língua em Definições.", site:"scratch.mit.edu", url:"https://scratch.mit.edu/projects/editor/"}
     ],
-    boss:"Ficha de avaliação — página a confirmar no manual"
+    boss:"«Avalia o que sabes» do cap. 2 — manual, vol. 1, p. 101"
   }
   ];
