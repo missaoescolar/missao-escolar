@@ -740,6 +740,9 @@
 
     .compare{ break-inside:avoid; }
     .route-fig, .dist-bar, .member-grid, .poster-fig{ break-inside:avoid; }
+    /* on paper, the parts of Aprender and every worked example are shown, without the buttons */
+    .aprender-sec[hidden], .poster-fig[hidden]{ display:block !important; }
+    .aprender-tabs, .ex-nav, .sec-next{ display:none !important; }
   }
 
   /* =====================================================================
@@ -1000,3 +1003,12 @@
 
 
   .tab-soon{ flex:none; white-space:nowrap; font-family:"Lexend",sans-serif; font-weight:700; font-size:0.85rem; padding:10px 14px; color:var(--text-muted); opacity:0.55; cursor:default; }
+
+  /* Aprender in three parts, worked examples one at a time; inside a world the daily strips step aside */
+  .aprender-tabs{ margin:14px 0 16px; }
+  .aprender-tabs .subtab{ flex:1 1 0; min-width:0; padding:9px 8px; font-size:.88rem; }
+  .ex-nav{ display:flex; align-items:center; justify-content:space-between; gap:10px; margin:12px 0 4px; flex-wrap:wrap; }
+  .ex-nav .ghost-btn:disabled{ opacity:.4; cursor:default; }
+  .ex-count{ font-family:"Lexend",sans-serif; font-weight:700; font-size:.9rem; color:var(--text-muted); }
+  .sec-next{ display:flex; justify-content:flex-end; margin:16px 0 4px; }
+  body.in-world #today-panel, body.in-world #hoje-card{ display:none; }

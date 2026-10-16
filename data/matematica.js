@@ -449,13 +449,14 @@
   {
     id:"n5", num:5, c:"m5", icon:"📐",
     title:"Ângulos e Polígonos",
-    subtitle:"Ângulos, perímetro e área", pages:"manual, vol. 1, cap. 2 «Figuras no plano», pp. 48–67 (polígonos e ângulos)",
-    lead:"Neste mundo vais aprender a medir e classificar ângulos, a descobrir ângulos desconhecidos, e a calcular o perímetro e a área de polígonos e de figuras compostas. Vê primeiro as animações e os 6 exemplos resolvidos, um de cada vez. No fim tens o resumo para o teste.",
+    subtitle:"Polígonos, ângulos, perímetro e área", pages:"manual, vol. 1, cap. 2 «Figuras no plano», pp. 48–67 (polígonos e ângulos)",
+    lead:"Neste mundo vais aprender a classificar polígonos (convexos ou côncavos, regulares ou irregulares), a medir e classificar ângulos, a descobrir ângulos internos e externos, e a calcular o perímetro e a área de polígonos e de figuras compostas. Vê primeiro as animações e os 8 exemplos resolvidos, um de cada vez. No fim tens o resumo para o teste.",
     missions:[
       {t:"Caça aos Ângulos", d:"Medir e classificar ângulos", f:"Escolhe 5 ângulos à tua volta: uma tesoura aberta, os ponteiros de um relógio, um livro aberto…\nPara cada um, estima primeiro, depois mede com o transferidor e classifica-o (agudo, reto, obtuso ou raso).\nVerifica: para saber se um ângulo é reto, encosta-lhe o canto de uma folha A4.", xp:10},
       {t:"Os 180° do Triângulo", d:"Soma dos ângulos de um triângulo", f:"Desenha um triângulo qualquer numa folha e pinta os três cantos com cores diferentes.\nRecorta-o, rasga os três cantos e junta-os lado a lado, com os bicos no mesmo ponto.\nVerifica: os três cantos formam uma linha reta, um ângulo raso de 180°. Repete com outro triângulo diferente.", xp:10},
       {t:"O Meu Quarto", d:"Perímetro e área", f:"Mede o comprimento e a largura do teu quarto (ou da sala), em metros.\nCalcula o perímetro (o comprimento do rodapé) e a área (o chão), como no Exemplo 4.\nVerifica: estima antes de calcular, e confirma as unidades: o perímetro em m e a área em m².", xp:15},
-      {t:"Figura Composta", d:"Área de figuras compostas", f:"Numa folha quadriculada, desenha uma figura em forma de L (ou uma casa: um retângulo com um triângulo por cima).\nCalcula a área de duas maneiras diferentes, como no Exemplo 6.\nVerifica: as duas maneiras dão o mesmo resultado; confirma contando os quadradinhos.", xp:10}
+      {t:"Figura Composta", d:"Área de figuras compostas", f:"Numa folha quadriculada, desenha uma figura em forma de L (ou uma casa: um retângulo com um triângulo por cima).\nCalcula a área de duas maneiras diferentes, como no Exemplo 6.\nVerifica: as duas maneiras dão o mesmo resultado; confirma contando os quadradinhos.", xp:10},
+      {t:"Os 360° dos Externos", d:"Ângulos externos de um triângulo", f:"Desenha um triângulo grande e prolonga cada lado para fora, sempre no mesmo sentido (como um cata-vento). Em cada vértice aparece um ângulo externo: pinta os três com cores diferentes.\nRecorta os três ângulos externos e junta-os com os bicos no mesmo ponto.\nVerifica: os três dão uma volta completa (360°). E cada externo mede o mesmo que os dois internos que não lhe estão encostados (mede com o transferidor).", xp:10}
     ],
     resumo:[
       "Um <b>ângulo</b> mede-se em graus (°) com o transferidor. Classifica-se em <b>agudo</b> (menos de 90°), <b>reto</b> (90°), <b>obtuso</b> (entre 90° e 180°) e <b>raso</b> (180°).",
@@ -464,7 +465,10 @@
       "Um <b>polígono</b> é uma figura plana fechada, só com lados retos. O <b>perímetro</b> é a soma dos lados e mede-se em unidades de comprimento (cm, m). A <b>área</b> é a medida da superfície e mede-se em unidades quadradas (cm², m²); 1 m² = 10 000 cm².",
       "Áreas: <b>retângulo</b> = comprimento × largura; <b>paralelogramo</b> = base × altura; <b>triângulo</b> = base × altura ÷ 2; <b>trapézio</b> = (base maior + base menor) × altura ÷ 2.",
       "A <b>altura</b> é sempre perpendicular à base: não é o lado inclinado. Num triângulo obtusângulo, a altura pode ficar fora do triângulo.",
-      "A área de uma <b>figura composta</b> calcula-se dividindo-a em figuras conhecidas e somando as áreas, ou calculando uma figura maior e subtraindo o que falta."
+      "A área de uma <b>figura composta</b> calcula-se dividindo-a em figuras conhecidas e somando as áreas, ou calculando uma figura maior e subtraindo o que falta.",
+      "Um polígono é <b>convexo</b> quando o segmento que une dois quaisquer pontos do seu interior fica sempre dentro dele; é <b>côncavo</b> quando há pelo menos um segmento desses que sai, em parte, para fora (tem um «bico para dentro», com um ângulo interno maior do que 180°).",
+      "Um polígono é <b>regular</b> quando tem <b>todos os lados iguais e todos os ângulos iguais</b> (ex.: o triângulo equilátero e o quadrado). Se falha uma das duas, é <b>irregular</b>: o losango tem os lados iguais mas não os ângulos; o retângulo tem os ângulos iguais mas não os lados.",
+      "Um <b>ângulo externo</b> de um triângulo é formado por um lado e pelo prolongamento do lado ao lado. Com o ângulo interno do mesmo vértice soma 180°, e mede o mesmo que a <b>soma dos dois ângulos internos não adjacentes</b>. Os três ângulos externos (um em cada vértice) somam 360°."
     ],
     gloss:[
       ["ângulo","A abertura entre duas semirretas com a mesma origem (o vértice), medida em graus."],
@@ -479,7 +483,11 @@
       ["perímetro","A soma dos comprimentos de todos os lados; mede-se em cm, m…"],
       ["área","A medida da superfície de uma figura; mede-se em cm², m²…"],
       ["altura","O segmento perpendicular à base, até ao vértice oposto (ou ao lado oposto)."],
-      ["figura composta","Uma figura feita de várias figuras simples juntas."]
+      ["figura composta","Uma figura feita de várias figuras simples juntas."],
+      ["polígono convexo","Um polígono sem «bicos para dentro»: o segmento entre dois pontos do interior fica sempre dentro dele."],
+      ["polígono côncavo","Um polígono com pelo menos um «bico para dentro» (um ângulo interno maior do que 180°)."],
+      ["polígono regular","Um polígono com todos os lados iguais e todos os ângulos iguais."],
+      ["ângulo externo","O ângulo entre um lado do polígono e o prolongamento do lado ao lado; com o ângulo interno do mesmo vértice soma 180°."]
     ],
     quiz:[
       {q:"Um ângulo mede 35°. Quanto mede o seu complementar?", opts:["145°","55°","65°","35°"], correct:1, explain:"Complementares somam 90°: 90° − 35° = 55°. O 145° é o suplementar (180° − 35°), que soma 180°."},
@@ -491,7 +499,10 @@
       {q:"Um triângulo tem 10 cm de base e 6 cm de altura. Qual é a sua área?", opts:["60 cm²","30 cm","16 cm²","30 cm²"], correct:3, explain:"Base × altura ÷ 2 = 10 × 6 ÷ 2 = 30 cm². O 60 cm² esquece de dividir por 2 (seria a área do retângulo à volta). O «30 cm» tem a unidade errada: as áreas medem-se em cm²."},
       {q:"Um paralelogramo tem 7 cm de base, lados inclinados de 5 cm e 4 cm de altura. Qual é a área?", opts:["35 cm²","28 cm²","14 cm²","24 cm²"], correct:1, explain:"Área = base × altura = 7 × 4 = 28 cm². O 35 cm² usa o lado inclinado (5 cm) em vez da altura, e o 24 é o perímetro: 2 × (7 + 5)."},
       {q:"Quantos cm² tem 1 m²?", opts:["100 cm²","1000 cm²","10 000 cm²","10 cm²"], correct:2, explain:"1 m² é um quadrado de 1 m × 1 m, ou seja 100 cm × 100 cm = 10 000 cm². O 100 cm² é o erro mais comum: esquece que se multiplica pelo 100 duas vezes (comprimento e largura)."},
-      {q:"«Se uma figura tem maior perímetro, também tem maior área.» Verdadeiro ou falso? Escolhe a resposta com a justificação certa.", opts:["Verdadeiro. Mais lado quer dizer mais superfície.","Falso. Um retângulo de 10 × 2 tem P = 24 e A = 20; um de 6 × 4 tem P = 20 e A = 24.","Verdadeiro. Um quadrado de 4 cm tem mais perímetro e mais área do que um de 2 cm.","Falso. O perímetro e a área são sempre iguais."], correct:1, explain:"Basta um contraexemplo: o retângulo 10 × 2 tem mais perímetro (24 cm) mas menos área (20 cm²) do que o 6 × 4 (20 cm e 24 cm²). Um exemplo em que dá certo (os quadrados) não prova que é sempre assim."}
+      {q:"«Se uma figura tem maior perímetro, também tem maior área.» Verdadeiro ou falso? Escolhe a resposta com a justificação certa.", opts:["Verdadeiro. Mais lado quer dizer mais superfície.","Falso. Um retângulo de 10 × 2 tem P = 24 e A = 20; um de 6 × 4 tem P = 20 e A = 24.","Verdadeiro. Um quadrado de 4 cm tem mais perímetro e mais área do que um de 2 cm.","Falso. O perímetro e a área são sempre iguais."], correct:1, explain:"Basta um contraexemplo: o retângulo 10 × 2 tem mais perímetro (24 cm) mas menos área (20 cm²) do que o 6 × 4 (20 cm e 24 cm²). Um exemplo em que dá certo (os quadrados) não prova que é sempre assim."},
+      {q:"Qual destes polígonos é regular?", opts:["Um quadrado","Um losango com ângulos de 60° e 120°","Um retângulo de 6 cm × 4 cm","Um triângulo com lados de 3, 4 e 5 cm"], correct:0, explain:"Regular quer dizer lados todos iguais e ângulos todos iguais. O quadrado tem as duas coisas. O losango tem os lados iguais mas não os ângulos; o retângulo tem os ângulos iguais mas não os lados; o triângulo não tem nenhuma."},
+      {q:"Num triângulo, dois ângulos internos medem 45° e 75°. Quanto mede o ângulo externo no terceiro vértice?", opts:["60°","135°","360°","120°"], correct:3, explain:"O ângulo externo mede o mesmo que os dois internos não adjacentes: 45° + 75° = 120°. Confirma: o terceiro interno é 180° − 45° − 75° = 60°, e 180° − 60° = 120°. O 60° é o interno; o 135° seria o externo no vértice de 45°."},
+      {q:"«Um polígono com um ângulo interno de 200° é convexo.» Verdadeiro ou falso? Escolhe a resposta com a justificação certa.", opts:["Verdadeiro. Todos os polígonos são convexos.","Verdadeiro. Os ângulos maiores tornam a figura mais redonda.","Falso. Um ângulo interno maior do que 180° faz um «bico para dentro»: o polígono é côncavo.","Falso. Nenhum polígono pode ter um ângulo de 200°."], correct:2, explain:"Um ângulo interno maior do que 180° aponta para dentro da figura. Aí consegues unir dois pontos do interior com um segmento que sai para fora: é a marca de um polígono côncavo. E existem polígonos assim, como uma seta ou uma estrela."}
     ],
     posters:[
       {title:"📐 Exemplo 1 — Complementares e suplementares", svg:'<ul class="wheel-legend">'+
@@ -548,6 +559,34 @@
         '<li><span aria-hidden="true">👣</span><span><b>Passo a passo:</b><br>Maneira 1 (subtrair): 10 × 6 = 60; 4 × 3 = 12; 60 − 12 = 48<br>Maneira 2 (decompor): faixa de baixo 10 × 3 = 30; faixa de cima, sem o canto, 6 × 3 = 18; 30 + 18 = 48</span></li>'+
         '<li><span aria-hidden="true">✅</span><span><b>Resultado:</b> o terreno tem 48 m².</span></li>'+
         '<li><span aria-hidden="true">🔍</span><span><b>Verificar:</b> as duas maneiras dão o mesmo. Numa folha quadriculada (1 quadradinho = 1 m²), também podes contar: 48 quadradinhos.</span></li>'+
+        '</ul>'},
+      {title:"🔷 Exemplo 7 — Convexo ou côncavo? Regular ou irregular?", svg:'<svg class="poster-svg" viewBox="0 10 320 102" style="max-width:320px;margin:0 auto" role="img" aria-label="Quatro polígonos. A: um hexágono com lados e ângulos iguais. B: um losango. C: um quadrilátero em forma de ponta de seta, com um bico para dentro e um segmento tracejado que sai para fora da figura. D: um retângulo.">'+
+        '<g fill="var(--wc-bg, #eee)" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round">'+
+        '<polygon points="70,50 55,76 25,76 10,50 25,24 55,24"/><polygon points="120,18 145,50 120,82 95,50"/>'+
+        '<polygon points="180,20 225,50 180,80 195,50"/><rect x="250" y="30" width="60" height="40"/></g>'+
+        '<line x1="186" y1="28" x2="186" y2="72" stroke="var(--wc)" stroke-width="2" stroke-dasharray="4 3"/>'+
+        '<g fill="var(--wc)"><circle cx="186" cy="28" r="2.8"/><circle cx="186" cy="72" r="2.8"/></g>'+
+        '<g font-family="Lexend, sans-serif" font-size="13" font-weight="700" text-anchor="middle"><text x="40" y="104">A</text><text x="120" y="104">B</text><text x="200" y="104">C</text><text x="280" y="104">D</text></g></svg>'+
+        '<ul class="wheel-legend">'+
+        '<li><span aria-hidden="true">🎯</span><span><b>O que queremos descobrir:</b> classificar cada polígono: convexo ou côncavo, e regular ou irregular.</span></li>'+
+        '<li><span aria-hidden="true">🚦</span><span><b>Como começar:</b> para a convexidade, procura um «bico para dentro»: tenta unir dois pontos do interior com um segmento que saia da figura. Para a regularidade, faz duas perguntas: os lados são todos iguais? E os ângulos?</span></li>'+
+        '<li><span aria-hidden="true">👣</span><span><b>Passo a passo:</b> <br>A (hexágono): lados iguais e ângulos iguais → convexo e regular<br>B (losango): lados iguais, mas ângulos diferentes (dois agudos e dois obtusos) → convexo e irregular<br>C (ponta de seta): o segmento tracejado une dois pontos do interior e sai para fora → côncavo (e irregular)<br>D (retângulo): ângulos iguais (90°), mas lados diferentes → convexo e irregular</span></li>'+
+        '<li><span aria-hidden="true">✅</span><span><b>Resultado:</b> só o A é regular. O C é o único côncavo.</span></li>'+
+        '<li><span aria-hidden="true">🔍</span><span><b>Verificar:</b> um polígono côncavo tem sempre um ângulo interno maior do que 180°: no C, é o ângulo do bico para dentro. Erro a evitar: achar que lados iguais chegam para ser regular; o losango mostra que não.</span></li>'+
+        '</ul>'},
+      {title:"📐 Exemplo 8 — Ângulos externos de um triângulo", svg:'<svg class="poster-svg" viewBox="0 12 232 112" style="max-width:260px;margin:0 auto" role="img" aria-label="Triângulo ABC com ângulos internos de 60 graus em A, 50 graus em B e 70 graus em C. O lado AB está prolongado para lá de B, a tracejado, e o ângulo externo em B, entre esse prolongamento e o lado BC, mede 130 graus.">'+
+        '<polygon points="30,110 150,110 78.9,25.3" fill="var(--wc-bg, #eee)" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/>'+
+        '<line x1="150" y1="110" x2="222" y2="110" stroke="currentColor" stroke-width="2" stroke-dasharray="5 4"/>'+
+        '<path d="M172,110 A22,22 0 0 0 135.9,93.1" fill="none" stroke="var(--wc)" stroke-width="2.5"/>'+
+        '<g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M48,110 A18,18 0 0 0 39,94.4"/><path d="M136,110 A14,14 0 0 1 141,99.3"/></g>'+
+        '<g font-family="Lexend, sans-serif" font-size="11" font-weight="700" text-anchor="middle"><text x="22" y="120">A</text><text x="150" y="122">B</text><text x="79" y="20">C</text>'+
+        '<text x="58" y="104">60°</text><text x="122" y="104">50°</text><text x="82" y="53">70°</text><text x="182" y="92" fill="var(--wc)">130°</text></g></svg>'+
+        '<ul class="wheel-legend">'+
+        '<li><span aria-hidden="true">🎯</span><span><b>O que queremos descobrir:</b> o ângulo externo em B, sabendo que os ângulos internos em A e em C medem 60° e 70°.</span></li>'+
+        '<li><span aria-hidden="true">🚦</span><span><b>Como começar:</b> o ângulo externo fica entre o lado BC e o prolongamento de AB (a tracejado). Com o ângulo interno em B, forma uma linha reta: são suplementares.</span></li>'+
+        '<li><span aria-hidden="true">👣</span><span><b>Passo a passo:</b> <br>Ângulo interno em B: 180° − 60° − 70° = 50°<br>Ângulo externo em B: 180° − 50° = 130°<br>Atalho: o externo é a soma dos dois internos não adjacentes, 60° + 70° = 130°</span></li>'+
+        '<li><span aria-hidden="true">✅</span><span><b>Resultado:</b> o ângulo externo em B mede 130°.</span></li>'+
+        '<li><span aria-hidden="true">🔍</span><span><b>Verificar:</b> interno + externo = 50° + 130° = 180°. Nos outros vértices os externos medem 180° − 60° = 120° e 180° − 70° = 110°; os três externos somam 130° + 120° + 110° = 360°.</span></li>'+
         '</ul>'}
     ],
     compare:{

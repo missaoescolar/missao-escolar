@@ -923,8 +923,44 @@
       /* ===== 1. 📖 Aprender ===== */
       const A = panes.aprender;
       A.appendChild(el("p","lead",w.lead));
+      // Aprender is split into three short parts (one shown at a time), so the page is not one endless scroll:
+      // 🧩 Começar (problem, animations, images) · ✏️ Exemplos (one worked example at a time) · 📋 Para o teste
+      const secNav = el("div","subtabs aprender-tabs");
+      secNav.setAttribute("role","tablist"); secNav.setAttribute("aria-label","Partes do Aprender");
+      const secs = {};
+      function addSec(key, label){
+        const b = el("button","subtab",label); b.type = "button"; b.dataset.sec = key;
+        b.setAttribute("role","tab"); b.id = "sec-"+w.id+"-"+key;
+        b.addEventListener("click", function(){ setSec(key, true); });
+        secNav.appendChild(b);
+        const p = el("div","aprender-sec"); p.setAttribute("role","tabpanel"); p.setAttribute("aria-labelledby", b.id);
+        secs[key] = p;
+        return p;
+      }
+      function setSec(key, byUser){
+        secNav.querySelectorAll(".subtab").forEach(function(b){
+          const on = b.dataset.sec===key;
+          b.classList.toggle("active", on); b.setAttribute("aria-selected", on ? "true" : "false");
+        });
+        Object.keys(secs).forEach(function(k){ secs[k].hidden = (k!==key); });
+        if(byUser && secNav.getBoundingClientRect().top < 0) secNav.scrollIntoView({block:"start"});
+      }
+      function nextSec(text, key){
+        const row = el("div","sec-next");
+        const b = el("button","ghost-btn",text); b.type = "button";
+        b.addEventListener("click", function(){ setSec(key, true); });
+        row.appendChild(b);
+        return row;
+      }
+      const nPosters = (w.posters||[]).length;
+      const C = addSec("comecar", "🧩 Começar");
+      const E = nPosters ? addSec("exemplos", "✏️ Exemplos ("+nPosters+")") : null;
+      const T = addSec("teste", "📋 Para o teste");
+      A.appendChild(secNav);
+      Object.keys(secs).forEach(function(k){ A.appendChild(secs[k]); });
+
       const prob = (typeof MISSAO_PROBLEMAS !== "undefined") && MISSAO_PROBLEMAS[w.id];
-      if(prob) A.appendChild(buildProblema(prob));
+      if(prob) C.appendChild(buildProblema(prob));
 
       const anims = window.MissaoAnim ? MissaoAnim.doMundo(w.id) : [];
       if(anims.length){
@@ -939,21 +975,44 @@
         const slot = el("div","anim-slot");
         slot.setAttribute("data-anim-slot", w.id);
         list.appendChild(slot);
-        A.appendChild(list);
+        C.appendChild(list);
       }
 
       const gal = buildGaleria(w);
-      if(gal) A.appendChild(gal);
+      if(gal) C.appendChild(gal);
 
-      (w.posters||[]).forEach(function(p){
-        const fig = document.createElement("figure");
-        fig.className = "poster-fig";
-        const cap = document.createElement("figcaption");
-        cap.textContent = p.title;
-        fig.appendChild(cap);
-        fig.insertAdjacentHTML("beforeend", p.svg);
-        A.appendChild(fig);
-      });
+      // worked examples: one at a time, with ← → and "Exemplo k de n"
+      if(E){
+        const figs = [];
+        (w.posters||[]).forEach(function(p){
+          const fig = document.createElement("figure");
+          fig.className = "poster-fig";
+          const cap = document.createElement("figcaption");
+          cap.textContent = p.title;
+          fig.appendChild(cap);
+          fig.insertAdjacentHTML("beforeend", p.svg);
+          E.appendChild(fig);
+          figs.push(fig);
+        });
+        const nav = el("div","ex-nav");
+        const prev = el("button","ghost-btn","← Anterior"); prev.type = "button";
+        const count = el("span","ex-count"); count.setAttribute("aria-live","polite");
+        const next = el("button","ghost-btn",""); next.type = "button";
+        nav.appendChild(prev); nav.appendChild(count); nav.appendChild(next);
+        E.appendChild(nav);
+        let k = 0;
+        function showEx(i, byUser){
+          k = i;
+          figs.forEach(function(f, j){ f.hidden = (j!==i); });
+          count.textContent = "Exemplo "+(i+1)+" de "+figs.length;
+          prev.disabled = (i===0);
+          next.textContent = (i===figs.length-1) ? "📋 Agora o resumo →" : "Seguinte →";
+          if(byUser && secNav.getBoundingClientRect().top < 0) secNav.scrollIntoView({block:"start"});
+        }
+        prev.addEventListener("click", function(){ if(k>0) showEx(k-1, true); });
+        next.addEventListener("click", function(){ if(k<figs.length-1) showEx(k+1, true); else setSec("teste", true); });
+        showEx(0, false);
+      }
 
       if(w.timeline && w.timeline.length){
         const tlWrap = el("div","");
@@ -967,7 +1026,7 @@
           tl.appendChild(item);
         });
         tlWrap.appendChild(tl);
-        A.appendChild(tlWrap);
+        C.appendChild(tlWrap);
       }
 
       (w.routes||[]).forEach(function(route, ri){
@@ -977,7 +1036,7 @@
         cap.textContent = route.title;
         fig.appendChild(cap);
         fig.insertAdjacentHTML("beforeend", buildRouteSvg(route, w.id+"-"+ri));
-        A.appendChild(fig);
+        C.appendChild(fig);
       });
 
       if(w.distribution){
@@ -1002,7 +1061,7 @@
           legend.appendChild(item);
         });
         dWrap.appendChild(legend);
-        A.appendChild(dWrap);
+        C.appendChild(dWrap);
       }
 
       if(w.members){
@@ -1018,7 +1077,7 @@
           grid.appendChild(badge);
         });
         mWrap.appendChild(grid);
-        A.appendChild(mWrap);
+        C.appendChild(mWrap);
       }
 
       // "Para o teste": the real subject matter, with clickable terms
@@ -1053,7 +1112,7 @@
       });
       resumoBox.appendChild(ul);
       resumoWrap.appendChild(resumoBox);
-      A.appendChild(resumoWrap);
+      T.appendChild(resumoWrap);
 
       // key words as small chips (each opens its definition)
       if(w.gloss && w.gloss.length){
@@ -1072,7 +1131,14 @@
           chips.appendChild(c);
         });
         gWrap.appendChild(chips);
-        A.appendChild(gWrap);
+        T.appendChild(gWrap);
+      }
+      if(C.children.length){
+        C.appendChild(nextSec(E ? "Seguinte: ✏️ os exemplos resolvidos →" : "Seguinte: 📋 para o teste →", E ? "exemplos" : "teste"));
+        setSec("comecar", false);
+      } else {   // nothing to start with in this world: no empty tab
+        secNav.removeChild(secNav.querySelector('[data-sec="comecar"]')); A.removeChild(C); delete secs.comecar;
+        setSec(E ? "exemplos" : "teste", false);
       }
       A.appendChild(cta("Já li! Vamos praticar →", "praticar"));
 
@@ -1477,7 +1543,7 @@
     if(!views.length) return;
     if(!Array.prototype.some.call(views, function(v){ return v.dataset.view === view; })) view = "mundos";
     views.forEach(function(v){ v.hidden = v.dataset.view !== view; });
-    panel.querySelectorAll(".subtab").forEach(function(b){ const on = b.dataset.view === view; b.classList.toggle("active", on); b.setAttribute("aria-selected", on); });
+    panel.querySelectorAll(".subtab[data-view]").forEach(function(b){ const on = b.dataset.view === view; b.classList.toggle("active", on); b.setAttribute("aria-selected", on); });
     if(view === "arena" && window.MissaoArena) window.MissaoArena.lobby();
   }
 
@@ -1485,6 +1551,8 @@
   function route(subject, part, stage){
     if(!panels[subject]) return;
     activate(subject);
+    // inside a world (or the review) the daily strip and "Missão de hoje" step aside: one thing at a time
+    document.body.classList.toggle("in-world", !!(part && part!=="arena" && part!=="escrita" && (part==="revisao" || document.getElementById(part))));
     if(part==="escrita"){ location.replace("escrita.html"); return; }   // the Oficina has its own page now
     if(part==="arena"){ showView(subject, part); return; }
     showView(subject, "mundos");

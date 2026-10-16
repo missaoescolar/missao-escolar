@@ -356,6 +356,34 @@ const ARENA = (function(){
        dica:"Compara com o canto de uma folha (90°)."});
   }
 
+  /* n5 — ângulos externos e classificação de polígonos */
+  function angExterno(l){
+    if(l===1){ const i = rnd(5,34)*5;
+      return {tipo:"num", unidade:"°", texto:"Num triângulo, um ângulo interno mede <b>"+i+"°</b>. Quanto mede o <b>ângulo externo</b> no mesmo vértice?", resposta:180-i,
+        explicacao:"O interno e o externo do mesmo vértice formam uma linha reta: 180° − "+i+"° = <b>"+(180-i)+"°</b>.", dica:"Interno + externo = 180°."}; }
+    let a, b; do{ a = rnd(5,16)*5; b = rnd(5,16)*5; } while(a + b >= 170);
+    return {tipo:"num", unidade:"°", texto:"Num triângulo, dois ângulos internos medem <b>"+a+"°</b> e <b>"+b+"°</b>. Quanto mede o <b>ângulo externo</b> no terceiro vértice?", resposta:a+b,
+      explicacao:"O ângulo externo mede o mesmo que os dois internos não adjacentes: "+a+"° + "+b+"° = <b>"+(a+b)+"°</b>. (O terceiro interno é "+(180-a-b)+"°, e 180° − "+(180-a-b)+"° = "+(a+b)+"°.)", dica:"Soma os dois internos que não estão encostados a esse ângulo."};
+  }
+  const POLIGONOS = [
+    {p:"20,90 60,20.7 100,90", c:true, r:true, n:"triângulo equilátero"},
+    {p:"25,20 95,20 95,90 25,90", c:true, r:true, n:"quadrado"},
+    {p:"60,15 95,55 60,95 25,55", c:true, r:false, n:"losango"},
+    {p:"15,30 105,30 105,80 15,80", c:true, r:false, n:"retângulo"},
+    {p:"60.0,12.0 100.9,41.7 85.3,89.8 34.7,89.8 19.1,41.7", c:true, r:true, n:"pentágono com lados e ângulos iguais"},
+    {p:"20,20 100,55 20,90 45,55", c:false, r:false, n:"ponta de seta"},
+    {p:"20,20 100,20 100,90 60,50 20,90", c:false, r:false, n:"polígono com um bico para dentro"},
+    {p:"60,10 72,42 105,45 80,65 88,98 60,80 32,98 40,65 15,45 48,42", c:false, r:false, n:"estrela"}
+  ];
+  function classPoligono(l){
+    const P = pick(POLIGONOS);
+    const certa = (P.c ? "Convexo" : "Côncavo")+" e "+(P.r ? "regular" : "irregular");
+    return choice("Como se classifica este polígono?", certa, ["Convexo e regular","Convexo e irregular","Côncavo e irregular","Côncavo e regular"],
+      {visual:'<svg class="ar-svg" viewBox="0 0 120 108" width="160" role="img" aria-label="Um polígono: '+P.n+'"><polygon points="'+P.p+'" fill="var(--wc)" fill-opacity="0.3" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/></svg>',
+       explicacao:"É um "+P.n+". "+(P.c ? "Não tem nenhum «bico para dentro»: é convexo." : "Tem um «bico para dentro» (um ângulo interno maior do que 180°): é côncavo.")+" "+(P.r ? "Tem os lados todos iguais e os ângulos todos iguais: é regular." : "Não tem, ao mesmo tempo, os lados todos iguais e os ângulos todos iguais: é irregular."),
+       dica:"Regular = lados iguais E ângulos iguais."});
+  }
+
   /* ------------------------------ n6: círculo ------------------------------ */
   function circP(l){
     if(l===3){ const r=rnd(2,15), P=round(2*3.14*r,2);
@@ -986,7 +1014,7 @@ const ARENA = (function(){
     n3: [{g:percentOf,min:1},{g:desconto,min:1},{g:decOps,min:1},{g:fracPct,min:1},{g:maiorDec,min:1},{g:pctGrelha,min:1},{g:decReta,min:1},{g:pctPintar,min:2}],
     n4: [{g:nextTerm,min:1},{g:propTable,min:1},{g:regra3,min:1},{g:padrao,min:1},{g:nthTerm,min:2},{g:escala,min:2}],
     n5: [{g:compSup,min:1},{g:area,min:1},{g:perim,min:1},{g:classAngle,min:1},{g:angMedir,min:1},{g:angAbrir,min:1},{g:angReta,min:1},{g:areaGrelha,min:1},
-         {g:triAngle,min:2},{g:angPonto,min:2},{g:angOpostos,min:2},{g:areaTriGrelha,min:2},{g:areaL,min:2},{g:quadradoLado,min:2},{g:areaMoldura,min:3}],
+         {g:triAngle,min:2},{g:angPonto,min:2},{g:angOpostos,min:2},{g:areaTriGrelha,min:2},{g:areaL,min:2},{g:quadradoLado,min:2},{g:areaMoldura,min:3},{g:angExterno,min:1},{g:classPoligono,min:1}],
     n6: [{g:raioDiam,min:1},{g:circP,min:1},{g:circA,min:2}],
     n7: [{g:volCubo,min:1},{g:volCaixa,min:1},{g:volCubinhos,min:1},{g:conv,min:1},{g:aquario,min:2}],
     n8: [{g:media,min:1},{g:moda,min:1},{g:prob,min:1},{g:certoImp,min:1},{g:grafBarras,min:1},{g:pictograma,min:1},{g:roleta,min:1},{g:mediana,min:2},{g:amplitude,min:2}],
