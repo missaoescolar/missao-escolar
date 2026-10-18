@@ -6,7 +6,7 @@
    Uso: MissaoAnim.abrir("coracao") · MissaoAnim.doMundo("c4") → lista de animações desse mundo */
 const MissaoAnim = (function(){
   const LIB = {}, POR_MUNDO = {};
-  const REDUZIDO = !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+  const REDUZIDO = !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) || !!(window.MissaoPrefs && MissaoPrefs.poucoMovimento());
 
   /* ---------- pequeno kit para desenhar cenas ---------- */
   const NOMES = {cls:"class", sw:"stroke-width", op:"opacity", tr:"transform", fs:"font-size", fw:"font-weight", ta:"text-anchor", da:"stroke-dasharray", lc:"stroke-linecap", lj:"stroke-linejoin", pl:"pathLength"};

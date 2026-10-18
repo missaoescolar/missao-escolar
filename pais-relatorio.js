@@ -79,7 +79,9 @@ window.addEventListener("load", function(){
     for(let i = 0; i < 7; i++){ const k = d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0"); if(log.has(k)) dias++; d.setDate(d.getDate()-1); }
     const dif = (typeof MissaoDificuldades !== "undefined") ? MissaoDificuldades.analisar(subjects).slice(0, 5) : [];
     const textos = (MissaoArmazem.ler("ws_saved", []) || []).filter(x => x && x.partilhar);
-    return {prog:prog, respondidas:ids.length, certasUltima:certasUltima, dias:dias, dif:dif, textos:textos};
+    const hm = MissaoArmazem.ler("humor", {}) || {}, humor = {amarelo:0, vermelho:0, verde:0, azul:0};
+    { const d2 = new Date(); for(let i = 0; i < 7; i++){ const k = d2.getFullYear()+"-"+String(d2.getMonth()+1).padStart(2,"0")+"-"+String(d2.getDate()).padStart(2,"0"); if(hm[k] && humor[hm[k]] !== undefined) humor[hm[k]]++; d2.setDate(d2.getDate()-1); } }
+    return {prog:prog, respondidas:ids.length, certasUltima:certasUltima, dias:dias, dif:dif, textos:textos, humor:humor};
   }
 
   /* ---------- the report, as page and as plain text for the e-mail ---------- */
@@ -94,6 +96,10 @@ window.addEventListener("load", function(){
         (D.respondidas ? '<b>Perguntas:</b> '+D.respondidas+' respondidas, '+pct+'% certas na última tentativa.' : 'Ainda sem perguntas respondidas.')+'</p>'+
       '<p><b>Missões feitas:</b></p><ul class="rel-prog">'+D.prog.map(x => '<li>'+x.s.icon+' '+esc(x.s.name)+(x.s.ano ? ' ('+x.s.ano+'.º ano)' : '')+': '+x.feitas+' de '+x.total+
         ' <span class="rel-barra"><span style="width:'+Math.round(x.feitas/x.total*100)+'%"></span></span></li>').join("")+'</ul>'+
+      (function(){ const H = D.humor, tot = H.amarelo + H.vermelho + H.verde + H.azul; if(!tot) return '';
+        const dificeis = H.vermelho + H.azul;
+        return '<p><b>🧘 Como se sentiu antes de estudar</b> (últimos 7 dias, '+tot+' registo'+(tot === 1 ? '' : 's')+'): 🟡 '+H.amarelo+' · 🟢 '+H.verde+' · 🔴 '+H.vermelho+' · 🔵 '+H.azul+'</p>'+
+          (dificeis >= 3 ? '<p class="note-small">Houve vários dias difíceis (🔴 nervoso ou zangado, 🔵 triste ou cansado). Vale a pena uma conversa calma, sem pressa, para perceber o que se passa. Se se mantiver, fale com o diretor de turma, o psicólogo da escola ou o médico assistente.</p>' : ''); })()+
       '<p><b>💡 O que treinar esta semana:</b></p>'+(sugestoes.length ? '<ol>'+sugestoes.map(t => '<li>'+esc(t)+'</li>').join("")+'</ol>' : '<p class="note-small">Ainda não há dificuldades registadas. Aparecem quando a criança erra perguntas, escreve uma dúvida no caderno ou treina cartões.</p>')+
       '<p><b>🌱 Dicas para esta semana:</b></p><ul>'+dicas.map(t => '<li><b>'+esc(t[0])+'.</b> '+esc(t[1])+'</li>').join("")+'</ul>'+
       '<p><b>✍️ Textos da Oficina de Escrita que '+esc(nome)+' quis partilhar:</b></p>'+(D.textos.length
@@ -104,6 +110,7 @@ window.addEventListener("load", function(){
       "Relatório Missão Escolar — "+nome+" — "+hoje, "",
       "Últimos 7 dias: "+D.dias+" dia(s) com estudo."+(D.respondidas ? " Perguntas: "+D.respondidas+" respondidas, "+pct+"% certas na última tentativa." : ""), "",
       "Missões feitas:", ...D.prog.map(x => "- "+x.s.name+(x.s.ano ? " ("+x.s.ano+".º ano)" : "")+": "+x.feitas+" de "+x.total), "",
+      ...(D.humor.amarelo + D.humor.vermelho + D.humor.verde + D.humor.azul ? ["Como se sentiu antes de estudar (7 dias): amarelo "+D.humor.amarelo+", verde "+D.humor.verde+", vermelho "+D.humor.vermelho+", azul "+D.humor.azul+".", ""] : []),
       "O que treinar esta semana:", ...(sugestoes.length ? sugestoes.map((t, i) => (i+1)+". "+t) : ["- Ainda não há dificuldades registadas."]), "",
       "Dicas para esta semana:", ...dicas.map(t => "- "+t[0]+": "+t[1]), "",
       ...(D.textos.length ? ["Textos da Oficina de Escrita partilhados:", ...D.textos.map(x => {

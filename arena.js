@@ -84,7 +84,7 @@
   /* ---------- sound ---------- */
   let ctx = null;
   function beep(freqs, dur){
-    if(!S.som) return;
+    if(!S.som || (window.MissaoPrefs && !MissaoPrefs.som())) return;
     try{
       ctx = ctx || new (window.AudioContext || window.webkitAudioContext)();
       freqs.forEach((f,i) => {

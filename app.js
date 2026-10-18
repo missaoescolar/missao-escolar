@@ -126,6 +126,7 @@
   }
 
   function playChime(){
+    if(window.MissaoPrefs && !MissaoPrefs.som()) return;
     try{
       const Ctx = window.AudioContext || window.webkitAudioContext;
       if(!Ctx) return;
@@ -1906,7 +1907,7 @@
       head.innerHTML = ola+'<div><p class="hoje-t">✅ Missão de hoje feita!</p><p class="hoje-s">Amanhã há perguntas novas. Se te apetecer, podes fazer mais umas.</p></div>';
       b.addEventListener("click", function(){ jogar(MissaoBanco.mais(5), true); });
     } else {
-      head.innerHTML = ola+'<div><p class="hoje-t">🎯 Missão de hoje</p><p class="hoje-s">'+m.perguntas.length+' perguntas de várias disciplinas · cerca de 5 minutos</p></div>';
+      head.innerHTML = ola+'<div><p class="hoje-t">🎯 Missão de hoje <button type="button" class="link-btn hoje-calma" onclick="document.getElementById(\'calma-btn\') && document.getElementById(\'calma-btn\').click()">🧘 antes, 1 minuto para acalmar</button></p><p class="hoje-s">'+m.perguntas.length+' perguntas de várias disciplinas · cerca de 5 minutos</p></div>';
       b.addEventListener("click", function(){ jogar(m.perguntas, false); });
     }
     head.appendChild(b);
@@ -1997,6 +1998,64 @@
         '<li>Cansaste-te? Faz uma <b>⏸️ pausa</b>. Tudo fica guardado e continuas quando quiseres.</li>'+
       '</ol>', helpBtn);
   });
+  /* ---------- 🧘 1 minuto para acalmar ----------
+     1) «Como te sentes?» — Medidor de Emoções (Mood Meter) do programa RULER, Yale Center for Emotional Intelligence (EUA):
+        energia alta/baixa × agradável/desagradável, em 4 cores. Dar nome à emoção é o primeiro passo para a regular.
+     2) 1 minuto de respiração lenta: inspirar 4 s, expirar 6 s (6 respirações por minuto, expiração mais longa).
+     A cor do dia fica em "humor" (só neste computador) e aparece, resumida, no relatório dos pais. */
+  const HUMOR = [
+    ["amarelo", "#F2C230", "Energia alta · agradável", "contente, entusiasmado, com vontade"],
+    ["vermelho", "#D1495B", "Energia alta · desagradável", "nervoso, zangado, preocupado"],
+    ["verde", "#4FA36B", "Energia baixa · agradável", "calmo, tranquilo, descansado"],
+    ["azul", "#4F86B3", "Energia baixa · desagradável", "triste, cansado, aborrecido"]
+  ];
+  let calmaTimer = null;
+  function openCalma(trigger){
+    clearInterval(calmaTimer);
+    openModal("🧘 1 minuto para acalmar",
+      '<p style="margin:0 0 10px"><b>Como te sentes agora?</b> Escolhe a cor que está mais perto. Não há respostas certas nem erradas.</p>'+
+      '<div class="humor-grid">'+HUMOR.map(function(h){ return '<button type="button" class="humor-b" data-h="'+h[0]+'" style="--hc:'+h[1]+'"><b>'+h[2]+'</b><small>'+h[3]+'</small></button>'; }).join("")+'</div>'+
+      '<p class="note-small" style="margin:10px 0 0">É o «Medidor de Emoções» do Centro de Inteligência Emocional da Universidade de Yale (EUA): perceber o que sentimos ajuda a decidir o que fazer a seguir.</p>', trigger);
+    document.querySelectorAll(".humor-b").forEach(function(b){
+      b.addEventListener("click", function(){
+        const h = b.dataset.h, hoje = dateKey(new Date());
+        MissaoArmazem.atualizar("humor", {}, function(m){ m[hoje] = h; return m; });
+        respirar(h);
+      });
+    });
+  }
+  function respirar(h){
+    const body = document.querySelector(".modal-body"); if(!body) return;
+    const msg = {amarelo:"Boa energia! Vamos canalizá-la para o estudo.", vermelho:"Às vezes ficamos nervosos ou zangados. Respirar devagar ajuda o corpo a acalmar.", verde:"Estás num bom estado para aprender.", azul:"Num dia de pouca energia, começa por algo pequeno e fácil."}[h];
+    const quieto = window.MissaoPrefs && MissaoPrefs.poucoMovimento();
+    body.innerHTML = '<p style="margin:0 0 12px">'+msg+'</p>'+
+      '<div class="resp-wrap"><div class="resp-bola'+(quieto ? ' quieta' : '')+'" id="resp-bola"></div><p class="resp-txt" id="resp-txt">Inspira…</p></div>'+
+      '<p class="resp-cont" id="resp-cont">60 s</p>'+
+      '<div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap"><button type="button" class="ghost-btn" id="resp-parar">Saltar</button></div>';
+    let t = 0;
+    const txt = document.getElementById("resp-txt"), bola = document.getElementById("resp-bola"), cont = document.getElementById("resp-cont");
+    function passo(){
+      const c = t % 10;   // 4 s inspirar + 6 s expirar
+      if(c === 0){ txt.textContent = "Inspira pelo nariz… 1, 2, 3, 4"; bola.classList.add("cheia"); }
+      if(c === 4){ txt.textContent = "Expira devagar pela boca… 1, 2, 3, 4, 5, 6"; bola.classList.remove("cheia"); }
+      cont.textContent = (60 - t)+" s";
+      if(t >= 60){ fim(); return; }
+      t++;
+    }
+    function fim(){
+      clearInterval(calmaTimer); calmaTimer = null;
+      const b = document.querySelector(".modal-body"); if(!b) return;
+      b.innerHTML = '<p style="font-size:2rem;margin:0;text-align:center">🌿</p><p style="text-align:center;margin:6px 0 12px"><b>Muito bem.</b> Agora escolhe <b>uma</b> coisa pequena para estudar primeiro.</p>'+
+        '<div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap"><button type="button" class="cta" id="resp-foco">✈️ Começar com o Modo foco</button><button type="button" class="ghost-btn" id="resp-fechar">Fechar</button></div>';
+      document.getElementById("resp-foco").addEventListener("click", function(){ closeModal(); openFocoModal(); });
+      document.getElementById("resp-fechar").addEventListener("click", closeModal);
+    }
+    document.getElementById("resp-parar").addEventListener("click", fim);
+    passo(); calmaTimer = setInterval(function(){ if(!document.getElementById("resp-txt")){ clearInterval(calmaTimer); return; } passo(); }, 1000);
+  }
+  const calmaBtn = document.getElementById("calma-btn");
+  if(calmaBtn) calmaBtn.addEventListener("click", function(){ openCalma(calmaBtn); });
+
   const pauseBtn = document.getElementById("pause-btn");
   if(pauseBtn) pauseBtn.addEventListener("click", function(){ openBreakModal(pauseBtn); });
   const focoBtn = document.getElementById("foco-btn");

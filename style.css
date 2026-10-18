@@ -1152,3 +1152,40 @@
   .rel-texto{ margin:6px 0; padding:8px 12px; border-radius:12px; background:var(--surface); border:1px solid var(--border-soft); }
   .rel-texto summary{ cursor:pointer; font-weight:700; }
   .rel-texto p{ white-space:normal; line-height:1.6; }
+
+  /* ⚙️ Como estudo melhor (prefs.js) */
+  html.pf-letra-grande{ font-size:112.5%; }
+  html.pf-letra-muito{ font-size:125%; }
+  html.pf-espaco body{ letter-spacing:0.06em; word-spacing:0.16em; line-height:1.8; }
+  html.pf-espaco p, html.pf-espaco li{ line-height:1.8; }
+  html.pf-lexend body, html.pf-lexend button, html.pf-lexend input, html.pf-lexend textarea{ font-family:"Lexend", system-ui, sans-serif; }
+  html.pf-contraste{ --text:#111; --text-muted:#333; --border:#555; --border-soft:#777; }
+  html.pf-contraste body{ background:#fff; }
+  html.pf-movimento *, html.pf-movimento *::before, html.pf-movimento *::after{ animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; scroll-behavior:auto !important; }
+  html.pf-movimento .confetti-piece{ display:none !important; }
+  .pf-dialogo{ border:none; border-radius:18px; padding:18px 20px; max-width:min(520px, calc(100% - 24px)); background:var(--surface); color:var(--text); box-shadow:0 10px 40px rgba(0,0,0,.25); }
+  .pf-dialogo::backdrop{ background:rgba(0,0,0,.35); }
+  .pf-dialogo h2{ margin:0 0 6px; font-size:1.2rem; }
+  .pf-intro, .pf-nota{ margin:0 0 12px; color:var(--text-muted); font-size:.92rem; }
+  .pf-set{ border:1.5px solid var(--border); border-radius:12px; padding:8px 12px; margin:0 0 10px; display:flex; gap:14px; flex-wrap:wrap; }
+  .pf-set legend{ font-weight:700; padding:0 4px; }
+  .pf-op{ display:flex; gap:10px; align-items:flex-start; padding:9px 10px; border-radius:12px; border:1.5px solid var(--border-soft); margin:0 0 8px; cursor:pointer; }
+  .pf-op span{ display:flex; flex-direction:column; gap:2px; } .pf-op small{ color:var(--text-muted); }
+  .pf-op input, .pf-radio input{ width:18px; height:18px; accent-color:var(--accent); margin-top:2px; }
+  .pf-acoes{ display:flex; justify-content:flex-end; gap:10px; }
+  button.tool-card{ font:inherit; text-align:left; cursor:pointer; }
+  @media (prefers-color-scheme: dark){ html.pf-contraste:not([data-theme="light"]){ --text:#fff; --text-muted:#ddd; --border:#aaa; } html.pf-contraste:not([data-theme="light"]) body{ background:#000; } }
+
+  /* 🧘 1 minuto para acalmar */
+  .humor-grid{ display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+  .humor-b{ font:inherit; text-align:left; cursor:pointer; padding:12px; border-radius:14px; border:2px solid var(--hc); background:color-mix(in srgb, var(--hc) 18%, var(--surface)); color:var(--text); display:flex; flex-direction:column; gap:3px; }
+  .humor-b small{ color:var(--text-muted); }
+  .humor-b:focus-visible{ outline:3px solid var(--text); outline-offset:2px; }
+  .resp-wrap{ display:flex; flex-direction:column; align-items:center; gap:12px; }
+  .resp-bola{ width:90px; height:90px; border-radius:50%; background:radial-gradient(circle, #9CC3E6, #4F86B3); transform:scale(0.7); transition:transform 4s ease-in-out; }
+  .resp-bola.cheia{ transform:scale(1.25); }
+  .resp-bola:not(.cheia){ transition-duration:6s; }
+  .resp-bola.quieta{ transition:none; }
+  .resp-txt{ margin:0; font-weight:700; text-align:center; min-height:1.5em; }
+  .resp-cont{ text-align:center; color:var(--text-muted); margin:6px 0 12px; }
+  .hoje-calma{ font-size:.82rem; margin-left:6px; font-weight:400; }
