@@ -41,6 +41,15 @@ const MISSAO_SEQ = {
     {t:"Sangue do nariz", passos:["Sentar a pessoa","Inclinar a cabeça para a frente","Apertar a parte mole do nariz","Manter durante 10 minutos"],
      fim:"A cabeça vai para a frente, não para trás: assim o sangue não escorre para a garganta."}
   ],
+  /* 7.º ano — Físico-Química */
+  q1: [{t:"Do mais pequeno para o maior", passos:["Terra","Sistema Solar","Via Láctea","Grupo Local","Universo"],
+        fim:"Cada estrutura está dentro da seguinte: a Terra pertence ao Sistema Solar, que está num braço da Via Láctea."}],
+  q3: [{t:"As fases da Lua, a partir da lua nova", passos:["Lua nova","Quarto crescente","Lua cheia","Quarto minguante"],
+        fim:"Um ciclo completo dura cerca de 29,5 dias. Em Portugal, o quarto crescente tem o lado direito iluminado."}],
+  q4: [{t:"Preparar uma solução com uma concentração certa", passos:["Calcular a massa de soluto (m = Cm × V)","Pesar o soluto numa balança","Dissolver o soluto num pouco de água, mexendo com a vareta","Passar para um balão volumétrico","Completar com água até ao traço e agitar"],
+        fim:"Usa sempre bata e óculos e lê os símbolos de perigo do rótulo antes de começar."}],
+  q7: [{t:"O tratamento da água numa ETA", passos:["Captação da água (rio ou albufeira)","Gradagem: retirar objetos grandes","Coagulação e floculação: as impurezas juntam-se em flocos","Decantação: os flocos depositam-se","Filtração","Desinfeção (cloro ou ozono)","Distribuição às casas"],
+        fim:"A desinfeção é a última etapa antes da distribuição, para a água chegar às torneiras sem microrganismos perigosos."}],
   /* 7.º ano */
   g3: [
     {t:"Como se forma um fóssil", passos:["Um ser vivo morre","É rapidamente coberto por sedimentos (lama, areia)","As partes moles decompõem-se; ficam as partes duras (ossos, conchas)","Os sedimentos endurecem e formam rocha; minerais podem substituir os restos","A erosão desgasta a rocha e o fóssil fica à vista"],

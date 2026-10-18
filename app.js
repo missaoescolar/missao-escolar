@@ -363,6 +363,31 @@
     nova();
     return box;
   }
+  /* ---------- 🔮 Prevê e verifica (data/preve.js): choose a prediction, say why, then see the experiment ----------
+     Itakura's Hypothesis-Experiment-Instruction (Japan): no score — the point is to think before seeing. */
+  function buildPreve(w){
+    const d = (typeof MISSAO_PREVE !== "undefined") && MISSAO_PREVE[w.id];
+    if(!d) return null;
+    const box = el("div","preve-box");
+    box.innerHTML = '<p class="subhead">🔮 Prevê e verifica <small class="muted">— como nas aulas de «hipótese e experiência» do Japão: primeiro pensa, depois vê</small></p>'+
+      '<p class="preve-q">'+d.q+'</p>'+
+      '<div class="preve-opts" role="radiogroup">'+d.opts.map(function(o, i){ return '<label class="preve-opt"><input type="radio" name="preve-'+w.id+'" value="'+i+'"> '+escXml(o)+'</label>'; }).join("")+'</div>'+
+      '<label class="preve-pq">Porque achas isso? <small class="muted">(uma frase, pode ser um palpite)</small><textarea rows="2"></textarea></label>'+
+      '<button type="button" class="cta" disabled>🔬 Ver o que acontece</button><div class="preve-res" aria-live="polite"></div>';
+    const btn = box.querySelector("button"), res = box.querySelector(".preve-res");
+    box.querySelectorAll("input").forEach(function(r){ r.addEventListener("change", function(){ btn.disabled = false; }); });
+    btn.addEventListener("click", function(){
+      const sel = box.querySelector("input:checked"); if(!sel) return;
+      const ok = +sel.value === d.correct;
+      box.querySelectorAll(".preve-opt").forEach(function(o, i){ o.classList.toggle("certo", i === d.correct); o.classList.toggle("errado", i === +sel.value && !ok); });
+      res.innerHTML = '<p><b>'+(ok ? '🎯 A tua previsão estava certa!' : '🤔 O resultado não foi o que previste — ótimo, é assim que se aprende.')+'</b></p>'+
+        '<p><b>O que acontece:</b> '+d.resultado+'</p><p><b>Porquê:</b> '+d.porque+'</p>'+
+        '<p class="preve-exp"><b>🧪 Experimenta:</b> '+d.exp+'</p>';
+      btn.hidden = true;
+    });
+    return box;
+  }
+
   /* ---------- 🔢 Põe por ordem! (processes from data/sequencias.js; same look as the timeline exercise) ---------- */
   function buildSequencia(w){
     const lista = (typeof MISSAO_SEQ !== "undefined" && MISSAO_SEQ[w.id]) || [];
@@ -934,7 +959,7 @@
                 "<b>De outra maneira:</b> resolve outra vez, com outro caminho (um desenho, uma tabela, outra conta).",
                 "<b>Compara</b> as duas maneiras: dão o mesmo resultado? Qual é a mais rápida? Qual é a mais fácil de explicar?",
                 "<b>A regra numa frase:</b> escreve no caderno o que aprendeste, como se fosse para um colega."]);
-    } else if(key === "cn" || key === "cn7"){
+    } else if(key === "cn" || key === "cn7" || key === "fq7"){
       titulo = "🧠 Pensa como um cientista"; origem = "a escrita científica das escolas dos EUA: afirmação, prova e raciocínio";
       corpo = '<p><b>Pergunta:</b> '+(cmp ? 'qual é a diferença mais importante entre «'+escXml(cmp[0])+'» e «'+escXml(cmp[1])+'»?' : 'escolhe uma frase do resumo «Para o teste» e prova-a.')+'</p>'+
         passos(["<b>Afirmação:</b> responde numa frase. «Eu afirmo que…»",
@@ -1320,6 +1345,7 @@
       const F = formatosDe(w);
       if(F.primeiros || F.analogia || F.camadas) C.appendChild(buildMapaTema(F, cfg));
       if(prob) C.appendChild(buildProblema(prob));
+      const preve = buildPreve(w); if(preve) C.appendChild(preve);
 
       const anims = window.MissaoAnim ? MissaoAnim.doMundo(w.id) : [];
       if(anims.length){

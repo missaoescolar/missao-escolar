@@ -1135,3 +1135,15 @@
   .aa-tab th:not(:first-child), .aa-tab td:not(:first-child){ text-align:center; width:80px; }
   .aa-tab input{ width:18px; height:18px; accent-color:var(--wc, var(--accent)); }
   .aa-res{ margin:6px 0 0; line-height:1.5; }
+
+  /* 🔮 prevê e verifica */
+  .preve-box{ margin:0 0 16px; padding:4px 16px 14px; border-radius:16px; border:1.5px solid var(--wc, var(--border)); background:var(--paper); }
+  .preve-q{ margin:0 0 10px; font-weight:700; line-height:1.5; }
+  .preve-opts{ display:flex; flex-direction:column; gap:6px; margin:0 0 10px; }
+  .preve-opt{ display:flex; gap:8px; align-items:flex-start; padding:8px 10px; border-radius:12px; border:1.5px solid var(--border-soft); background:var(--surface); cursor:pointer; line-height:1.4; }
+  .preve-opt.certo{ border-color:#3E8F5C; } .preve-opt.errado{ border-color:#C0392B; }
+  .preve-opt input{ margin-top:3px; accent-color:var(--wc, var(--accent)); }
+  .preve-pq{ display:block; margin:0 0 10px; font-weight:700; font-size:.92rem; }
+  .preve-pq textarea{ display:block; width:100%; box-sizing:border-box; margin-top:4px; font:inherit; font-weight:400; padding:8px 10px; border-radius:10px; border:1.5px solid var(--border); background:var(--bg); color:var(--text); }
+  .preve-res p{ margin:8px 0; line-height:1.55; }
+  .preve-exp{ padding:10px 12px; border-radius:12px; background:var(--surface-2); }
