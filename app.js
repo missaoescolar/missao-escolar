@@ -310,6 +310,114 @@
     return box;
   }
 
+  /* ---------- 🕰️ Vamos pôr por ordem no tempo! (worlds with a timeline: 5 dated events, ordered with ↑ ↓) ---------- */
+  function anoDoEvento(y){ const m = String(y).match(/\d{4}/); return m ? +m[0] : null; }
+  function buildOrdem(w){
+    const evs = (w.timeline || []).filter(function(e){ return anoDoEvento(e.y); });
+    const anos = {}; evs.forEach(function(e){ anos[anoDoEvento(e.y)] = (anos[anoDoEvento(e.y)] || 0) + 1; });
+    const unicos = evs.filter(function(e){ return anos[anoDoEvento(e.y)] === 1; });   // same year twice = ambiguous order
+    if(unicos.length < 4) return null;
+    const box = el("div","ordem-box");
+    box.appendChild(el("p","subhead",'🕰️ Vamos pôr por ordem no tempo! <small class="muted">— do mais antigo para o mais recente</small>'));
+    const ul = el("ol","ordem-lista"), fb = el("div","ordem-fb"); fb.setAttribute("aria-live","polite");
+    let itens = [];
+    function nova(){
+      itens = shuffled(shuffled(unicos).slice(0, Math.min(5, unicos.length)));
+      if(itens.every(function(e, i, a){ return i === 0 || anoDoEvento(a[i-1].y) < anoDoEvento(e.y); })) itens.reverse();
+      fb.innerHTML = ""; desenhar(false);
+    }
+    function desenhar(corrigido){
+      ul.innerHTML = "";
+      const certa = itens.slice().sort(function(a, b){ return anoDoEvento(a.y) - anoDoEvento(b.y); });
+      itens.forEach(function(e, i){
+        const ok = corrigido && certa[i] === e;
+        const li = el("li","ordem-item"+(corrigido ? (ok ? " certo" : " errado") : ""), "");
+        li.appendChild(el("span","ordem-t",(corrigido ? '<b>'+escXml(e.y)+'</b> — ' : '')+e.t));
+        if(!corrigido){
+          const up = el("button","ghost-btn ordem-b","↑"), dn = el("button","ghost-btn ordem-b","↓");
+          up.type = dn.type = "button"; up.setAttribute("aria-label","Subir: "+e.t.slice(0,40)); dn.setAttribute("aria-label","Descer: "+e.t.slice(0,40));
+          up.disabled = (i === 0); dn.disabled = (i === itens.length - 1);
+          up.addEventListener("click", function(){ itens.splice(i-1, 2, itens[i], itens[i-1]); desenhar(false); ul.querySelectorAll(".ordem-b")[(i-1)*2].focus(); });
+          dn.addEventListener("click", function(){ itens.splice(i, 2, itens[i+1], itens[i]); desenhar(false); const b = ul.querySelectorAll(".ordem-b")[(i+1)*2+1]; if(b) b.focus(); });
+          const bs = el("span","ordem-bs",""); bs.appendChild(up); bs.appendChild(dn); li.appendChild(bs);
+        }
+        ul.appendChild(li);
+      });
+    }
+    const acoes = el("div","card-actions");
+    const ver = el("button","cta","✅ Verificar a ordem"), outra = el("button","ghost-btn","🔀 Outros acontecimentos");
+    ver.type = outra.type = "button";
+    ver.addEventListener("click", function(){
+      const certa = itens.slice().sort(function(a, b){ return anoDoEvento(a.y) - anoDoEvento(b.y); });
+      const n = itens.filter(function(e, i){ return certa[i] === e; }).length;
+      desenhar(true);
+      fb.innerHTML = n === itens.length ? '🎉 <b>Tudo na ordem certa!</b> Repara nas datas: ajudam a lembrar o que veio antes.'
+        : '<b>'+n+' de '+itens.length+' no lugar certo.</b> As datas já aparecem: compara-as e tenta outra vez (as verdes estão certas).';
+      ver.hidden = true; refazer.hidden = false;
+    });
+    const refazer = el("button","ghost-btn","↺ Tentar outra vez"); refazer.type = "button"; refazer.hidden = true;
+    refazer.addEventListener("click", function(){ desenhar(false); fb.innerHTML = ""; ver.hidden = false; refazer.hidden = true; });
+    outra.addEventListener("click", function(){ nova(); ver.hidden = false; refazer.hidden = true; });
+    acoes.appendChild(ver); acoes.appendChild(refazer); acoes.appendChild(outra);
+    box.appendChild(ul); box.appendChild(acoes); box.appendChild(fb);
+    nova();
+    return box;
+  }
+  /* ---------- 📍 E na minha região, o que aconteceu? (saved in the caderno, field "r") ---------- */
+  function buildRegiao(w){
+    const box = el("div","bilhete regiao-box");
+    const guardado = ((MissaoArmazem.ler("caderno", {}) || {})[w.id] || {}).r || "";
+    box.innerHTML = '<p class="bilhete-t">📍 E na minha região, o que aconteceu? <small>procura vestígios deste tempo perto de ti: um monumento, o nome de uma rua, uma estátua, uma fábrica antiga, uma história de família</small></p>'+
+      '<label><b>O que encontrei e onde</b><textarea rows="3">'+escXml(guardado)+'</textarea></label>'+
+      '<p class="note-small">Dica: pergunta aos avós, vê as placas das ruas ou procura no site da tua câmara municipal. Depois, desenha o que encontraste.</p>'+
+      '<small class="bilhete-ok" aria-live="polite">'+(guardado ? '✅ Guardado no caderno' : '💾 Guarda-se sozinho no teu caderno')+'</small>';
+    const ta = box.querySelector("textarea"), ok = box.querySelector(".bilhete-ok"); let t = null;
+    function guardar(){
+      const v = ta.value.trim();
+      MissaoArmazem.atualizar("caderno", {}, function(c){ const e = c[w.id] || {}; e.r = v; e.data = new Date().toLocaleDateString("pt-PT");
+        if(!e.a && !e.b && !e.c && !e.r) delete c[w.id]; else c[w.id] = e; return c; });
+      ok.textContent = v ? "✅ Guardado no caderno" : "Vazio: saiu do caderno.";
+    }
+    ta.addEventListener("input", function(){ ok.textContent = "✏️ A escrever…"; clearTimeout(t); t = setTimeout(guardar, 900); });
+    ta.addEventListener("blur", function(){ if(t){ clearTimeout(t); t = null; guardar(); } });
+    return box;
+  }
+
+  /* ---------- 🪞 Autoavaliação «Já sei / Ainda não sei» (as nos cadernos de atividades), one line per key word;
+     saved in "autoaval" and counted by dificuldades.js ---------- */
+  function buildAutoaval(w){
+    if(!w.gloss || w.gloss.length < 3) return null;
+    const d = document.createElement("details"); d.className = "erros-box autoaval";
+    const lerTudo = function(){ return MissaoArmazem.ler("autoaval", {}) || {}; };
+    const est = lerTudo()[w.id] || {};
+    const SMILES = [[0.9,"😄"],[0.7,"🙂"],[0.5,"😐"],[0.25,"😕"],[0,"😟"]];
+    d.innerHTML = '<summary>🪞 Autoavaliação: o que já sei? <small class="muted">— sê honesto: serve para saberes o que estudar</small></summary>'+
+      '<table class="aa-tab"><thead><tr><th>Sei explicar…</th><th>Já sei!</th><th>Ainda não sei</th></tr></thead><tbody>'+
+      w.gloss.map(function(g, i){ const v = est[i];
+        return '<tr><td>o que é <b>'+escXml(g[0])+'</b>?</td>'+
+          '<td><input type="radio" name="aa-'+w.id+'-'+i+'" value="1" aria-label="Já sei: '+escXml(g[0])+'"'+(v === 1 ? ' checked' : '')+'></td>'+
+          '<td><input type="radio" name="aa-'+w.id+'-'+i+'" value="0" aria-label="Ainda não sei: '+escXml(g[0])+'"'+(v === 0 ? ' checked' : '')+'></td></tr>'; }).join("")+
+      '</tbody></table><p class="aa-res" aria-live="polite"></p>';
+    const res = d.querySelector(".aa-res");
+    function resumo(){
+      const e = lerTudo()[w.id] || {}, vals = Object.keys(e).map(function(k){ return e[k]; });
+      if(!vals.length){ res.textContent = "Assinala cada linha. As que «ainda não sabes» aparecem no 💡 Treina mais."; return; }
+      const sim = vals.filter(function(v){ return v === 1; }).length, p = sim / w.gloss.length;
+      const smile = SMILES.find(function(x){ return p >= x[0]; })[1];
+      const nao = w.gloss.filter(function(g, i){ return e[i] === 0; }).map(function(g){ return g[0]; });
+      res.innerHTML = smile+' <b>Já sei '+sim+' de '+w.gloss.length+'.</b> '+(nao.length ? 'Vou estudar: '+nao.map(escXml).join(", ")+' — vê o «Para o teste» e treina nos 🃏 cartões.' : (vals.length === w.gloss.length ? 'Muito bem! Confirma no ✅ Testa-te.' : ''));
+    }
+    d.querySelectorAll('input[type=radio]').forEach(function(r){
+      r.addEventListener("change", function(){
+        const i = +r.name.split("-").pop();
+        MissaoArmazem.atualizar("autoaval", {}, function(t){ const e = t[w.id] || {}; e[i] = +r.value; t[w.id] = e; return t; });
+        resumo();
+      });
+    });
+    resumo();
+    return d;
+  }
+
   /* ---------- 🃏 Cartões de memória: the world's key words, one card at a time ----------
      Retrieval practice: the child says the answer out loud BEFORE turning the card, then says honestly
      whether she knew it. Cards she did not know go back to the end of the pile, until all are known. */
@@ -845,7 +953,7 @@
       const e = {}; let algum = false;
       box.querySelectorAll("textarea").forEach(function(x){ e[x.dataset.k] = x.value.trim(); if(e[x.dataset.k]) algum = true; });
       e.data = new Date().toLocaleDateString("pt-PT");
-      const r = MissaoArmazem.atualizar("caderno", {}, function(c){ if(algum) c[w.id] = e; else delete c[w.id]; return c; });
+      const r = MissaoArmazem.atualizar("caderno", {}, function(c){ const ant = c[w.id] || {}; if(ant.r){ e.r = ant.r; algum = true; } if(algum) c[w.id] = e; else delete c[w.id]; return c; });
       ok.textContent = (r && r.ok === false) ? "⚠️ Não foi possível guardar agora" : (algum ? "✅ Guardado no caderno às "+new Date().toLocaleTimeString("pt-PT", {hour:"2-digit", minute:"2-digit"}) : "Bilhete vazio: saiu do caderno.");
     }
     box.querySelectorAll("textarea").forEach(function(x){
@@ -1427,6 +1535,8 @@
         cb.appendChild(b);
         P.appendChild(cb);
       }
+      const aa = buildAutoaval(w); if(aa) P.appendChild(aa);
+      const ordem = buildOrdem(w); if(ordem) P.appendChild(ordem);
       if(w.quiz && w.quiz.length){
         const qbox = el("div","");
         const hasHard = !!(extra.desafio||[]).length;
@@ -1460,6 +1570,7 @@
       }
       P.appendChild(buildMetodo(w, cfg.key));
       P.appendChild(buildBilhete(w));
+      if(cfg.key === "hgp") P.appendChild(buildRegiao(w));
       P.appendChild(cta("Explorar mais →", "explorar"));
 
       /* ===== 3. 🔭 Explorar ===== */

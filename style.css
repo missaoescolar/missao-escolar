@@ -1117,3 +1117,21 @@
   .rel-barra{ display:inline-block; width:120px; height:8px; border-radius:99px; background:var(--surface-2); overflow:hidden; }
   .rel-barra span{ display:block; height:100%; background:var(--accent); }
   .rel-priv summary{ cursor:pointer; font-weight:700; }
+
+  /* 🕰️ ordem no tempo e 📍 região */
+  .ordem-box{ margin:18px 0; padding:4px 16px 14px; border-radius:16px; border:1.5px solid var(--border); background:var(--paper); }
+  .ordem-lista{ margin:0 0 12px; padding-left:24px; display:flex; flex-direction:column; gap:6px; }
+  .ordem-item{ display:flex; align-items:center; gap:8px; padding:8px 10px; border-radius:12px; background:var(--surface); border:1.5px solid var(--border-soft); }
+  .ordem-item.certo{ border-color:#3E8F5C; } .ordem-item.errado{ border-color:#C0392B; }
+  .ordem-t{ flex:1; line-height:1.4; }
+  .ordem-bs{ display:flex; gap:4px; } .ordem-b{ padding:4px 10px; } .ordem-b:disabled{ opacity:.35; cursor:default; }
+  .ordem-fb{ margin-top:10px; line-height:1.5; }
+  .regiao-box{ margin-top:12px; }
+
+  /* 🪞 autoavaliação */
+  .autoaval{ margin:16px 0; }
+  .aa-tab{ width:100%; border-collapse:collapse; margin:10px 0 6px; font-size:.93rem; }
+  .aa-tab th, .aa-tab td{ border-bottom:1px dashed var(--border); padding:6px 8px; text-align:left; }
+  .aa-tab th:not(:first-child), .aa-tab td:not(:first-child){ text-align:center; width:80px; }
+  .aa-tab input{ width:18px; height:18px; accent-color:var(--wc, var(--accent)); }
+  .aa-res{ margin:6px 0 0; line-height:1.5; }

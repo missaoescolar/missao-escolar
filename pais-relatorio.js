@@ -85,7 +85,7 @@ window.addEventListener("load", function(){
   function construir(){
     const D = dados(), nome = $("rel-nome").value.trim() || "a criança", perfil = $("rel-perfil").value;
     const dicas = escolherDicas(perfil), hoje = new Date().toLocaleDateString("pt-PT");
-    const sugestoes = D.dif.slice(0, 3).map(x => x.s.icon+" "+x.s.name+", Mundo "+x.w.num+" ("+x.w.title+"): "+x.motivos.map(m => m.replace("escreveste", "escreveu").replace("já erraste", "já errou")).join("; ")+". Sugestão: 15 minutos com o «Para o teste», depois os 🃏 cartões e o ✅ Testa-te."+(x.duvida ? " Conversem sobre a dúvida que escreveu: «"+x.duvida+"»." : ""));
+    const sugestoes = D.dif.slice(0, 3).map(x => x.s.icon+" "+x.s.name+", Mundo "+x.w.num+" ("+x.w.title+"): "+x.motivos.map(m => m.replace("escreveste", "escreveu").replace("já erraste", "já errou").replace("ainda não sabes", "ainda não sabe")).join("; ")+". Sugestão: 15 minutos com o «Para o teste», depois os 🃏 cartões e o ✅ Testa-te."+(x.duvida ? " Conversem sobre a dúvida que escreveu: «"+x.duvida+"»." : ""));
     const pct = D.respondidas ? Math.round(D.certasUltima / D.respondidas * 100) : null;
     const html =
       '<h3>📬 Relatório de '+esc(nome)+' · '+hoje+'</h3>'+
