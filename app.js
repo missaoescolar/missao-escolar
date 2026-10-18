@@ -255,6 +255,132 @@
     });
   }
 
+  /* ---------- 🃏 Cartões de memória: the world's key words, one card at a time ----------
+     Retrieval practice: the child says the answer out loud BEFORE turning the card, then says honestly
+     whether she knew it. Cards she did not know go back to the end of the pile, until all are known. */
+  function openCartoes(w, triggerEl){
+    const base = (w.gloss || []).map(function(g){ return {frente:g[0], verso:g[1]}; });
+    if(!base.length) return;
+    openModal("🃏 Cartões — "+w.title, '<div class="cards" id="cards-box"></div>', triggerEl);
+    const box = document.getElementById("cards-box");
+    let pilha, total, acertosPrimeira, vistos, invertido = false;
+    function comecar(inv){
+      invertido = inv;
+      pilha = shuffled(base); total = pilha.length; acertosPrimeira = 0; vistos = {};
+      mostrar();
+    }
+    function mostrar(){
+      if(!pilha.length){ fim(); return; }
+      const c = pilha[0];
+      const pergunta = invertido ? c.verso : c.frente, resposta = invertido ? c.frente : c.verso;
+      box.innerHTML =
+        '<p class="cards-meta">'+(total - pilha.length)+' de '+total+' arrumados · '+(invertido ? 'qual é a palavra?' : 'o que quer dizer?')+'</p>'+
+        '<button type="button" class="card-face" id="card-face" aria-live="polite"><span class="card-q">'+pergunta+'</span>'+
+        '<span class="card-hint">Diz a resposta em voz alta. Depois toca para virar.</span></button>'+
+        '<div class="card-actions" id="card-actions" hidden>'+
+          '<button type="button" class="ghost-btn" id="card-nao">😕 Ainda não sabia</button>'+
+          '<button type="button" class="cta" id="card-sim">😀 Já sabia</button></div>';
+      const face = document.getElementById("card-face");
+      face.addEventListener("click", function(){
+        if(face.classList.contains("virado")) return;
+        face.classList.add("virado");
+        face.innerHTML = '<span class="card-q small">'+pergunta+'</span><span class="card-a">'+resposta+'</span>';
+        document.getElementById("card-actions").hidden = false;
+        document.getElementById("card-sim").focus();
+      });
+      document.getElementById("card-sim").addEventListener("click", function(){
+        if(!vistos[c.frente]) acertosPrimeira++;
+        pilha.shift(); mostrar();
+      });
+      document.getElementById("card-nao").addEventListener("click", function(){
+        vistos[c.frente] = true;
+        pilha.push(pilha.shift()); mostrar();
+      });
+      face.focus();
+    }
+    function fim(){
+      box.innerHTML =
+        '<p class="cards-end">🎉 Arrumaste os '+total+' cartões!</p>'+
+        '<p class="cards-meta">Sabias '+acertosPrimeira+' à primeira. Os outros ficaram no fim da pilha até os saberes. Volta a treinar amanhã: lembrar com uns dias de intervalo é o que fixa a matéria.</p>'+
+        '<div class="card-actions">'+
+          '<button type="button" class="ghost-btn" id="card-outra">🔁 Outra vez</button>'+
+          '<button type="button" class="cta" id="card-inv">🔄 Agora ao contrário</button></div>';
+      document.getElementById("card-outra").addEventListener("click", function(){ comecar(invertido); });
+      document.getElementById("card-inv").addEventListener("click", function(){ comecar(!invertido); });
+    }
+    comecar(false);
+  }
+
+  /* ---------- ✈️ Modo foco: one study session framed as a flight, then a pause ----------
+     Real distances (straight line, rounded). The end time is kept in sessionStorage, so a reload in the
+     same tab does not lose the flight; if storage is unavailable it simply lives in memory. */
+  const VOOS = [
+    {min:15, de:"Lisboa", para:"Porto", em:"no Porto", km:270},
+    {min:25, de:"Lisboa", para:"Funchal", em:"no Funchal", km:970},
+    {min:40, de:"Lisboa", para:"Ponta Delgada", em:"em Ponta Delgada", km:1450}
+  ];
+  let focoTimer = null, focoBar = null;
+  function focoGuardar(v){ try{ if(v) sessionStorage.setItem("foco_voo", JSON.stringify(v)); else sessionStorage.removeItem("foco_voo"); }catch(e){} }
+  function focoLer(){ try{ return JSON.parse(sessionStorage.getItem("foco_voo") || "null"); }catch(e){ return null; } }
+  function openFocoModal(triggerEl){
+    if(focoLer()){ showToast("✈️ Já estás em voo — vê a barra em baixo."); return; }
+    openModal("✈️ Modo foco",
+      '<p style="margin:0 0 10px">Escolhe uma viagem. Enquanto o avião voa, estudas <b>só uma coisa</b>. Quando aterrares, fazes uma pausa.</p>'+
+      '<label class="foco-lbl" for="foco-tarefa">O que vais estudar nesta viagem?</label>'+
+      '<input id="foco-tarefa" class="foco-input" type="text" maxlength="60" placeholder="Ex.: Mundo 5 — os exemplos 7 e 8">'+
+      '<p class="note-small" style="margin:8px 0 12px">Antes de descolar: telemóvel noutra divisão, água ao lado, caderno e lápis à mão.</p>'+
+      '<div class="foco-voos">'+VOOS.map(function(v, i){
+        return '<button type="button" class="foco-voo" data-i="'+i+'"><b>'+v.min+' min</b><small>'+v.de+' → '+v.para+' · cerca de '+v.km+' km</small></button>';
+      }).join("")+'</div>', triggerEl);
+    document.querySelectorAll(".foco-voo").forEach(function(b){
+      b.addEventListener("click", function(){
+        const v = VOOS[+b.dataset.i];
+        const tarefa = (document.getElementById("foco-tarefa").value || "").trim();
+        const voo = {min:v.min, de:v.de, para:v.para, em:v.em, km:v.km, tarefa:tarefa, fim:Date.now() + v.min*60000};
+        focoGuardar(voo); closeModal(); focoArrancar(voo);
+        showToast("🛫 Descolagem! Bom estudo.");
+      });
+    });
+  }
+  function focoArrancar(voo){
+    if(!focoBar){
+      focoBar = document.createElement("div");
+      focoBar.className = "foco-bar"; focoBar.setAttribute("role","status");
+      document.body.appendChild(focoBar);
+    }
+    focoBar.innerHTML =
+      '<span class="foco-rota">✈️ '+escXml(voo.de)+' → '+escXml(voo.para)+(voo.tarefa ? ' · <i>'+escXml(voo.tarefa)+'</i>' : '')+'</span>'+
+      '<span class="foco-pista" aria-hidden="true"><span class="foco-aviao" id="foco-aviao">✈️</span></span>'+
+      '<b class="foco-relogio" id="foco-relogio"></b>'+
+      '<button type="button" class="ghost-btn" id="foco-parar">Aterrar já</button>';
+    focoBar.hidden = false; document.body.classList.add("foco-on");
+    document.getElementById("foco-parar").addEventListener("click", function(){ focoFim(voo, false); });
+    function tick(){
+      const resta = Math.max(0, voo.fim - Date.now()), totalMs = voo.min*60000;
+      const s = Math.ceil(resta/1000);
+      const rel = document.getElementById("foco-relogio"), av = document.getElementById("foco-aviao");
+      if(rel) rel.textContent = String(Math.floor(s/60)).padStart(2,"0")+":"+String(s%60).padStart(2,"0");
+      if(av) av.style.left = (100 * (1 - resta/totalMs)).toFixed(1)+"%";
+      if(resta <= 0) focoFim(voo, true);
+    }
+    clearInterval(focoTimer); focoTimer = setInterval(tick, 1000); tick();
+  }
+  function focoFim(voo, completo){
+    clearInterval(focoTimer); focoTimer = null; focoGuardar(null);
+    if(focoBar) focoBar.hidden = true; document.body.classList.remove("foco-on");
+    const feitos = Math.round((voo.min*60000 - Math.max(0, voo.fim - Date.now()))/60000);
+    if(completo) playChime();
+    openModal(completo ? "🛬 Aterraste "+(voo.em || "em "+voo.para)+"!" : "🛬 Aterragem antecipada",
+      '<p style="margin:0 0 10px">'+(completo
+        ? 'Estudaste <b>'+voo.min+' minutos</b> seguidos e voaste cerca de <b>'+voo.km+' km</b>. Boa!'
+        : 'Estudaste cerca de <b>'+feitos+' minuto'+(feitos===1?'':'s')+'</b>. Não faz mal: cada voo conta.')+'</p>'+
+      (voo.tarefa ? '<p class="note-small" style="margin:0 0 10px">Missão do voo: <i>'+escXml(voo.tarefa)+'</i>. Conseguiste? Escreve no caderno uma coisa que aprendeste.</p>' : '')+
+      '<p style="margin:0 0 14px">Agora o cérebro precisa de uma pausa curta, longe do ecrã.</p>'+
+      '<div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap"><button type="button" class="cta" id="foco-pausa">⏸️ Fazer uma pausa</button><button type="button" class="ghost-btn" id="foco-fechar">Fechar</button></div>');
+    document.getElementById("foco-pausa").addEventListener("click", function(){ openBreakModal(); });
+    document.getElementById("foco-fechar").addEventListener("click", closeModal);
+  }
+
   function escXml(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
 
   function buildRouteSvg(route, uid){
@@ -1132,6 +1258,10 @@
         });
         gWrap.appendChild(chips);
         T.appendChild(gWrap);
+        // 🃏 retrieval practice with the same key words, one card at a time
+        const cardsBtn = el("button","ghost-btn cards-btn","🃏 Treinar com cartões ("+w.gloss.length+")"); cardsBtn.type = "button";
+        cardsBtn.addEventListener("click", function(){ openCartoes(w, cardsBtn); });
+        T.appendChild(cardsBtn);
       }
       if(C.children.length){
         C.appendChild(nextSec(E ? "Seguinte: ✏️ os exemplos resolvidos →" : "Seguinte: 📋 para o teste →", E ? "exemplos" : "teste"));
@@ -1528,6 +1658,10 @@
   });
   const pauseBtn = document.getElementById("pause-btn");
   if(pauseBtn) pauseBtn.addEventListener("click", function(){ openBreakModal(pauseBtn); });
+  const focoBtn = document.getElementById("foco-btn");
+  if(focoBtn) focoBtn.addEventListener("click", function(){ openFocoModal(focoBtn); });
+  const vooAtivo = focoLer();   // a flight that was going on before a reload of this tab
+  if(vooAtivo && vooAtivo.fim) focoArrancar(vooAtivo);
 
   /* ---- subject tabs ---- */
   // each year remembers its own last subject (the 6.º ano keeps the old key name)

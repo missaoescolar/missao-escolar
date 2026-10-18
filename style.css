@@ -1020,3 +1020,32 @@
   .more-pop{ position:absolute; right:0; top:calc(100% + 6px); z-index:40; min-width:250px; display:flex; flex-direction:column; gap:2px; padding:6px; border-radius:14px; border:1.5px solid var(--border); background:var(--surface); box-shadow:var(--shadow); }
   .more-item{ white-space:nowrap; font:inherit; font-weight:700; text-align:left; text-decoration:none; color:var(--text); background:none; border:none; border-radius:10px; padding:10px 12px; cursor:pointer; }
   .more-item:hover, .more-item:focus-visible{ background:var(--surface-2); outline:none; }
+
+  /* 🃏 cartões de memória */
+  .cards-btn{ margin-top:14px; }
+  .cards{ display:flex; flex-direction:column; gap:12px; }
+  .cards-meta{ margin:0; font-size:.85rem; color:var(--text-muted); text-align:center; }
+  .cards-end{ margin:0; font-family:"Lexend",sans-serif; font-weight:800; font-size:1.2rem; text-align:center; }
+  .card-face{ font:inherit; color:var(--text); min-height:170px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; padding:20px; border-radius:18px; border:2px solid var(--border); background:var(--paper); box-shadow:var(--shadow); cursor:pointer; text-align:center; }
+  .card-face.virado{ cursor:default; border-color:var(--accent); }
+  .card-face:focus-visible{ outline:3px solid var(--accent); outline-offset:3px; }
+  .card-q{ font-family:"Lexend",sans-serif; font-weight:800; font-size:1.3rem; }
+  .card-q.small{ font-size:.95rem; color:var(--text-muted); }
+  .card-a{ font-size:1.05rem; line-height:1.5; }
+  .card-hint{ font-size:.82rem; color:var(--text-muted); }
+  .card-actions{ display:flex; gap:10px; justify-content:center; flex-wrap:wrap; }
+  /* ✈️ modo foco */
+  .foco-lbl{ display:block; font-weight:700; margin:0 0 6px; }
+  .foco-input{ width:100%; box-sizing:border-box; font:inherit; padding:9px 12px; border-radius:12px; border:1.5px solid var(--border); background:var(--surface); color:var(--text); }
+  .foco-voos{ display:flex; flex-direction:column; gap:8px; }
+  .foco-voo{ display:flex; flex-direction:column; align-items:flex-start; gap:2px; text-align:left; font:inherit; cursor:pointer; padding:11px 14px; border-radius:14px; border:1.5px solid var(--border); background:var(--surface-2); color:var(--text); }
+  .foco-voo:hover, .foco-voo:focus-visible{ border-color:var(--accent); outline:none; }
+  body.foco-on .page{ padding-bottom:90px; }
+  .foco-voo small{ font-weight:400; opacity:.85; }
+  .foco-bar{ position:fixed; left:50%; bottom:12px; transform:translateX(-50%); z-index:60; width:min(680px, calc(100% - 24px)); box-sizing:border-box; display:flex; align-items:center; gap:10px; flex-wrap:wrap; padding:10px 14px; border-radius:16px; border:1.5px solid var(--border); background:var(--surface); box-shadow:var(--shadow); }
+  .foco-bar[hidden]{ display:none; }
+  .foco-rota{ font-weight:700; font-size:.9rem; flex:1 1 180px; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .foco-pista{ position:relative; flex:1 1 120px; height:22px; border-bottom:2px dashed var(--border); }
+  .foco-aviao{ position:absolute; bottom:-2px; left:0; transform:translateX(-50%); transition:left 1s linear; }
+  .foco-relogio{ font-family:"Lexend",sans-serif; font-size:1.1rem; }
+  @media print{ .foco-bar{ display:none !important; } }
