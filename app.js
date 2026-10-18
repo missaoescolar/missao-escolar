@@ -255,6 +255,61 @@
     });
   }
 
+  /* ---------- formas de aprender um mundo (data/formatos-*.js): 🧱 primeiros passos · 💡 analogia · 🧅 camadas ·
+     🗺️ resumo visual · ⚠️ erros comuns · 🤖 pensa como um robô. Each part only appears if the world has it. ---------- */
+  function formatosDe(w){ return (typeof MISSAO_FORMATOS !== "undefined" && MISSAO_FORMATOS[w.id]) || {}; }
+  function buildMapaTema(F, cfg){
+    const box = el("div","mapa-tema");
+    if(F.primeiros && F.primeiros.length){
+      box.appendChild(el("p","mt-h","🧱 Antes de começar, precisas de saber"));
+      const ul = document.createElement("ul");
+      F.primeiros.forEach(function(p){
+        const li = el("li","",p.t);
+        if(p.w){ const a = el("a","mt-link"," revê aqui →"); a.href = "#"+cfg.key+"/"+p.w; li.appendChild(a); }
+        ul.appendChild(li);
+      });
+      box.appendChild(ul);
+    }
+    if(F.analogia){ box.appendChild(el("p","mt-h","💡 Uma analogia")); box.appendChild(el("p","mt-txt",F.analogia)); }
+    if(F.camadas && F.camadas.length){
+      box.appendChild(el("p","mt-h","🧅 Em camadas: do essencial ao mais difícil"));
+      const ol = el("ol","mt-camadas");
+      F.camadas.forEach(function(c){ ol.appendChild(el("li","",c)); });
+      box.appendChild(ol);
+    }
+    return box;
+  }
+  function buildSintese(items){
+    const wrap = el("div","");
+    wrap.appendChild(el("p","subhead",'🗺️ Resumo visual <small class="muted">— o essencial num relance</small>'));
+    const grid = el("div","sintese");
+    items.forEach(function(it){ grid.appendChild(el("div","sint-item",'<b>'+it[0]+'</b><span>'+it[1]+'</span>')); });
+    wrap.appendChild(grid);
+    return wrap;
+  }
+  function buildErros(list){
+    const d = document.createElement("details"); d.className = "erros-box";
+    d.innerHTML = '<summary>⚠️ Erros comuns <small class="muted">— '+list.length+' armadilhas a evitar</small></summary>'+
+      '<ul>'+list.map(function(e){ return '<li><p class="err-e">❌ '+e.e+'</p><p class="err-p">Porque acontece: '+e.p+'</p><p class="err-c">✅ '+e.c+'</p></li>'; }).join("")+'</ul>';
+    return d;
+  }
+  function buildRobo(r){
+    const box = el("div","robo-box");
+    box.appendChild(el("p","subhead",'🤖 Pensa como um robô <small class="muted">— um algoritmo é uma receita passo a passo</small>'));
+    box.appendChild(el("p","robo-t",r.tarefa));
+    const ol = el("ol","robo-alg");
+    r.algoritmo.forEach(function(p){ ol.appendChild(el("li", /^\s+/.test(p) ? "robo-in" : "", p.trim())); });
+    box.appendChild(ol);
+    if(r.teste) box.appendChild(el("p","robo-teste","▶️ <b>Testa:</b> "+r.teste));
+    if(r.bug){
+      const d = document.createElement("details"); d.className = "robo-bug";
+      d.innerHTML = '<summary>🐞 Encontra o erro do robô</summary><p><b>O que o robô fez:</b> '+r.bug.h+'</p>'+
+        '<details class="robo-sol"><summary>Ver o erro e a correção</summary><p>'+r.bug.r+'</p></details>';
+      box.appendChild(d);
+    }
+    return box;
+  }
+
   /* ---------- 🃏 Cartões de memória: the world's key words, one card at a time ----------
      Retrieval practice: the child says the answer out loud BEFORE turning the card, then says honestly
      whether she knew it. Cards she did not know go back to the end of the pile, until all are known. */
@@ -1089,6 +1144,8 @@
       Object.keys(secs).forEach(function(k){ A.appendChild(secs[k]); });
 
       const prob = (typeof MISSAO_PROBLEMAS !== "undefined") && MISSAO_PROBLEMAS[w.id];
+      const F = formatosDe(w);
+      if(F.primeiros || F.analogia || F.camadas) C.appendChild(buildMapaTema(F, cfg));
       if(prob) C.appendChild(buildProblema(prob));
 
       const anims = window.MissaoAnim ? MissaoAnim.doMundo(w.id) : [];
@@ -1241,7 +1298,9 @@
       });
       resumoBox.appendChild(ul);
       resumoWrap.appendChild(resumoBox);
+      if(F.sintese) T.appendChild(buildSintese(F.sintese));
       T.appendChild(resumoWrap);
+      if(F.erros) T.appendChild(buildErros(F.erros));
 
       // key words as small chips (each opens its definition)
       if(w.gloss && w.gloss.length){
@@ -1331,6 +1390,7 @@
       });
       missionsWrap.appendChild(missionsBox);
       P.appendChild(missionsWrap);
+      if(F.robo) P.appendChild(buildRobo(F.robo));
       wheelBtn.addEventListener("click", function(){
         const open = Array.prototype.filter.call(missionsBox.querySelectorAll(".mission"), function(r){ return !r.querySelector("input").checked; });
         if(!open.length){ showToast("🎉 Já fizeste todas as missões deste mundo!"); return; }

@@ -1066,3 +1066,29 @@
   .final-det p{ margin:8px 0 4px; line-height:1.6; }
   .final-erro{ color:var(--text-muted); }
   @media print{ .final-prob[hidden]{ display:block !important; } .final-det{ display:block; } }
+
+  /* formas de aprender: mapa do tema, resumo visual, erros comuns, pensa como um robô */
+  .mapa-tema{ border:1.5px solid var(--border); border-radius:16px; padding:6px 16px 10px; margin:0 0 16px; background:var(--paper); }
+  .mt-h{ font-family:"Lexend",sans-serif; font-weight:800; font-size:.92rem; margin:12px 0 4px; }
+  .mapa-tema ul, .mt-camadas{ margin:0; padding-left:22px; line-height:1.55; }
+  .mt-txt{ margin:0; line-height:1.55; }
+  .mt-link{ font-weight:700; color:var(--wc, var(--accent)); white-space:nowrap; }
+  .mt-camadas li::marker{ font-weight:800; color:var(--wc, var(--accent)); }
+  .sintese{ display:grid; grid-template-columns:repeat(auto-fill, minmax(170px, 1fr)); gap:8px; margin:0 0 14px; }
+  .sint-item{ display:flex; flex-direction:column; gap:3px; padding:10px 12px; border-radius:12px; background:var(--wc-bg, var(--surface-2)); border:1px solid var(--border-soft); }
+  .sint-item b{ font-family:"Lexend",sans-serif; font-size:.85rem; color:var(--wc, var(--accent)); }
+  .sint-item span{ font-size:.92rem; line-height:1.4; }
+  .erros-box{ margin:12px 0; padding:10px 14px; border-radius:14px; border:1.5px solid var(--border); background:var(--surface); }
+  .erros-box summary{ cursor:pointer; font-weight:800; font-family:"Lexend",sans-serif; }
+  .erros-box ul{ list-style:none; margin:8px 0 0; padding:0; }
+  .erros-box li{ padding:8px 0; border-top:1px dashed var(--border); }
+  .erros-box p{ margin:2px 0; line-height:1.5; }
+  .err-p{ color:var(--text-muted); font-size:.9rem; }
+  .robo-box{ margin:18px 0; padding:4px 16px 12px; border-radius:16px; border:1.5px dashed var(--wc, var(--border)); background:var(--paper); }
+  .robo-t{ margin:0 0 8px; font-weight:700; }
+  .robo-alg{ margin:0 0 8px; padding-left:24px; line-height:1.6; font-family:ui-monospace, Consolas, monospace; font-size:.9rem; }
+  .robo-alg li.robo-in{ margin-left:22px; list-style:circle; }
+  .robo-teste{ margin:0 0 8px; }
+  .robo-bug summary, .robo-sol summary{ cursor:pointer; font-weight:700; }
+  .robo-bug p{ margin:6px 0; line-height:1.55; }
+  @media print{ .erros-box, .robo-bug, .robo-sol{ display:block; } }
