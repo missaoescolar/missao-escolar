@@ -121,13 +121,14 @@
     id:"n2", num:2, c:"m2", icon:"🍕",
     title:"Inventário de Frações",
     subtitle:"Frações e operações", pages:"manual, vol. 1, cap. 3 «Frações», pp. 108–149",
-    lead:"Neste mundo vais aprender a encontrar frações equivalentes, a simplificar, a comparar frações, a calcular a fração de uma quantidade, a fazer as quatro operações com frações e a calcular potências de frações. Vê primeiro a animação e os 7 exemplos resolvidos, um de cada vez. No fim tens o resumo para o teste.",
+    lead:"Neste mundo vais aprender a encontrar frações equivalentes, a simplificar, a comparar frações, a calcular a fração de uma quantidade, a fazer as quatro operações com frações, a calcular potências de frações e a usar uma fração como medida. Vê primeiro a animação e os 8 exemplos resolvidos, um de cada vez. No fim tens o resumo para o teste.",
     missions:[
       {t:"Iguais por Dentro", d:"Frações equivalentes e simplificação", f:"Escreve 3 frações equivalentes a 2/3, como no Exemplo 1.\nSimplifica até à forma irredutível: 12/18, 20/30 e 14/21. Usa o m.d.c. do Mundo 1.\nVerifica: duas frações a/b e c/d são equivalentes quando a × d = b × c (ex.: 2/3 e 4/6, porque 2 × 6 = 3 × 4).", xp:10},
       {t:"Quem É Maior?", d:"Comparar e ordenar frações", f:"Ordena do menor para o maior: 2/3, 3/4, 5/8 e 1/2, como no Exemplo 2.\nDesenha as quatro frações numa reta numérica entre 0 e 1.\nVerifica: escreve as quatro frações com denominador 24 e compara só os numeradores.", xp:10},
       {t:"Contar a Turma", d:"Fração de uma quantidade", f:"Numa turma de 24 alunos, 3/8 vêm de autocarro, 1/4 vêm a pé e os outros vêm de carro.\nCalcula quantos alunos vêm de cada maneira, como no Exemplo 4.\nVerifica: os três números somados têm de dar 24.", xp:10},
       {t:"Juntar e Tirar Pedaços", d:"Adição e subtração de frações", f:"Calcula, como no Exemplo 3: 1/2 + 1/3; 3/4 − 1/6; 2/5 + 3/10; 1 − 3/8; 1 e 1/2 + 2/3.\nDá cada resultado na forma irredutível.\nVerifica: antes de calcular, estima. Por exemplo, 1/2 + 1/3 tem de ser menos do que 1, porque 1/3 é menos do que 1/2.", xp:10},
-      {t:"Multiplicar e Dividir", d:"Multiplicação e divisão de frações", f:"Resolve, como nos Exemplos 5 e 6:\n(1) Sobraram 3/4 de uma pizza e comeste 2/3 do que sobrou. Que fração da pizza inteira comeste?\n(2) Com 6 litros de sumo, quantas garrafas de 3/4 de litro consegues encher?\nVerifica: em (2), multiplica o número de garrafas por 3/4. Tens de obter os 6 litros.", xp:15}
+      {t:"Multiplicar e Dividir", d:"Multiplicação e divisão de frações", f:"Resolve, como nos Exemplos 5 e 6:\n(1) Sobraram 3/4 de uma pizza e comeste 2/3 do que sobrou. Que fração da pizza inteira comeste?\n(2) Com 6 litros de sumo, quantas garrafas de 3/4 de litro consegues encher?\nVerifica: em (2), multiplica o número de garrafas por 3/4. Tens de obter os 6 litros.", xp:15},
+      {t:"O Tangram Mede Tudo", d:"A fração como medida", f:"Faz um tangram em papel (há moldes simples para imprimir ou desenhar num quadrado). Tens 7 peças: 2 triângulos grandes, 1 médio, 2 pequenos, 1 quadrado e 1 paralelogramo.\nToma o triângulo grande como unidade de medida e descobre a área de cada peça, sobrepondo peças pequenas às grandes. Faz uma tabela. Depois repete com o triângulo pequeno como unidade.\nVerifica: com o triângulo grande como unidade, o triângulo pequeno mede 1/4 e o quadrado mede 2/4 = 1/2; o tangram inteiro mede 4. Com o triângulo pequeno como unidade, o tangram inteiro mede 16. A mesma peça tem medidas diferentes conforme a unidade!", xp:15}
     ],
     resumo:[
       "Uma <b>fração</b> representa partes iguais de um todo (a unidade). O <b>denominador</b> (em baixo) diz em quantas partes iguais se dividiu o todo; o <b>numerador</b> (em cima) diz quantas dessas partes se consideram (ex.: em 3/8 de uma pizza, a pizza foi dividida em 8 fatias iguais e consideram-se 3).",
@@ -139,7 +140,8 @@
       "Para <b>somar ou subtrair</b> frações, os denominadores têm de ser iguais: reduzem-se ao mesmo denominador (normalmente o m.m.c. dos denominadores) e depois somam-se ou subtraem-se só os numeradores. O denominador mantém-se (ex.: 1/2 + 1/3 = 3/6 + 2/6 = 5/6).",
       "Para <b>multiplicar</b> frações, multiplicam-se os numeradores entre si e os denominadores entre si (ex.: 2/3 × 3/5 = 6/15 = 2/5). Multiplicar por uma fração própria dá um resultado <b>menor</b>: é calcular uma parte.",
       "Para <b>dividir</b> por uma fração, multiplica-se pelo <b>inverso</b> dessa fração (troca-se o numerador com o denominador: o inverso de 3/4 é 4/3). Dividir por uma fração própria dá um resultado <b>maior</b>: 3 ÷ 1/2 = 6, porque em 3 pizzas cabem 6 metades.",
-      "Uma <b>potência de uma fração</b> multiplica a fração por si própria: (2/3)² = 2/3 × 2/3 = 4/9. Eleva-se o numerador e eleva-se o denominador: (1/2)⁴ = 1⁴/2⁴ = 1/16. A potência de uma fração própria é menor do que a própria fração."
+      "Uma <b>potência de uma fração</b> multiplica a fração por si própria: (2/3)² = 2/3 × 2/3 = 4/9. Eleva-se o numerador e eleva-se o denominador: (1/2)⁴ = 1⁴/2⁴ = 1/16. A potência de uma fração própria é menor do que a própria fração.",
+      "Uma fração também serve para <b>medir</b>: escolhe-se uma <b>unidade de medida</b>, divide-se em partes iguais (o denominador) e conta-se quantas cabem no que se mede (o numerador). Se AB tem 7 quartos da unidade u, AB = 7/4 u. A medida depende da unidade: com uma unidade metade de u, AB = 7/2."
     ],
     gloss:[
       ["fração","Partes iguais de um todo, escritas como numerador sobre denominador (ex.: 3/8)."],
@@ -154,7 +156,8 @@
       ["fração irredutível","Uma fração que já não se pode simplificar: o m.d.c. do numerador e do denominador é 1."],
       ["inverso","A fração com o numerador e o denominador trocados (o inverso de 3/4 é 4/3). Uma fração vezes o seu inverso dá 1."],
       ["reta numérica","Uma reta com os números por ordem, onde cada fração tem o seu lugar (1/2 fica a meio entre 0 e 1)."],
-      ["contraexemplo","Um exemplo que mostra que uma afirmação é falsa: 6 × 1/2 = 3 mostra que «multiplicar dá sempre mais» é falso."]
+      ["contraexemplo","Um exemplo que mostra que uma afirmação é falsa: 6 × 1/2 = 3 mostra que «multiplicar dá sempre mais» é falso."],
+      ["unidade de medida","Aquilo que se escolhe para medir (um segmento, uma peça, um copo…); a medida diz quantas vezes, ou que fração, cabe no que se mede."]
     ],
     quiz:[
       {q:"Uma pizza foi cortada em 8 fatias iguais e comeste 3. Que fração da pizza comeste?", opts:["3/8","5/8","3/5","8/3"], correct:0, explain:"A pizza (o todo) tem 8 partes iguais: o denominador é 8. Comeste 3: o numerador é 3. 5/8 é a parte que sobrou. 3/5 compara o que comeste com o que sobrou, não com a pizza toda. E 8/3 está trocada: seria mais do que uma pizza inteira."},
@@ -167,7 +170,9 @@
       {q:"Quantos copos de 1/4 de litro consegues encher com 3 litros de água?", opts:["3/4","12","7","4"], correct:1, explain:"A pergunta é «quantos 1/4 cabem em 3?»: 3 ÷ 1/4 = 3 × 4 = 12. Verifica: 12 copos × 1/4 de litro = 3 litros. 3/4 é o resultado de multiplicar (3 × 1/4), que não é o que se pergunta. Dividir por uma fração própria dá um resultado maior."},
       {q:"«Multiplicar dá sempre um número maior.» Verdadeiro ou falso? Escolhe a resposta com a justificação certa.", opts:["Verdadeiro. Multiplicar é somar várias vezes.","Verdadeiro. 2 × 3 = 6, que é maior do que 2 e do que 3.","Falso. 6 × 1/2 = 3, que é menor do que 6.","Falso. 6 × 2 = 12, que é maior do que 6."], correct:2, explain:"Basta um contraexemplo: 6 × 1/2 = 3, que é menor do que 6. Multiplicar por uma fração própria é calcular uma parte, e uma parte é menor do que o todo. Os exemplos em que dá maior (2 × 3) não provam que é sempre assim, e 6 × 2 = 12 não mostra que a afirmação é falsa."},
       {q:"Como se escreve o número misto 2 e 3/4 como fração?", opts:["5/4","6/4","11/4","23/4"], correct:2, explain:"Cada inteiro tem 4 quartos, por isso 2 inteiros = 8/4. Mais 3/4: 8/4 + 3/4 = 11/4. Verifica: 11 ÷ 4 = 2 e sobram 3. 5/4 soma 2 + 3, 6/4 multiplica 2 × 3, e 23/4 junta os algarismos 2 e 3."},
-      {q:"Quanto é (3/4)²?", opts:["6/8","9/4","3/16","9/16"], correct:3, explain:"(3/4)² = 3/4 × 3/4 = (3 × 3)/(4 × 4) = 9/16. O 6/8 multiplica por 2 em vez de elevar ao quadrado; o 9/4 só eleva o numerador; o 3/16 só eleva o denominador. Repara: 9/16 é menor do que 3/4, como acontece sempre com uma fração própria."}
+      {q:"Quanto é (3/4)²?", opts:["6/8","9/4","3/16","9/16"], correct:3, explain:"(3/4)² = 3/4 × 3/4 = (3 × 3)/(4 × 4) = 9/16. O 6/8 multiplica por 2 em vez de elevar ao quadrado; o 9/4 só eleva o numerador; o 3/16 só eleva o denominador. Repara: 9/16 é menor do que 3/4, como acontece sempre com uma fração própria."},
+      {q:"Um segmento mede 3/4 de uma unidade u. Quanto mede, se a nova unidade for metade de u?", opts:["3/8","3/4","6/4 = 3/2","6/8"], correct:2, explain:"Uma unidade mais pequena cabe mais vezes: cada quarto de u são 2 oitavos de u, ou seja, 2 «quartos da nova unidade». 3/4 × 2 = 6/4 = 3/2. O 3/8 é o erro de dividir em vez de multiplicar: com a unidade mais pequena, a medida fica maior."},
+      {q:"Num tangram, tomando o triângulo grande como unidade, quanto mede o triângulo pequeno?", opts:["1/2","1/4","4","1/16"], correct:1, explain:"Cabem 4 triângulos pequenos num triângulo grande, por isso o pequeno mede 1/4 da unidade. O 4 é a resposta ao contrário (quantos pequenos cabem no grande); o 1/16 compara com o tangram inteiro."}
     ],
     posters:[
       {title:"🟰 Exemplo 1 — Frações equivalentes e simplificar", svg:'<svg class="poster-svg" viewBox="0 0 300 120" style="max-width:300px;margin:0 auto" role="img" aria-label="Duas barras do mesmo tamanho. A de cima está dividida em 4 partes iguais, com 3 pintadas: 3/4. A de baixo está dividida em 8 partes iguais, com 6 pintadas: 6/8. A parte pintada é do mesmo tamanho nas duas.">'+
@@ -228,6 +233,14 @@
         '<li><span aria-hidden="true">👣</span><span><b>Passo a passo:</b> <br>1.º retângulo: 1/2<br>2.º: 1/2 × 1/2 = (1/2)² = 1/4<br>3.º: (1/2)³ = 1/8<br>4.º: (1/2)⁴ = (1 × 1 × 1 × 1)/(2 × 2 × 2 × 2) = 1/16<br>Da mesma forma: (2/3)² = 2/3 × 2/3 = (2 × 2)/(3 × 3) = 4/9</span></li>'+
         '<li><span aria-hidden="true">✅</span><span><b>Resultado:</b> o 4.º retângulo é 1/16 do quadrado, e (2/3)² = 4/9.</span></li>'+
         '<li><span aria-hidden="true">🔍</span><span><b>Verificar:</b> no desenho, o retângulo a cor cabe 16 vezes no quadrado. Erros a evitar: elevar só o numerador ((2/3)² não é 4/3) ou multiplicar pelo expoente ((2/3)² não é 4/6).</span></li>'+
+        '</ul>'},
+      {title:"📏 Exemplo 8 — A fração como medida", svg:'<svg class="poster-svg" viewBox="0 0 320 120" style="max-width:320px;margin:0 auto" role="img" aria-label="Em cima, a unidade u, uma barra dividida em 4 partes iguais. Em baixo, o segmento AB, que ocupa 7 dessas partes: AB mede 7/4 de u."><rect x="20" y="22" width="160" height="16" fill="var(--wc)" fill-opacity="0.35" stroke="currentColor" stroke-width="2"/><g stroke="currentColor" stroke-width="1.5"><line x1="20" y1="22" x2="20" y2="38"/><line x1="60" y1="22" x2="60" y2="38"/><line x1="100" y1="22" x2="100" y2="38"/><line x1="140" y1="22" x2="140" y2="38"/><line x1="180" y1="22" x2="180" y2="38"/></g><line x1="20" y1="80" x2="300" y2="80" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><g stroke="currentColor" stroke-width="1.5"><line x1="20" y1="73" x2="20" y2="87"/><line x1="60" y1="73" x2="60" y2="87"/><line x1="100" y1="73" x2="100" y2="87"/><line x1="140" y1="73" x2="140" y2="87"/><line x1="180" y1="73" x2="180" y2="87"/><line x1="220" y1="73" x2="220" y2="87"/><line x1="260" y1="73" x2="260" y2="87"/><line x1="300" y1="73" x2="300" y2="87"/></g><g font-family="Lexend, sans-serif" font-size="12" font-weight="700" text-anchor="middle"><text x="100" y="16">unidade u</text><text x="20" y="104">A</text><text x="300" y="104">B</text><text x="160" y="112" font-size="11" font-weight="400">7 partes de 1/4 de u</text></g></svg>'+
+        '<ul class="wheel-legend">'+
+        '<li><span aria-hidden="true">🎯</span><span><b>O que queremos descobrir:</b> quanto mede o segmento AB, usando a barra u como unidade de medida.</span></li>'+
+        '<li><span aria-hidden="true">🚦</span><span><b>Como começar:</b> a unidade u não cabe um número inteiro de vezes em AB. Divide-se a unidade em partes iguais (aqui, 4 quartos) e conta-se quantas dessas partes cabem em AB.</span></li>'+
+        '<li><span aria-hidden="true">👣</span><span><b>Passo a passo:</b> <br>A unidade u está dividida em 4 partes iguais: cada parte é 1/4 de u (o denominador).<br>Em AB cabem 7 dessas partes (o numerador).<br>AB = 7/4 u = 1 u e 3/4.<br>E se a unidade fosse v, metade de u? Cada parte passa a ser 1/2 de v, por isso AB = 7/2 v.</span></li>'+
+        '<li><span aria-hidden="true">✅</span><span><b>Resultado:</b> AB = 7/4 de u (ou 7/2 de uma unidade com metade do tamanho).</span></li>'+
+        '<li><span aria-hidden="true">🔍</span><span><b>Verificar:</b> AB é maior do que u (cabe uma vez e sobram 3 partes), e 7/4 > 1. Com uma unidade mais pequena, a medida é maior: 7/2 > 7/4. Experimenta a missão «O Tangram Mede Tudo».</span></li>'+
         '</ul>'}
     ],
     compare:{
@@ -345,7 +358,7 @@
     id:"n4", num:4, c:"m4", icon:"🧩",
     title:"Padrões e Proporção",
     subtitle:"Sequências, expressões e proporcionalidade direta", pages:"manual, vol. 2, cap. 4 «Sequências e regularidades. Proporcionalidade direta», pp. 6–41",
-    lead:"Neste mundo vais aprender a descobrir a regra de uma sequência e a escrevê-la com letras, a reconhecer grandezas diretamente proporcionais, a resolver problemas com a redução à unidade e a regra de três, e a usar escalas em mapas. Vê primeiro a animação e os 6 exemplos resolvidos, um de cada vez. No fim tens o resumo para o teste.",
+    lead:"Neste mundo vais aprender a descobrir a regra de uma sequência e a escrevê-la com letras, a reconhecer grandezas diretamente proporcionais, a usar razões e proporções (e a sua propriedade fundamental), a resolver problemas com a redução à unidade e a regra de três, e a usar escalas em mapas. Vê primeiro a animação e os 9 exemplos resolvidos, um de cada vez. No fim tens o resumo para o teste.",
     missions:[
       {t:"Padrão de Palitos", d:"Sequências e termo geral", f:"Com palitos (ou a desenhar), faz uma fila de triângulos encostados: 1 triângulo, 2 triângulos, 3, 4…\nRegista numa tabela quantos palitos usa cada figura e descobre o termo geral, como no Exemplo 2.\nVerifica: usa a tua fórmula para prever a figura 5 e depois constrói-a e conta.", xp:10},
       {t:"Receita Escalada", d:"Proporcionalidade direta", f:"Escolhe uma receita de casa para 4 pessoas.\nFaz uma tabela com as quantidades para 2, 6 e 10 pessoas, como nos Exemplos 3 e 4.\nVerifica: em cada ingrediente, quantidade ÷ número de pessoas dá sempre o mesmo valor.", xp:10},
@@ -359,7 +372,9 @@
       "Duas grandezas são <b>diretamente proporcionais</b> quando o quociente entre os valores correspondentes é sempre o mesmo. Esse número é a <b>constante de proporcionalidade</b> (ex.: o preço por quilo). Atenção: duas grandezas podem aumentar ao mesmo tempo sem serem proporcionais.",
       "Problemas de proporcionalidade direta resolvem-se pela <b>redução à unidade</b> (quanto vale 1?) ou pela <b>regra de três simples</b>: se 5 kg custam 6 €, 8 kg custam 8 × 6 ÷ 5 = 9,60 €.",
       "No <b>referencial cartesiano</b>, cada ponto tem <b>coordenadas</b> (x, y): primeiro o valor no eixo horizontal, depois no vertical. O gráfico de duas grandezas diretamente proporcionais é formado por pontos sobre uma reta que passa pela <b>origem</b> (0, 0).",
-      "A <b>escala</b> de um mapa compara a distância no mapa com a distância real. Na escala 1 : 50 000, 1 cm no mapa representa 50 000 cm na realidade, ou seja, 500 m."
+      "A <b>escala</b> de um mapa compara a distância no mapa com a distância real. Na escala 1 : 50 000, 1 cm no mapa representa 50 000 cm na realidade, ou seja, 500 m.",
+      "Uma <b>razão</b> entre dois números compara-os por divisão: a razão de 12 para 15 é 12 : 15 = 12/15 = 4/5 («por cada 4 há 5»). Uma <b>proporção</b> é uma igualdade entre duas razões, como 4/5 = 12/15: o 4 e o 15 são os <b>extremos</b>; o 5 e o 12 são os <b>meios</b>.",
+      "<b>Propriedade fundamental das proporções:</b> numa proporção, o produto dos extremos é igual ao produto dos meios: se a/b = c/d, então a × d = b × c (4 × 15 = 5 × 12 = 60). Serve para saber se duas razões formam uma proporção e para descobrir um termo que falta."
     ],
     gloss:[
       ["sequência","Uma lista ordenada de números ou figuras que segue uma regra."],
@@ -373,7 +388,11 @@
       ["referencial cartesiano","Dois eixos perpendiculares, com números, que servem para localizar pontos."],
       ["coordenadas","O par de números (x, y) que localiza um ponto no referencial."],
       ["origem","O ponto (0, 0), onde os dois eixos se cruzam."],
-      ["escala","A relação entre uma distância no mapa e a distância real (ex.: 1 : 50 000)."]
+      ["escala","A relação entre uma distância no mapa e a distância real (ex.: 1 : 50 000)."],
+      ["razão","Comparação de dois números por divisão, escrita a : b ou a/b (b diferente de 0)."],
+      ["proporção","Uma igualdade entre duas razões, como 2/3 = 8/12."],
+      ["extremos e meios","Em a/b = c/d, o a e o d são os extremos; o b e o c são os meios."],
+      ["propriedade fundamental das proporções","Numa proporção, o produto dos extremos é igual ao produto dos meios: a × d = b × c."]
     ],
     quiz:[
       {q:"Na sequência 5, 8, 11, 14, … qual é o termo seguinte?", opts:["15","17","18","28"], correct:1, explain:"De um termo para o seguinte soma-se 3: 14 + 3 = 17. O 15 soma só 1, e o 28 é o dobro de 14: a regra não é dobrar."},
@@ -385,7 +404,10 @@
       {q:"Uma receita para 4 pessoas leva 200 g de farinha. Quanta farinha é precisa para 6 pessoas?", opts:["202 g","300 g","400 g","1200 g"], correct:1, explain:"Cada pessoa leva 200 ÷ 4 = 50 g, por isso 6 pessoas levam 6 × 50 = 300 g. O 202 g é o erro de somar: «de 4 para 6 são mais 2, por isso mais 2 g». Na proporcionalidade multiplica-se, não se soma."},
       {q:"Num referencial cartesiano, como é o gráfico de duas grandezas diretamente proporcionais?", opts:["Pontos sobre uma reta que passa pela origem","Pontos sobre uma reta que não passa pela origem","Pontos sobre uma curva que sobe","Pontos sobre uma reta horizontal"], correct:0, explain:"Se não compras nada, não pagas nada: o ponto (0, 0) faz parte do gráfico. E como o quociente é sempre o mesmo, os pontos ficam alinhados. Uma reta que não passa pela origem é o caso do táxi: há um valor à partida."},
       {q:"O Rui tem n berlindes. A Ana tem o triplo dos berlindes do Rui, mais 2. Que expressão dá os berlindes da Ana?", opts:["3(n + 2)","n + 3 + 2","3n + 2","5n"], correct:2, explain:"«O triplo de n» é 3n, e «mais 2» junta-se depois: 3n + 2. A expressão 3(n + 2) seria o triplo de (n + 2), que dá mais 4 berlindes."},
-      {q:"«Se duas grandezas aumentam ao mesmo tempo, são diretamente proporcionais.» Verdadeiro ou falso? Escolhe a resposta com a justificação certa.", opts:["Verdadeiro. Se uma aumenta e a outra também, são proporcionais.","Falso. No táxi, a distância e o preço aumentam juntos, mas 2 km não custam o dobro de 1 km.","Verdadeiro. O preço da fruta e o peso aumentam juntos.","Falso. Grandezas proporcionais nunca aumentam."], correct:1, explain:"Basta um contraexemplo: no táxi, a distância e o preço aumentam juntos, mas o quociente muda, por isso não são proporcionais. Um exemplo em que dá certo (a fruta) não prova que é sempre assim."}
+      {q:"«Se duas grandezas aumentam ao mesmo tempo, são diretamente proporcionais.» Verdadeiro ou falso? Escolhe a resposta com a justificação certa.", opts:["Verdadeiro. Se uma aumenta e a outra também, são proporcionais.","Falso. No táxi, a distância e o preço aumentam juntos, mas 2 km não custam o dobro de 1 km.","Verdadeiro. O preço da fruta e o peso aumentam juntos.","Falso. Grandezas proporcionais nunca aumentam."], correct:1, explain:"Basta um contraexemplo: no táxi, a distância e o preço aumentam juntos, mas o quociente muda, por isso não são proporcionais. Um exemplo em que dá certo (a fruta) não prova que é sempre assim."},
+      {q:"Qual é o valor de x na proporção 2/3 = x/12?", opts:["11","18","8","6"], correct:2, explain:"Pela propriedade fundamental: 2 × 12 = 3 × x, ou seja 24 = 3x, e x = 24 ÷ 3 = 8. Confirma: 2/3 = 8/12 (multiplicaste em cima e em baixo por 4). O 11 é o erro aditivo (12 tem mais 9 do que 3, e 2 + 9 = 11): nas proporções multiplica-se, não se soma."},
+      {q:"Qual destes pares de razões forma uma proporção?", opts:["3/4 e 9/16","2/5 e 6/15","4/6 e 5/7","1/2 e 2/1"], correct:1, explain:"Usa a propriedade fundamental (produto cruzado): 2 × 15 = 30 e 5 × 6 = 30, são iguais. Em 3/4 e 9/16: 3 × 16 = 48 e 4 × 9 = 36, diferentes. Em 4/6 e 5/7: 28 e 30. Em 1/2 e 2/1: 1 e 4."},
+      {q:"O Luís põe 4 morangos em 20 cl de leite. A Rosa põe 10 morangos em 50 cl. Qual dos batidos sabe mais a morango?", opts:["O da Rosa, porque tem mais morangos","O do Luís, porque tem menos leite","Sabem igual: as duas razões são 1/5","Não se pode saber"], correct:2, explain:"Compara as razões morangos : leite. Luís: 4/20 = 1/5. Rosa: 10/50 = 1/5. São iguais, por isso o sabor é o mesmo: 1 morango por cada 5 cl. Confirma com o produto cruzado: 4 × 50 = 200 e 20 × 10 = 200. Olhar só para os morangos (ou só para o leite) é o erro mais comum."}
     ],
     posters:[
       {title:"🔢 Exemplo 1 — O termo geral de uma sequência", svg:'<ul class="wheel-legend">'+
@@ -439,6 +461,27 @@
         '<li><span aria-hidden="true">👣</span><span><b>Passo a passo:</b><br>Marca os pontos (0, 0), (1, 2), (2, 4) e (3, 6).<br>Para cada ponto: anda primeiro na horizontal (x), depois sobe (y).<br>Liga os pontos com uma régua.</span></li>'+
         '<li><span aria-hidden="true">✅</span><span><b>Resultado:</b> os pontos ficam numa reta que passa pela origem (0, 0). É assim o gráfico de duas grandezas diretamente proporcionais.</span></li>'+
         '<li><span aria-hidden="true">🔍</span><span><b>Verificar:</b> por cada bilhete a mais, a reta sobe 2 € (a constante de proporcionalidade). Erro a evitar: trocar a ordem das coordenadas; (2, 4) não é o mesmo ponto que (4, 2).</span></li>'+
+        '</ul>'},
+      {title:"⚖️ Exemplo 7 — Razão e proporção", svg:'<ul class="wheel-legend">'+
+        '<li><span aria-hidden="true">🎯</span><span><b>O que queremos descobrir:</b> numa turma há 12 rapazes e 15 raparigas. Qual é a razão entre rapazes e raparigas? E entre rapazes e o total da turma?</span></li>'+
+        '<li><span aria-hidden="true">🚦</span><span><b>Como começar:</b> uma razão compara duas quantidades por divisão. A ordem conta: «rapazes para raparigas» é 12 : 15, não 15 : 12.</span></li>'+
+        '<li><span aria-hidden="true">👣</span><span><b>Passo a passo:</b> <br>Rapazes : raparigas = 12 : 15 = 12/15 = 4/5 (simplificando por 3)<br>Total da turma: 12 + 15 = 27<br>Rapazes : total = 12/27 = 4/9<br>Como 4/5 = 12/15, temos uma proporção: os extremos são 4 e 15, os meios são 5 e 12.</span></li>'+
+        '<li><span aria-hidden="true">✅</span><span><b>Resultado:</b> por cada 4 rapazes há 5 raparigas (4/5); os rapazes são 4/9 da turma.</span></li>'+
+        '<li><span aria-hidden="true">🔍</span><span><b>Verificar:</b> numa proporção, extremos × extremos = meios × meios: 4 × 15 = 60 e 5 × 12 = 60. Cuidado: 4/5 compara rapazes com raparigas, não com a turma; os rapazes não são 4/5 da turma.</span></li>'+
+        '</ul>'},
+      {title:"✖️ Exemplo 8 — A propriedade fundamental das proporções", svg:'<ul class="wheel-legend">'+
+        '<li><span aria-hidden="true">🎯</span><span><b>O que queremos descobrir:</b> se 3 cadernos custam 4,50 €, quanto custam 7 cadernos?</span></li>'+
+        '<li><span aria-hidden="true">🚦</span><span><b>Como começar:</b> o preço é diretamente proporcional ao número de cadernos, por isso as razões cadernos : preço são iguais. Escreve a proporção, com x no lugar do que falta.</span></li>'+
+        '<li><span aria-hidden="true">👣</span><span><b>Passo a passo:</b> <br>3/4,50 = 7/x<br>Produto dos extremos = produto dos meios: 3 × x = 4,50 × 7<br>3 × x = 31,5<br>x = 31,5 ÷ 3 = 10,50</span></li>'+
+        '<li><span aria-hidden="true">✅</span><span><b>Resultado:</b> 7 cadernos custam 10,50 €.</span></li>'+
+        '<li><span aria-hidden="true">🔍</span><span><b>Verificar:</b> pela redução à unidade: 1 caderno custa 4,50 ÷ 3 = 1,50 €, e 7 × 1,50 = 10,50 € ✓. A constante de proporcionalidade (preço por caderno) é 1,50 €.</span></li>'+
+        '</ul>'},
+      {title:"🍓 Exemplo 9 — Que batido sabe mais a morango?", svg:'<ul class="wheel-legend">'+
+        '<li><span aria-hidden="true">🎯</span><span><b>O que queremos descobrir:</b> o Luís faz um batido com 4 morangos e 20 cl de leite; a Rosa usa 10 morangos e 50 cl de leite. Qual sabe mais a morango?</span></li>'+
+        '<li><span aria-hidden="true">🚦</span><span><b>Como começar:</b> não basta ver quem pôs mais morangos: a Rosa também pôs mais leite. Compara a razão morangos : leite de cada receita.</span></li>'+
+        '<li><span aria-hidden="true">👣</span><span><b>Passo a passo:</b> <br>Luís: 4/20 = 1/5 (1 morango por cada 5 cl)<br>Rosa: 10/50 = 1/5 (1 morango por cada 5 cl)<br>Produto cruzado: 4 × 50 = 200 e 20 × 10 = 200, iguais: é uma proporção.</span></li>'+
+        '<li><span aria-hidden="true">✅</span><span><b>Resultado:</b> os dois batidos sabem igual a morango.</span></li>'+
+        '<li><span aria-hidden="true">🔍</span><span><b>Verificar:</b> se o Luís fizesse 2,5 vezes a receita dele, teria 4 × 2,5 = 10 morangos e 20 × 2,5 = 50 cl de leite: exatamente a receita da Rosa. Erro a evitar: comparar só uma das quantidades.</span></li>'+
         '</ul>'}
     ],
     compare:{

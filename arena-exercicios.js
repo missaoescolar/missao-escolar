@@ -314,6 +314,32 @@ const ARENA = (function(){
       dica:"100 000 cm = 1 km."};
   }
 
+  /* n4 — proporções: termo que falta e propriedade fundamental */
+  function propX(l){
+    // a/b = c/d, with integer terms; one of them is hidden
+    let a, b, k; do{ a = rnd(1,9); b = rnd(2,12); } while(a === b || gcd(a,b) !== 1);
+    k = l===1 ? rnd(2,5) : rnd(2,9);
+    const c = a*k, d = b*k, pos = l===1 ? 3 : rnd(0,3);
+    const T = [a, b, c, d], x = T[pos];
+    const show = T.map((v, i) => i===pos ? "<b>x</b>" : String(v));
+    const eq = show[0]+"/"+show[1]+" = "+show[2]+"/"+show[3];
+    const prod = pos===0 || pos===3 ? "o outro extremo" : "o outro meio";
+    const conhecidos = pos===0 || pos===3 ? [b, c] : [a, d], outro = pos===0 ? d : pos===3 ? a : pos===1 ? c : b;
+    return {tipo:"num", texto:"Descobre o valor de <b>x</b> na proporção: "+eq, resposta:x,
+      explicacao:"Produto dos extremos = produto dos meios. "+conhecidos[0]+" × "+conhecidos[1]+" = "+(conhecidos[0]*conhecidos[1])+", e x × "+outro+" tem de dar o mesmo: x = "+(conhecidos[0]*conhecidos[1])+" ÷ "+outro+" = <b>"+x+"</b>.",
+      dica:"Multiplica em cruz: a × d = b × c."};
+  }
+  function eProporcao(l){
+    let a, b, c, d, sim = Math.random() < 0.5;
+    do{ a = rnd(1,9); b = rnd(2,12); } while(a === b);
+    const k = rnd(2,6); c = a*k; d = b*k;
+    if(!sim){ if(Math.random() < 0.5) d += pick([-2,-1,1,2]); else { c += 1; } if(d <= 0) d = b*k + 1; }
+    const ok = a*d === b*c;
+    return choice("As razões <b>"+a+"/"+b+"</b> e <b>"+c+"/"+d+"</b> formam uma proporção?", ok ? "Sim" : "Não", ["Sim","Não"],
+      {explicacao:"Produto cruzado: "+a+" × "+d+" = "+(a*d)+" e "+b+" × "+c+" = "+(b*c)+". "+(ok ? "São iguais: <b>formam uma proporção</b>." : "São diferentes: <b>não formam uma proporção</b>."),
+       dica:"Compara a × d com b × c."});
+  }
+
   /* ------------------------------ n5: ângulos e áreas ------------------------------ */
   function compSup(l){
     const comp = l===1 || (l===3 && Math.random()<0.5);
@@ -1037,7 +1063,7 @@ const ARENA = (function(){
     n2: [{g:fracVisual,min:1},{g:frBarra,min:1},{g:frConjunto,min:1},{g:frPintar,min:1},{g:frRetaLer,min:1},{g:frRetaColocar,min:1},{g:equiv,min:1},{g:somaFr,min:1},{g:simplif,min:1},
          {g:frGrelha,min:2},{g:compFr,min:2},{g:multFr,min:2},{g:divFr,min:3},{g:potFr,min:1}],
     n3: [{g:percentOf,min:1},{g:desconto,min:1},{g:decOps,min:1},{g:fracPct,min:1},{g:maiorDec,min:1},{g:pctGrelha,min:1},{g:decReta,min:1},{g:pctPintar,min:2}],
-    n4: [{g:nextTerm,min:1},{g:propTable,min:1},{g:regra3,min:1},{g:padrao,min:1},{g:nthTerm,min:2},{g:escala,min:2}],
+    n4: [{g:nextTerm,min:1},{g:propTable,min:1},{g:regra3,min:1},{g:padrao,min:1},{g:nthTerm,min:2},{g:escala,min:2},{g:propX,min:1},{g:eProporcao,min:2}],
     n5: [{g:compSup,min:1},{g:area,min:1},{g:perim,min:1},{g:classAngle,min:1},{g:angMedir,min:1},{g:angAbrir,min:1},{g:angReta,min:1},{g:areaGrelha,min:1},
          {g:triAngle,min:2},{g:angPonto,min:2},{g:angOpostos,min:2},{g:areaTriGrelha,min:2},{g:areaL,min:2},{g:quadradoLado,min:2},{g:areaMoldura,min:3},{g:angExterno,min:1},{g:classPoligono,min:1}],
     n6: [{g:raioDiam,min:1},{g:circP,min:1},{g:circA,min:2}],
