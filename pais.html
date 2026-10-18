@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Para pais — Missão Escolar</title>
-<link rel="stylesheet" href="style.css?v=20261018-1236">
+<link rel="stylesheet" href="style.css?v=20261018-1249">
 </head>
 <body>
 
@@ -13,6 +13,26 @@
   <h1>👪 Para pais e educadores</h1>
   <p class="lead">A Missão Escolar foi pensada para crianças com PHDA ou AuDHD: um mundo de cada vez, passos curtos, sem relógios a pressionar e sem castigos. Aqui fica o que não precisa de estar à frente da criança enquanto estuda.</p>
 
+  <section class="info" id="relatorio">
+    <h2>📬 Relatório para pais</h2>
+    <p>Um resumo do progresso, das dificuldades e do que treinar, com dicas de parentalidade positiva — com afeto, mas com regras e limites claros. Pode adaptar as dicas ao perfil da criança.</p>
+    <div class="rel-form">
+      <label>E-mail dos pais <input id="rel-email" type="email" autocomplete="email" placeholder="nome@exemplo.pt"></label>
+      <label>Nome da criança (opcional) <input id="rel-nome" type="text" autocomplete="off"></label>
+      <label>Perfil (opcional) <select id="rel-perfil"></select></label>
+    </div>
+    <div class="rel-acoes">
+      <button type="button" class="cta" id="rel-enviar">✉️ Enviar por e-mail</button>
+      <button type="button" class="ghost" id="rel-copiar">📋 Copiar o relatório</button>
+      <button type="button" class="ghost" id="rel-lembrete">📅 Lembrete semanal para os pais</button>
+    </div>
+    <p class="note-small" id="rel-ok" aria-live="polite"></p>
+    <div class="rel-preview" id="rel-preview"></div>
+    <details class="rel-priv"><summary>🔒 Privacidade: como funciona o envio</summary>
+      <p>O site não tem servidor: o progresso, o e-mail, o nome e o perfil ficam <b>só neste computador</b>. «Enviar por e-mail» abre o <b>seu</b> programa de e-mail com o relatório já escrito; nada é enviado sem carregar em Enviar. Por isso o envio não é automático: para o lembrar todas as semanas, use o 📅 lembrete semanal.</p>
+      <p>As dicas são gerais e não substituem o acompanhamento de profissionais (psicólogo, médico, professor de educação especial). Na escola, o Decreto-Lei n.º 54/2018 (educação inclusiva) prevê medidas de suporte à aprendizagem: fale com o diretor de turma.</p>
+    </details>
+  </section>
   <section class="info">
     <h2>🧭 Como funciona</h2>
     <ol class="help-list">
@@ -203,7 +223,16 @@
   <p class="pais-back"><a class="ghost" href="6ano.html">← Voltar ao 6.º ano</a></p>
 </div>
 
-<script src="armazem.js?v=20261018-1236"></script>
-<script src="progresso.js?v=20261018-1236"></script>
+<script src="armazem.js?v=20261018-1249"></script>
+<script src="data/portugues.js?v=20261018-1249"></script>
+<script src="data/hgp.js?v=20261018-1249"></script>
+<script src="data/matematica.js?v=20261018-1249"></script>
+<script src="data/cn.js?v=20261018-1249"></script>
+<script src="data/ingles.js?v=20261018-1249"></script>
+<script src="data/cn7.js?v=20261018-1249"></script>
+<script src="shared.js?v=20261018-1249"></script>
+<script src="dificuldades.js?v=20261018-1249"></script>
+<script src="pais-relatorio.js?v=20261018-1249"></script>
+<script src="progresso.js?v=20261018-1249"></script>
 </body>
 </html>
