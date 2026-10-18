@@ -363,6 +363,53 @@
     nova();
     return box;
   }
+  /* ---------- 🔢 Põe por ordem! (processes from data/sequencias.js; same look as the timeline exercise) ---------- */
+  function buildSequencia(w){
+    const lista = (typeof MISSAO_SEQ !== "undefined" && MISSAO_SEQ[w.id]) || [];
+    if(!lista.length) return null;
+    const box = el("div","ordem-box");
+    const titulo = el("p","subhead","");
+    const ul = el("ol","ordem-lista"), fb = el("div","ordem-fb"); fb.setAttribute("aria-live","polite");
+    let k = Math.floor(Math.random()*lista.length), itens = [];
+    function nova(){
+      const sq = lista[k];
+      titulo.innerHTML = '🔢 Põe por ordem! <small class="muted">— '+escXml(sq.t)+'</small>';
+      do{ itens = shuffled(sq.passos); } while(itens.length > 1 && itens.every(function(p, i){ return p === sq.passos[i]; }));
+      fb.innerHTML = ""; desenhar(false); ver.hidden = false; refazer.hidden = true;
+    }
+    function desenhar(corrigido){
+      const certa = lista[k].passos;
+      ul.innerHTML = "";
+      itens.forEach(function(p, i){
+        const li = el("li","ordem-item"+(corrigido ? (certa[i] === p ? " certo" : " errado") : ""), "");
+        li.appendChild(el("span","ordem-t",escXml(p)));
+        if(!corrigido){
+          const up = el("button","ghost-btn ordem-b","↑"), dn = el("button","ghost-btn ordem-b","↓");
+          up.type = dn.type = "button"; up.setAttribute("aria-label","Subir: "+p); dn.setAttribute("aria-label","Descer: "+p);
+          up.disabled = (i === 0); dn.disabled = (i === itens.length - 1);
+          up.addEventListener("click", function(){ itens.splice(i-1, 2, itens[i], itens[i-1]); desenhar(false); ul.querySelectorAll(".ordem-b")[(i-1)*2].focus(); });
+          dn.addEventListener("click", function(){ itens.splice(i, 2, itens[i+1], itens[i]); desenhar(false); const b = ul.querySelectorAll(".ordem-b")[(i+1)*2+1]; if(b) b.focus(); });
+          const bs = el("span","ordem-bs",""); bs.appendChild(up); bs.appendChild(dn); li.appendChild(bs);
+        }
+        ul.appendChild(li);
+      });
+    }
+    const acoes = el("div","card-actions");
+    const ver = el("button","cta","✅ Verificar a ordem"), refazer = el("button","ghost-btn","↺ Tentar outra vez"), outra = el("button","ghost-btn", lista.length > 1 ? "🔀 Outra sequência" : "🔀 Baralhar de novo");
+    ver.type = refazer.type = outra.type = "button";
+    ver.addEventListener("click", function(){
+      const certa = lista[k].passos, n = itens.filter(function(p, i){ return certa[i] === p; }).length;
+      desenhar(true);
+      fb.innerHTML = (n === itens.length ? '🎉 <b>Tudo na ordem certa!</b> ' : '<b>'+n+' de '+itens.length+' no lugar certo</b> (a verde). Tenta outra vez. ')+'<br>💡 '+escXml(lista[k].fim || "");
+      ver.hidden = true; refazer.hidden = false;
+    });
+    refazer.addEventListener("click", function(){ desenhar(false); fb.innerHTML = ""; ver.hidden = false; refazer.hidden = true; });
+    outra.addEventListener("click", function(){ if(lista.length > 1) k = (k + 1) % lista.length; nova(); });
+    acoes.appendChild(ver); acoes.appendChild(refazer); acoes.appendChild(outra);
+    box.appendChild(titulo); box.appendChild(ul); box.appendChild(acoes); box.appendChild(fb);
+    nova();
+    return box;
+  }
   /* ---------- 📍 E na minha região, o que aconteceu? (saved in the caderno, field "r") ---------- */
   function buildRegiao(w){
     const box = el("div","bilhete regiao-box");
@@ -1537,6 +1584,7 @@
       }
       const aa = buildAutoaval(w); if(aa) P.appendChild(aa);
       const ordem = buildOrdem(w); if(ordem) P.appendChild(ordem);
+      const seq = buildSequencia(w); if(seq) P.appendChild(seq);
       if(w.quiz && w.quiz.length){
         const qbox = el("div","");
         const hasHard = !!(extra.desafio||[]).length;
