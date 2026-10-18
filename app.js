@@ -1651,6 +1651,9 @@
         '<li>Todos os dias há uma <b>🎯 Missão de hoje</b>: 10 perguntas — umas novas e outras para rever o que custou mais. Nunca são sempre as mesmas.</li>'+
         '<li>Cada mundo tem <b>3 passos</b>: 📖 Aprender → 🎯 Praticar → 🔭 Explorar. Podes saltar entre eles quando quiseres.</li>'+
         '<li>O quadro <b>📋 Para o teste</b> tem a matéria a sério — é essa que sai nas fichas.</li>'+
+        '<li>No fim do <b>📋 Para o teste</b> há <b>🃏 cartões</b>: diz a resposta antes de virar. Os que não sabias voltam ao fim da pilha.</li>'+
+        '<li>Para estudar sem distrações, abre <b>☰ Mais → ✈️ Modo foco</b>: escolhes o que vais estudar e uma viagem de 15, 25 ou 40 minutos. Quando aterrares, faz uma pausa.</li>'+
+        '<li>As missões <b>🛠️ Desafio de Engenheiro</b> são para construir em casa (com um adulto quando é preciso cortar).</li>'+
         '<li>Fizeste uma missão? <b>Risca a caixa</b> e o XP soma-se sozinho.</li>'+
         '<li>Queres perguntas mais difíceis? Toca em <b>🔥 Mais difícil</b> no quiz.</li>'+
         '<li>Cansaste-te? Faz uma <b>⏸️ pausa</b>. Tudo fica guardado e continuas quando quiseres.</li>'+

@@ -45,6 +45,10 @@ const MISSAO_LINKS = {
   const artes = (q, txt) => ({icon:"🖼️", title:"Google Arts & Culture: "+txt, desc:"Museus virtuais, obras de arte em alta resolução e exposições online.", site:"artsandculture.google.com", url:G(q)});
   // Natural History Museum (Londres): always a page about the theme itself, never a search (checked: open without an account)
   const nhm = (pagina, txt, desc) => ({icon:"🦖", title:"Natural History Museum: "+txt, desc:desc+" Em inglês.", site:"nhm.ac.uk", url:"https://www.nhm.ac.uk/"+pagina});
+  // National Geographic Kids: articles and quizzes for children (checked one by one: open without an account; in English)
+  const natgeo = (pagina, txt, desc) => ({icon:"🌍", title:"Nat Geo Kids: "+txt, desc:desc+" Em inglês.", site:"kids.nationalgeographic.com", url:"https://kids.nationalgeographic.com/"+pagina});
+  // Art for Kids Hub: free step-by-step drawing lessons (video + page; has ads; no account needed)
+  const desenho = (pagina, txt, desc) => ({icon:"✏️", title:"Desenhar "+txt, desc:desc+" Aula de desenho passo a passo, grátis (Art for Kids Hub, em inglês, tem publicidade).", site:"artforkidshub.com", url:"https://artforkidshub.com/"+pagina+"/"});
   const MAIS = {
     m1: [europeana("terramoto Lisboa 1755","o terramoto de 1755"), artes("Palácio Nacional de Mafra","Palácio de Mafra")],
     m2: [europeana("D. Pedro IV","D. Pedro IV e o liberalismo")],
@@ -66,4 +70,17 @@ const MISSAO_LINKS = {
     g8: [nhm("take-part/identify-nature/beginners-guide-to-identifying-uk-rock-types.html","os tipos de rocha e o ciclo das rochas","Rochas magmáticas, sedimentares e metamórficas, e como umas se transformam nas outras.")]
   };
   Object.keys(MAIS).forEach(k => { MISSAO_LINKS[k] = (MISSAO_LINKS[k] || []).concat(MAIS[k]); });
+  // added separately so that worlds already in MAIS (g1, g3, g8) keep their links
+  const KIDS = {
+    c4: [natgeo("science/article/the-truth-about-your-heart","a verdade sobre o coração","O coração como bomba, quantas vezes bate por dia e como mantê-lo saudável.")],
+    g1: [natgeo("games/quizzes/article/more-rocks-and-minerals","quiz de rochas e minerais","Um quiz rápido para testar o que sabes sobre rochas e minerais.")],
+    g3: [natgeo("nature/article/petrifiedforest","a floresta petrificada","Troncos que se transformaram em pedra: a sílica das cinzas vulcânicas substituiu a madeira (fossilização por mineralização)."),
+         desenho("how-to-draw-a-fossil","um fóssil de pegada","Uma pegada de dinossauro numa rocha: é um vestígio (icnofóssil), não um osso.")],
+    g6: [natgeo("science/article/volcano","vulcões","Como se forma um vulcão, lava, cinzas e lahares, e a erupção do Monte Santa Helena."),
+         natgeo("history/article/pompeii","Pompeia, a cidade perdida","A erupção do Vesúvio no ano 79 e a cidade romana que ficou enterrada nas cinzas."),
+         desenho("how-to-draw-a-volcano","um vulcão em erupção","Depois de desenhares, legenda: cratera, chaminé, câmara magmática, lava e cinzas.")],
+    g7: [natgeo("science/article/earthquake","sismos","Placas tectónicas, falhas e o que acontece quando a Terra treme.")],
+    g8: [natgeo("science/article/geology-101","geologia 101","Os três grandes grupos de rochas (magmáticas, sedimentares e metamórficas) e como a Terra as recicla.")],
+  };
+  Object.keys(KIDS).forEach(k => { MISSAO_LINKS[k] = (MISSAO_LINKS[k] || []).concat(KIDS[k]); });
 })();

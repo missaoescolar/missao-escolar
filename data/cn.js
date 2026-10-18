@@ -63,7 +63,8 @@
       {t:"Mapa da Fábrica", d:"Órgãos do tubo digestivo e trajeto do alimento", f:"Desenhar o percurso do alimento, da boca ao ânus, com os órgãos certos", xp:10},
       {t:"Equipa de Dentes", d:"Tipos de dentes e as suas funções", f:"Identificar e contar os teus próprios tipos de dentes ao espelho", xp:10},
       {t:"Proteger a Fábrica", d:"Prevenção da cárie dentária e higiene oral", f:"Criar uma rotina de higiene oral com 3 regras", xp:10},
-      {t:"Outras Fábricas, Outras Regras", d:"Digestão comparada entre espécies (ex.: ruminantes)", f:"Comparar o sistema digestivo humano com o de uma vaca", xp:15}
+      {t:"Outras Fábricas, Outras Regras", d:"Digestão comparada entre espécies (ex.: ruminantes)", f:"Comparar o sistema digestivo humano com o de uma vaca", xp:15},
+      {t:"🛠️ Desafio de Engenheiro: Estômago num Saco", d:"Modelo da digestão e da absorção", f:"Num saco de congelação com fecho, põe 2 bolachas partidas, meio copo de água e uma colher de sopa de vinagre (o vinagre faz de ácido do estômago). Fecha bem e amassa durante 2 minutos: são os movimentos do estômago.\nCom um adulto, corta a ponta de uma meia-calça velha (o intestino) e despeja a mistura lá para dentro, por cima de uma taça. Aperta devagar.\nVerifica: o líquido passa pela meia para a taça (é a absorção: os nutrientes passam para o sangue) e os pedaços maiores ficam (seguem para o intestino grosso). O que o modelo não mostra: as enzimas, que partem os alimentos em moléculas muito pequenas.", xp:20}
     ],
     resumo:[
       "O <b>tubo digestivo</b> é o caminho percorrido pelo alimento: boca, faringe, esófago, estômago, intestino delgado e intestino grosso, terminando no ânus.",
@@ -113,7 +114,8 @@
       {t:"Mapa do Ar", d:"Órgãos do sistema respiratório e percurso do ar", f:"Desenhar o percurso do ar, do nariz aos pulmões, com os órgãos certos", xp:10},
       {t:"Inspirar vs Expirar", d:"Mecânica da ventilação pulmonar (diafragma, costelas)", f:"Observar e descrever o movimento do peito ao respirar, 5 vezes", xp:10},
       {t:"Trocas nos Alvéolos", d:"Trocas gasosas nos alvéolos pulmonares", f:"Desenhar um alvéolo pulmonar com as trocas gasosas (O2 entra, CO2 sai)", xp:10},
-      {t:"Quando a Respiração Falha", d:"Doenças respiratórias e fatores de risco", f:"Pesquisar a asma ou a bronquite e resumir em 3 frases", xp:15}
+      {t:"Quando a Respiração Falha", d:"Doenças respiratórias e fatores de risco", f:"Pesquisar a asma ou a bronquite e resumir em 3 frases", xp:15},
+      {t:"🛠️ Desafio de Engenheiro: O Pulmão de Garrafa", d:"Modelo do diafragma e da inspiração", f:"Pede a um adulto que corte uma garrafa de plástico de 1,5 L ao meio; fica com a parte de cima. Mete um balão dentro, pelo gargalo, e prende a boca do balão ao gargalo com fita-cola (é o pulmão). Corta a ponta de outro balão, estica-o no fundo aberto da garrafa e prende-o (é o diafragma).\nPuxa o balão de baixo para fora e solta.\nVerifica: ao puxares, o espaço dentro da garrafa aumenta e o balão de dentro enche-se de ar: é a inspiração (o diafragma contrai e desce). Ao soltares, o balão esvazia: expiração. O que o modelo não mostra: temos dois pulmões, e as costelas também se movem.", xp:20}
     ],
     resumo:[
       "O ar entra pelo nariz ou pela boca e percorre a faringe, a laringe, a <b>traqueia</b> e os <b>brônquios</b>, até chegar aos <b>pulmões</b>.",
@@ -162,7 +164,8 @@
       {t:"O Motor da Rede", d:"O coração: estrutura básica e função de bomba", f:"Desenhar o coração e legendar as suas 4 cavidades", xp:10},
       {t:"Estradas do Corpo", d:"Tipos de vasos sanguíneos: artérias, veias, capilares", f:"Comparar artérias e veias numa tabela", xp:10},
       {t:"O Que Transporta o Sangue", d:"Constituintes do sangue", f:"Desenhar os constituintes do sangue, como um \"inventário\"", xp:10},
-      {t:"Sinais Vitais", d:"Frequência cardíaca e hábitos saudáveis para o coração", f:"Medir a tua frequência cardíaca em repouso e depois de um pequeno exercício", xp:15}
+      {t:"Sinais Vitais", d:"Frequência cardíaca e hábitos saudáveis para o coração", f:"Medir a tua frequência cardíaca em repouso e depois de um pequeno exercício", xp:15},
+      {t:"🛠️ Desafio de Engenheiro: Estetoscópio Caseiro", d:"Ouvir o coração e medir a frequência cardíaca", f:"Encaixa a parte de cima de uma garrafa de plástico (cortada por um adulto) ou um funil na ponta de um tubo de plástico com cerca de 50 cm (por exemplo, de aquário). Encosta o funil ao lado esquerdo do peito de um familiar sentado e a outra ponta do tubo ao teu ouvido.\nConta os batimentos durante 15 segundos e multiplica por 4. Repete depois de ele saltar 1 minuto.\nVerifica: mede também no pulso, com dois dedos; os valores devem ser parecidos. Depois do exercício, o número sobe. O «tum-tá» que ouves é o som das válvulas do coração a fechar.", xp:20}
     ],
     resumo:[
       "O <b>coração</b> é o órgão que bombeia o sangue por todo o corpo; tem quatro cavidades: duas aurículas e dois <b>ventrículos</b>.",
@@ -260,7 +263,8 @@
       {t:"A Receita da Fotossíntese", d:"Fatores necessários à fotossíntese e produtos obtidos", f:"Desenhar a \"receita\" da fotossíntese, com os ingredientes e os produtos", xp:10},
       {t:"Porque Precisamos das Florestas", d:"Importância da fotossíntese e conservação das florestas", f:"Pesquisar e escrever 3 razões para conservar as florestas", xp:10},
       {t:"A Flor e os Seus Visitantes", d:"Estrutura da flor e polinização", f:"Desenhar uma flor e legendar as suas partes principais", xp:10},
-      {t:"Viagem das Sementes", d:"Dispersão de sementes", f:"Identificar 3 formas de dispersão de sementes em plantas que conheças", xp:15}
+      {t:"Viagem das Sementes", d:"Dispersão de sementes", f:"Identificar 3 formas de dispersão de sementes em plantas que conheças", xp:15},
+      {t:"🛠️ Desafio de Engenheiro: Estufa de Garrafa", d:"A luz e a fotossíntese, com um teste justo", f:"Faz duas estufas iguais com garrafas cortadas por um adulto: algodão húmido e 4 feijões em cada uma. Põe uma num sítio com luz e a outra dentro de um armário. Dá sempre a mesma água às duas. Só muda uma coisa: a luz.\nRegista e desenha as plantas de 2 em 2 dias, durante 10 dias.\nVerifica: os feijões germinam nos dois sítios (usam as reservas da semente), mas no escuro as plantas ficam altas, finas e amareladas, sem a cor verde da clorofila. Sem luz não há fotossíntese, e quando as reservas acabam a planta não consegue fazer o seu alimento.", xp:20}
     ],
     resumo:[
       "A <b>fotossíntese</b> é o processo pelo qual as plantas produzem o seu próprio alimento (glicose), usando a luz, a água e o dióxido de carbono, com a ajuda da <b>clorofila</b> presente nas folhas.",
