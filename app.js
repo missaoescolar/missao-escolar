@@ -936,6 +936,9 @@
       html += '<a class="tile review'+(g==="teste" ? ' next' : '')+'" href="#'+cfg.key+'/revisao">'+
         '<span class="ic" aria-hidden="true">🏆</span><small>Os '+worlds.length+' mundos</small><b>Revisão Final</b>'+
         '<span class="st">10 perguntas à mistura</span></a>';
+      if(typeof MISSAO_FINAL !== "undefined" && MISSAO_FINAL[cfg.key])
+        html += '<a class="tile review" href="#'+cfg.key+'/final"><span class="ic" aria-hidden="true">🧩</span><small>Vários mundos juntos</small><b>Missão Final</b>'+
+          '<span class="st">'+MISSAO_FINAL[cfg.key].problemas.length+' problemas da vida real</span></a>';
       mapNav.innerHTML = html;
       main.querySelectorAll(".wjump a[data-w]").forEach(function(a){ a.href = "#"+cfg.key+"/"+a.dataset.w+stage; });
     }
@@ -1478,6 +1481,67 @@
     review.appendChild(rcard);
     main.appendChild(review);
 
+    /* --- 🧩 Missão Final: long problems that mix several worlds, one at a time (data/missao-final.js) --- */
+    const FINAL = (typeof MISSAO_FINAL !== "undefined") && MISSAO_FINAL[cfg.key];
+    let finalSec = null;
+    if(FINAL){
+      finalSec = el("section","wopen");
+      finalSec.id = "final-"+cfg.key; finalSec.hidden = true;
+      finalSec.style.setProperty("--wc","var(--accent)");
+      finalSec.style.setProperty("--wc-bg","var(--surface-2)");
+      const ftop = worldTop();
+      ftop.appendChild(el("span","ic","🧩"));
+      ftop.appendChild(el("div","grow",'<p class="eb">Problemas que juntam vários mundos</p><h2>Missão Final</h2>'));
+      finalSec.appendChild(ftop);
+      const fcard = el("div","wcard");
+      fcard.appendChild(el("p","lead",FINAL.intro));
+      // the 4 steps of problem solving, always at hand but folded
+      const met = document.createElement("details"); met.className = "final-metodo";
+      met.innerHTML = '<summary>🧭 Como resolver um problema, em 4 passos</summary><ol>'+
+        FINAL.metodo.map(function(m){ return '<li><b>'+m[0]+' '+m[1]+':</b> '+m[2]+'</li>'; }).join("")+'</ol>';
+      fcard.appendChild(met);
+      const figs = [];
+      FINAL.problemas.forEach(function(p, pi){
+        const box = el("article","final-prob");
+        box.appendChild(el("h3","final-t",p.icon+" Problema "+(pi+1)+" — "+p.titulo));
+        const wl = (p.mundos||[]).map(function(n){ const w = worlds[n-1]; return w ? '<a href="#'+cfg.key+'/'+w.id+'">'+w.icon+' Mundo '+n+'</a>' : ''; }).join(" · ");
+        if(wl) box.appendChild(el("p","final-mundos","Usa: "+wl));
+        box.appendChild(el("p","final-ctx",p.contexto));
+        if(p.svg) box.insertAdjacentHTML("beforeend", p.svg);
+        p.partes.forEach(function(pt, k){
+          const part = el("div","final-parte");
+          part.appendChild(el("p","final-q",'<b>'+String.fromCharCode(97+k)+')</b> '+pt.q));
+          const dica = document.createElement("details"); dica.className = "final-det";
+          dica.innerHTML = '<summary>💡 Pista</summary><p>'+pt.dica+'</p>';
+          const res = document.createElement("details"); res.className = "final-det";
+          res.innerHTML = '<summary>✅ Ver a resolução</summary><p class="final-passos">'+pt.passos+'</p><p class="final-resp"><b>Resposta:</b> '+pt.resposta+'</p>'+
+            (pt.erro ? '<p class="final-erro"><b>⚠️ Erro comum:</b> '+pt.erro+'</p>' : '');
+          part.appendChild(dica); part.appendChild(res);
+          box.appendChild(part);
+        });
+        fcard.appendChild(box); figs.push(box);
+      });
+      const nav = el("div","ex-nav");
+      const prev = el("button","ghost-btn","← Anterior"); prev.type = "button";
+      const count = el("span","ex-count"); count.setAttribute("aria-live","polite");
+      const next = el("button","ghost-btn","Seguinte →"); next.type = "button";
+      nav.appendChild(prev); nav.appendChild(count); nav.appendChild(next);
+      fcard.appendChild(nav);
+      let fk = 0;
+      const showP = function(i, byUser){
+        fk = i;
+        figs.forEach(function(f, j){ f.hidden = (j!==i); });
+        count.textContent = "Problema "+(i+1)+" de "+figs.length;
+        prev.disabled = (i===0); next.disabled = (i===figs.length-1);
+        if(byUser && finalSec.getBoundingClientRect().top < 0) finalSec.scrollIntoView({block:"start"});
+      };
+      prev.addEventListener("click", function(){ if(fk>0) showP(fk-1, true); });
+      next.addEventListener("click", function(){ if(fk<figs.length-1) showP(fk+1, true); });
+      showP(0, false);
+      finalSec.appendChild(fcard);
+      main.appendChild(finalSec);
+    }
+
     renderMap();
     renderXP();
 
@@ -1511,7 +1575,7 @@
 
     /* show the map, one world (optionally at a stage) or the review */
     function show(target, stage){
-      if(target && target!=="revisao" && !opened[target]) target = null;
+      if(target && target!=="revisao" && !(target==="final" && finalSec) && !opened[target]) target = null;
       if(current && current!==target){
         if(window.MissaoAnim && MissaoAnim.fechar) MissaoAnim.fechar();
         if(window.speechSynthesis) window.speechSynthesis.cancel();
@@ -1520,7 +1584,8 @@
       if(mapView) mapView.hidden = !!target;
       worlds.forEach(function(w){ document.getElementById(w.id).hidden = (w.id!==target); });
       review.hidden = (target!=="revisao");
-      if(target && target!=="revisao"){ opened[target](stage || "aprender"); if(window.MissaoBanco) MissaoBanco.visto(target); }
+      if(finalSec) finalSec.hidden = (target!=="final");
+      if(target && target!=="revisao" && target!=="final"){ opened[target](stage || "aprender"); if(window.MissaoBanco) MissaoBanco.visto(target); }
     }
     return {show:show};
   }
@@ -1695,7 +1760,7 @@
     if(!panels[subject]) return;
     activate(subject);
     // inside a world (or the review) the daily strip and "Missão de hoje" step aside: one thing at a time
-    document.body.classList.toggle("in-world", !!(part && part!=="arena" && part!=="escrita" && (part==="revisao" || document.getElementById(part))));
+    document.body.classList.toggle("in-world", !!(part && part!=="arena" && part!=="escrita" && (part==="revisao" || (part==="final" && document.getElementById("final-"+subject)) || document.getElementById(part))));
     if(part==="escrita"){ location.replace("escrita.html"); return; }   // the Oficina has its own page now
     if(part==="arena"){ showView(subject, part); return; }
     showView(subject, "mundos");

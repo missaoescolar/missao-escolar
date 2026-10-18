@@ -1049,3 +1049,20 @@
   .foco-aviao{ position:absolute; bottom:-2px; left:0; transform:translateX(-50%); transition:left 1s linear; }
   .foco-relogio{ font-family:"Lexend",sans-serif; font-size:1.1rem; }
   @media print{ .foco-bar{ display:none !important; } }
+
+  /* 🧩 Missão Final */
+  .final-metodo{ margin:4px 0 16px; padding:10px 14px; border-radius:14px; background:var(--surface-2); }
+  .final-metodo summary{ cursor:pointer; font-weight:700; }
+  .final-metodo ol{ margin:10px 0 2px; padding-left:20px; line-height:1.6; }
+  .final-prob{ border:1.5px solid var(--border); border-radius:16px; padding:14px 16px; background:var(--paper); }
+  .final-t{ font-family:"Lexend",sans-serif; font-size:1.05rem; margin:0 0 4px; }
+  .final-mundos{ margin:0 0 10px; font-size:.85rem; color:var(--text-muted); }
+  .final-mundos a{ color:inherit; font-weight:700; }
+  .final-ctx{ margin:0 0 12px; line-height:1.6; }
+  .final-parte{ border-top:1px dashed var(--border); padding:10px 0 6px; }
+  .final-q{ margin:0 0 8px; line-height:1.55; }
+  .final-det{ margin:6px 0; }
+  .final-det summary{ cursor:pointer; font-weight:700; font-size:.92rem; }
+  .final-det p{ margin:8px 0 4px; line-height:1.6; }
+  .final-erro{ color:var(--text-muted); }
+  @media print{ .final-prob[hidden]{ display:block !important; } .final-det{ display:block; } }
