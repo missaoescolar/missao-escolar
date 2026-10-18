@@ -4,21 +4,26 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>6.º Ano — Missão Escolar</title>
-<link rel="stylesheet" href="style.css?v=20261016-1825">
-<link rel="stylesheet" href="arena.css?v=20261016-1825">
-<link rel="stylesheet" href="animacoes.css?v=20261016-1825">
+<link rel="stylesheet" href="style.css?v=20261018-1135">
+<link rel="stylesheet" href="arena.css?v=20261018-1135">
+<link rel="stylesheet" href="animacoes.css?v=20261018-1135">
 </head>
 <body>
 
 <div class="page">
-  <!-- light top: where am I · help · pause · for parents · summaries -->
+  <!-- light top: where am I · help · ☰ Mais (summaries, pause, reminder, for parents) -->
   <div class="topbar">
     <p class="crumbs"><a href="index.html">🏠 Início</a> › 6.º ano</p>
     <button type="button" class="ghost" id="help-btn">❓ Ajuda</button>
-    <button type="button" class="ghost" id="pause-btn">⏸️ Pausa</button>
-    <button type="button" class="ghost" id="lembrete-btn">🔔 Lembrete</button>
-    <a class="ghost" href="pais.html">👪 Para pais</a>
-    <a class="ghost" href="resumo.html">📄 Resumos</a>
+    <details class="more-menu">
+      <summary class="ghost">☰ Mais</summary>
+      <div class="more-pop">
+        <a class="more-item" href="resumo.html">📄 Resumos para imprimir</a>
+        <button type="button" class="more-item" id="pause-btn">⏸️ Fazer uma pausa</button>
+        <button type="button" class="more-item" id="lembrete-btn">🔔 Pôr um lembrete</button>
+        <a class="more-item" href="pais.html">👪 Para pais</a>
+      </div>
+    </details>
   </div>
   <section class="strip" id="today-panel" aria-label="O teu progresso"></section>
   <section class="hoje" id="hoje-card" aria-label="Missão de hoje"></section>
@@ -130,31 +135,31 @@
   </section>
 </div>
 
-<script src="armazem.js?v=20261016-1825"></script>
-<script src="data/portugues.js?v=20261016-1825"></script>
-<script src="data/hgp.js?v=20261016-1825"></script>
-<script src="data/matematica.js?v=20261016-1825"></script>
-<script src="data/cn.js?v=20261016-1825"></script>
-<script src="data/ingles.js?v=20261016-1825"></script>
-<script src="data/extra-portugues.js?v=20261016-1825"></script>
-<script src="data/extra-hgp.js?v=20261016-1825"></script>
-<script src="data/extra-matematica.js?v=20261016-1825"></script>
-<script src="data/extra-cn.js?v=20261016-1825"></script>
-<script src="data/extra-ingles.js?v=20261016-1825"></script>
-<script src="data/imagens.js?v=20261016-1825"></script>
-<script src="data/cer.js?v=20261016-1825"></script>
-<script src="data/problemas.js?v=20261016-1825"></script>
-<script src="data/recursos.js?v=20261016-1825"></script>
-<script src="shared.js?v=20261016-1825"></script>
-<script src="banco.js?v=20261016-1825"></script>
-<script src="animacoes.js?v=20261016-1825"></script>
-<script src="animacoes-matematica.js?v=20261016-1825"></script>
-<script src="animacoes-ciencias.js?v=20261016-1825"></script>
-<script src="animacoes-ciencias-2.js?v=20261016-1825"></script>
-<script src="animacoes-socorros.js?v=20261016-1825"></script>
-<script src="animacoes-hgp-pt-ing.js?v=20261016-1825"></script>
-<script src="app.js?v=20261016-1825"></script>
-<script src="arena-exercicios.js?v=20261016-1825"></script>
-<script src="arena.js?v=20261016-1825"></script>
+<script src="armazem.js?v=20261018-1135"></script>
+<script src="data/portugues.js?v=20261018-1135"></script>
+<script src="data/hgp.js?v=20261018-1135"></script>
+<script src="data/matematica.js?v=20261018-1135"></script>
+<script src="data/cn.js?v=20261018-1135"></script>
+<script src="data/ingles.js?v=20261018-1135"></script>
+<script src="data/extra-portugues.js?v=20261018-1135"></script>
+<script src="data/extra-hgp.js?v=20261018-1135"></script>
+<script src="data/extra-matematica.js?v=20261018-1135"></script>
+<script src="data/extra-cn.js?v=20261018-1135"></script>
+<script src="data/extra-ingles.js?v=20261018-1135"></script>
+<script src="data/imagens.js?v=20261018-1135"></script>
+<script src="data/cer.js?v=20261018-1135"></script>
+<script src="data/problemas.js?v=20261018-1135"></script>
+<script src="data/recursos.js?v=20261018-1135"></script>
+<script src="shared.js?v=20261018-1135"></script>
+<script src="banco.js?v=20261018-1135"></script>
+<script src="animacoes.js?v=20261018-1135"></script>
+<script src="animacoes-matematica.js?v=20261018-1135"></script>
+<script src="animacoes-ciencias.js?v=20261018-1135"></script>
+<script src="animacoes-ciencias-2.js?v=20261018-1135"></script>
+<script src="animacoes-socorros.js?v=20261018-1135"></script>
+<script src="animacoes-hgp-pt-ing.js?v=20261018-1135"></script>
+<script src="app.js?v=20261018-1135"></script>
+<script src="arena-exercicios.js?v=20261018-1135"></script>
+<script src="arena.js?v=20261018-1135"></script>
 
 </body></html>

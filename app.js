@@ -1506,7 +1506,13 @@
     showToast("📅 Lembrete criado — abre o ficheiro para o juntar ao calendário.");
   }
 
-  /* ---- top bar: ❓ Ajuda and ⏸️ Pausa ---- */
+  /* ---- top bar: ❓ Ajuda and ☰ Mais (a small menu: resumos, pausa, lembrete, pais) ---- */
+  document.querySelectorAll(".more-menu").forEach(function(menu){
+    const close = function(){ if(menu.open){ menu.open = false; } };
+    menu.querySelectorAll(".more-item").forEach(function(it){ it.addEventListener("click", close); });
+    document.addEventListener("click", function(e){ if(!menu.contains(e.target)) close(); });
+    menu.addEventListener("keydown", function(e){ if(e.key==="Escape" && menu.open){ close(); menu.querySelector("summary").focus(); } });
+  });
   const helpBtn = document.getElementById("help-btn");
   if(helpBtn) helpBtn.addEventListener("click", function(){
     openModal("❓ Como funciona",

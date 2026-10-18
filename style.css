@@ -1012,3 +1012,11 @@
   .ex-count{ font-family:"Lexend",sans-serif; font-weight:700; font-size:.9rem; color:var(--text-muted); }
   .sec-next{ display:flex; justify-content:flex-end; margin:16px 0 4px; }
   body.in-world #today-panel, body.in-world #hoje-card{ display:none; }
+
+  /* top bar: only ❓ Ajuda and ☰ Mais; the rest opens in a small menu */
+  .more-menu{ position:relative; }
+  .more-menu > summary{ list-style:none; cursor:pointer; }
+  .more-menu > summary::-webkit-details-marker{ display:none; }
+  .more-pop{ position:absolute; right:0; top:calc(100% + 6px); z-index:40; min-width:250px; display:flex; flex-direction:column; gap:2px; padding:6px; border-radius:14px; border:1.5px solid var(--border); background:var(--surface); box-shadow:var(--shadow); }
+  .more-item{ white-space:nowrap; font:inherit; font-weight:700; text-align:left; text-decoration:none; color:var(--text); background:none; border:none; border-radius:10px; padding:10px 12px; cursor:pointer; }
+  .more-item:hover, .more-item:focus-visible{ background:var(--surface-2); outline:none; }

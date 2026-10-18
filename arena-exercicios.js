@@ -858,6 +858,31 @@ const ARENA = (function(){
       dica:"Conta os cubinhos de uma camada e multiplica pelo número de camadas."};
   }
 
+  /* n8 — dados em classes: [a, b[ e classe modal */
+  function classesAleatorias(){
+    const amp = pick([5,10,20]), ini = amp * rnd(1,6), k = rnd(4,5);
+    const cls = []; for(let i=0;i<k;i++) cls.push({a:ini+i*amp, b:ini+(i+1)*amp});
+    return cls;
+  }
+  const nomeClasse = c => "["+c.a+", "+c.b+"[";
+  function classeDe(l){
+    const cls = classesAleatorias(), i = rnd(0, cls.length-2);
+    const v = l===1 ? cls[i].a + rnd(1, cls[i].b - cls[i].a - 1) : cls[i].b;   // nível 2+: o valor está mesmo no limite
+    const certa = cls.find(c => v >= c.a && v < c.b);
+    return choice("As classes são "+cls.map(nomeClasse).join(", ")+". Em que classe entra o valor <b>"+v+"</b>?", nomeClasse(certa), cls.map(nomeClasse),
+      {explicacao:"Em [a, b[ o a entra e o b fica de fora. "+v+" está entre "+certa.a+" (incluído) e "+certa.b+" (excluído): entra em <b>"+nomeClasse(certa)+"</b>."+(l>1 ? " Um valor igual ao limite vai sempre para a classe em que é o valor da esquerda." : ""),
+       dica:"O valor da esquerda entra; o da direita fica para a classe seguinte."});
+  }
+  function classeModalTab(l){
+    const cls = classesAleatorias();
+    let fs; do{ fs = cls.map(() => rnd(1, l===1 ? 9 : 14)); } while(fs.filter(x => x === Math.max.apply(null, fs)).length !== 1);
+    const mx = Math.max.apply(null, fs), certa = cls[fs.indexOf(mx)];
+    const tabela = '<table class="ar-table"><tr><th>Classe</th><th>Frequência</th></tr>'+cls.map((c,i) => '<tr><td>'+nomeClasse(c)+'</td><td>'+fs[i]+'</td></tr>').join("")+'</table>';
+    return choice("Qual é a <b>classe modal</b> desta tabela?", nomeClasse(certa), cls.map(nomeClasse).concat([String(mx)]),
+      {visual:tabela, explicacao:"A classe modal é a classe com maior frequência: <b>"+nomeClasse(certa)+"</b>, com "+mx+". (O "+mx+" é a frequência; a classe é o intervalo.)",
+       dica:"Procura a maior frequência e diz a que classe pertence."});
+  }
+
   /* n8 — gráficos, pictogramas e roletas */
   const CATS = [["Futebol","Natação","Basquete","Ténis"],["Maçã","Banana","Laranja","Uva"],["Azul","Verde","Vermelho","Roxo"],["Gato","Cão","Peixe","Coelho"]];
   const CAT_TITLES = ["Desporto preferido da turma","Fruta preferida da turma","Cor preferida da turma","Animal de estimação preferido"];
@@ -1017,7 +1042,7 @@ const ARENA = (function(){
          {g:triAngle,min:2},{g:angPonto,min:2},{g:angOpostos,min:2},{g:areaTriGrelha,min:2},{g:areaL,min:2},{g:quadradoLado,min:2},{g:areaMoldura,min:3},{g:angExterno,min:1},{g:classPoligono,min:1}],
     n6: [{g:raioDiam,min:1},{g:circP,min:1},{g:circA,min:2}],
     n7: [{g:volCubo,min:1},{g:volCaixa,min:1},{g:volCubinhos,min:1},{g:conv,min:1},{g:aquario,min:2}],
-    n8: [{g:media,min:1},{g:moda,min:1},{g:prob,min:1},{g:certoImp,min:1},{g:grafBarras,min:1},{g:pictograma,min:1},{g:roleta,min:1},{g:mediana,min:2},{g:amplitude,min:2}],
+    n8: [{g:media,min:1},{g:moda,min:1},{g:prob,min:1},{g:certoImp,min:1},{g:grafBarras,min:1},{g:pictograma,min:1},{g:roleta,min:1},{g:mediana,min:2},{g:amplitude,min:2},{g:classeDe,min:1},{g:classeModalTab,min:1}],
     n9: [{g:angMinimo,min:1},{g:eixosRos,min:1},{g:relogio,min:1},{g:rotGrelha,min:1},{g:sentidoEq,min:2},{g:helice,min:2}]
   };
 
