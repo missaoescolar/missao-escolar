@@ -4,7 +4,7 @@
   {
     id:"p1", num:1, c:"m1", icon:"🧰",
     title:"Inventário de Palavras",
-    subtitle:"Classes de palavras", pages:"manual a confirmar",
+    subtitle:"Classes de palavras", pages:"manual «Novo Livro Aberto 6», Gramática: determinante p. 213, pronome p. 216, advérbio p. 229, preposição p. 230",
     lead:"Num jogo, cada item do inventário tem uma categoria: armas, poções, blocos. As palavras também: há nomes, verbos, adjetivos… Saber a classe de uma palavra é saber o que ela faz na frase.",
     missions:[
       {t:"Caça às Classes", d:"Nome, adjetivo, verbo, advérbio", f:"Escolher um parágrafo de um livro e pintar cada classe de uma cor", xp:10},
@@ -57,7 +57,7 @@
   {
     id:"p2", num:2, c:"m2", icon:"⏳",
     title:"Máquina do Tempo dos Verbos",
-    subtitle:"Conjugações, tempos e modos verbais", pages:"manual a confirmar",
+    subtitle:"Conjugações, tempos e modos verbais", pages:"manual «Novo Livro Aberto 6», cap. 2: formas não finitas p. 84; presente, pretérito imperfeito e futuro do conjuntivo pp. 87, 93 e 96; subclasses dos verbos p. 105",
     lead:"Os verbos são a máquina do tempo da língua: com eles viajas ao passado (joguei), ficas no presente (jogo) ou saltas para o futuro (jogarei). E ainda podes dar ordens, desejar ou imaginar.",
     missions:[
       {t:"As Três Famílias", d:"1.ª, 2.ª e 3.ª conjugação", f:"Arrumar 15 verbos em três colunas: -ar, -er, -ir", xp:10},
@@ -111,7 +111,7 @@
   {
     id:"p3", num:3, c:"m3", icon:"🧩",
     title:"Quem Faz o Quê? Funções Sintáticas",
-    subtitle:"Sujeito, predicado e complementos", pages:"manual a confirmar",
+    subtitle:"Sujeito, predicado e complementos", pages:"manual «Novo Livro Aberto 6»: funções sintáticas pp. 101 e 105; Gramática: complemento oblíquo p. 245, agente da passiva p. 246, modificador p. 248",
     lead:"Numa equipa, cada jogador tem uma função: avançado, guarda-redes, defesa. Numa frase também: há quem faz a ação (sujeito), a ação (predicado) e quem a recebe (complementos).",
     missions:[
       {t:"Encontra o Capitão", d:"Sujeito simples, composto e subentendido", f:"Sublinhar o sujeito em 10 frases de um livro", xp:10},
@@ -159,7 +159,7 @@
   {
     id:"p4", num:4, c:"m4", icon:"🏗️",
     title:"Construtor de Frases",
-    subtitle:"Tipos de frase, coordenação, voz passiva e discurso indireto", pages:"manual a confirmar",
+    subtitle:"Tipos de frase, coordenação, voz passiva e discurso indireto", pages:"manual «Novo Livro Aberto 6», Gramática: frase simples e frase complexa pp. 231 e 252; conectores p. 256",
     lead:"Como num jogo de construção, podes montar frases de muitas formas: perguntar, exclamar, juntar duas frases numa, virar a frase ao contrário (voz passiva) ou contar o que alguém disse.",
     missions:[
       {t:"Quatro Tipos de Frase", d:"Declarativa, interrogativa, exclamativa, imperativa", f:"Escrever a mesma ideia nos quatro tipos de frase", xp:10},
@@ -208,7 +208,7 @@
   {
     id:"p5", num:5, c:"m5", icon:"📖",
     title:"Modo História: o Texto Narrativo",
-    subtitle:"Narrador, personagens, espaço, tempo e ação", pages:"manual a confirmar",
+    subtitle:"Narrador, personagens, espaço, tempo e ação", pages:"manual «Novo Livro Aberto 6», cap. 2 «Texto narrativo»: elementos da narrativa p. 76; Pedro Alecrim pp. 82–106; Ulisses pp. 112–121",
     lead:"Todos os jogos com história têm as mesmas peças: um herói, um mundo, uma missão e um narrador que te guia. Os contos e os romances também. Descobre as peças da narrativa!",
     missions:[
       {t:"Ficha da Personagem", d:"Personagens principais, secundárias e figurantes", f:"Criar uma \"carta de jogo\" para cada personagem do livro que estás a ler", xp:10},
@@ -254,12 +254,12 @@
       left:{title:"🙋 Narrador participante", points:["Entra na história","Conta na 1.ª pessoa (eu, nós)","Só sabe o que viu ou sentiu"]},
       right:{title:"👁️ Narrador não participante", points:["Está fora da história","Conta na 3.ª pessoa (ele, ela)","Pode saber o que todas as personagens pensam"]}
     },
-    boss:"Ficha de avaliação — por confirmar no manual"
+    boss:"«Põe-te à prova!» depois de Pedro Alecrim — manual «Novo Livro Aberto 6», p. 107"
   },
   {
     id:"p6", num:6, c:"m6", icon:"🎵",
     title:"Modo Poesia",
-    subtitle:"Verso, estrofe, rima e recursos expressivos", pages:"manual a confirmar",
+    subtitle:"Verso, estrofe, rima e recursos expressivos", pages:"manual «Novo Livro Aberto 6», cap. 3 «Texto poético» (pp. 146–147 e seguintes); anáfora pp. 95 e 261",
     lead:"A poesia é como a música de um jogo: ritmo, repetições e sons que ficam na cabeça. Aprende as peças do poema e os \"poderes especiais\" das palavras — os recursos expressivos.",
     missions:[
       {t:"Contar Versos", d:"Verso, estrofe e tipos de estrofe", f:"Escolher um poema e contar versos e estrofes, dizendo o nome de cada estrofe", xp:10},
@@ -360,7 +360,7 @@
   {
     id:"p8", num:8, c:"m8", icon:"🛠️",
     title:"Oficina da Palavra",
-    subtitle:"Formação de palavras, ortografia e pontuação", pages:"manual a confirmar",
+    subtitle:"Formação de palavras, ortografia e pontuação", pages:"manual «Novo Livro Aberto 6», Gramática: sílaba e acentuação p. 204; palavra simples e complexa, família de palavras e derivação pp. 235–236",
     lead:"Cada palavra é como um bloco que se pode encaixar noutros para criar coisas novas: feliz → infeliz → felicidade. E, como em qualquer construção, há regras: acentos, pontuação e palavras que soam igual mas se escrevem de forma diferente.",
     missions:[
       {t:"Fábrica de Palavras", d:"Derivação (prefixos e sufixos) e composição", f:"Criar a família de 3 palavras (ex.: mar → marinheiro, maré…)", xp:10},
@@ -410,5 +410,174 @@
       {icon:"📗", title:"Dicionário Priberam", desc:"Para tirar dúvidas sobre o significado e a escrita das palavras.", site:"Dicionário Priberam da Língua Portuguesa", url:"https://dicionario.priberam.org/"}
     ],
     boss:"Ficha de avaliação — por confirmar no manual"
+  },
+  {
+    id:"p9", num:9, c:"m9", icon:"📚",
+    title:"Biblioteca da Turma: as Obras do Manual",
+    subtitle:"Educação Literária: narrativas e poemas do 6.º ano",
+    pages:"manual «Novo Livro Aberto 6»: Jorinda e Joringuel pp. 50–51; Ali Babá pp. 62–63; Pedro Alecrim pp. 82–106; Ulisses pp. 112–121; poesia pp. 146–147",
+    lead:"Neste mundo revês as obras que lês no manual: Pedro Alecrim, Ulisses, Ali Babá e os Quarenta Ladrões, um conto dos Irmãos Grimm e poemas de autores portugueses e brasileiros. Cada exemplo é uma ficha de leitura: elementos da narrativa, o que se aprende e as perguntas que costumam sair. Lê primeiro o texto no manual.",
+    missions:[
+      {t:"Ficha de Leitura", d:"Elementos da narrativa", f:"Escolhe uma das obras deste mundo que já leste. Faz uma ficha com: título, autor, narrador (participante ou não participante), personagens principais e secundárias, espaço, tempo e os 5 acontecimentos mais importantes, por ordem.\nVerifica: compara com o exemplo resolvido dessa obra. Cada acontecimento tem de estar na ordem certa (introdução → desenvolvimento → conclusão).", xp:15},
+      {t:"Carta a uma Personagem", d:"Escrita: carta e opinião fundamentada", f:"Escreve uma carta ao Pedro Alecrim, ao Ulisses ou ao Ali Babá: conta-lhe o que achaste de uma decisão que tomou e porquê.\nVerifica: a carta tem local e data, saudação, corpo com pelo menos uma opinião justificada («Acho que… porque…») e despedida.", xp:15},
+      {t:"Leitura Expressiva", d:"Ler em voz alta com intenção", f:"Escolhe um excerto com diálogo (por exemplo, Ulisses e Euríloco). O manual sugere a intenção: «ler com tom ameaçador», «ler com entusiasmo», «ler com hesitação». Grava-te a ler.\nVerifica: ouve a gravação. Nota-se a pontuação (pausas nas vírgulas, subida da voz nas perguntas, emoção nas exclamações)?", xp:10},
+      {t:"O Meu Poema com Anáfora", d:"Recursos expressivos", f:"Escreve um poema de 5 versos que comece sempre pela mesma expressão, como em «Basta imaginar» (por exemplo, «Basta sonhar…» ou «Deixem passar…»).\nVerifica: a repetição está no início dos versos (anáfora) e dá ritmo ao poema; sublinha-a.", xp:10}
+    ],
+    resumo:[
+      "A <b>Educação Literária</b> do 6.º ano pede que leias obras completas: narrativas, poemas e um texto dramático, de autores portugueses, lusófonos e estrangeiros.",
+      "Numa narrativa identificas sempre os <b>elementos da narrativa</b>: <b>narrador</b> (participante, na 1.ª pessoa, ou não participante, na 3.ª), <b>personagens</b> (principais, secundárias e figurantes), <b>espaço</b>, <b>tempo</b> e <b>ação</b> (situação inicial, desenvolvimento e desfecho).",
+      "O <b>caráter</b> das personagens vê-se pelo que fazem e dizem: Ali Babá é calmo e honesto; o irmão, Qassem, é invejoso e ambicioso. Justifica sempre com uma frase do texto.",
+      "Nos textos literários há <b>recursos expressivos</b>: a <b>anáfora</b> (repetição no início de frases ou versos: «E depois era…»), a <b>comparação</b> («a sua cabeça estava tão vazia como os sacos estavam cheios»), a <b>personificação</b> e a <b>adjetivação</b>.",
+      "No texto poético distingues <b>verso</b>, <b>estrofe</b>, <b>rima</b> e o <b>sujeito poético</b> (a voz que fala no poema). Há palavras que mostram a variedade do português: «boba» (tonta) é do português do Brasil."
+    ],
+    gloss:[
+      ["Educação Literária","A parte de Português em que se leem e interpretam obras literárias."],
+      ["caráter","O modo de ser de uma personagem, que se descobre pelas suas ações e palavras."],
+      ["anáfora","Repetição de uma palavra ou expressão no início de frases ou versos."],
+      ["comparação","Recurso que aproxima duas realidades com «como», «tal como», «tão… como»."],
+      ["sujeito poético","A voz que fala num poema (não é obrigatoriamente o autor)."],
+      ["texto lusófono","Texto escrito em português num país que não é Portugal (Brasil, Angola, Moçambique…)."]
+    ],
+    quiz:[
+      {q:"Em «Pedro Alecrim», de António Mota, quem conta a história?", opts:["Um narrador que não entra na história","O próprio Pedro Alecrim, que participa na ação","O Nicolau","O pai do Pedro"], correct:1, explain:"O narrador é o Pedro Alecrim: participa na ação como personagem e conta na 1.ª pessoa. É um narrador participante."},
+      {q:"Onde decorre a ação de «Pedro Alecrim»?", opts:["Em Ítaca","Numa cidade grande","No Pragal, uma aldeia","Num castelo na floresta"], correct:2, explain:"O espaço é o Pragal, uma aldeia. Ítaca é a ilha de Ulisses e o castelo na floresta é o da bruxa de «Jorinda e Joringuel»."},
+      {q:"Em «Ulisses», porque é que os gregos vão combater em Troia?", opts:["Porque Páris, príncipe troiano, raptou Helena","Porque Ulisses queria ser rei de Troia","Porque Circe os enfeitiçou","Porque Penélope lhes pediu"], correct:0, explain:"Páris raptou a rainha grega Helena e levou-a para Troia, o que pôs gregos e troianos em guerra durante dez anos."},
+      {q:"Na ilha de Circe, porque é que Euríloco não foi transformado em porco?", opts:["Porque Atena o protegeu","Porque não entrou no palácio e se escondeu","Porque bebeu o licor e não fez efeito","Porque ficou no navio"], correct:1, explain:"Euríloco, mais prudente, desconfiou e escondeu-se atrás dos cortinados; por isso viu tudo e foi avisar Ulisses. Quem ficou no navio foi o próprio Ulisses."},
+      {q:"«a sua cabeça estava tão vazia como os sacos estavam cheios» (Ali Babá). Que recurso expressivo é este?", opts:["Anáfora","Personificação","Comparação","Rima"], correct:2, explain:"Aproxima duas realidades com «tão… como»: é uma comparação. Mostra que, de tanta ambição, Qassem esqueceu a fórmula «Abre-te, sésamo!»."},
+      {q:"Qual destas frases caracteriza Qassem, irmão de Ali Babá?", opts:["Calmo e honesto","Invejoso e ambicioso","Prudente e desconfiado","Alegre e generoso"], correct:1, explain:"Qassem fica «cheio de inveja» e enche os sacos com ambição desmedida. Calmo e honesto é Ali Babá; prudente é Euríloco, em «Ulisses»."},
+      {q:"Em «Jorinda e Joringuel», o que acontece a quem se aproxima do castelo da bruxa?", opts:["Fica mudo e quedo, sem se poder mexer","Transforma-se em porco","Perde a memória","Fica rico"], correct:0, explain:"Num raio de mil passos, a floresta estava embruxada: quem lá entrasse ficava imóvel até a bruxa o libertar; as raparigas eram transformadas em pássaros."},
+      {q:"«E depois era o povo… E depois era Telémaco… E depois era Penélope…» (Ulisses). Que recurso se repete?", opts:["Comparação","Anáfora","Onomatopeia","Antítese"], correct:1, explain:"A expressão «E depois era» repete-se no início das frases: é uma anáfora. Acelera o ritmo e destaca os acontecimentos que concluem a ação."},
+      {q:"No poema «A borboleta», de Odylo Costa, Filho, a palavra «boba» mostra que o poema é…", opts:["português","brasileiro","angolano","traduzido do inglês"], correct:1, explain:"«Boba» (tonta) é uma palavra do português do Brasil. Odylo Costa, Filho é um poeta brasileiro: é um texto lusófono."},
+      {q:"«Basta imaginar / um pássaro para o aprisionar, / e depois imaginar o ar para o libertar» (Manuel António Pina). Qual é a mensagem principal?", opts:["Os pássaros devem viver em gaiolas","A imaginação tem muito poder: cria e liberta","É difícil imaginar","Os poemas não precisam de rima"], correct:1, explain:"O sujeito poético mostra que, só com a imaginação, se pode prender um pássaro e logo libertá-lo, dar-lhe asas e uma canção: a imaginação tem um enorme poder."}
+    ],
+    posters:[
+      {title:"🌾 Ficha 1 — Pedro Alecrim, de António Mota", svg:'<ul class="wheel-legend">'+
+        '<li><span aria-hidden="true">📍</span><span><b>Onde e quando:</b> no Pragal, uma aldeia; durante o tempo de aulas, no último dia de aulas e nas férias de verão.</span></li>'+
+        '<li><span aria-hidden="true">🗣️</span><span><b>Narrador:</b> o próprio Pedro Alecrim, que participa na ação (narrador participante, na 1.ª pessoa).</span></li>'+
+        '<li><span aria-hidden="true">👥</span><span><b>Personagens:</b> Pedro Alecrim (principal); Nicolau; o Luís; a família do Pedro (pai, mãe, o irmão Jacinto e a irmã Rosália).</span></li>'+
+        '<li><span aria-hidden="true">🧭</span><span><b>Ação (por ordem):</b> <br>a luta entre o Luís e o Pedro; a descoberta dos girinos; as tarefas do Pedro; a sociedade com o Nicolau; a doença, a operação e a morte do pai do Pedro; a amizade entre o Pedro e o Luís; a partida do Nicolau; a correspondência (cartas) entre o Pedro e o Nicolau; o conserto do cavaquinho.</span></li>'+
+        '<li><span aria-hidden="true">🔍</span><span><b>Para o teste:</b> identifica o narrador e justifica com uma frase na 1.ª pessoa; repara na anáfora e nos tempos do conjuntivo (manual pp. 87, 93, 95–96); sabe escrever uma carta como as do Pedro e do Nicolau.</span></li>'+
+        '</ul>'},
+      {title:"⛵ Ficha 2 — Ulisses, de Maria Alberta Menéres", svg:'<ul class="wheel-legend">'+
+        '<li><span aria-hidden="true">📍</span><span><b>Onde e quando:</b> na ilha grega de Ítaca, em Troia e nas viagens por terras e mares desconhecidos; a guerra dura dez anos.</span></li>'+
+        '<li><span aria-hidden="true">🗣️</span><span><b>Narrador:</b> não participante (conta na 3.ª pessoa).</span></li>'+
+        '<li><span aria-hidden="true">👥</span><span><b>Personagens:</b> Ulisses, rei de Ítaca (principal); a mulher, Penélope; o filho, Telémaco; Euríloco, marinheiro prudente; a deusa Atena, sua protetora; Circe, a feiticeira.</span></li>'+
+        '<li><span aria-hidden="true">🧭</span><span><b>Ação (por ordem):</b> <br>Páris rapta Helena e começa a guerra de Troia; Ulisses finge-se louco para não ir, mas é desmascarado quando desvia a charrua do pequeno Telémaco; na ilha de Circe, os marinheiros comem e bebem um licor e são transformados em porcos (só Euríloco escapa e avisa Ulisses); de regresso a Ítaca, disfarçado de mendigo, Ulisses vence os pretendentes com a ajuda de Telémaco e reencontra Penélope.</span></li>'+
+        '<li><span aria-hidden="true">🔍</span><span><b>Para o teste:</b> caracteriza Ulisses (valente, astuto, amigo da família e da paz); explica a expressão «herói de mil façanhas»; reconhece a anáfora («E depois era…»).</span></li>'+
+        '</ul>'},
+      {title:"💰 Ficha 3 — Ali Babá e os Quarenta Ladrões (adapt. António Pescada)", svg:'<ul class="wheel-legend">'+
+        '<li><span aria-hidden="true">🧩</span><span><b>A história no excerto do manual:</b> Ali Babá descobre o rochedo que se abre com a fórmula «Abre-te, sésamo!». O irmão, Qassem, cheio de inveja, ameaça denunciá-lo e obriga-o a contar o segredo. Vai ao rochedo com seis mulas e enche os sacos de tesouros, mas, com a ambição, esquece a fórmula: «Abre-te, cevada!»… e fica preso lá dentro.</span></li>'+
+        '<li><span aria-hidden="true">👥</span><span><b>Caracterização:</b> Ali Babá é calmo e honesto (dorme descansado); Qassem é invejoso, ambicioso e autoritário (não prega olho a noite toda).</span></li>'+
+        '<li><span aria-hidden="true">✍️</span><span><b>Estrutura de resposta (do manual):</b> «Por um lado, Ali Babá era calmo e honesto, visto que… Por outro lado, Qassem era…, já que…»</span></li>'+
+        '<li><span aria-hidden="true">🔍</span><span><b>Para o teste:</b> o recurso expressivo em «a sua cabeça estava tão vazia como os sacos estavam cheios» é uma comparação; explica como a forma de dormir mostra o estado de espírito de cada irmão.</span></li>'+
+        '</ul>'},
+      {title:"🐦 Ficha 4 — Jorinda e Joringuel, dos Irmãos Grimm", svg:'<ul class="wheel-legend">'+
+        '<li><span aria-hidden="true">📍</span><span><b>Onde:</b> numa densa floresta, junto a um castelo onde vive uma bruxa que de dia se transforma em gata ou em coruja.</span></li>'+
+        '<li><span aria-hidden="true">🧭</span><span><b>Ação:</b> <br>Jorinda e Joringuel, noivos, passeiam na floresta e aproximam-se do castelo sem darem por isso; Jorinda é transformada em pássaro e Joringuel fica como uma estátua; a bruxa leva Jorinda; Joringuel, desesperado, vai guardar ovelhas numa aldeia; sonha com uma flor vermelha com uma pérola que desfaz os feitiços e, ao nono dia, encontra-a. Com ela, liberta Jorinda (e, no conto dos Grimm, também as outras raparigas enfeitiçadas).</span></li>'+
+        '<li><span aria-hidden="true">🏷️</span><span><b>Tipo de texto:</b> conto tradicional (de autores estrangeiros: os Irmãos Grimm, alemães). Tem elementos maravilhosos: a bruxa, os feitiços, a flor mágica.</span></li>'+
+        '<li><span aria-hidden="true">🔍</span><span><b>Para o teste:</b> relaciona o pisco-de-peito-azul com a história (o «passarito do anel azul»); identifica o espaço e o elemento mágico que resolve o problema.</span></li>'+
+        '</ul>'},
+      {title:"🖋️ Ficha 5 — Poesia: Manuel António Pina e o Primeiro Livro de Poesia", svg:'<ul class="wheel-legend">'+
+        '<li><span aria-hidden="true">📖</span><span><b>«Basta imaginar», Manuel António Pina (O Pássaro na Cabeça):</b> o poema repete «imaginar» no início dos versos (anáfora) e rima em -ar (aprisionar, libertar, voar, cantar). Mensagem: a imaginação tem o poder de prender e de libertar.</span></li>'+
+        '<li><span aria-hidden="true">🌍</span><span><b>Primeiro Livro de Poesia (seleção de Sophia de Mello Breyner Andresen):</b> reúne poemas portugueses e lusófonos. «A borboleta», de Odylo Costa, Filho, é brasileiro (pista: a palavra «boba»); «Boa noite», de Sidónio Muralha, é português.</span></li>'+
+        '<li><span aria-hidden="true">🧩</span><span><b>Como analisar um poema:</b> conta os versos e as estrofes; vê o esquema rimático; procura recursos (anáfora, comparação, personificação); diz quem é o sujeito poético e qual é o tema.</span></li>'+
+        '<li><span aria-hidden="true">🔍</span><span><b>Para o teste:</b> justifica sempre com um verso entre aspas, indicando o número do verso.</span></li>'+
+        '</ul>'}
+    ],
+    compare:{
+      left:{title:"📖 Texto narrativo", points:["Conta uma história","Narrador, personagens, espaço, tempo e ação","Organiza-se em parágrafos"]},
+      right:{title:"🖋️ Texto poético", points:["Exprime sentimentos e ideias","Sujeito poético, versos, estrofes e rima","Organiza-se em versos"]}
+    },
+    resources:[
+      {icon:"📚", title:"Plano Nacional de Leitura", desc:"Lista de livros recomendados por idade, para escolheres as próximas leituras.", site:"pnl2027.gov.pt", url:"https://www.pnl2027.gov.pt/np4/home"}
+    ],
+    boss:"«Põe-te à prova!» de cada capítulo do manual «Novo Livro Aberto 6»"
+  },
+  {
+    id:"p10", num:10, c:"m6", icon:"📰",
+    title:"Textos do Dia a Dia: Notícias, Anúncios e Entrevistas",
+    subtitle:"Notícia, anúncio publicitário, entrevista, resumo e facto/opinião",
+    pages:"manual «Novo Livro Aberto 6», cap. 1 «Textos do dia a dia» (pp. 22–43); entrevista p. 97; resumo p. 271",
+    lead:"Todos os dias lês textos que informam (notícias), que querem convencer-te (anúncios) e que dão voz a alguém (entrevistas). Neste mundo aprendes a lê-los com olho crítico, a separar factos de opiniões e a resumir. Vê os 5 exemplos resolvidos, um de cada vez.",
+    missions:[
+      {t:"Caça ao Lead", d:"A estrutura da notícia", f:"Escolhe uma notícia curta num jornal ou num site para jovens (com a ajuda de um adulto). Copia o título e o lead (o 1.º parágrafo).\nFaz uma tabela: Quem? O quê? Quando? Onde? Como? Porquê?\nVerifica: o lead responde a quase todas as perguntas; o resto da notícia (o corpo) dá pormenores.", xp:10},
+      {t:"O Anúncio Que Convence", d:"Linguagem publicitária", f:"Cria um anúncio para uma campanha da tua escola (por exemplo, poupar água). Usa uma imagem, um slogan curto e pelo menos duas frases no imperativo, na 2.ª pessoa.\nVerifica: um colega percebe em 5 segundos o que o anúncio pede? Tem argumentos, e não só a imagem?", xp:15},
+      {t:"Entrevista a Alguém da Família", d:"Planificar e escrever uma entrevista", f:"Prepara 5 perguntas abertas (que não se respondam com sim/não) sobre a profissão ou a infância de um familiar. Faz a entrevista e escreve-a: introdução a apresentar o entrevistado, e depois pergunta e resposta.\nVerifica: as perguntas estão a negrito ou identificadas, e cada resposta é a de quem foi entrevistado (não a tua opinião).", xp:15},
+      {t:"Resumo em 40 Palavras", d:"Resumir um texto", f:"Escolhe um texto informativo do manual. Faz perguntas a cada parágrafo (Quem? O quê? Porquê?), responde com frases curtas e junta tudo num resumo de 40 a 50 palavras, com as tuas palavras.\nVerifica: conta as palavras; não copiaste frases inteiras, não deste opiniões e está lá a ideia principal de cada parágrafo.", xp:10}
+    ],
+    resumo:[
+      "A <b>notícia</b> informa sobre um acontecimento recente e verdadeiro. Tem <b>título</b> (curto e chamativo), às vezes <b>antetítulo</b> e <b>subtítulo</b>, o <b>lead</b> (1.º parágrafo, que responde a «quem? o quê? quando? onde?» e, às vezes, «como? porquê?») e o <b>corpo</b> (os pormenores). Usa a 3.ª pessoa, o pretérito perfeito para os acontecimentos e <b>citações</b> entre aspas.",
+      "O <b>anúncio publicitário</b> quer <b>convencer</b> a comprar um produto ou a mudar um comportamento (campanhas). Junta imagem e texto curto: <b>slogan</b>, frases no <b>imperativo</b>, a <b>2.ª pessoa</b> («tu») e recursos expressivos, como a <b>rima</b> ou o jogo de palavras («Cinto-me vivo»).",
+      "A <b>entrevista</b> dá a conhecer uma pessoa ou o que ela sabe. Tem uma <b>introdução</b> que apresenta o entrevistado e depois <b>perguntas</b> do entrevistador e <b>respostas</b> do entrevistado.",
+      "Um <b>facto</b> pode ser verificado («O lince-ibérico vive no sul de Portugal e de Espanha»). Uma <b>opinião</b> é o que alguém pensa («O lince é o animal mais bonito»), e muitas vezes começa por «acho que», «na minha opinião».",
+      "Para fazer um <b>resumo</b>: lê o texto, sublinha as ideias principais (podes fazer perguntas a cada parágrafo), escreve-as por ordem, com as tuas palavras, sem exemplos nem opiniões, e respeita o número de palavras pedido."
+    ],
+    gloss:[
+      ["notícia","Texto que informa sobre um acontecimento recente e verdadeiro."],
+      ["lead","O 1.º parágrafo da notícia: responde a quem, o quê, quando e onde."],
+      ["anúncio publicitário","Texto, com imagem, que quer convencer a comprar algo ou a mudar um comportamento."],
+      ["slogan","Frase curta e fácil de lembrar de um anúncio."],
+      ["entrevista","Texto com perguntas de um entrevistador e respostas de um entrevistado."],
+      ["facto","Informação que pode ser comprovada."],
+      ["opinião","O que alguém pensa sobre um assunto; não se pode comprovar."],
+      ["resumo","Texto curto, com as ideias principais de outro, escrito por palavras nossas."]
+    ],
+    quiz:[
+      {q:"Qual é a parte da notícia que responde a «quem? o quê? quando? onde?»?", opts:["O título","O lead","O corpo","A citação"], correct:1, explain:"O lead é o 1.º parágrafo e resume o essencial do acontecimento. O corpo dá os pormenores; o título chama a atenção."},
+      {q:"Qual é o principal objetivo de um anúncio publicitário?", opts:["Informar sobre um acontecimento recente","Convencer o leitor a comprar algo ou a mudar um comportamento","Contar uma história inventada","Apresentar uma pessoa"], correct:1, explain:"O anúncio quer convencer (persuadir). Informar sobre um acontecimento é a função da notícia; apresentar uma pessoa, da entrevista."},
+      {q:"Num anúncio, porque se usam frases como «Usa o cinto!»?", opts:["Porque o imperativo dá ordens e conselhos diretos ao leitor","Porque é obrigatório usar o passado","Porque o anúncio é escrito na 3.ª pessoa","Porque assim parece uma notícia"], correct:0, explain:"O imperativo, na 2.ª pessoa, fala diretamente com o leitor e pede-lhe uma ação: é típico da linguagem publicitária."},
+      {q:"Qual destas frases é uma opinião?", opts:["O lince-ibérico é a espécie de felino mais ameaçada do mundo.","A caça furtiva matou muitos linces no século XX.","Acho que todos devíamos ajudar a salvar o lince.","O lince vive no sul de Portugal e de Espanha."], correct:2, explain:"«Acho que…» mostra o que alguém pensa: é uma opinião. As outras frases dão informações que se podem verificar (factos)."},
+      {q:"Numa notícia, porque é que o jornalista coloca frases entre aspas?", opts:["Para mostrar a sua opinião","Para reproduzir as palavras exatas de alguém (citação)","Para destacar o título","Para fazer rir o leitor"], correct:1, explain:"As aspas marcam uma citação: as palavras exatas de uma pessoa, por exemplo de uma investigadora. Dão credibilidade à notícia."},
+      {q:"Que tempo verbal se usa sobretudo para contar os acontecimentos de uma notícia?", opts:["Futuro","Pretérito perfeito do indicativo","Imperativo","Condicional"], correct:1, explain:"Os acontecimentos já aconteceram: «alertou», «descobriram». O imperativo é próprio dos anúncios."},
+      {q:"Como deve começar uma entrevista escrita?", opts:["Com a primeira pergunta","Com uma introdução que apresenta o entrevistado","Com a opinião do entrevistador","Com um slogan"], correct:1, explain:"A introdução diz quem é a pessoa e porque foi entrevistada (por exemplo, «Dora Martins é uma das ilustradoras…»). Só depois vêm as perguntas e as respostas."},
+      {q:"O que NÃO deve ter um resumo?", opts:["As ideias principais","As tuas palavras","A tua opinião e exemplos","A ordem das ideias do texto"], correct:2, explain:"O resumo é fiel ao texto: tem as ideias principais, por ordem e por palavras tuas, mas não leva opiniões nem pormenores e exemplos."},
+      {q:"No anúncio «Cinto-me vivo», que recurso torna o slogan memorável?", opts:["Uma comparação","Um jogo de palavras entre «cinto» e «sinto»","Uma citação","Uma enumeração"], correct:1, explain:"«Cinto-me» soa como «sinto-me»: junta o cinto de segurança com a ideia de se sentir vivo. Os jogos de palavras ajudam a lembrar a mensagem."},
+      {q:"Um resumo de um texto com 3 parágrafos deve ter, em regra…", opts:["uma frase por parágrafo com a ideia principal","as frases mais bonitas copiadas","só a ideia do último parágrafo","mais palavras do que o texto"], correct:0, explain:"Uma boa estratégia é tirar a ideia principal de cada parágrafo e juntá-las por ordem, com as tuas palavras e dentro do número de palavras pedido."}
+    ],
+    posters:[
+      {title:"📰 Exemplo 1 — Ler uma notícia: o lead", svg:'<ul class="wheel-legend">'+
+        '<li><span aria-hidden="true">🎯</span><span><b>O que queremos descobrir:</b> as informações essenciais desta notícia (exemplo inventado): «Alunos de Viseu plantam 300 árvores. Na manhã de sábado, cerca de 60 alunos de uma escola de Viseu plantaram 300 árvores numa encosta ardida no verão, para ajudar a recuperar a floresta.»</span></li>'+
+        '<li><span aria-hidden="true">🚦</span><span><b>Como começar:</b> procura o lead: é o 1.º parágrafo. Faz-lhe as perguntas Quem? O quê? Quando? Onde? Porquê?</span></li>'+
+        '<li><span aria-hidden="true">👣</span><span><b>Passo a passo:</b> <br>Quem? cerca de 60 alunos de uma escola<br>O quê? plantaram 300 árvores<br>Quando? na manhã de sábado<br>Onde? numa encosta ardida, em Viseu<br>Porquê? para ajudar a recuperar a floresta</span></li>'+
+        '<li><span aria-hidden="true">✅</span><span><b>Resultado:</b> o lead responde a todas as perguntas; o título resume a notícia em poucas palavras.</span></li>'+
+        '<li><span aria-hidden="true">🔍</span><span><b>Verificar:</b> os verbos estão no pretérito perfeito («plantaram») e na 3.ª pessoa; não há opiniões do jornalista. É o que o manual pede nas fichas (tabela Quem? O quê? Quando?).</span></li>'+
+        '</ul>'},
+      {title:"📣 Exemplo 2 — Como funciona um anúncio", svg:'<ul class="wheel-legend">'+
+        '<li><span aria-hidden="true">🎯</span><span><b>O que queremos descobrir:</b> como é que o anúncio de segurança rodoviária «Cinto-me vivo», do manual, tenta convencer quem o vê.</span></li>'+
+        '<li><span aria-hidden="true">🚦</span><span><b>Como começar:</b> pergunta-te: quem fez o anúncio? O que quer que eu faça? Que palavras e imagens usa para isso?</span></li>'+
+        '<li><span aria-hidden="true">👣</span><span><b>Passo a passo:</b> <br>Objetivo: convencer a usar sempre o cinto de segurança (é uma campanha, não vende nada)<br>Slogan: «Cinto-me vivo», um jogo de palavras entre «cinto» e «sinto»<br>Imagem: um cinto apertado, que mostra a ação pedida<br>Quem assina: entidades de segurança rodoviária e as polícias (dá confiança à mensagem)</span></li>'+
+        '<li><span aria-hidden="true">✅</span><span><b>Resultado:</b> o anúncio junta imagem, slogan e entidades credíveis para levar as pessoas a mudar um comportamento.</span></li>'+
+        '<li><span aria-hidden="true">🔍</span><span><b>Verificar:</b> num anúncio que vende um produto, o objetivo é a compra; numa campanha, é mudar um comportamento. Nos dois casos, é um texto para convencer.</span></li>'+
+        '</ul>'},
+      {title:"🎤 Exemplo 3 — A estrutura da entrevista", svg:'<ul class="wheel-legend">'+
+        '<li><span aria-hidden="true">🎯</span><span><b>O que queremos descobrir:</b> como está organizada a entrevista do manual à ilustradora Dora Martins («O meu escape sempre passou pelo desenho»).</span></li>'+
+        '<li><span aria-hidden="true">🚦</span><span><b>Como começar:</b> separa a introdução das perguntas e das respostas.</span></li>'+
+        '<li><span aria-hidden="true">👣</span><span><b>Passo a passo:</b> <br>Título: uma frase da entrevistada, entre aspas<br>Introdução: apresenta a entrevistada e o assunto<br>Perguntas (a negrito), do entrevistador: «Ser ilustradora é um sonho de infância?»<br>Respostas, da entrevistada, na 1.ª pessoa: «Não é um sonho de infância, na medida em que…»</span></li>'+
+        '<li><span aria-hidden="true">✅</span><span><b>Resultado:</b> introdução + pares pergunta/resposta; o título resume a ideia mais forte.</span></li>'+
+        '<li><span aria-hidden="true">🔍</span><span><b>Verificar:</b> boas perguntas são abertas (não se respondem com «sim» ou «não»). Experimenta na missão «Entrevista a Alguém da Família».</span></li>'+
+        '</ul>'},
+      {title:"✂️ Exemplo 4 — Fazer um resumo", svg:'<ul class="wheel-legend">'+
+        '<li><span aria-hidden="true">🎯</span><span><b>O que queremos descobrir:</b> como resumir em 35 a 45 palavras o texto «O caso do lince-ibérico» (do caderno de atividades).</span></li>'+
+        '<li><span aria-hidden="true">🚦</span><span><b>Como começar:</b> faz uma pergunta a cada parte do texto e responde com uma frase curta.</span></li>'+
+        '<li><span aria-hidden="true">👣</span><span><b>Passo a passo:</b> <br>O que é? É o felino mais ameaçado do mundo.<br>Onde vive? No sul de Espanha e no sul de Portugal.<br>Quais as ameaças? Menos coelhos, agricultura intensiva, caça furtiva e atropelamentos nas estradas.<br>Junta as respostas: «O lince-ibérico, o felino mais ameaçado do mundo, vive no sul de Espanha e de Portugal. Está em risco porque há menos coelhos, por causa da agricultura intensiva, da caça furtiva e dos atropelamentos nas estradas, que dividem o seu habitat.»</span></li>'+
+        '<li><span aria-hidden="true">✅</span><span><b>Resultado:</b> um resumo com 41 palavras e as ideias principais, por ordem.</span></li>'+
+        '<li><span aria-hidden="true">🔍</span><span><b>Verificar:</b> conta as palavras; confirma que não há opiniões («coitado do lince») nem pormenores dispensáveis.</span></li>'+
+        '</ul>'},
+      {title:"⚖️ Exemplo 5 — Facto ou opinião?", svg:'<ul class="wheel-legend">'+
+        '<li><span aria-hidden="true">🎯</span><span><b>O que queremos descobrir:</b> quais destas frases são factos e quais são opiniões: (a) «O café foi descoberto na Etiópia.» (b) «O café é a melhor bebida do mundo.» (c) «Na minha opinião, os jovens não deviam beber café.» (d) «O café ajuda a combater o sono.»</span></li>'+
+        '<li><span aria-hidden="true">🚦</span><span><b>Como começar:</b> pergunta: «Posso comprovar isto num livro ou numa experiência?» Se sim, é facto. Se depende do gosto de cada um, é opinião.</span></li>'+
+        '<li><span aria-hidden="true">👣</span><span><b>Passo a passo:</b> <br>(a) facto (está na história do café, contada no texto do caderno)<br>(b) opinião (depende do gosto: «a melhor»)<br>(c) opinião (marcador «na minha opinião»)<br>(d) facto (o efeito do café no sono pode ser estudado)</span></li>'+
+        '<li><span aria-hidden="true">✅</span><span><b>Resultado:</b> factos: a e d; opiniões: b e c.</span></li>'+
+        '<li><span aria-hidden="true">🔍</span><span><b>Verificar:</b> palavras como «acho», «penso», «o melhor», «o pior», «bonito», «devia» costumam marcar opiniões. Num texto de opinião, as opiniões apoiam-se em factos (argumentos).</span></li>'+
+        '</ul>'}
+    ],
+    compare:{
+      left:{title:"📰 Notícia", points:["Quer informar","3.ª pessoa e pretérito perfeito","Título, lead e corpo"]},
+      right:{title:"📣 Anúncio publicitário", points:["Quer convencer","2.ª pessoa e imperativo","Imagem, slogan e marca"]}
+    },
+    resources:[
+      {icon:"📰", title:"Visão Júnior", desc:"Notícias e entrevistas escritas para jovens (o manual usa textos desta revista). Algumas peças podem pedir assinatura.", site:"visao.pt/visaojunior", url:"https://visao.pt/visaojunior/"}
+    ],
+    boss:"«Põe-te à prova!» do cap. 1 — manual «Novo Livro Aberto 6», p. 42"
   }
   ];
