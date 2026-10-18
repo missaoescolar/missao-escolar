@@ -78,7 +78,8 @@ window.addEventListener("load", function(){
     let dias = 0; const d = new Date();
     for(let i = 0; i < 7; i++){ const k = d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0"); if(log.has(k)) dias++; d.setDate(d.getDate()-1); }
     const dif = (typeof MissaoDificuldades !== "undefined") ? MissaoDificuldades.analisar(subjects).slice(0, 5) : [];
-    return {prog:prog, respondidas:ids.length, certasUltima:certasUltima, dias:dias, dif:dif};
+    const textos = (MissaoArmazem.ler("ws_saved", []) || []).filter(x => x && x.partilhar);
+    return {prog:prog, respondidas:ids.length, certasUltima:certasUltima, dias:dias, dif:dif, textos:textos};
   }
 
   /* ---------- the report, as page and as plain text for the e-mail ---------- */
@@ -94,13 +95,20 @@ window.addEventListener("load", function(){
       '<p><b>Missões feitas:</b></p><ul class="rel-prog">'+D.prog.map(x => '<li>'+x.s.icon+' '+esc(x.s.name)+(x.s.ano ? ' ('+x.s.ano+'.º ano)' : '')+': '+x.feitas+' de '+x.total+
         ' <span class="rel-barra"><span style="width:'+Math.round(x.feitas/x.total*100)+'%"></span></span></li>').join("")+'</ul>'+
       '<p><b>💡 O que treinar esta semana:</b></p>'+(sugestoes.length ? '<ol>'+sugestoes.map(t => '<li>'+esc(t)+'</li>').join("")+'</ol>' : '<p class="note-small">Ainda não há dificuldades registadas. Aparecem quando a criança erra perguntas, escreve uma dúvida no caderno ou treina cartões.</p>')+
-      '<p><b>🌱 Dicas para esta semana:</b></p><ul>'+dicas.map(t => '<li><b>'+esc(t[0])+'.</b> '+esc(t[1])+'</li>').join("")+'</ul>';
+      '<p><b>🌱 Dicas para esta semana:</b></p><ul>'+dicas.map(t => '<li><b>'+esc(t[0])+'.</b> '+esc(t[1])+'</li>').join("")+'</ul>'+
+      '<p><b>✍️ Textos da Oficina de Escrita que '+esc(nome)+' quis partilhar:</b></p>'+(D.textos.length
+        ? D.textos.map(x => '<details class="rel-texto"><summary>'+esc(x.title)+' <small>· '+esc(x.date || "")+'</small></summary><p>'+esc(x.text).replace(/\n/g, "<br>")+'</p></details>').join("")+
+          '<p class="note-small">Dica: comente primeiro uma coisa de que gostou, e só depois uma sugestão. Não corrija a ortografia de um texto pessoal, a não ser que a criança peça.</p>'
+        : '<p class="note-small">Nenhum por agora. Na Oficina de Escrita, a criança escolhe que textos partilhar (botão «👪 Partilhar com os pais»). Os outros ficam privados.</p>');
     const texto = [
       "Relatório Missão Escolar — "+nome+" — "+hoje, "",
       "Últimos 7 dias: "+D.dias+" dia(s) com estudo."+(D.respondidas ? " Perguntas: "+D.respondidas+" respondidas, "+pct+"% certas na última tentativa." : ""), "",
       "Missões feitas:", ...D.prog.map(x => "- "+x.s.name+(x.s.ano ? " ("+x.s.ano+".º ano)" : "")+": "+x.feitas+" de "+x.total), "",
       "O que treinar esta semana:", ...(sugestoes.length ? sugestoes.map((t, i) => (i+1)+". "+t) : ["- Ainda não há dificuldades registadas."]), "",
       "Dicas para esta semana:", ...dicas.map(t => "- "+t[0]+": "+t[1]), "",
+      ...(D.textos.length ? ["Textos da Oficina de Escrita partilhados:", ...D.textos.map(x => {
+          const corpo = x.text.length > 1200 ? x.text.slice(0, 1200)+"… (continua no computador, em Para pais)" : x.text;
+          return "— «"+x.title+"» ("+(x.date || "")+")\n"+corpo; }), ""] : []),
       "Ver tudo: "+location.href.replace(/pais\.html.*$/, "caderno.html")
     ].join("\n");
     $("rel-preview").innerHTML = html;

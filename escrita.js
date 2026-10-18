@@ -297,6 +297,7 @@
     $("wr-saved").innerHTML = list.length ? list.map(s =>
       '<li><button type="button" class="ws-link" data-open="'+s.id+'">'+esc(ESCRITA_TIPOS[s.type] ? ESCRITA_TIPOS[s.type].icon : "📄")+' '+esc(s.title)+'</button>'+
       '<small>'+esc(s.date)+' · '+words(s.text)+' palavras</small>'+
+      '<button type="button" class="ws-link ws-share'+(s.partilhar ? ' on' : '')+'" data-share="'+s.id+'" aria-pressed="'+(s.partilhar ? 'true' : 'false')+'" title="Só os textos que escolheres aparecem no relatório dos pais">'+(s.partilhar ? '👪 Partilhado com os pais' : '👪 Partilhar com os pais')+'</button>'+
       '<button type="button" class="ws-link danger" data-del="'+s.id+'" aria-label="Apagar '+esc(s.title)+'">Apagar</button></li>').join("")
       : '<li class="ws-note">Ainda não guardaste nenhum texto. Quando tocares em ✅ Terminei!, ele aparece aqui.</li>';
     $("wr-saved").querySelectorAll("[data-open]").forEach(b => b.addEventListener("click", () => {
@@ -307,6 +308,10 @@
       // only take it out of the list once it is safely saved as the text being written
       if(saveDraft()) MissaoArmazem.atualizar("ws_saved", [], list => list.filter(x => x.id !== s.id));
       renderSteps(); renderSaved(); wrText.focus();
+    }));
+    $("wr-saved").querySelectorAll("[data-share]").forEach(b => b.addEventListener("click", () => {
+      MissaoArmazem.atualizar("ws_saved", [], list => list.map(x => x.id === +b.dataset.share ? Object.assign({}, x, {partilhar:!x.partilhar}) : x));
+      renderSaved();
     }));
     $("wr-saved").querySelectorAll("[data-del]").forEach(b => b.addEventListener("click", () => {
       if(!confirm("Apagar este texto para sempre?")) return;

@@ -107,10 +107,13 @@
     const PAINEIS = [
       ["🔥", "Queimadura", "água corrente fresca durante 20 minutos", "tira anéis e relógio, se não estiverem colados", "❌ nada de gelo, manteiga ou pasta de dentes"],
       ["🩸", "Ferida a sangrar", "carrega com força com uma compressa", "não largues e chama ajuda", "corte pequeno: lavar e pôr um penso"],
-      ["👃", "Sangue do nariz", "sentado, com a cabeça para a FRENTE", "aperta a parte mole do nariz 10 minutos", "❌ nunca com a cabeça para trás"],
+      ["👃", "Sangue do nariz", "sentado, com a cabeça para a FRENTE", "aperta a parte mole do nariz 10 a 15 minutos", "❌ nunca com a cabeça para trás"],
       ["🐝", "Picada de abelha", "raspa o ferrão com um cartão", "lava e põe gelo envolto num pano", "cara inchada ou falta de ar → 112"],
       ["🦶", "Entorse (pé torcido)", "repouso", "gelo envolto num pano, 15 a 20 minutos", "pé elevado"],
       ["😵", "Desmaio", "deitar de costas, com as pernas elevadas", "afastar curiosos e desapertar a roupa", "não acorda? → PLS e 112"],
+      ["🙂", "AVC: os 3 F", "Face: a boca fica de lado", "Força: um braço não se levanta", "Fala enrolada → 112 já"],
+      ["🍬", "Açúcar baixo (diabetes)", "se consegue engolir: sumo ou açúcar", "chama um adulto", "não consegue engolir → 112"],
+      ["⚡", "Convulsão", "afasta objetos e protege a cabeça", "❌ não segures nem ponhas nada na boca", "mais de 5 minutos → 112"],
       ["🧪", "Engoliu um produto tóxico", "Centro Antivenenos: 800 250 250", "não provocar o vómito", "se está mal → 112"]
     ];
     const ids = PAINEIS.map((x, i) => "#q"+i);

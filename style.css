@@ -1147,3 +1147,8 @@
   .preve-pq textarea{ display:block; width:100%; box-sizing:border-box; margin-top:4px; font:inherit; font-weight:400; padding:8px 10px; border-radius:10px; border:1.5px solid var(--border); background:var(--bg); color:var(--text); }
   .preve-res p{ margin:8px 0; line-height:1.55; }
   .preve-exp{ padding:10px 12px; border-radius:12px; background:var(--surface-2); }
+
+  .ws-share.on{ color:var(--accent); font-weight:800; }
+  .rel-texto{ margin:6px 0; padding:8px 12px; border-radius:12px; background:var(--surface); border:1px solid var(--border-soft); }
+  .rel-texto summary{ cursor:pointer; font-weight:700; }
+  .rel-texto p{ white-space:normal; line-height:1.6; }
