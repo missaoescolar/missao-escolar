@@ -112,10 +112,21 @@ const VERB_MODELOS = {
 };
 const VERB_FUT = ["ei","ás","á","emos","eis","ão"], VERB_COND = ["ia","ias","ia","íamos","íeis","iam"];
 const VERB_REGULARES = {
-  ar: ["cantar","falar","estudar","morar","saltar","gostar","andar","ajudar"],
-  er: ["comer","beber","correr","viver","aprender","escrever","responder","vender"],
-  ir: ["partir","abrir","assistir","decidir","discutir","dividir","permitir","unir"]
+  ar: ["cantar","falar","estudar","morar","saltar","gostar","andar","ajudar","jogar","brincar","chegar","tocar","começar","dançar"],
+  er: ["comer","beber","correr","viver","aprender","escrever","responder","vender","conhecer","crescer","proteger"],
+  ir: ["partir","abrir","assistir","decidir","discutir","dividir","permitir","unir","dirigir","fingir"]
 };
+/* mudanças de ortografia nos verbos regulares, para o som se manter (jogar → joguei, conhecer → conheço…):
+   -car → qu, -gar → gu, -çar → c antes de «e»; -cer → ç, -ger/-gir → j antes de «a» ou «o» */
+function verbAjustar(v, raiz, term){
+  const g = v.slice(-3), c0 = term.charAt(0);
+  if(c0 === "e" && g === "car") return raiz.slice(0,-1)+"qu";
+  if(c0 === "e" && g === "gar") return raiz+"u";
+  if(c0 === "e" && g === "çar") return raiz.slice(0,-1)+"c";
+  if((c0 === "a" || c0 === "o") && g === "cer") return raiz.slice(0,-1)+"ç";
+  if((c0 === "a" || c0 === "o") && (g === "ger" || g === "gir")) return raiz.slice(0,-1)+"j";
+  return raiz;
+}
 const VERB_IRREG = {
   ser:   {pres:"sou és é somos sois são", pp:"fui foste foi fomos fostes foram", imp:"era eras era éramos éreis eram", fut:"serei serás será seremos sereis serão", cond:"seria serias seria seríamos seríeis seriam", cpres:"seja sejas seja sejamos sejais sejam", cimp:"fosse fosses fosse fôssemos fôsseis fossem", cfut:"for fores for formos fordes forem", imper:"sê seja sejamos sede sejam"},
   estar: {pres:"estou estás está estamos estais estão", pp:"estive estiveste esteve estivemos estivestes estiveram", imp:"estava estavas estava estávamos estáveis estavam", fut:"estarei estarás estará estaremos estareis estarão", cond:"estaria estarias estaria estaríamos estaríeis estariam", cpres:"esteja estejas esteja estejamos estejais estejam", cimp:"estivesse estivesses estivesse estivéssemos estivésseis estivessem", cfut:"estiver estiveres estiver estivermos estiverdes estiverem", imper:"está esteja estejamos estai estejam"},

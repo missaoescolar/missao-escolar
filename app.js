@@ -354,6 +354,8 @@
       face.focus();
     }
     function fim(){
+      const nao = total - acertosPrimeira;
+      MissaoArmazem.atualizar("cartoes", {}, function(c){ c[w.id] = {nao:nao, total:total, data:new Date().toLocaleDateString("pt-PT")}; return c; });
       box.innerHTML =
         '<p class="cards-end">🎉 Arrumaste os '+total+' cartões!</p>'+
         '<p class="cards-meta">Sabias '+acertosPrimeira+' à primeira. Os outros ficaram no fim da pilha até os saberes. Volta a treinar amanhã: lembrar com uns dias de intervalo é o que fixa a matéria.</p>'+
@@ -834,12 +836,21 @@
     const guardado = (MissaoArmazem.ler("caderno", {}) || {})[w.id] || {};
     box.innerHTML = '<p class="bilhete-t">🎫 Bilhete de saída <small>antes de saíres deste mundo: olhar para trás, como nas escolas do Japão</small></p>'+
       PERG.map(function(p){ return '<label><b>'+p[1]+'</b>'+(p[2] ? ' <small>('+p[2]+')</small>' : '')+'<textarea rows="2" data-k="'+p[0]+'">'+escXml(guardado[p[0]] || "")+'</textarea></label>'; }).join("")+
-      '<div class="bilhete-fim"><button type="button" class="ghost">💾 Guardar no caderno</button><small class="bilhete-ok">'+(guardado.data ? 'Guardado a '+escXml(guardado.data) : '')+'</small><a class="bilhete-link" href="caderno.html">📓 Ver o meu caderno</a></div>';
-    box.querySelector("button").addEventListener("click", function(){
-      const e = {}; box.querySelectorAll("textarea").forEach(function(t){ e[t.dataset.k] = t.value.trim(); });
+      '<div class="bilhete-fim"><small class="bilhete-ok" aria-live="polite">'+(guardado.data ? '✅ Guardado no caderno ('+escXml(guardado.data)+')' : '💾 Guarda-se sozinho no teu caderno enquanto escreves.')+'</small>'+
+        '<a class="bilhete-link" href="caderno.html">📓 Ver o meu caderno</a></div>';
+    // saved automatically while writing (a short pause after the last key), so nothing is lost and parents can see it
+    let t = null;
+    const ok = box.querySelector(".bilhete-ok");
+    function guardar(){
+      const e = {}; let algum = false;
+      box.querySelectorAll("textarea").forEach(function(x){ e[x.dataset.k] = x.value.trim(); if(e[x.dataset.k]) algum = true; });
       e.data = new Date().toLocaleDateString("pt-PT");
-      const r = MissaoArmazem.atualizar("caderno", {}, function(c){ c[w.id] = e; return c; });
-      box.querySelector(".bilhete-ok").textContent = (r && r.ok === false) ? "⚠️ Não foi possível guardar agora" : "✅ Guardado a "+e.data;
+      const r = MissaoArmazem.atualizar("caderno", {}, function(c){ if(algum) c[w.id] = e; else delete c[w.id]; return c; });
+      ok.textContent = (r && r.ok === false) ? "⚠️ Não foi possível guardar agora" : (algum ? "✅ Guardado no caderno às "+new Date().toLocaleTimeString("pt-PT", {hour:"2-digit", minute:"2-digit"}) : "Bilhete vazio: saiu do caderno.");
+    }
+    box.querySelectorAll("textarea").forEach(function(x){
+      x.addEventListener("input", function(){ ok.textContent = "✏️ A escrever…"; clearTimeout(t); t = setTimeout(guardar, 900); });
+      x.addEventListener("blur", function(){ if(t){ clearTimeout(t); t = null; guardar(); } });
     });
     return box;
   }
@@ -975,12 +986,19 @@
     function goal(){ const g = MissaoArmazem.lerTexto("home_intent", "perceber"); return GOALS.some(function(x){ return x[0]===g; }) ? g : "perceber"; }
     const goalBar = el("div","map-goal");
     mapNav.parentNode.insertBefore(goalBar, mapNav);
+    // 💡 «Treina mais»: the worlds where this child showed most difficulty (dificuldades.js), right above the tiles
+    const treinaBar = el("div","treina-mais"); treinaBar.hidden = true;
+    mapNav.parentNode.insertBefore(treinaBar, mapNav);
     function renderMap(){
       const g = goal(), stage = g==="perceber" ? "" : "/praticar";
       const G = GOALS.find(function(x){ return x[0]===g; });
       goalBar.innerHTML = '<span class="gi" aria-hidden="true">'+G[1]+'</span><span><b>'+G[2]+'</b> · '+G[4]+'</span>'+
         '<a class="link-btn" href="index.html">Mudar</a>';
       const nx = worlds.find(function(w){ return !isComplete(w); });
+      const dif = (typeof MissaoDificuldades !== "undefined") ? MissaoDificuldades.analisar([{worlds:worlds}]).slice(0, 3) : [];
+      treinaBar.hidden = !dif.length;
+      treinaBar.innerHTML = dif.length ? '<p class="tm-t">💡 Treina mais <small>— onde tiveste mais dúvidas</small></p><ul>'+
+        dif.map(function(d){ return '<li><a href="#'+cfg.key+'/'+d.w.id+'/praticar" style="--wc:var(--'+d.w.c+')">'+d.w.icon+' Mundo '+d.w.num+': '+d.w.title+'</a> <small>'+d.motivos.join(" · ")+'</small></li>'; }).join("")+'</ul>' : '';
       let html = "";
       worlds.forEach(function(w){
         const d = worldDone(w), n = w.missions.length, done = isComplete(w), isNext = (w===nx);
@@ -1321,9 +1339,9 @@
         gWrap.appendChild(chips);
         T.appendChild(gWrap);
         // 🃏 retrieval practice with the same key words, one card at a time
-        const cardsBtn = el("button","ghost-btn cards-btn","🃏 Treinar com cartões ("+w.gloss.length+")"); cardsBtn.type = "button";
-        cardsBtn.addEventListener("click", function(){ openCartoes(w, cardsBtn); });
-        T.appendChild(cardsBtn);
+        const atalho = el("button","ghost-btn cards-btn","🃏 Já leste? Treina estas palavras em cartões →"); atalho.type = "button";
+        atalho.addEventListener("click", function(){ setStage("praticar", true); const c = document.getElementById("cartoes-"+w.id); if(c) c.scrollIntoView({block:"center"}); });
+        T.appendChild(atalho);
       }
       if(C.children.length){
         C.appendChild(nextSec(E ? "Seguinte: ✏️ os exemplos resolvidos →" : "Seguinte: 📋 para o teste →", E ? "exemplos" : "teste"));
@@ -1400,6 +1418,15 @@
         setTimeout(function(){ pick.classList.remove("picked"); }, 1800);
       });
 
+      if(w.gloss && w.gloss.length){
+        const cb = el("div","cartoes-box"); cb.id = "cartoes-"+w.id;
+        cb.appendChild(el("p","subhead",'🃏 Cartões de memória <small class="muted">— as '+w.gloss.length+' palavras-chave, uma de cada vez</small>'));
+        cb.appendChild(el("p","cartoes-txt","Diz a resposta em voz alta antes de virar o cartão. Os que ainda não sabes ficam guardados para te sugerirmos treinar outra vez."));
+        const b = el("button","cta","🃏 Treinar com cartões"); b.type = "button";
+        b.addEventListener("click", function(){ openCartoes(w, b); });
+        cb.appendChild(b);
+        P.appendChild(cb);
+      }
       if(w.quiz && w.quiz.length){
         const qbox = el("div","");
         const hasHard = !!(extra.desafio||[]).length;
@@ -1642,6 +1669,7 @@
       }
       current = target;
       if(mapView) mapView.hidden = !!target;
+      if(!target) renderMap();   // back on the map: refresh the «Treina mais» suggestions
       worlds.forEach(function(w){ document.getElementById(w.id).hidden = (w.id!==target); });
       review.hidden = (target!=="revisao");
       if(finalSec) finalSec.hidden = (target!=="final");

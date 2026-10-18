@@ -91,7 +91,8 @@ const MissaoBanco = (function(){
     const id = q && q._id; if(!id) return;
     const st = load(K_SRS, {}), e = st[id] || [0, 0, 0, 0];
     const caixa = certo ? Math.min(e[0] + 1, DIAS.length - 1) : 0;
-    st[id] = [caixa, hojeN() + (certo ? DIAS[caixa] : 1), e[2] + 1, certo ? 1 : 0];
+    // [caixa, dia da próxima revisão, tentativas, última certa (1/0), total de erros] — os erros servem a dificuldades.js
+    st[id] = [caixa, hojeN() + (certo ? DIAS[caixa] : 1), e[2] + 1, certo ? 1 : 0, (e[4] || 0) + (certo ? 0 : 1)];
     save(K_SRS, st);
   }
   function visto(worldId){ const v = load(K_VISTOS, []); if(v.indexOf(worldId) === -1){ v.push(worldId); save(K_VISTOS, v); } }

@@ -1092,3 +1092,14 @@
   .robo-bug summary, .robo-sol summary{ cursor:pointer; font-weight:700; }
   .robo-bug p{ margin:6px 0; line-height:1.55; }
   @media print{ .erros-box, .robo-bug, .robo-sol{ display:block; } }
+
+  .cartoes-box{ margin:18px 0; padding:4px 16px 14px; border-radius:16px; border:1.5px solid var(--border); background:var(--paper); }
+  .cartoes-txt{ margin:0 0 10px; color:var(--text-muted); font-size:.92rem; }
+
+  /* 💡 Treina mais (dificuldades.js) */
+  .treina-mais{ margin:0 0 12px; padding:10px 14px; border-radius:14px; border:1.5px solid var(--accent); background:var(--surface); }
+  .tm-t{ margin:0 0 6px; font-family:"Lexend",sans-serif; font-weight:800; }
+  .tm-t small{ font-weight:400; color:var(--text-muted); }
+  .treina-mais ul{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:4px; }
+  .treina-mais a{ font-weight:700; color:var(--wc, var(--accent)); }
+  .treina-mais li small{ color:var(--text-muted); }

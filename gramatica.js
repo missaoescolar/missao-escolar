@@ -33,14 +33,21 @@
   }
 
   /* ---------- 🔤 Verbos ---------- */
-  function conjugar(v, tempo){
-    if(VERB_IRREG[v]) return VERB_IRREG[v][tempo].split(" ");
-    const g = v.slice(-2), raiz = v.slice(0, -2), M = VERB_MODELOS[g];
-    if(tempo === "fut") return VERB_FUT.map(t => v + t);
-    if(tempo === "cond") return VERB_COND.map(t => v + t);
-    return M[tempo].map(t => raiz + t);
+  const TODOS_REG = VERB_REGULARES.ar.concat(VERB_REGULARES.er, VERB_REGULARES.ir);
+  // each form as [radical, terminação] (irregular verbs: the whole form, no split)
+  function formas(v, tempo){
+    if(VERB_IRREG[v]) return VERB_IRREG[v][tempo].split(" ").map(f => [f, ""]);
+    const g = v.slice(-2), raiz = v.slice(0, -2);
+    if(tempo === "fut") return VERB_FUT.map(t => [raiz, v.slice(-2) + t]);
+    if(tempo === "cond") return VERB_COND.map(t => [raiz, v.slice(-2) + t]);
+    return VERB_MODELOS[g][tempo].map(t => [verbAjustar(v, raiz, t), t]);
   }
-  function renderVerbos(){
+  const conjugar = (v, t) => formas(v, t).map(p => p[0] + p[1]);
+  const nomeTempo = t => VERB_TEMPOS.find(x => x[0] === t)[1];
+  const prefixo = t => t === "cpres" ? "que " : t === "cimp" ? "se " : t === "cfut" ? "quando " : "";
+  const pessoasDe = t => t === "imper" ? VERB_IMPER_PESSOAS : VERB_PESSOAS;
+
+  function renderTabela(){
     const sel = $("v-verbo"), tsel = $("v-tempo");
     sel.innerHTML =
       '<optgroup label="Irregulares">'+Object.keys(VERB_IRREG).map(v => '<option>'+v+'</option>').join("")+'</optgroup>'+
@@ -48,15 +55,70 @@
         '<optgroup label="Regulares: '+g[1]+'">'+VERB_REGULARES[g[0]].map(v => '<option>'+v+'</option>').join("")+'</optgroup>').join("");
     tsel.innerHTML = VERB_TEMPOS.map(t => '<option value="'+t[0]+'">'+t[1]+'</option>').join("");
     const show = () => {
-      const v = sel.value, t = tsel.value, f = conjugar(v, t), imper = t === "imper";
-      const pessoas = imper ? VERB_IMPER_PESSOAS : VERB_PESSOAS;
-      const pre = t === "cpres" ? "que " : t === "cimp" ? "se " : t === "cfut" ? "quando " : "";
-      $("v-tab").innerHTML = '<table class="v-table"><caption>'+v+' · '+VERB_TEMPOS.find(x => x[0] === t)[1]+'</caption><tbody>'+
-        f.map((forma, i) => '<tr><th>'+pre+pessoas[i]+'</th><td>'+(forma === "—" ? '<span class="v-nao">não se usa</span>' : '<b>'+forma+'</b>')+'</td></tr>').join("")+'</tbody></table>'+
-        (VERB_IRREG[v] ? '<p class="v-nota">Verbo irregular: muda a raiz em alguns tempos.</p>' : '<p class="v-nota">Verbo regular: a raiz <b>'+v.slice(0,-2)+'-</b> fica igual; só mudam as terminações.</p>');
+      const v = sel.value, t = tsel.value, f = formas(v, t), pessoas = pessoasDe(t), irr = !!VERB_IRREG[v];
+      $("v-tab").innerHTML = '<table class="v-table"><caption>'+v+' · '+nomeTempo(t)+'</caption><tbody>'+
+        f.map((p, i) => '<tr><th>'+prefixo(t)+pessoas[i]+'</th><td>'+(p[0] === "—" ? '<span class="v-nao">não se usa</span>' : '<b>'+p[0]+'</b>'+(p[1] ? '<span class="v-term">'+p[1]+'</span>' : ''))+'</td></tr>').join("")+'</tbody></table>'+
+        (irr ? '<p class="v-nota">Verbo <b>irregular</b>: o próprio radical muda (compara os tempos), por isso estas formas aprendem-se de cor.</p>'
+             : '<p class="v-nota">Verbo <b>regular</b>: o radical (a negrito) fica igual e só muda a <span class="v-term">terminação</span>. '+(formas(v, t).some(p => p[0] !== v.slice(0, -2)) ? 'Aqui muda uma letra do radical para o som não mudar.' : '')+'</p>');
     };
     sel.addEventListener("change", show); tsel.addEventListener("change", show);
     show();
+  }
+
+  /* ✍️ Treinar: a random verb and tense, all persons, endless */
+  let atual = null, seguidos = 0;
+  const semAcento = s => s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+  function novoDesafio(){
+    const tipo = $("t-tipo").value, tsel = $("t-tempo").value;
+    const lista = tipo === "reg" ? TODOS_REG : TODOS_REG.concat(Object.keys(VERB_IRREG).filter(v => v !== "poder"));
+    const v = lista[Math.floor(Math.random()*lista.length)];
+    const tempos = VERB_TEMPOS.map(t => t[0]);
+    const t = tsel === "qualquer" ? tempos[Math.floor(Math.random()*tempos.length)] : tsel;
+    atual = {v:v, t:t, certas:conjugar(v, t)};
+    const pessoas = pessoasDe(t);
+    $("t-box").innerHTML =
+      '<p class="t-q">✍️ Conjuga o verbo <b>'+v+'</b> no <b>'+nomeTempo(t).replace(" · ", " — ")+'</b>.</p>'+
+      pessoas.map((p, i) => '<div class="t-linha"><label for="t-in-'+i+'">'+prefixo(t)+p+'</label><input id="t-in-'+i+'" autocomplete="off" autocapitalize="none" spellcheck="false"><span class="t-fb" id="t-fb-'+i+'"></span></div>').join("")+
+      '<div class="t-acoes"><button type="button" class="cta" id="t-ver">✅ Verificar</button><button type="button" class="ghost-btn" id="t-novo">🎲 Outro verbo</button><small class="muted" id="t-seg">'+(seguidos ? '🔥 '+seguidos+' seguido'+(seguidos === 1 ? '' : 's')+' sem erros' : '')+'</small></div>'+
+      '<div id="t-res"></div>';
+    $("t-ver").addEventListener("click", verificar);
+    $("t-novo").addEventListener("click", novoDesafio);
+    $("t-in-0").focus();
+    $("t-box").querySelectorAll("input").forEach((inp, i, all) => inp.addEventListener("keydown", e => {
+      if(e.key === "Enter"){ e.preventDefault(); if(i < all.length - 1) all[i+1].focus(); else verificar(); }
+    }));
+  }
+  function verificar(){
+    let certas = 0, quase = 0;
+    atual.certas.forEach((c, i) => {
+      const inp = $("t-in-"+i), fb = $("t-fb-"+i), r = inp.value.trim().toLowerCase().replace(/\s+/g, " ");
+      inp.classList.remove("certo", "errado");
+      if(c === "—"){ fb.textContent = "—"; certas++; return; }
+      if(r === c){ inp.classList.add("certo"); fb.textContent = "✅"; certas++; }
+      else if(r && semAcento(r) === semAcento(c)){ inp.classList.add("errado"); fb.innerHTML = "⚠️ acento: <b>"+c+"</b>"; quase++; }
+      else { inp.classList.add("errado"); fb.innerHTML = "❌ <b>"+c+"</b>"; }
+    });
+    const total = atual.certas.length, tudo = certas === total;
+    seguidos = tudo ? seguidos + 1 : 0;
+    const p = formas(atual.v, atual.t), irr = !!VERB_IRREG[atual.v];
+    $("t-res").innerHTML = '<div class="t-res">'+(tudo ? '🎉 <b>Tudo certo!</b> ' : '<b>'+certas+' de '+total+' certas.</b> '+(quase ? 'Em '+quase+', só falhou o acento. ' : ''))+
+      (irr ? 'O verbo <b>'+atual.v+'</b> é irregular: o radical muda, por isso vale a pena rever a tabela dele.'
+           : 'Repara: o radical <b>'+p[0][0]+'</b> fica e muda a terminação: '+p.slice(0, 3).map(x => x[0]+'<span class="v-term">'+x[1]+'</span>').join(", ")+'…')+'</div>';
+    $("t-seg").textContent = seguidos ? '🔥 '+seguidos+' seguido'+(seguidos === 1 ? '' : 's')+' sem erros' : '';
+  }
+  function renderTreinar(){
+    $("t-tempo").innerHTML = '<option value="qualquer">Qualquer tempo</option>'+VERB_TEMPOS.map(t => '<option value="'+t[0]+'">'+t[1]+'</option>').join("");
+    $("t-tipo").addEventListener("change", novoDesafio); $("t-tempo").addEventListener("change", novoDesafio);
+  }
+  function setModo(m){
+    document.querySelectorAll("[data-vmodo]").forEach(b => { const on = b.dataset.vmodo === m; b.classList.toggle("active", on); b.setAttribute("aria-selected", on ? "true" : "false"); });
+    $("v-modo-tabela").hidden = (m !== "tabela"); $("v-modo-treinar").hidden = (m !== "treinar");
+    if(m === "treinar" && !atual) novoDesafio();
+  }
+  function renderVerbos(){
+    renderTabela(); renderTreinar();
+    document.querySelectorAll("[data-vmodo]").forEach(b => b.addEventListener("click", () => setModo(b.dataset.vmodo)));
+    setModo("tabela");
   }
 
   /* ---------- tabs and search ---------- */
@@ -90,5 +152,6 @@
   document.querySelectorAll("[data-parte]").forEach(b => b.addEventListener("click", () => setParte(b.dataset.parte, true)));
   $("g-busca").addEventListener("input", filtrar);
   const h = location.hash.slice(1);
-  setParte(partes.indexOf(h) !== -1 ? h : "gram", false);
+  setParte(h === "treinar" ? "verbos" : (partes.indexOf(h) !== -1 ? h : "gram"), false);
+  if(h === "treinar") setModo("treinar");
 })();

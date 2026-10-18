@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Gramática e Prontuário — Missão Escolar</title>
-<link rel="stylesheet" href="style.css?v=20261018-1220">
+<link rel="stylesheet" href="style.css?v=20261018-1236">
 <style>
   /* Gramática · Prontuário · Verbos: one part at a time, calm and printable */
   .g-head h1{ margin:6px 0 4px; font-size:clamp(1.5rem,1.2rem+1.4vw,2rem); }
@@ -36,6 +36,24 @@
   .v-nao{ color:var(--text-muted); font-style:italic; }
   .v-nota{ color:var(--text-muted); font-size:.9rem; }
   .sr-only{ position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; }
+  .v-explica{ background:var(--surface); border:1px solid var(--border-soft); border-radius:14px; padding:10px 16px; margin:0 0 14px; line-height:1.6; }
+  .v-explica summary{ cursor:pointer; font-family:"Lexend",sans-serif; font-weight:800; }
+  .v-explica p{ margin:8px 0; }
+  .v-ex{ margin:8px 0; max-width:640px; font-size:.93rem; }
+  .v-ex th{ background:var(--surface-2); color:var(--text); font-weight:700; width:auto; }
+  .v-term{ color:var(--accent); font-weight:800; }
+  .v-modos{ margin:0 0 14px; }
+  .t-box{ background:var(--surface); border:1px solid var(--border-soft); border-radius:16px; padding:14px 16px; box-shadow:var(--shadow); max-width:640px; }
+  .t-q{ margin:0 0 12px; font-size:1.05rem; line-height:1.5; }
+  .t-linha{ display:grid; grid-template-columns:minmax(120px, 40%) 1fr auto; gap:8px; align-items:center; margin:0 0 8px; }
+  .t-linha label{ color:var(--text-muted); }
+  .t-linha input{ font:inherit; padding:8px 10px; border-radius:10px; border:1.5px solid var(--border); background:var(--bg); color:var(--text); min-width:0; }
+  .t-linha input.certo{ border-color:#3E8F5C; }
+  .t-linha input.errado{ border-color:#C0392B; }
+  .t-fb{ font-size:.88rem; min-width:1.5em; }
+  .t-acoes{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin:12px 0 0; }
+  .t-res{ margin:12px 0 0; padding:10px 12px; border-radius:12px; background:var(--surface-2); line-height:1.55; }
+  @media (max-width:520px){ .t-linha{ grid-template-columns:1fr auto; } .t-linha label{ grid-column:1 / -1; } }
   .g-vazio{ background:var(--surface); border:1px dashed var(--border); border-radius:14px; padding:16px; text-align:center; color:var(--text-muted); }
   @media print{
     .topbar, .subtabs, .g-busca{ display:none !important; }
@@ -72,15 +90,41 @@
   <div id="g-gram" role="tabpanel"></div>
   <div id="g-pront" role="tabpanel" hidden></div>
   <div id="g-verbos" role="tabpanel" hidden>
-    <div class="v-sel">
-      <label>Verbo <select id="v-verbo"></select></label>
-      <label>Tempo <select id="v-tempo"></select></label>
+    <details class="v-explica" open>
+      <summary>🧩 Como é feito um verbo: radical + terminação</summary>
+      <p>Cada forma de um verbo tem duas partes. O <b>radical</b> é a parte que guarda o <b>significado</b> e quase não muda. A <b>terminação</b> é a parte que <b>muda</b> e diz <b>quem</b> faz (a pessoa), <b>quantos</b> (singular ou plural) e <b>quando</b> e <b>como</b> (o tempo e o modo).</p>
+      <p>Para encontrar o radical, tira ao infinitivo o <b>-ar</b>, o <b>-er</b> ou o <b>-ir</b>: <b>cant</b>-ar, <b>com</b>-er, <b>part</b>-ir. Essa vogal (a, e, i) diz a <b>conjugação</b>: 1.ª (-ar), 2.ª (-er) e 3.ª (-ir). O verbo <b>pôr</b> pertence à 2.ª.</p>
+      <table class="v-table v-ex"><thead><tr><th>Forma</th><th>Radical</th><th>Terminação</th><th>O que a terminação diz</th></tr></thead><tbody>
+        <tr><td>eu <b>canto</b></td><td>cant</td><td><span class="v-term">o</span></td><td>eu · presente</td></tr>
+        <tr><td>nós <b>cantávamos</b></td><td>cant</td><td><span class="v-term">ávamos</span></td><td>nós · pretérito imperfeito</td></tr>
+        <tr><td>eles <b>cantarão</b></td><td>cant</td><td><span class="v-term">arão</span></td><td>eles · futuro</td></tr>
+        <tr><td>tu <b>comeste</b></td><td>com</td><td><span class="v-term">este</span></td><td>tu · pretérito perfeito</td></tr>
+        <tr><td>que vós <b>partais</b></td><td>part</td><td><span class="v-term">ais</span></td><td>vós · presente do conjuntivo</td></tr>
+      </tbody></table>
+      <p><b>Verbos regulares</b> mantêm o radical e seguem o modelo da sua conjugação (cantar, comer, partir). Às vezes muda só uma letra, para o som não mudar: jo<b>g</b>ar → jo<b>gu</b>ei; to<b>c</b>ar → to<b>qu</b>ei; conhe<b>c</b>er → conhe<b>ç</b>o. <b>Verbos irregulares</b> mudam o próprio radical: <b>faz</b>-er → eu <b>fiz</b>, eu <b>farei</b>; <b>ter</b> → eu <b>tive</b>.</p>
+    </details>
+    <div class="subtabs v-modos" role="tablist" aria-label="Verbos">
+      <button type="button" class="subtab" role="tab" data-vmodo="tabela">📋 Tabela</button>
+      <button type="button" class="subtab" role="tab" data-vmodo="treinar">✍️ Treinar</button>
     </div>
-    <div id="v-tab" aria-live="polite"></div>
+    <div id="v-modo-tabela">
+      <div class="v-sel">
+        <label>Verbo <select id="v-verbo"></select></label>
+        <label>Tempo <select id="v-tempo"></select></label>
+      </div>
+      <div id="v-tab" aria-live="polite"></div>
+    </div>
+    <div id="v-modo-treinar" hidden>
+      <div class="v-sel">
+        <label>Verbos <select id="t-tipo"><option value="reg">Só regulares</option><option value="todos">Regulares e irregulares</option></select></label>
+        <label>Tempo <select id="t-tempo"></select></label>
+      </div>
+      <div id="t-box" class="t-box"></div>
+    </div>
   </div>
 </div>
 
-<script src="data/gramatica-pt.js?v=20261018-1220"></script>
-<script src="gramatica.js?v=20261018-1220"></script>
+<script src="data/gramatica-pt.js?v=20261018-1236"></script>
+<script src="gramatica.js?v=20261018-1236"></script>
 </body>
 </html>
