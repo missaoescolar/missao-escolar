@@ -81,7 +81,7 @@ window.addEventListener("load", function(){
     const textos = (MissaoArmazem.ler("ws_saved", []) || []).filter(x => x && x.partilhar);
     const hm = MissaoArmazem.ler("humor", {}) || {}, humor = {amarelo:0, vermelho:0, verde:0, azul:0};
     { const d2 = new Date(); for(let i = 0; i < 7; i++){ const k = d2.getFullYear()+"-"+String(d2.getMonth()+1).padStart(2,"0")+"-"+String(d2.getDate()).padStart(2,"0"); if(hm[k] && humor[hm[k]] !== undefined) humor[hm[k]]++; d2.setDate(d2.getDate()-1); } }
-    return {prog:prog, respondidas:ids.length, certasUltima:certasUltima, dias:dias, dif:dif, textos:textos, humor:humor};
+    return {prog:prog, respondidas:ids.length, certasUltima:certasUltima, dias:dias, dif:dif, textos:textos, humor:humor, plano:(function(){ const P = MissaoArmazem.ler("plano", {}) || {}, it = P.itens || [], d = new Date(), wd = (d.getDay()+6) % 7; const ini = new Date(d.getFullYear(), d.getMonth(), d.getDate()-wd), fim = new Date(ini); fim.setDate(fim.getDate()+6); const k = x => x.getFullYear()+"-"+String(x.getMonth()+1).padStart(2,"0")+"-"+String(x.getDate()).padStart(2,"0"); const s = it.filter(x => x.data >= k(ini) && x.data <= k(fim)); const hoje = k(d); return {total:s.length, feitos:s.filter(x => x.feito).length, testes:(P.testes || []).filter(t => t.data >= hoje).sort((a, b) => a.data < b.data ? -1 : 1)}; })()};
   }
 
   /* ---------- the report, as page and as plain text for the e-mail ---------- */
@@ -100,6 +100,7 @@ window.addEventListener("load", function(){
         const dificeis = H.vermelho + H.azul;
         return '<p><b>🧘 Como se sentiu antes de estudar</b> (últimos 7 dias, '+tot+' registo'+(tot === 1 ? '' : 's')+'): 🟡 '+H.amarelo+' · 🟢 '+H.verde+' · 🔴 '+H.vermelho+' · 🔵 '+H.azul+'</p>'+
           (dificeis >= 3 ? '<p class="note-small">Houve vários dias difíceis (🔴 nervoso ou zangado, 🔵 triste ou cansado). Vale a pena uma conversa calma, sem pressa, para perceber o que se passa. Se se mantiver, fale com o diretor de turma, o psicólogo da escola ou o médico assistente.</p>' : ''); })()+
+      (D.plano.total || D.plano.testes.length ? '<p><b>🗓️ Plano da semana:</b> '+D.plano.feitos+' de '+D.plano.total+' sessões feitas.'+(D.plano.testes.length ? ' Próximos testes: '+D.plano.testes.slice(0, 3).map(t => esc(t.data.split("-").reverse().join("/"))+(t.nota ? ' ('+esc(t.nota)+')' : '')).join(", ")+'.' : '')+'</p>' : '')+
       '<p><b>💡 O que treinar esta semana:</b></p>'+(sugestoes.length ? '<ol>'+sugestoes.map(t => '<li>'+esc(t)+'</li>').join("")+'</ol>' : '<p class="note-small">Ainda não há dificuldades registadas. Aparecem quando a criança erra perguntas, escreve uma dúvida no caderno ou treina cartões.</p>')+
       '<p><b>🌱 Dicas para esta semana:</b></p><ul>'+dicas.map(t => '<li><b>'+esc(t[0])+'.</b> '+esc(t[1])+'</li>').join("")+'</ul>'+
       '<p><b>✍️ Textos da Oficina de Escrita que '+esc(nome)+' quis partilhar:</b></p>'+(D.textos.length

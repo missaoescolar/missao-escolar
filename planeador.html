@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>O meu plano da semana — Missão Escolar</title>
+<link rel="stylesheet" href="style.css?v=20261018-2023">
+<script src="prefs.js?v=20261018-2023"></script>
+<style>
+  /* the weekly plan: one column per day on wide screens, one under the other on phones */
+  .pl-head h1{ margin:6px 0 4px; font-size:clamp(1.5rem,1.2rem+1.4vw,2rem); }
+  .pl-head p{ margin:0 0 12px; color:var(--text-muted); }
+  .pl-porque{ background:var(--surface); border:1px solid var(--border-soft); border-radius:14px; padding:10px 14px; margin:0 0 14px; }
+  .pl-porque summary{ cursor:pointer; font-weight:700; }
+  .pl-porque ul{ margin:8px 0 2px; padding-left:20px; line-height:1.55; font-size:.93rem; }
+  .pl-nav{ display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin:0 0 6px; }
+  .pl-nav b{ font-family:"Lexend",sans-serif; }
+  .pl-resumo{ margin:0 0 12px; color:var(--text-muted); }
+  .pl-dias{ display:grid; grid-template-columns:repeat(auto-fill, minmax(230px, 1fr)); gap:10px; }
+  .pl-dia{ background:var(--surface); border:1.5px solid var(--border-soft); border-radius:14px; padding:10px 12px; display:flex; flex-direction:column; gap:6px; }
+  .pl-dia.hoje{ border-color:var(--accent); }
+  .pl-dia h2{ margin:0; font-size:1rem; text-transform:capitalize; }
+  .pl-dia h2 small{ font-weight:400; color:var(--text-muted); text-transform:none; }
+  .pl-item{ display:flex; justify-content:space-between; gap:6px; padding:7px 8px; border-radius:10px; background:var(--paper); border:1px solid var(--border-soft); }
+  .pl-item label{ display:flex; gap:8px; align-items:flex-start; cursor:pointer; }
+  .pl-item label span{ display:flex; flex-direction:column; font-size:.92rem; line-height:1.35; }
+  .pl-item small{ color:var(--text-muted); }
+  .pl-item input{ width:18px; height:18px; accent-color:var(--accent); margin-top:2px; }
+  .pl-item.feito label span{ text-decoration:line-through; opacity:.7; }
+  .pl-acoes{ display:flex; flex-direction:column; align-items:flex-end; gap:4px; }
+  .pl-ir{ font-size:.82rem; font-weight:700; color:var(--accent); white-space:nowrap; }
+  .pl-x{ font:inherit; border:none; background:none; color:var(--text-muted); cursor:pointer; padding:0 4px; }
+  .pl-teste{ padding:7px 8px; border-radius:10px; background:var(--surface-2); font-weight:700; font-size:.92rem; display:flex; justify-content:space-between; gap:6px; }
+  .pl-add{ font:inherit; font-weight:700; cursor:pointer; border:1.5px dashed var(--border); border-radius:10px; background:none; color:var(--text-muted); padding:7px; }
+  .pl-add:hover, .pl-add:focus-visible{ color:var(--accent); border-color:var(--accent); }
+  .pl-box{ background:var(--surface); border:1.5px solid var(--border); border-radius:14px; padding:12px 14px; margin:12px 0; }
+  .pl-box h2{ margin:0 0 8px; font-size:1rem; }
+  .pl-campos{ display:flex; gap:10px; flex-wrap:wrap; margin:0 0 10px; }
+  .pl-campos label{ display:flex; flex-direction:column; gap:4px; font-weight:700; font-size:.88rem; }
+  .pl-campos select, .pl-campos input{ font:inherit; font-weight:400; padding:8px 10px; border-radius:10px; border:1.5px solid var(--border); background:var(--bg); color:var(--text); max-width:100%; }
+  .pl-msg{ min-height:1.3em; margin:6px 0 0; }
+  @media print{ .topbar, .pl-porque, .pl-add, .pl-x, .pl-ir, .pl-nav button, #pl-form, #pl-teste{ display:none !important; } }
+</style>
+</head>
+<body>
+
+<div class="page">
+  <div class="topbar">
+    <p class="crumbs"><a href="index.html">🏠 Início</a> › O meu plano da semana</p>
+    <a class="ghost" href="pais.html">👪 Para pais</a>
+  </div>
+
+  <header class="pl-head">
+    <h1>🗓️ O meu plano da semana</h1>
+    <p>Escolhe, para cada dia, uma ou duas sessões curtas. Quando acabares, risca.</p>
+  </header>
+
+  <details class="pl-porque">
+    <summary>Porque é que planear ajuda?</summary>
+    <ul>
+      <li><b>O que está à vista faz-se.</b> Ver o plano evita o «depois faço» e ajuda a começar.</li>
+      <li><b>Pouco e muitas vezes.</b> Três sessões curtas em dias diferentes fixam mais do que estudar tudo na véspera.</li>
+      <li><b>Riscar dá energia.</b> Cada sessão feita é uma pequena vitória.</li>
+    </ul>
+  </details>
+
+  <section class="pl-box" id="pl-teste">
+    <h2>📝 Tenho um teste</h2>
+    <div class="pl-campos">
+      <label>Disciplina <select id="pl-teste-s"></select></label>
+      <label>Data <input type="date" id="pl-teste-d"></label>
+      <label>Matéria (opcional) <input type="text" id="pl-teste-n" maxlength="60" placeholder="Ex.: frações e potências"></label>
+    </div>
+    <button type="button" class="cta" id="pl-teste-ok">Marcar e planear 3 sessões</button>
+    <p class="pl-msg" id="pl-teste-msg" aria-live="polite"></p>
+  </section>
+
+  <div class="pl-nav">
+    <button type="button" class="ghost-btn" id="pl-ant">← Semana anterior</button>
+    <b id="pl-semana"></b>
+    <button type="button" class="ghost-btn" id="pl-seg">Semana seguinte →</button>
+    <button type="button" class="ghost-btn" id="pl-hoje">Esta semana</button>
+  </div>
+  <p class="pl-resumo" id="pl-resumo"></p>
+  <p class="pl-msg" id="pl-msg" aria-live="polite"></p>
+
+  <section class="pl-box" id="pl-form" hidden>
+    <h2 id="pl-form-t">Nova sessão</h2>
+    <div class="pl-campos">
+      <label>Disciplina <select id="pl-s"></select></label>
+      <label>Tema <select id="pl-w"></select></label>
+      <label>O quê <select id="pl-o">
+        <option value="aprender">📖 Aprender (exemplos e resumo)</option>
+        <option value="praticar">🎯 Praticar (cartões e Testa-te)</option>
+        <option value="rever">🔁 Rever para o teste</option>
+        <option value="oficina">✍️ Escrever na Oficina</option>
+      </select></label>
+      <label>Tempo <select id="pl-min"><option value="15">15 min</option><option value="25">25 min</option><option value="40">40 min</option></select></label>
+    </div>
+    <button type="button" class="cta" id="pl-guardar">Pôr no plano</button>
+    <button type="button" class="ghost-btn" id="pl-cancelar">Cancelar</button>
+  </section>
+
+  <div class="pl-dias" id="pl-dias"></div>
+</div>
+
+<script src="armazem.js?v=20261018-2023"></script>
+<script src="data/portugues.js?v=20261018-2023"></script>
+<script src="data/hgp.js?v=20261018-2023"></script>
+<script src="data/matematica.js?v=20261018-2023"></script>
+<script src="data/cn.js?v=20261018-2023"></script>
+<script src="data/ingles.js?v=20261018-2023"></script>
+<script src="data/cn7.js?v=20261018-2023"></script>
+<script src="data/fq7.js?v=20261018-2023"></script>
+<script src="shared.js?v=20261018-2023"></script>
+<script src="dificuldades.js?v=20261018-2023"></script>
+<script src="planeador.js?v=20261018-2023"></script>
+</body>
+</html>
