@@ -6,6 +6,12 @@
 const PHET = id => "https://phet.colorado.edu/sims/html/"+id+"/latest/"+id+"_all.html?locale=pt";
 
 const MISSAO_SIMS = {
+  q2: [{t:"O meu Sistema Solar", d:"Põe planetas a girar à volta de uma estrela e vê como a distância muda o tempo de uma volta.", url:PHET("my-solar-system")}],
+  q3: [{t:"Gravidade e órbitas", d:"Liga e desliga a gravidade e vê o que acontece à Lua e à Terra.", url:PHET("gravity-and-orbits")}],
+  q4: [{t:"Concentração", d:"Junta soluto à água, evapora, dilui e vê a concentração a mudar. Descobre quando fica saturada.", url:PHET("concentration")}],
+  q5: [{t:"Estados da matéria", d:"Aquece e arrefece água, oxigénio e outros: vê as partículas a passar de sólido a líquido e a gasoso.", url:PHET("states-of-matter-basics")}],
+  q6: [{t:"Massa volúmica", d:"Mede massa e volume de blocos e descobre porque é que uns flutuam e outros afundam.", url:PHET("density")}],
+  q8: [{t:"Formas e transformações de energia", d:"Aquece água, tijolos e ferro e segue a energia de uma fonte até um recetor.", url:PHET("energy-forms-and-changes")}],
   n1: [{t:"Aritmética", d:"Treina a multiplicação e descobre os fatores de um número (o separador «Fatorizar» é ótimo para divisores).", url:PHET("arithmetic")}],
   n2: [
     {t:"Introdução às frações", d:"Monta frações com pizzas, barras e copos, e vê o que quer dizer numerador e denominador.", url:PHET("fractions-intro")},

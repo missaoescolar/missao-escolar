@@ -20,7 +20,8 @@ const MISSAO_SUBJECTS_6 = [
 
 /* Disciplinas do 7.º ano já prontas (as outras ainda estão em preparação). */
 const MISSAO_SUBJECTS_7 = [
-  {key:"cn7", name:"Ciências Naturais", ano:"7", icon:"🔬", store:"cn7_missions", page:"7ano.html", worlds: typeof CN7_WORLDS !== "undefined" ? CN7_WORLDS : []}
+  {key:"cn7", name:"Ciências Naturais", ano:"7", icon:"🔬", store:"cn7_missions", page:"7ano.html", worlds: typeof CN7_WORLDS !== "undefined" ? CN7_WORLDS : []},
+  {key:"fq7", name:"Físico-Química", ano:"7", icon:"⚗️", store:"fq7_missions", page:"7ano.html", worlds: typeof FQ7_WORLDS !== "undefined" ? FQ7_WORLDS : []}
 ];
 /* Each year page says which year it is (var MISSAO_ANO = "7" before the scripts); without it, it is the 6.º ano. */
 const MISSAO_ANO_ATUAL = (typeof MISSAO_ANO !== "undefined") ? String(MISSAO_ANO) : "6";
