@@ -280,6 +280,69 @@
     }
     return box;
   }
+  /* 🧩 «Começar» as cards, one at a time (layout «Caderno Vivo»): "Cartão k de n" with dots, 🔊 Ouvir,
+     ← Anterior / Seguinte: <next title> →, and the sequence of cards below (a visual schedule, as in TEACCH:
+     seeing what comes next lowers anxiety). The theme map is split into its parts (one idea per card). */
+  function tituloCartao(p, i){
+    if(p.classList.contains("anim-list")) return "▶ Animações";
+    const h = p.querySelector(".mt-h, .subhead, .problema-t, figcaption, .dist-title, .member-title");
+    if(!h) return "Parte "+(i+1);
+    const c = h.cloneNode(true); c.querySelectorAll("small").forEach(function(s){ s.remove(); });
+    return c.textContent.replace(/\s+/g, " ").trim().slice(0, 48);
+  }
+  function emCartoes(C, fim){
+    const partes = [];
+    Array.prototype.slice.call(C.children).forEach(function(ch){
+      if(ch.classList.contains("mapa-tema")){
+        let g = null;
+        Array.prototype.slice.call(ch.children).forEach(function(x){
+          if(!g || x.classList.contains("mt-h")){ g = el("div","mapa-tema"); partes.push(g); }
+          g.appendChild(x);
+        });
+        ch.remove();
+      } else partes.push(ch);
+    });
+    const n = partes.length, tit = partes.map(tituloCartao);
+    const box = el("div","cartoes");
+    const cab = el("div","cart-cab");
+    const conta = el("span","cart-conta"); conta.setAttribute("aria-live","polite");
+    const pontos = el("span","cart-pontos"); pontos.setAttribute("aria-hidden","true");
+    const ouvir = el("button","ghost-btn cart-ouvir","🔊 Ouvir"); ouvir.type = "button";
+    cab.appendChild(conta); cab.appendChild(pontos); cab.appendChild(ouvir);
+    box.appendChild(cab);
+    const cards = partes.map(function(p){ const c = el("div","cartao"); c.appendChild(p); box.appendChild(c); return c; });
+    const nav = el("div","cart-nav");
+    const ant = el("button","ghost-btn","← Anterior"); ant.type = "button";
+    const seg = el("button","cta",""); seg.type = "button";
+    nav.appendChild(ant); nav.appendChild(seg); box.appendChild(nav);
+    const seq = el("ol","cart-seq"); seq.setAttribute("aria-label","Os cartões deste passo");
+    const seqB = tit.map(function(t, i){
+      const li = document.createElement("li");
+      const b = el("button","",'<small>Cartão '+(i+1)+'</small><b>'+t+'</b>'); b.type = "button";
+      b.addEventListener("click", function(){ mostra(i, true); });
+      li.appendChild(b); seq.appendChild(li); return b;
+    });
+    let k = 0;
+    function mostra(i, byUser){
+      k = i;
+      cards.forEach(function(c, j){ c.hidden = (j!==i); });
+      conta.innerHTML = '<b>Cartão '+(i+1)+' de '+n+'</b>';
+      pontos.innerHTML = cards.map(function(_, j){ return '<i class="'+(j<i ? 'ok' : j===i ? 'on' : '')+'"></i>'; }).join("");
+      seqB.forEach(function(b, j){ b.classList.toggle("on", j===i); b.classList.toggle("ok", j<i); if(j===i) b.setAttribute("aria-current","step"); else b.removeAttribute("aria-current"); });
+      ant.disabled = (i===0);
+      seg.textContent = i < n-1 ? "Seguinte: "+tit[i+1]+" →" : fim.label;
+      if(byUser && box.getBoundingClientRect().top < 0) box.scrollIntoView({block:"start"});
+    }
+    ant.addEventListener("click", function(){ if(k>0) mostra(k-1, true); });
+    seg.addEventListener("click", function(){ if(k<n-1) mostra(k+1, true); else fim.fn(); });
+    ouvir.addEventListener("click", function(){
+      if(window.speechSynthesis && window.speechSynthesis.speaking){ window.speechSynthesis.cancel(); return; }
+      speak(cards[k].innerText);
+    });
+    C.appendChild(box);
+    if(n > 1) C.appendChild(seq);
+    mostra(0, false);
+  }
   function buildSintese(items){
     const wrap = el("div","");
     wrap.appendChild(el("p","subhead",'🗺️ Resumo visual <small class="muted">— o essencial num relance</small>'));
@@ -1155,7 +1218,9 @@
     function renderWorldProgress(w){
       const d = worldDone(w), n = w.missions.length;
       const p = document.getElementById("prog-"+w.id);
-      if(p) p.textContent = (isComplete(w) ? "🏅 " : "🎯 ")+d+"/"+n;
+      // "X de N missões" + one segment per mission (green = done)
+      if(p) p.innerHTML = '<span class="wprog-t">'+(isComplete(w) ? "🏅 " : "")+'<b>'+d+' de '+n+'</b> missões</span>'+
+        '<span class="segs" aria-hidden="true">'+w.missions.map(function(_, i){ return '<i'+(i<d ? ' class="ok"' : '')+'></i>'; }).join("")+'</span>';
       const m = document.getElementById("mcount-"+w.id);
       if(m) m.textContent = "· "+d+"/"+n+" feitas";
     }
@@ -1213,12 +1278,9 @@
       sec.style.setProperty("--wc","var(--"+w.c+")");
       sec.style.setProperty("--wc-bg","var(--"+w.c+"-bg)");
 
-      /* --- top bar: ← Mapa · title · missions · tools --- */
-      const top = worldTop(w);
-      top.appendChild(el("span","ic",w.icon));
-      top.appendChild(el("div","grow",'<p class="eb">Mundo '+w.num+' · '+w.subtitle+'</p><h2>'+w.title+'</h2>'));
-      const prog = el("span","wprog"); prog.id = "prog-"+w.id; prog.title = "Missões feitas";
-      top.appendChild(prog);
+      /* --- header (layout «Caderno Vivo»): ← Mapa · tools · Temas ▾ / title · segmented progress --- */
+      const top = worldTop(w, "← Mapa de mundos");
+      top.appendChild(el("span","grow",""));
       const tools = el("div","tools");
       const listen = el("button","tool","🔊"); listen.type = "button";
       listen.title = "Ouvir este mundo"; listen.setAttribute("aria-label","Ouvir este mundo");
@@ -1238,12 +1300,11 @@
       sheet.title = "Página-resumo (para imprimir)"; sheet.setAttribute("aria-label","Página-resumo deste mundo");
       tools.appendChild(sheet);
       top.appendChild(tools);
-      sec.appendChild(top);
-
-      /* --- jump to any theme: no order to follow (the hrefs follow the goal, set in renderMap) --- */
+      /* --- jump to any theme, folded in «Temas ▾» (the hrefs follow the goal, set in renderMap) --- */
+      const temas = document.createElement("details"); temas.className = "wtemas";
+      temas.innerHTML = '<summary>☰ Temas</summary>';
       const jump = el("nav","wjump");
       jump.setAttribute("aria-label","Ir para outro tema");
-      jump.appendChild(el("span","wjump-t","Temas:"));
       worlds.forEach(function(o){
         const a = el("a","wj"+(o===w ? " on" : ""), '<span aria-hidden="true">'+o.icon+'</span>'+o.num);
         a.dataset.w = o.id; a.href = "#"+cfg.key+"/"+o.id;
@@ -1253,7 +1314,15 @@
       });
       const jr = el("a","wj review",'<span aria-hidden="true">🏆</span>Revisão'); jr.href = "#"+cfg.key+"/revisao";
       jump.appendChild(jr);
-      sec.appendChild(jump);
+      temas.appendChild(jump);
+      temas.addEventListener("click", function(ev){ if(ev.target.closest("a")) temas.open = false; });
+      top.appendChild(temas);
+      sec.appendChild(top);
+      const head = el("div","whead");
+      head.appendChild(el("div","whead-t",'<p class="eb"><span aria-hidden="true">'+w.icon+'</span> Mundo '+w.num+' · '+w.subtitle+'</p><h2>'+w.title+'</h2>'));
+      const prog = el("div","wprog"); prog.id = "prog-"+w.id;
+      head.appendChild(prog);
+      sec.appendChild(head);
 
       /* --- the card with the 3 stages --- */
       const card = el("div","wcard");
@@ -1262,7 +1331,7 @@
       bar.setAttribute("role","tablist");
       const panes = {};
       STAGES.forEach(function(s, i){
-        const b = el("button","stage",'<span class="n">'+(i+1)+'</span> '+s[1]);
+        const b = el("button","stage",s[1]);
         b.type = "button"; b.dataset.s = s[0];
         b.setAttribute("role","tab");
         b.addEventListener("click", function(){ setStage(s[0], true); });
@@ -1305,7 +1374,7 @@
 
       /* ===== 1. 📖 Aprender ===== */
       const A = panes.aprender;
-      A.appendChild(el("p","lead",w.lead));
+      head.appendChild(el("p","lead",w.lead));
       // Aprender is split into three short parts (one shown at a time), so the page is not one endless scroll:
       // 🧩 Começar (problem, animations, images) · ✏️ Exemplos (one worked example at a time) · 📋 Para o teste
       const secNav = el("div","subtabs aprender-tabs");
@@ -1526,13 +1595,13 @@
         T.appendChild(atalho);
       }
       if(C.children.length){
-        C.appendChild(nextSec(E ? "Seguinte: ✏️ os exemplos resolvidos →" : "Seguinte: 📋 para o teste →", E ? "exemplos" : "teste"));
+        emCartoes(C, {label: E ? "Seguinte: ✏️ Exemplos →" : "Seguinte: 📋 Para o teste →", fn: function(){ setSec(E ? "exemplos" : "teste", true); }});
         setSec("comecar", false);
       } else {   // nothing to start with in this world: no empty tab
         secNav.removeChild(secNav.querySelector('[data-sec="comecar"]')); A.removeChild(C); delete secs.comecar;
         setSec(E ? "exemplos" : "teste", false);
       }
-      A.appendChild(cta("Já li! Vamos praticar →", "praticar"));
+      T.appendChild(cta("Já li! Vamos praticar →", "praticar"));
 
       /* ===== 2. 🎯 Praticar ===== */
       const P = panes.praticar;

@@ -1198,3 +1198,61 @@
   .resp-txt{ margin:0; font-weight:700; text-align:center; min-height:1.5em; }
   .resp-cont{ text-align:center; color:var(--text-muted); margin:6px 0 12px; }
   .hoje-calma{ font-size:.82rem; margin-left:6px; font-weight:400; }
+
+  /* ===== Página do mundo — layout «Caderno Vivo» (Stitch) ===== */
+  .wtop{ background:none; border:none; border-radius:0; padding:0 0 10px; }
+  .wtop .ghost{ font-weight:700; }
+  .wtemas{ position:relative; }
+  .wtemas > summary{ list-style:none; cursor:pointer; min-height:44px; display:inline-flex; align-items:center; gap:6px; padding:0 14px; border-radius:12px; border:1.5px solid var(--border); background:var(--surface); font-weight:700; }
+  .wtemas > summary::-webkit-details-marker{ display:none; }
+  .wtemas > summary::after{ content:"▾"; }
+  .wtemas[open] > summary{ border-color:var(--accent); }
+  .wtemas .wjump{ position:absolute; right:0; top:calc(100% + 6px); z-index:30; width:min(340px, 86vw); margin:0; padding:10px; display:grid; grid-template-columns:repeat(4, 1fr); gap:6px;
+    background:var(--surface); border:1.5px solid var(--border); border-radius:16px; box-shadow:0 8px 24px rgba(45,40,37,.12); }
+  .wtemas .wjump .wj{ justify-content:center; border-radius:12px; }
+  .wtemas .wjump .wj.review{ grid-column:span 2; }
+  .whead{ display:grid; grid-template-columns:1fr auto; gap:8px 20px; align-items:end; background:var(--surface); border:1.5px solid var(--border); border-radius:18px; padding:16px 20px; box-shadow:var(--shadow); margin:0 0 16px; }
+  .whead .eb{ margin:0; font-weight:700; font-size:.78rem; letter-spacing:.05em; text-transform:uppercase; color:var(--wc); }
+  .whead h2{ margin:2px 0 0; font-size:1.55rem; line-height:1.25; }
+  .whead .lead{ grid-column:1 / -1; margin:0; font-size:.95rem; }
+  .wprog{ background:none; border:none; padding:0; display:flex; flex-direction:column; align-items:flex-end; gap:6px; font-weight:400; font-size:.88rem; color:var(--text-muted); white-space:nowrap; }
+  .wprog b{ color:#2E7A56; }
+  .segs{ display:flex; gap:4px; }
+  .segs i{ width:26px; height:10px; border-radius:99px; background:var(--surface-2); }
+  .segs i.ok{ background:#3E8F5C; }
+  .wcard{ background:none; border:none; box-shadow:none; padding:0; border-radius:0; }
+  .stages{ background:var(--surface-2); padding:5px; border-radius:16px; gap:4px; max-width:600px; margin:0 auto 14px; }
+  .stage{ border:none; background:transparent; min-height:46px; }
+  .stage.on{ background:var(--surface); color:var(--accent); box-shadow:var(--shadow); }
+  .aprender-tabs{ counter-reset:passo; background:none; padding:0; gap:8px; justify-content:center; }
+  .aprender-tabs .subtab{ counter-increment:passo; flex:0 1 auto; border-radius:999px; background:var(--surface-2); display:inline-flex; align-items:center; gap:6px; }
+  .aprender-tabs .subtab::before{ content:counter(passo); width:22px; height:22px; border-radius:50%; background:var(--surface); color:var(--text-muted); display:inline-flex; align-items:center; justify-content:center; font-size:.78rem; flex:none; }
+  .aprender-tabs .subtab.active{ background:var(--accent); color:#fff; box-shadow:none; }
+  .aprender-tabs .subtab.active::before{ color:var(--accent); }
+  /* one card at a time */
+  .cartoes{ background:var(--surface); border:1.5px solid var(--border); border-radius:18px; padding:16px 20px 18px; box-shadow:var(--shadow); }
+  .cart-cab{ display:flex; align-items:center; flex-wrap:wrap; gap:8px 14px; padding-bottom:12px; border-bottom:1px solid var(--border-soft); margin-bottom:16px; }
+  .cart-conta{ color:var(--accent); }
+  .cart-pontos{ display:flex; gap:6px; margin-left:auto; }
+  .cart-pontos i{ width:9px; height:9px; border-radius:50%; background:var(--surface-2); }
+  .cart-pontos i.on{ background:var(--accent); } .cart-pontos i.ok{ background:#3E8F5C; }
+  .cartao .mapa-tema, .cartao .problema, .cartao .preve-box, .cartao .galeria{ border:none; background:none; padding:0; margin:0; box-shadow:none; }
+  .cartao .mt-h:first-child, .cartao .subhead:first-child{ margin-top:0; font-size:1.15rem; }
+  .cartao .anim-thumb{ border-style:solid; }
+  .cart-nav{ display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap; margin-top:18px; padding-top:14px; border-top:1px solid var(--border-soft); }
+  .cart-nav .ghost-btn:disabled{ opacity:.45; cursor:default; }
+  .cart-seq{ list-style:none; padding:0; margin:14px 0 0; display:grid; grid-template-columns:repeat(auto-fill, minmax(160px, 1fr)); gap:8px; }
+  .cart-seq button{ width:100%; height:100%; text-align:left; font:inherit; cursor:pointer; padding:10px 12px; border-radius:14px; border:1.5px solid var(--border); background:var(--surface); color:var(--text); display:flex; flex-direction:column; gap:2px; min-height:64px; }
+  .cart-seq small{ color:var(--text-muted); font-size:.78rem; }
+  .cart-seq b{ font-size:.9rem; line-height:1.3; }
+  .cart-seq button.on{ border:2px solid var(--accent); }
+  .cart-seq button.ok small::after{ content:" ✓"; color:#3E8F5C; }
+  @media (max-width:640px){
+    .whead{ grid-template-columns:1fr; padding:14px; }
+    .wprog{ align-items:flex-start; }
+    .whead h2{ font-size:1.3rem; }
+    .cartoes{ padding:14px; }
+    .cart-seq{ grid-auto-flow:column; grid-auto-columns:150px; grid-template-columns:none; overflow-x:auto; padding-bottom:6px; }
+    .cart-nav .cta{ flex:1; }
+  }
+  .cart-nav .cta{ background:var(--accent); border-color:var(--accent); color:#fff; }
