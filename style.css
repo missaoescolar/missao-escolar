@@ -1291,3 +1291,20 @@
   .missions .mission .mdetail{ font-size:.95rem; }
   .m-pe{ border-top:none; margin-top:12px; padding-top:0; }
   @media print{ .missions .mission[hidden]{ display:grid !important; } .m-topo, .m-pe{ display:none !important; } }
+
+  /* ===== Para o teste — layout «Caderno Vivo» ===== */
+  .teste-cab{ display:flex; align-items:center; justify-content:space-between; gap:12px 20px; flex-wrap:wrap; background:var(--surface); border:1.5px solid var(--border); border-radius:18px; padding:16px 20px; box-shadow:var(--shadow); margin:0 0 16px; }
+  .teste-cab > div{ flex:1 1 280px; }
+  .teste-t{ margin:0; font-weight:700; font-size:1.2rem; }
+  .teste-s{ margin:4px 0 0; color:var(--text-muted); font-size:.92rem; }
+  .teste-cab .cta{ background:var(--accent); border-color:var(--accent); color:#fff; }
+  .sintese{ grid-template-columns:repeat(auto-fill, minmax(200px, 1fr)); gap:10px; counter-reset:ideia; }
+  .sint-item{ counter-increment:ideia; background:var(--surface); border:1.5px solid var(--border); border-radius:16px; padding:12px 14px; box-shadow:var(--shadow); gap:6px; }
+  .sint-item::before{ content:"Ideia " counter(ideia); font-size:.75rem; color:var(--accent); }
+  .sint-item b{ font-size:1rem; color:var(--text); }
+  .sint-item span{ font-size:.95rem; }
+  .resumo{ background:var(--surface); border:1.5px solid var(--border); border-radius:16px; box-shadow:var(--shadow); }
+  .erros-box{ background:var(--surface); border:1.5px solid var(--border); border-radius:16px; padding:4px 16px; margin:0 0 12px; box-shadow:var(--shadow); }
+  .erros-box > summary{ min-height:52px; display:flex; align-items:center; gap:6px; flex-wrap:wrap; cursor:pointer; font-weight:700; }
+  .erros-box[open]{ padding-bottom:14px; }
+  .gloss-box .chips{ padding-top:4px; }

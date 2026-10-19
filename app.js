@@ -345,7 +345,7 @@
   }
   function buildSintese(items){
     const wrap = el("div","");
-    wrap.appendChild(el("p","subhead",'🗺️ Resumo visual <small class="muted">— o essencial num relance</small>'));
+    wrap.appendChild(el("p","subhead",'💡 Ideias-chave <small class="muted">— o essencial num relance</small>'));
     const grid = el("div","sintese");
     items.forEach(function(it){ grid.appendChild(el("div","sint-item",'<b>'+it[0]+'</b><span>'+it[1]+'</span>')); });
     wrap.appendChild(grid);
@@ -1541,7 +1541,7 @@
 
       // "Para o teste": the real subject matter, with clickable terms
       const resumoWrap = el("div","");
-      resumoWrap.appendChild(el("p","subhead","📋 Para o teste <small class=\"muted\">— toca nas palavras sublinhadas</small>"));
+      resumoWrap.appendChild(el("p","subhead","📝 O essencial <small class=\"muted\">— toca nas palavras sublinhadas</small>"));
       const resumoBox = el("div","resumo");
       const ul = document.createElement("ul");
       w.resumo.forEach(function(line){
@@ -1571,14 +1571,23 @@
       });
       resumoBox.appendChild(ul);
       resumoWrap.appendChild(resumoBox);
+      // layout «Caderno Vivo»: a header card with the flashcards button, key ideas as cards,
+      // then «Erros comuns» and «Glossário» folded
+      const tCab = el("div","teste-cab",'<div><p class="teste-t">📋 Para o teste — síntese e revisão</p><p class="teste-s">O que precisas de saber deste mundo, numa página. Toca nas palavras sublinhadas para ver o que querem dizer.</p></div>');
+      if(w.gloss && w.gloss.length){
+        const tc = el("button","cta","🃏 Treinar com cartões"); tc.type = "button";
+        tc.addEventListener("click", function(){ openCartoes(w, tc); });
+        tCab.appendChild(tc);
+      }
+      T.appendChild(tCab);
       if(F.sintese) T.appendChild(buildSintese(F.sintese));
       T.appendChild(resumoWrap);
       if(F.erros) T.appendChild(buildErros(F.erros));
 
-      // key words as small chips (each opens its definition)
+      // key words as small chips (each opens its definition), folded like «Erros comuns»
       if(w.gloss && w.gloss.length){
-        const gWrap = el("div","");
-        gWrap.appendChild(el("p","subhead","📖 Palavras-chave <small class=\"muted\">— toca para ver o que querem dizer</small>"));
+        const gWrap = document.createElement("details"); gWrap.className = "erros-box gloss-box";
+        gWrap.appendChild(el("summary","","📖 Glossário do tema <small class=\"muted\">— "+w.gloss.length+" palavras-chave; toca para ver o que querem dizer</small>"));
         const chips = el("div","chips");
         w.gloss.forEach(function(g){
           const term = g[0], def = g[1], popup = g[2];
@@ -1593,10 +1602,6 @@
         });
         gWrap.appendChild(chips);
         T.appendChild(gWrap);
-        // 🃏 retrieval practice with the same key words, one card at a time
-        const atalho = el("button","ghost-btn cards-btn","🃏 Já leste? Treina estas palavras em cartões →"); atalho.type = "button";
-        atalho.addEventListener("click", function(){ setStage("praticar", true); const c = document.getElementById("cartoes-"+w.id); if(c) c.scrollIntoView({block:"center"}); });
-        T.appendChild(atalho);
       }
       if(C.children.length){
         emCartoes(C, {label: E ? "Seguinte: ✏️ Exemplos →" : "Seguinte: 📋 Para o teste →", fn: function(){ setSec(E ? "exemplos" : "teste", true); }});
