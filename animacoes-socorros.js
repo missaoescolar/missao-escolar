@@ -1,5 +1,5 @@
 /* Animações do Mundo 9 de Ciências — Primeiros Socorros.
-   Segundo as recomendações do INEM, do Conselho Europeu de Ressuscitação (ERC, 2021), do NHS e da Cruz Vermelha. */
+   Segundo as recomendações do INEM, do Conselho Europeu de Ressuscitação (ERC 2025), da Federação Internacional da Cruz Vermelha (IFRC 2025) e da Cruz Vermelha. */
 (function(){
   const A = MissaoAnim, K = A.kit, t = K.t, r = K.r, c = K.c, p = K.p, l = K.l, g = K.g;
 
@@ -105,11 +105,11 @@
   /* ---------------- pequenas emergências, uma de cada vez ---------------- */
   (function(){
     const PAINEIS = [
-      ["🔥", "Queimadura", "água corrente fresca durante 20 minutos", "tira anéis e relógio, se não estiverem colados", "❌ nada de gelo, manteiga ou pasta de dentes"],
+      ["🔥", "Queimadura", "água corrente fresca: 10 min no mínimo, ideal 20", "tira anéis e relógio, se não estiverem colados", "❌ nada de gelo, manteiga ou pasta de dentes"],
       ["🩸", "Ferida a sangrar", "carrega com força com uma compressa", "não largues e chama ajuda", "corte pequeno: lavar e pôr um penso"],
       ["👃", "Sangue do nariz", "sentado, com a cabeça para a FRENTE", "aperta a parte mole do nariz 10 a 15 minutos", "❌ nunca com a cabeça para trás"],
       ["🐝", "Picada de abelha", "raspa o ferrão com um cartão", "lava e põe gelo envolto num pano", "cara inchada ou falta de ar → 112"],
-      ["🦶", "Entorse (pé torcido)", "repouso", "gelo envolto num pano, 15 a 20 minutos", "pé elevado"],
+      ["🦶", "Entorse (pé torcido)", "repouso", "frio envolto num pano, até 20 minutos", "pé elevado"],
       ["😵", "Desmaio", "deitar de costas, com as pernas elevadas", "afastar curiosos e desapertar a roupa", "não acorda? → PLS e 112"],
       ["🙂", "AVC: os 3 F", "Face: a boca fica de lado", "Força: um braço não se levanta", "Fala enrolada → 112 já"],
       ["🍬", "Açúcar baixo (diabetes)", "se consegue engolir: sumo ou açúcar", "chama um adulto", "não consegue engolir → 112"],

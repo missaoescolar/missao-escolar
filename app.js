@@ -343,6 +343,34 @@
     if(n > 1) C.appendChild(seq);
     mostra(0, false);
   }
+  /* 📘 a consultation manual, one card per situation (first aid): pictogram, urgency (colour AND words),
+     how to recognise, what to do (numbered), what not to do, when to call 112, source */
+  function buildManual(M){
+    const box = el("div","manual");
+    box.appendChild(el("div","teste-cab",'<div><p class="teste-t">'+M.titulo+'</p><p class="teste-s">'+M.intro+'</p></div>'));
+    box.appendChild(el("ol","man-passos", M.passos.map(function(p, i){ return '<li><span class="mp-ic" aria-hidden="true">'+p[0]+'</span><b>'+(i+1)+'. '+p[1]+'</b><span>'+p[2]+'</span></li>'; }).join("")));
+    box.appendChild(el("p","man-fonte", M.passosFonte));
+    box.appendChild(el("div","man-num", M.numeros.map(function(n){ return '<a href="tel:'+n[0].replace(/\s/g,"")+'"><b>'+n[0]+'</b><small>'+n[1]+'</small></a>'; }).join("")));
+    box.appendChild(el("p","man-leg",'<span class="urg urg-j">🔴 Liga 112 já</span> <span class="urg urg-d">🟠 Pode precisar de 112</span> <span class="urg urg-c">🟢 Trata-se com um adulto</span> · toca numa situação para a abrir'));
+    const grid = el("div","man-grid");
+    M.fichas.forEach(function(f){
+      const d = document.createElement("details"); d.className = "man-ficha "+f.urg.c; d.id = "manual-"+f.id;
+      d.innerHTML = '<summary><span class="mf-pic" aria-hidden="true">'+f.svg+'</span><span class="mf-t"><b>'+f.t+'</b>'+(f.sub ? '<small>'+f.sub+'</small>' : '')+'<span class="urg '+f.urg.c+'">'+f.urg.t+'</span></span></summary>'+
+        '<div class="mf-corpo"><figure class="mf-fig">'+f.svg+'<figcaption>✏️ ilustração</figcaption></figure>'+
+        '<div class="mf-txt"><p class="mf-h">👀 Como reconhecer</p><p>'+f.ver+'</p>'+
+        '<p class="mf-h">✅ O que fazer</p><ol>'+f.fazer.map(function(x){ return '<li>'+x+'</li>'; }).join("")+'</ol>'+
+        '<p class="mf-h">⛔ Não fazer</p><ul>'+f.nao.map(function(x){ return '<li>'+x+'</li>'; }).join("")+'</ul>'+
+        (f.quando ? '<p class="mf-h">📞 Quando ligar 112</p><p>'+f.quando+'</p>' : '')+
+        '<p class="man-fonte">Fonte: '+f.fonte+'</p></div></div>';
+      grid.appendChild(d);
+    });
+    box.appendChild(grid);
+    const fo = document.createElement("details"); fo.className = "erros-box";
+    fo.innerHTML = '<summary>📚 Em que se baseia este manual</summary><ul class="man-fontes">'+M.fontes.map(function(x){ return '<li><b>'+x[0]+':</b> '+x[1]+'</li>'; }).join("")+'</ul>'+
+      '<p class="man-fonte">Este manual não substitui um curso de primeiros socorros. A Cruz Vermelha Portuguesa e o INEM têm formações; peçam informação na escola.</p>';
+    box.appendChild(fo);
+    return box;
+  }
   function buildSintese(items){
     const wrap = el("div","");
     wrap.appendChild(el("p","subhead",'💡 Ideias-chave <small class="muted">— o essencial num relance</small>'));
@@ -1411,7 +1439,9 @@
       const nPosters = (w.posters||[]).length;
       const C = addSec("comecar", "🧩 Começar");
       const E = nPosters ? addSec("exemplos", "✏️ Exemplos ("+nPosters+")") : null;
-      const T = addSec("teste", "📋 Para o teste");
+      // a world with a manual (first aid) is for consulting, not for a test: its 3rd part is «📘 Manual»
+      const MAN = (typeof MISSAO_MANUAL !== "undefined") && MISSAO_MANUAL[w.id];
+      const T = addSec("teste", MAN ? "📘 Manual" : "📋 Para o teste");
       A.appendChild(secNav);
       Object.keys(secs).forEach(function(k){ A.appendChild(secs[k]); });
 
@@ -1579,10 +1609,13 @@
         tc.addEventListener("click", function(){ openCartoes(w, tc); });
         tCab.appendChild(tc);
       }
-      T.appendChild(tCab);
-      if(F.sintese) T.appendChild(buildSintese(F.sintese));
-      T.appendChild(resumoWrap);
-      if(F.erros) T.appendChild(buildErros(F.erros));
+      if(MAN) T.appendChild(buildManual(MAN));
+      else {
+        T.appendChild(tCab);
+        if(F.sintese) T.appendChild(buildSintese(F.sintese));
+        T.appendChild(resumoWrap);
+        if(F.erros) T.appendChild(buildErros(F.erros));
+      }
 
       // key words as small chips (each opens its definition), folded like «Erros comuns»
       if(w.gloss && w.gloss.length){
@@ -1604,7 +1637,7 @@
         T.appendChild(gWrap);
       }
       if(C.children.length){
-        emCartoes(C, {label: E ? "Seguinte: ✏️ Exemplos →" : "Seguinte: 📋 Para o teste →", fn: function(){ setSec(E ? "exemplos" : "teste", true); }});
+        emCartoes(C, {label: E ? "Seguinte: ✏️ Exemplos →" : (MAN ? "Seguinte: 📘 Manual →" : "Seguinte: 📋 Para o teste →"), fn: function(){ setSec(E ? "exemplos" : "teste", true); }});
         setSec("comecar", false);
       } else {   // nothing to start with in this world: no empty tab
         secNav.removeChild(secNav.querySelector('[data-sec="comecar"]')); A.removeChild(C); delete secs.comecar;

@@ -1358,3 +1358,38 @@
   .top-nav .top-calma{ background:color-mix(in srgb, #3E8F5C 16%, var(--surface)); color:#2E7A56; }
   @media (max-width:720px){ .top-nav span{ position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); } .top-nav a, .top-nav button{ padding:8px 10px; font-size:1.1rem; } }
   @media (max-width:720px){ .topbar .crumbs{ flex-basis:100%; margin:0; } .topbar .top-nav{ margin-left:0; } }
+
+  /* ===== 📘 Manual (primeiros socorros) ===== */
+  .man-passos{ list-style:none; padding:0; margin:0 0 6px; display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:10px; }
+  .man-passos li{ background:var(--surface); border:1.5px solid var(--border); border-radius:16px; padding:12px 14px; display:flex; flex-direction:column; gap:4px; box-shadow:var(--shadow); }
+  .mp-ic{ font-size:1.6rem; } .man-passos span:last-child{ font-size:.92rem; color:var(--text-muted); }
+  .man-fonte{ font-size:.8rem; color:var(--text-muted); margin:6px 0 12px; }
+  .man-num{ display:flex; flex-wrap:wrap; gap:8px; margin:0 0 12px; }
+  .man-num a{ flex:1 1 180px; text-decoration:none; color:var(--text); background:var(--surface); border:1.5px solid var(--border); border-radius:14px; padding:10px 14px; display:flex; flex-direction:column; }
+  .man-num a:first-child{ border-color:#C0392B; } .man-num b{ font-size:1.25rem; } .man-num small{ color:var(--text-muted); }
+  .man-leg{ font-size:.85rem; color:var(--text-muted); display:flex; flex-wrap:wrap; gap:6px; align-items:center; margin:0 0 10px; }
+  .urg{ display:inline-block; font-size:.78rem; font-weight:700; padding:2px 8px; border-radius:8px; }
+  .urg.urg-j{ background:color-mix(in srgb, #C0392B 14%, var(--surface)); color:#9B2C22; }
+  .urg.urg-d{ background:color-mix(in srgb, #E0A100 20%, var(--surface)); color:#7A5600; }
+  .urg.urg-c{ background:color-mix(in srgb, #3E8F5C 16%, var(--surface)); color:#2E7A56; }
+  .man-grid{ display:grid; grid-template-columns:repeat(auto-fill, minmax(300px, 1fr)); gap:10px; align-items:start; margin:0 0 14px; }
+  .man-ficha{ background:var(--surface); border:1.5px solid var(--border); border-left:6px solid var(--border); border-radius:16px; box-shadow:var(--shadow); }
+  .man-ficha.urg-j{ border-left-color:#C0392B; } .man-ficha.urg-d{ border-left-color:#E0A100; } .man-ficha.urg-c{ border-left-color:#3E8F5C; }
+  .man-ficha[open]{ grid-column:1 / -1; }
+  .man-ficha > summary{ list-style:none; cursor:pointer; display:flex; gap:12px; align-items:center; padding:10px 12px; }
+  .man-ficha > summary::-webkit-details-marker{ display:none; }
+  .mf-pic{ flex:none; width:84px; height:63px; border-radius:12px; background:var(--paper); display:flex; }
+  .mf-pic svg{ width:100%; height:100%; }
+  .mf-t{ display:flex; flex-direction:column; gap:3px; align-items:flex-start; }
+  .mf-t b{ font-size:1.02rem; line-height:1.25; } .mf-t small{ color:var(--text-muted); font-size:.82rem; }
+  .man-ficha[open] .mf-pic{ display:none; }
+  .mf-corpo{ padding:0 16px 14px; display:grid; grid-template-columns:minmax(0, 1fr); gap:6px 22px; }
+  .mf-fig{ margin:0; max-width:340px; background:var(--paper); border-radius:14px; padding:8px; }
+  .mf-fig svg{ width:100%; height:auto; display:block; }
+  .mf-fig figcaption{ font-size:.75rem; color:var(--text-muted); text-align:right; }
+  .mf-h{ margin:12px 0 4px; font-weight:700; } .mf-txt .mf-h:first-child{ margin-top:0; }
+  .mf-corpo p{ margin:0; } .mf-corpo ol, .mf-corpo ul{ margin:0; padding-left:1.3em; display:flex; flex-direction:column; gap:4px; }
+  .man-fontes{ margin:0; padding-left:1.2em; display:flex; flex-direction:column; gap:4px; font-size:.92rem; }
+  @media (min-width:760px){ .mf-corpo{ grid-template-columns:280px minmax(0,1fr); align-items:start; } }
+  @media print{ .man-ficha{ break-inside:avoid; } .man-ficha > summary{ display:none; } .man-ficha .mf-corpo{ display:block !important; } }
+  .mf-pic text{ display:none; }
