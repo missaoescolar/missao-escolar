@@ -831,6 +831,16 @@
     return a;
   }
 
+  /* ---------- 🌱 what was done in this session (this tab only, sessionStorage): shown on the «Sessão feita» screen ---------- */
+  function registarSessao(txt){
+    try{
+      const l = JSON.parse(sessionStorage.getItem("me_sessao") || "[]");
+      if(l.indexOf(txt) < 0) l.push(txt);
+      sessionStorage.setItem("me_sessao", JSON.stringify(l.slice(-12)));
+    }catch(e){}
+  }
+  function lerSessao(){ try{ return JSON.parse(sessionStorage.getItem("me_sessao") || "[]"); }catch(e){ return []; } }
+
   /* ---------- quiz: one question at a time (world quizzes and the Revisão Final) ---------- */
   function mountQuiz1(box, o){
     // o: {title(), questions(), extra: element or null, label(q)}
@@ -899,6 +909,7 @@
         box.appendChild(again);
       }
       if(n && score===n){ playChime(); burstConfetti(); }
+      if(n) registarSessao((o.sessao ? o.sessao+" · " : "")+o.title()+": "+score+" de "+n+" certas");
       if(o.onFinish) o.onFinish(score, n, box);
     }
     start();
@@ -1678,6 +1689,7 @@
         } else detail.appendChild(el("span","mtask"," · "+m.f));
         const xp = el("span","mxp","+"+m.xp+" XP");
         cb.addEventListener("change", function(){
+          if(cb.checked) registarSessao("✅ "+w.icon+" Mundo "+w.num+": "+m.t);
           pendingMissions.set(key, cb.checked);
           pendingWorlds.add(w);
           // The intended choice is visible; XP/completion remain confirmed until saved.
@@ -1770,6 +1782,7 @@
         const hasHard = !!(extra.desafio||[]).length;
         const quiz = mountQuiz1(qbox, {
           title: function(){ return (hasHard && missaoChallengeOn()) ? "🔥 Desafio" : "✅ Testa-te"; },
+          sessao: w.icon+" Mundo "+w.num+" de "+cfg.name,
           questions: function(){ return shuffled(missaoQuizFor(w)); },
           extra: hasHard ? makeChallengeToggle() : null,
           onAnswer: registarResposta
@@ -1894,6 +1907,7 @@
     rcard.appendChild(rbox);
     const rq = mountQuiz1(rbox, {
       title: function(){ return missaoChallengeOn() ? "🔥 Desafio" : "🏆 Revisão"; },
+      sessao: cfg.name,
       questions: function(){
         let all = [];
         worlds.forEach(function(w){ missaoQuizFor(w).forEach(function(q){ all.push(Object.assign({world:w.num, icon:w.icon}, q)); }); });
@@ -2079,8 +2093,57 @@
       ul.dataset.banco = '<li>📚 '+st.total+' perguntas no banco · já respondeste a '+st.vistas+' · '+st.dominadas+' bem sabidas'+
         (st.novasAbertas ? ' · '+st.novasAbertas+' novas nos mundos que já abriste' : '')+'</li>';
     }
+    const acabar = el("button","link-btn hoje-acabar","🌱 Terminar por hoje"); acabar.type = "button";
+    acabar.addEventListener("click", sessaoFeita);
+    fold.appendChild(acabar);
     hojeCard.appendChild(fold);
     renderTodayPanel();
+  }
+  /* 🌱 «Sessão feita» (layout Caderno Vivo): a calm closing, so the session has a clear end.
+     What was done (real, from this session) · how far along · ONE suggestion for tomorrow ·
+     a 3-face self-rating (looking back, like the Japanese «furikaeri») · one button to close. */
+  function sessaoFeita(){
+    hojeCard.innerHTML = "";
+    const on = document.querySelector("#subject-tabs .tab-btn.active");
+    const s = MISSAO_SUBJECTS.find(function(x){ return on && x.key===on.dataset.subject; }) || MISSAO_SUBJECTS[0];
+    const state = store(s.store), st = subjectStats(s.worlds, state);
+    const feito = lerSessao();
+    const box = el("div","sessao");
+    box.appendChild(el("p","sessao-t","🌱 Sessão feita"));
+    box.appendChild(el("p","hoje-s","Fizeste o teu trabalho de hoje. O que aprendeste fica guardado neste computador."));
+    box.appendChild(el("p","sessao-h","O que fizeste hoje"));
+    box.appendChild(el("ul","sessao-lista", feito.length ? feito.map(function(t){ return '<li>'+t+'</li>'; }).join("")
+      : '<li>📖 Estudaste um bocadinho — conta tudo!</li>'));
+    const pct = st.total ? Math.round(st.done/st.total*100) : 0;
+    box.appendChild(el("p","sessao-h",s.icon+" "+s.name+": "+st.done+" de "+st.total+" missões"));
+    box.appendChild(el("span","sessao-barra",'<i style="width:'+pct+'%"></i>'));
+    if(st.nextWorld){
+      const a = el("a","sessao-amanha",'<small>Amanhã</small><b>'+st.nextWorld.icon+' Mundo '+st.nextWorld.num+' — '+st.nextWorld.title+'</b>');
+      a.href = "#"+s.key+"/"+st.nextWorld.id;
+      box.appendChild(a);
+    }
+    box.appendChild(el("p","sessao-h","Como correu?"));
+    const caras = el("div","sessao-caras"); caras.setAttribute("role","group"); caras.setAttribute("aria-label","Como correu a sessão?");
+    const resp = el("p","hoje-s",""); resp.setAttribute("aria-live","polite");
+    [["😕","Difícil","Foi difícil, e mesmo assim fizeste. Amanhã, começa pelo que custou mais: é aí que se aprende."],
+     ["🙂","Bem","Boa! Um pouco todos os dias vale mais do que muito de uma vez."],
+     ["😀","Muito bem","Excelente! Amanhã podes experimentar o 🔥 Mais difícil num quiz."]].forEach(function(c){
+      const b = el("button","sessao-cara",'<span aria-hidden="true">'+c[0]+'</span>'+c[1]); b.type = "button";
+      b.addEventListener("click", function(){
+        caras.querySelectorAll("button").forEach(function(x){ x.classList.toggle("on", x===b); x.setAttribute("aria-pressed", x===b ? "true" : "false"); });
+        resp.textContent = c[2];
+      });
+      caras.appendChild(b);
+    });
+    box.appendChild(caras); box.appendChild(resp);
+    const fechar = el("button","cta sessao-fechar","Fechar e descansar"); fechar.type = "button";
+    fechar.addEventListener("click", renderHoje);
+    box.appendChild(fechar);
+    const dica = document.createElement("details"); dica.className = "hoje-fold";
+    dica.innerHTML = '<summary>💤 Porque é bom parar agora</summary><p class="hoje-s">O cérebro arruma o que aprendeste enquanto descansas e, sobretudo, enquanto dormes. Rever amanhã um pouco do que fizeste hoje ajuda a não esquecer. Agora: água, mexer o corpo e algo de que gostes.</p>';
+    box.appendChild(dica);
+    hojeCard.appendChild(box);
+    if(hojeCard.getBoundingClientRect().top < 0) hojeCard.scrollIntoView({block:"start"});
   }
   function jogar(lista, extra){
     hojeCard.innerHTML = "";
@@ -2096,8 +2159,8 @@
       onFinish: function(score, n, fimBox){
         if(!extra) MissaoBanco.marcarFeita();
         logActivityToday(); renderTodayPanel();
-        const row = el("div","next-step"), fim = el("button","cta","Fechar ✓");
-        fim.type = "button"; fim.addEventListener("click", renderHoje);
+        const row = el("div","next-step"), fim = el("button","cta","Seguinte: 🌱 terminar a sessão →");
+        fim.type = "button"; fim.addEventListener("click", sessaoFeita);
         row.appendChild(fim); fimBox.appendChild(row);
       }
     });

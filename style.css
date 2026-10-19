@@ -1448,3 +1448,21 @@
     .modal-close{ top:16px; width:44px; height:44px; font-size:18px; }
     .modal-title{ padding-right:52px; min-height:44px; display:flex; align-items:center; }
   }
+
+  /* ===== 🌱 Sessão feita ===== */
+  .sessao{ display:flex; flex-direction:column; gap:8px; }
+  .sessao-t{ margin:0; font-size:1.3rem; font-weight:800; }
+  .sessao .hoje-s{ margin:0; }
+  .sessao-h{ margin:8px 0 0; font-weight:700; }
+  .sessao-lista{ margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:6px; }
+  .sessao-lista li{ background:var(--paper, var(--surface-2)); border:1.5px solid var(--border); border-radius:12px; padding:8px 12px; font-size:.92rem; }
+  .sessao-barra{ display:block; height:10px; border-radius:99px; background:var(--surface-2); overflow:hidden; }
+  .sessao-barra i{ display:block; height:100%; background:#3E8F5C; border-radius:99px; }
+  .sessao-amanha{ display:flex; flex-direction:column; gap:2px; text-decoration:none; color:var(--text); border:1.5px solid var(--border); border-left:5px solid var(--accent); border-radius:14px; padding:10px 14px; margin-top:6px; }
+  .sessao-amanha small{ color:var(--text-muted); font-weight:700; text-transform:uppercase; letter-spacing:.04em; font-size:.75rem; }
+  .sessao-caras{ display:flex; gap:8px; }
+  .sessao-cara{ flex:1; font:inherit; font-weight:700; font-size:.85rem; cursor:pointer; display:flex; flex-direction:column; align-items:center; gap:4px; padding:10px 6px; min-height:72px; border-radius:14px; border:1.5px solid var(--border); background:var(--surface); color:var(--text); }
+  .sessao-cara span{ font-size:1.8rem; line-height:1; }
+  .sessao-cara.on{ border-color:#3E8F5C; background:color-mix(in srgb, #3E8F5C 12%, var(--surface)); }
+  .sessao-fechar{ background:var(--accent); align-self:stretch; margin-top:8px; }
+  .hoje-acabar{ display:block; margin-top:6px; }
