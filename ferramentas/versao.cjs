@@ -13,4 +13,7 @@ for(const f of fs.readdirSync(raiz).filter(f => f.endsWith('.html'))){
   const depois = antes.replace(/((?:src|href)=")((?![a-z]+:)[^"?#]+\.(?:js|css))(?:\?v=[^"]*)?"/g, (m, a, url) => { n++; return a + url + '?v=' + versao + '"'; });
   if(depois !== antes) fs.writeFileSync(ficheiro, depois);
 }
+// the service worker cache name follows the same version: old offline copies are dropped after each publication
+const sw = path.join(raiz, 'sw.js');
+if(fs.existsSync(sw)){ const a = fs.readFileSync(sw, 'utf8'), b = a.replace(/const VERSAO = "[^"]*";/, 'const VERSAO = "' + versao + '";'); if(b !== a) fs.writeFileSync(sw, b); }
 console.log('versão ' + versao + ' marcada em ' + n + ' ligações');

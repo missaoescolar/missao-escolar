@@ -63,5 +63,19 @@ const MissaoPrefs = (function(){
     d.querySelector("#pf-repor").addEventListener("click", () => { gravar(Object.assign({}, BASE)); aplicar(BASE); d.close(); abrir(); });
     if(!d.open) d.showModal();
   }
-  return {abrir:abrir, ler:ler, som:() => ler().som, poucoMovimento:() => ler().movimento};
+  /* 📲 app instalável: regista o service worker (só em http/https) e guarda o convite de instalação do browser */
+  let convite = null;
+  if("serviceWorker" in navigator && /^https?:$/.test(location.protocol)){
+    window.addEventListener("load", () => { navigator.serviceWorker.register("sw.js").catch(() => {}); });
+  }
+  window.addEventListener("beforeinstallprompt", e => { e.preventDefault(); convite = e; });
+  function instalar(){
+    if(convite){ convite.prompt(); convite.userChoice.finally(() => { convite = null; }); return; }
+    const ios = /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+    const ja = window.matchMedia && window.matchMedia("(display-mode: standalone)").matches;
+    alert(ja ? "A Missão Escolar já está instalada neste aparelho. 🎉" : ios
+      ? "No iPhone ou iPad (Safari): toca no botão Partilhar (o quadrado com a seta para cima) e escolhe «Adicionar ao ecrã principal»."
+      : "No computador (Edge ou Chrome): na barra de endereço, toca no ícone de instalar (um ecrã com uma seta) ou, no menu ⋯, escolhe «Aplicações» → «Instalar este site como aplicação».\nNo Android (Chrome): menu ⋮ → «Instalar aplicação» ou «Adicionar ao ecrã principal».");
+  }
+  return {abrir:abrir, ler:ler, som:() => ler().som, poucoMovimento:() => ler().movimento, instalar:instalar};
 })();

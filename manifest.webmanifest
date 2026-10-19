@@ -1,0 +1,16 @@
+{
+  "name": "Missão Escolar",
+  "short_name": "Missão Escolar",
+  "description": "Estudar ao teu ritmo: matéria do 6.º e 7.º anos, exercícios, caderno e plano da semana.",
+  "lang": "pt-PT",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#FAF7F1",
+  "theme_color": "#C7461F",
+  "icons": [
+    {"src": "icon-192.png", "sizes": "192x192", "type": "image/png"},
+    {"src": "icon-512.png", "sizes": "512x512", "type": "image/png"},
+    {"src": "icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"}
+  ]
+}
