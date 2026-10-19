@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>O meu caderno — Missão Escolar</title>
-<link rel="stylesheet" href="style.css?v=20261019-1303">
+<link rel="stylesheet" href="style.css?v=20261019-1304">
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="theme-color" content="#C7461F">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<script src="prefs.js?v=20261019-1303"></script>
+<script src="prefs.js?v=20261019-1304"></script>
 <style>
   /* the caderno: every exit ticket, grouped by subject; prints cleanly */
   .cad-head{ display:flex; align-items:flex-end; justify-content:space-between; gap:10px 16px; flex-wrap:wrap; margin:6px 0 16px; }
@@ -50,6 +50,23 @@
     .topbar, .cad-print, .cad-entry a, .cad-porque, .cad-pais{ display:none !important; }
     .cad-entry{ box-shadow:none; break-inside:avoid; }
   }
+  /* layout «Caderno Vivo» */
+  .cad-dif{ border:1.5px solid var(--border); box-shadow:var(--shadow); padding:16px 18px; }
+  .cad-dif h2{ font-size:1.15rem; }
+  .cad-dif ol{ list-style:none; padding:0; display:flex; flex-direction:column; gap:8px; counter-reset:tema; }
+  .cad-dif li{ counter-increment:tema; display:grid; grid-template-columns:auto 1fr auto; gap:4px 12px; align-items:center; background:var(--paper); border-radius:14px; padding:10px 12px; margin:0; }
+  .cad-dif li::before{ content:counter(tema); width:28px; height:28px; border-radius:50%; background:var(--surface); border:1.5px solid var(--border); display:inline-flex; align-items:center; justify-content:center; font-weight:700; color:var(--accent); grid-row:span 2; }
+  .cad-dif .cd-sub{ font-size:.8rem; color:var(--accent); }
+  .cad-dif .cd-t{ font-weight:700; }
+  .cad-dif .cd-m{ grid-column:2; font-size:.88rem; color:var(--text-muted); }
+  .cad-dif .cd-b{ grid-column:3; grid-row:1 / span 2; background:var(--accent); color:#fff !important; text-decoration:none; border-radius:12px; padding:9px 14px; font-weight:700; font-size:.88rem; white-space:nowrap; }
+  .cad-disc{ background:var(--surface); border:1.5px solid var(--border); border-radius:16px; box-shadow:var(--shadow); padding:4px 16px; }
+  .cad-disc > summary{ cursor:pointer; min-height:54px; display:flex; align-items:center; gap:8px; font-weight:700; font-size:1.05rem; }
+  .cad-disc > summary small{ font-weight:400; color:var(--text-muted); font-size:.85rem; }
+  .cad-disc[open]{ padding-bottom:12px; }
+  .cad-entry{ border:1.5px solid var(--border); border-left:5px solid var(--wc, var(--accent)); box-shadow:none; background:var(--paper); }
+  @media (max-width:560px){ .cad-dif li{ grid-template-columns:auto 1fr; } .cad-dif .cd-b{ grid-column:1 / -1; grid-row:auto; text-align:center; } }
+  @media print{ .cad-disc{ box-shadow:none; border:none; } }
 </style>
 </head>
 <body>
@@ -68,6 +85,9 @@
     <button type="button" class="ghost cad-print" onclick="window.print()">🖨️ Imprimir</button>
   </div>
 
+
+  <section class="cad-dif" id="cad-dif"></section>
+  <div id="caderno"></div>
   <section class="cad-porque">
     <h2>Para que serve o caderno?</h2>
     <ul>
@@ -78,9 +98,6 @@
     </ul>
     <p><b>Como se escreve:</b> no fim do 🎯 Praticar de cada mundo há um <b>🎫 Bilhete de saída</b>. Preenche-o: <b>guarda-se sozinho</b> enquanto escreves. Podes voltar e mudá-lo quando quiseres. O caderno fica só neste computador (e nas cópias de segurança do progresso).</p>
   </section>
-
-  <section class="cad-dif" id="cad-dif"></section>
-  <div id="caderno"></div>
   <section class="cad-pais" aria-labelledby="cad-pais-t">
     <h2 id="cad-pais-t">👪 Para pais: recomeçar</h2>
     <p>📬 Para receber um resumo do progresso e das dificuldades, com sugestões de estudo e dicas, use o <a href="pais.html#relatorio">Relatório para pais</a>.</p>
@@ -93,16 +110,16 @@
   </section>
 </div>
 
-<script src="armazem.js?v=20261019-1303"></script>
-<script src="data/portugues.js?v=20261019-1303"></script>
-<script src="data/hgp.js?v=20261019-1303"></script>
-<script src="data/matematica.js?v=20261019-1303"></script>
-<script src="data/cn.js?v=20261019-1303"></script>
-<script src="data/ingles.js?v=20261019-1303"></script>
-<script src="data/cn7.js?v=20261019-1303"></script>
-<script src="data/fq7.js?v=20261019-1303"></script>
-<script src="shared.js?v=20261019-1303"></script>
-<script src="dificuldades.js?v=20261019-1303"></script>
-<script src="caderno.js?v=20261019-1303"></script>
+<script src="armazem.js?v=20261019-1304"></script>
+<script src="data/portugues.js?v=20261019-1304"></script>
+<script src="data/hgp.js?v=20261019-1304"></script>
+<script src="data/matematica.js?v=20261019-1304"></script>
+<script src="data/cn.js?v=20261019-1304"></script>
+<script src="data/ingles.js?v=20261019-1304"></script>
+<script src="data/cn7.js?v=20261019-1304"></script>
+<script src="data/fq7.js?v=20261019-1304"></script>
+<script src="shared.js?v=20261019-1304"></script>
+<script src="dificuldades.js?v=20261019-1304"></script>
+<script src="caderno.js?v=20261019-1304"></script>
 
 </body></html>

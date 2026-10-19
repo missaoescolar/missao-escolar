@@ -10,23 +10,25 @@
       const entradas = s.worlds.filter(function(w){ return caderno[w.id]; });
       if(!entradas.length) return;
       total += entradas.length;
-      html += '<section class="cad-disc"><h2>'+s.icon+' '+esc(s.name)+' · '+par[0]+'.º ano</h2>'+
+      // one folding section per subject (the first one open), with the number of notes
+      html += '<details class="cad-disc"'+(total === entradas.length ? ' open' : '')+'><summary>'+s.icon+' '+esc(s.name)+' · '+par[0]+'.º ano <small>('+entradas.length+' bilhete'+(entradas.length === 1 ? '' : 's')+')</small></summary>'+
         entradas.map(function(w){
           const e = caderno[w.id];
           return '<article class="cad-entry" style="--wc:var(--'+w.c+')"><h3><span>'+w.icon+' Mundo '+w.num+': '+esc(w.title)+'</span><small>'+esc(e.data || "")+'</small></h3><dl>'+
             PERG.filter(function(p){ return p[0] !== "r" || (e.r || "").trim(); }).map(function(p){ const v = (e[p[0]] || "").trim(); return '<dt>'+p[1]+'</dt><dd'+(v ? '' : ' class="vazio"')+'>'+(v ? esc(v) : 'ainda por escrever')+'</dd>'; }).join("")+
             '</dl><a href="'+(s.page || "6ano.html")+'#'+s.key+'/'+w.id+'/praticar">Abrir este mundo →</a></article>';
-        }).join("")+'</section>';
+        }).join("")+'</details>';
     });
   });
   /* 📊 where there is most difficulty (dificuldades.js), for the child and the parents */
   const difBox = document.getElementById("cad-dif");
   const dif = (typeof MissaoDificuldades !== "undefined") ? MissaoDificuldades.analisar(MISSAO_SUBJECTS_6.concat(MISSAO_SUBJECTS_7)).slice(0, 6) : [];
   if(difBox){
-    difBox.innerHTML = '<h2>📊 Onde há mais dificuldades</h2>'+(dif.length
+    difBox.innerHTML = '<h2>💡 Temas a reforçar</h2>'+(dif.length
       ? '<p>Calculado a partir das perguntas erradas, das dúvidas escritas no caderno e dos cartões por saber. Começa pelo primeiro.</p><ol>'+
-        dif.map(function(d){ return '<li><a style="--wc:var(--'+d.w.c+')" href="'+(d.s.page || "6ano.html")+'#'+d.s.key+'/'+d.w.id+'/praticar">'+d.s.icon+' '+esc(d.s.name)+' · '+d.w.icon+' Mundo '+d.w.num+': '+esc(d.w.title)+'</a> — '+esc(d.motivos.join(" · "))+
-          (d.duvida ? '<span class="duv">«'+esc(d.duvida)+'»</span>' : '')+'</li>'; }).join("")+'</ol>'
+        dif.map(function(d){ return '<li><span><span class="cd-sub">'+d.s.icon+' '+esc(d.s.name)+' · Mundo '+d.w.num+'</span><br><span class="cd-t">'+d.w.icon+' '+esc(d.w.title)+'</span></span>'+
+          '<a class="cd-b" href="'+(d.s.page || "6ano.html")+'#'+d.s.key+'/'+d.w.id+'/praticar">Praticar tema →</a>'+
+          '<span class="cd-m">'+esc(d.motivos.join(" · "))+(d.duvida ? '<span class="duv">«'+esc(d.duvida)+'»</span>' : '')+'</span></li>'; }).join("")+'</ol>'
       : '<p>Ainda não há dificuldades registadas. Aparecem aqui quando erras perguntas, escreves uma dúvida no bilhete de saída ou treinas cartões.</p>');
   }
 
