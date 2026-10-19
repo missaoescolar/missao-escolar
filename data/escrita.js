@@ -252,3 +252,81 @@ const ESCRITA_CURIOSIDADES = [
   {t:"Sophia de Mello Breyner Andresen, uma das maiores poetas portuguesas, escreveu também histórias para crianças, como 'A Menina do Mar' (1958).", fonte:"Plano Nacional de Leitura; Biblioteca Nacional de Portugal"},
   {t:"Os pequenos relevos nas teclas F e J existem para os dedos indicadores encontrarem a 'fila de casa' sem olhar para o teclado.", fonte:"Norma internacional de teclados ISO/IEC 9995-1"}
 ];
+
+/* 🔗 Palavras para ligar ideias (conectores), com a pontuação do português europeu.
+   ini  = como se escreve a abrir uma frase (com maiúscula e, quando é preciso, vírgula);
+   meio = como se escreve no meio da frase (null = só se usa a abrir uma frase).
+   Regras seguidas: vírgula antes de «mas»; conectores intercalados entre vírgulas
+   («no entanto», «contudo», «por isso», «portanto», «além disso», «por exemplo»);
+   «porque» e «uma vez que» sem vírgula obrigatória antes. */
+const ESCRITA_CONECTORES = [
+  {g:"⏱️ Tempo (contar por ordem)", l:[
+    {t:"primeiro", ini:"Primeiro, ", meio:null},
+    {t:"depois", ini:"Depois, ", meio:" depois "},
+    {t:"a seguir", ini:"A seguir, ", meio:" a seguir "},
+    {t:"mais tarde", ini:"Mais tarde, ", meio:" mais tarde "},
+    {t:"entretanto", ini:"Entretanto, ", meio:", entretanto, "},
+    {t:"de repente", ini:"De repente, ", meio:" de repente "},
+    {t:"nesse momento", ini:"Nesse momento, ", meio:null},
+    {t:"no dia seguinte", ini:"No dia seguinte, ", meio:null},
+    {t:"por fim", ini:"Por fim, ", meio:" por fim "}
+  ]},
+  {g:"↔️ Contraste (mas…)", l:[
+    {t:"mas", ini:"Mas ", meio:", mas "},
+    {t:"no entanto", ini:"No entanto, ", meio:", no entanto, "},
+    {t:"contudo", ini:"Contudo, ", meio:", contudo, "},
+    {t:"pelo contrário", ini:"Pelo contrário, ", meio:null},
+    {t:"apesar de", ini:"Apesar de ", meio:" apesar de "}
+  ]},
+  {g:"❓ Causa (porquê?)", l:[
+    {t:"porque", ini:null, meio:" porque "},
+    {t:"como", ini:"Como ", meio:null},
+    {t:"uma vez que", ini:"Uma vez que ", meio:" uma vez que "},
+    {t:"visto que", ini:"Visto que ", meio:", visto que "}
+  ]},
+  {g:"➡️ Consequência e conclusão", l:[
+    {t:"por isso", ini:"Por isso, ", meio:", por isso, "},
+    {t:"portanto", ini:"Portanto, ", meio:", portanto, "},
+    {t:"assim", ini:"Assim, ", meio:null},
+    {t:"em suma", ini:"Em suma, ", meio:null},
+    {t:"em conclusão", ini:"Em conclusão, ", meio:null}
+  ]},
+  {g:"➕ Acrescentar e dar opinião", l:[
+    {t:"na minha opinião", ini:"Na minha opinião, ", meio:null},
+    {t:"em primeiro lugar", ini:"Em primeiro lugar, ", meio:null},
+    {t:"além disso", ini:"Além disso, ", meio:", além disso, "},
+    {t:"por um lado", ini:"Por um lado, ", meio:null},
+    {t:"por outro lado", ini:"Por outro lado, ", meio:", por outro lado, "},
+    {t:"por exemplo", ini:"Por exemplo, ", meio:", por exemplo, "}
+  ]},
+  {g:"📍 Lugar (descrever)", l:[
+    {t:"ao longe", ini:"Ao longe, ", meio:" ao longe "},
+    {t:"ao perto", ini:"Ao perto, ", meio:" ao perto "},
+    {t:"à esquerda", ini:"À esquerda, ", meio:" à esquerda "},
+    {t:"à direita", ini:"À direita, ", meio:" à direita "},
+    {t:"lá dentro", ini:"Lá dentro, ", meio:" lá dentro "}
+  ]},
+  {g:"💬 Diálogo", l:[
+    {t:"— (travessão)", ini:"— ", meio:"— ", linha:true, nota:"Em português de Portugal, as falas começam com travessão (—), numa linha nova."}
+  ]}
+];
+
+/* ✨ Como escreveu um mestre — excertos curtos de autores portugueses em domínio público
+   (morreram há mais de 70 anos), com ortografia atualizada, e o que observar em cada um. */
+const ESCRITA_MESTRES = {
+  narrativo:[{autor:"Eça de Queirós", obra:"Os Maias (1888), primeira frase",
+    txt:"A casa que os Maias vieram habitar em Lisboa, no outono de 1875, era conhecida na vizinhança da Rua de S. Francisco de Paula, e em todo o bairro das Janelas Verdes, pela Casa do Ramalhete ou simplesmente o Ramalhete.",
+    ver:"Numa só frase, Eça diz QUEM (os Maias), ONDE (Lisboa, Janelas Verdes) e QUANDO (outono de 1875). Experimenta começar a tua história assim."}],
+  descritivo:[{autor:"Fernando Pessoa (Alberto Caeiro)", obra:"O Guardador de Rebanhos, poema XX",
+    txt:"O Tejo é mais belo que o rio que corre pela minha aldeia,\nMas o Tejo não é mais belo que o rio que corre pela minha aldeia\nPorque o Tejo não é o rio que corre pela minha aldeia.",
+    ver:"Descrever também é comparar: «mais belo que». Repara como a repetição é de propósito, para dar ritmo, e como o «Mas» abre o contraste."}],
+  poema:[{autor:"Fernando Pessoa", obra:"Mensagem (1934), «Mar Português»",
+    txt:"Ó mar salgado, quanto do teu sal\nSão lágrimas de Portugal!",
+    ver:"O poeta fala diretamente com o mar («Ó mar»): chama-se apóstrofe. E o sal do mar é comparado às lágrimas — uma metáfora."},
+    {autor:"Fernando Pessoa", obra:"«Liberdade» (1935)",
+    txt:"Ai que prazer\nNão cumprir um dever,\nTer um livro para ler\nE não o fazer!",
+    ver:"Repara nas rimas: prazer / dever / ler / fazer. Versos curtos dão um ritmo leve e divertido."}],
+  diario:[{autor:"Fernando Pessoa (Álvaro de Campos)", obra:"«Tabacaria» (1928)",
+    txt:"Não sou nada.\nNunca serei nada.\nNão posso querer ser nada.\nÀ parte isso, tenho em mim todos os sonhos do mundo.",
+    ver:"Escrever sobre o que se sente, na primeira pessoa (eu). Três frases tristes… e a última vira tudo ao contrário. Um diário também pode ter estas viragens."}]
+};

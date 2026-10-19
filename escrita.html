@@ -4,14 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Oficina de Escrita — Missão Escolar</title>
-<link rel="stylesheet" href="style.css?v=20261019-0829">
+<link rel="stylesheet" href="style.css?v=20261019-0848">
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="theme-color" content="#C7461F">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<script src="prefs.js?v=20261019-0829"></script>
-<link rel="stylesheet" href="escrita.css?v=20261019-0829">
+<script src="prefs.js?v=20261019-0848"></script>
+<link rel="stylesheet" href="escrita.css?v=20261019-0848">
 </head>
 <body>
 
@@ -101,19 +101,31 @@
         </div>
         <ol class="wr-steps" id="wr-steps"></ol>
         <input id="wr-title" class="wr-title" type="text" placeholder="Título (podes mudar quando quiseres)" aria-label="Título">
-        <textarea id="wr-text" class="wr-text" rows="14" placeholder="Escreve aqui. Se ficares sem ideias, toca em 💡 E agora?" aria-label="O teu texto"></textarea>
+        <div class="wr-folha">
+          <textarea id="wr-text" class="wr-text" rows="12" placeholder="Escreve aqui. Se ficares sem ideias, toca em 💡 E agora?" aria-label="O teu texto"></textarea>
+        </div>
+        <div class="wr-meta" aria-hidden="true"><div class="wr-bar"><i id="wr-bar"></i></div></div>
         <div class="wr-idle" id="wr-idle" hidden>Estás a pensar? Toca em <b>💡 E agora?</b> para uma pista.</div>
         <div class="wr-hint" id="wr-hint" aria-live="polite" hidden></div>
         <div class="ws-row wr-actions">
-          <button type="button" class="ws-btn primary" id="wr-next">💡 E agora?</button>
+          <button type="button" class="ws-btn" id="wr-next">💡 E agora?</button>
           <button type="button" class="ws-btn" id="wr-twist">🎲 Reviravolta</button>
-          <button type="button" class="ws-btn" id="wr-done">✅ Terminei!</button>
           <span class="wr-spacer"></span>
-          <button type="button" class="ws-btn" id="wr-download">⬇️ Guardar .txt</button>
-          <button type="button" class="ws-btn" id="wr-print">🖨️ Imprimir</button>
-          <button type="button" class="ws-btn" id="wr-new">📄 Novo texto</button>
+          <button type="button" class="ws-btn primary" id="wr-done">✅ Terminei! Rever texto</button>
         </div>
-        <p class="ws-note">O texto fica guardado sozinho neste computador, mesmo que feches a página.</p>
+        <details class="wr-fold" id="wr-con-box">
+          <summary>🔗 Palavras para ligar ideias <small>— toca para pôr no texto</small></summary>
+          <p class="ws-note">Põe o cursor onde queres a palavra e toca nela. O site escreve a maiúscula e as vírgulas certas, conforme estejas no início ou no meio da frase.</p>
+          <div id="wr-con"></div>
+        </details>
+        <details class="wr-fold" id="wr-mestre-box" hidden>
+          <summary>✨ Como escreveu um mestre <small>— autores portugueses</small></summary>
+          <div id="wr-mestre"></div>
+        </details>
+        <p class="ws-note wr-files">O texto fica guardado sozinho neste computador. ·
+          <button type="button" class="ws-link" id="wr-download">⬇️ Guardar .txt</button> ·
+          <button type="button" class="ws-link" id="wr-print">🖨️ Imprimir</button> ·
+          <button type="button" class="ws-link" id="wr-new">📄 Novo texto</button></p>
       </div>
       <div class="ws-card">
         <p class="ws-step">📚 Os meus textos</p>
@@ -122,14 +134,14 @@
     </section>
 </div>
 
-<script src="armazem.js?v=20261019-0829"></script>
+<script src="armazem.js?v=20261019-0848"></script>
 <!-- the subject data gives the typing sentences («Frases de Português, HGP…») -->
-<script src="data/portugues.js?v=20261019-0829"></script>
-<script src="data/hgp.js?v=20261019-0829"></script>
-<script src="data/matematica.js?v=20261019-0829"></script>
-<script src="data/cn.js?v=20261019-0829"></script>
-<script src="data/ingles.js?v=20261019-0829"></script>
-<script src="data/escrita.js?v=20261019-0829"></script>
-<script src="escrita.js?v=20261019-0829"></script>
+<script src="data/portugues.js?v=20261019-0848"></script>
+<script src="data/hgp.js?v=20261019-0848"></script>
+<script src="data/matematica.js?v=20261019-0848"></script>
+<script src="data/cn.js?v=20261019-0848"></script>
+<script src="data/ingles.js?v=20261019-0848"></script>
+<script src="data/escrita.js?v=20261019-0848"></script>
+<script src="escrita.js?v=20261019-0848"></script>
 
 </body></html>

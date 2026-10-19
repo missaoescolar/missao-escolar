@@ -188,7 +188,50 @@
       '<li class="'+(i<cur?"done":i===cur?"now":"")+'"><b>'+esc(e.nome)+'</b> <span>'+esc(e.ajuda)+'</span></li>').join("");
     const n = words(wrText.value);
     $("wr-count").textContent = n+" palavra"+(n===1?"":"s")+" · objetivo: cerca de "+t.alvo;
+    const bar = $("wr-bar"), r = n / t.alvo;
+    bar.style.width = Math.min(100, Math.round(r * 100))+"%";
+    bar.classList.toggle("longe", r > 1.6);   // much longer than the target: amber, never red
+    renderMestre();
   }
+
+  /* 🔗 connectors: inserted at the cursor with the right capital letter and commas
+     (sentence start → «De repente, »; middle of a sentence → «, no entanto, »). Undo (Ctrl+Z) keeps working. */
+  function inserir(c){
+    const v = wrText.value, s = wrText.selectionStart, e = wrText.selectionEnd;
+    const antes = v.slice(0, s);
+    const inicio = !antes.trim() || /[.!?…]["»]?\s*$|\n\s*$|—\s*$/.test(antes);
+    let txt = inicio ? c.ini : c.meio, aviso = "";
+    if(txt === null && inicio){ txt = c.meio.replace(/^[,\s]+/, ""); txt = txt.charAt(0).toUpperCase()+txt.slice(1); aviso = "«"+c.t+"» costuma ligar duas partes da mesma frase: «Fiquei em casa porque chovia.»"; }
+    if(txt === null){ txt = ". "+c.ini; aviso = "«"+c.ini.trim().replace(/,$/, "")+"» abre uma frase nova, por isso o site pôs um ponto final antes."; }
+    if(c.nota) aviso = c.nota;
+    if(c.linha) txt = (antes && !/\n\s*$/.test(antes) ? "\n" : "") + c.ini;   // dialogue: always on a new line
+    // spaces and commas that are already there are not repeated
+    let ini = s;
+    if(c.linha) while(ini > 0 && v[ini-1] === " ") ini--;
+    else if(/^[,.]/.test(txt)) while(ini > 0 && v[ini-1] === " ") ini--;
+    else if(/^\s/.test(txt) && (ini === 0 || /\s/.test(v[ini-1]))) txt = txt.replace(/^\s+/, "");
+    if(/\s$/.test(txt) && /^\s/.test(v.slice(e))) txt = txt.replace(/\s+$/, "");
+    if(!c.linha && inicio && antes.trim() && !/\s$/.test(antes)) txt = " "+txt;
+    wrText.focus(); wrText.setSelectionRange(ini, e);
+    if(!document.execCommand || !document.execCommand("insertText", false, txt)){ wrText.setRangeText(txt, ini, e, "end"); wrText.dispatchEvent(new Event("input")); }
+    if(aviso){ wrHint.innerHTML = '<span class="wr-stage">🔗 '+esc(c.t)+'</span> '+esc(aviso); wrHint.hidden = false; }
+  }
+  $("wr-con").innerHTML = ESCRITA_CONECTORES.map((g, gi) => '<div class="wr-cg"><b>'+esc(g.g)+'</b><div class="wr-chips">'+
+    g.l.map((c, ci) => '<button type="button" class="wr-cbtn" data-g="'+gi+'" data-c="'+ci+'">'+esc(c.t)+'</button>').join("")+'</div></div>').join("");
+  // mousedown keeps the cursor in the text area (a click would move the focus first)
+  $("wr-con").addEventListener("mousedown", ev => { if(ev.target.closest(".wr-cbtn")) ev.preventDefault(); });
+  $("wr-con").addEventListener("click", ev => { const b = ev.target.closest(".wr-cbtn"); if(b) inserir(ESCRITA_CONECTORES[+b.dataset.g].l[+b.dataset.c]); });
+
+  /* ✨ excerpts of Portuguese authors (public domain) for the chosen text type */
+  let mestreDe = null;
+  function renderMestre(){
+    if(mestreDe === wrType.value) return; mestreDe = wrType.value;
+    const m = (typeof ESCRITA_MESTRES !== "undefined" && ESCRITA_MESTRES[wrType.value]) || [];
+    $("wr-mestre-box").hidden = !m.length;
+    $("wr-mestre").innerHTML = m.map(x => '<div class="wr-mestre-c"><blockquote>'+esc(x.txt)+'</blockquote><cite>— '+esc(x.autor)+', <i>'+esc(x.obra)+'</i></cite><p>👀 '+esc(x.ver)+'</p></div>').join("")+
+      (m.length ? '<p class="ws-note">Excertos curtos de autores em domínio público, com a ortografia atual. Inspira-te na técnica; as palavras são tuas.</p>' : '');
+  }
+
 
   /* themes */
   function renderThemes(cat){
@@ -331,7 +374,24 @@
     [/\btu (fizestes|dissestes|comestes|fostes|tivestes|estivestes|vistes|destes|pusestes)\b/i, "com «tu», o passado acaba em -ste, sem «s»: fizeste, disseste, foste"],
     [/\b(hei-de|hás-de|há-de|hão-de)\b/i, "com o Acordo Ortográfico, escreve-se sem hífen: «hei de», «há de»"],
     [/\b(vêem|lêem|dêem|crêem)\b/i, "com o Acordo Ortográfico, perderam o acento: veem, leem, deem, creem"],
-    [/(?<![a-zà-ÿ])(acção|óptimo|direcção|actividade|baptizado)(?![a-zà-ÿ])/i, "com o Acordo Ortográfico: ação, ótimo, direção, atividade, batizado"]
+    [/(?<![a-zà-ÿ])(acção|óptimo|direcção|actividade|baptizado)(?![a-zà-ÿ])/i, "com o Acordo Ortográfico: ação, ótimo, direção, atividade, batizado"],
+    [/(?<![a-zà-ÿ])à (\d+|um|uma|dois|duas|três|quatro|cinco|muito|muitos|muitas|pouco|poucos|bastante|vários|várias|algum|alguns|algumas) ?(anos?|meses|mês|dias?|semanas?|horas?|minutos?|tempo|séculos?)(?![a-zà-ÿ])/i, "para tempo que já passou escreve-se «há» (do verbo haver): «há dois anos», «há muito tempo»"],
+    [/(?<![a-zà-ÿ])á(?![a-zà-ÿ])/i, "«á» sozinho não existe: é «à» (a + a: «vou à praia») ou «há» (verbo haver: «há sol»)"],
+    [/(?<![a-zà-ÿ])fazem (\d+|dois|duas|três|muitos|vários|uns) (anos|meses|dias|semanas|horas)/i, "com o sentido de tempo passado, «fazer» fica no singular: «faz dois anos»"],
+    [/(?<![a-zà-ÿ])(seje|esteje|sejem|estejem)(?![a-zà-ÿ])/i, "escreve-se «seja» e «esteja» (e «sejam», «estejam»)"],
+    [/(?<![a-zà-ÿ])(fizes|disses|vies|tives|estives|quises|soubes|pudes|trouxes)-te(?![a-zà-ÿ])/i, "escreve-se tudo junto — «fizeste», «disseste», «vieste»: o -ste é a terminação do verbo, não o pronome «te»"],
+    [/(?<![a-zà-ÿ])porque\s*\?/i, "no fim de uma pergunta escreve-se «porquê?», com acento"],
+    [/(?<![a-zà-ÿ])(excessão|previlégio|intertido|cidadões|mendingo|ansiozo|ançioso)(?![a-zà-ÿ])/i, "atenção à ortografia: exceção, privilégio, entretido, cidadãos, mendigo, ansioso"]
+  ];
+  /* punctuation and dialogue rules (Portuguese of Portugal) */
+  const PONT = [
+    [/[a-zà-ÿ0-9] +[,.;:!?](?!\.)/i, "não se deixa espaço antes de , . ; : ! ? — a pontuação fica colada à palavra"],
+    [/[,;:][a-zà-ÿ]/i, "depois de vírgula, ponto e vírgula ou dois pontos deixa-se um espaço"],
+    [/[a-zà-ÿ]{2}[.!?][A-ZÀ-Ý]/, "depois do ponto final deixa-se um espaço antes da frase seguinte"],
+    [/(^|\n)\s*-\s*[A-ZÀ-Ýa-zà-ÿ]/, "nos diálogos usa-se o travessão (—), não o hífen (-). Está em 🔗 Palavras para ligar ideias › Diálogo"],
+    [/[a-zà-ÿ] mas (?!também)/i, "antes de «mas» põe-se vírgula: «Queria ir, mas chovia.»"],
+    [/(^|[.!?]\s+)(Será que|Porque é que|O que é que|Quem é que|Onde é que|Quando é que)[^.!?]*\./, "uma frase que começa por «Será que…» ou «Porque é que…» é uma pergunta: termina com ponto de interrogação (?)"],
+    [/(?<![a-zà-ÿ])([a-zà-ÿ]+) \1(?![a-zà-ÿ])/i, "há uma palavra escrita duas vezes seguidas (por exemplo «o o» ou «que que»)"]
   ];
   const VAZIAS = new Set("a o as os um uma uns umas e é de do da dos das em no na nos nas que se por para com não mas ou ao à aos às eu tu ele ela nós eles elas me te lhe nos vos lhes meu minha teu tua seu sua este esta isso isto aquele aquela era foi ser estar tinha tem há já muito mais como quando onde também lá aqui então".split(" "));
   function rever(texto, tipo){
@@ -354,6 +414,7 @@
     const rep2 = Object.keys(cont).filter(p => cont[p] >= 4 && p !== "depois").sort((a, b) => cont[b] - cont[a]).slice(0, 3);
     if(depois >= 3) add(false, "Usaste «depois» "+depois+" vezes. Experimenta: a seguir, mais tarde, nesse momento, entretanto, por fim.");
     if(rep2.length) add(false, "Palavras que se repetem muito: "+rep2.map(p => "«"+p+"» ("+cont[p]+"×)").join(", ")+". Procura sinónimos ou usa um pronome.");
+    PONT.forEach(([re, dica]) => { if(re.test(t)) add(false, "✍️ "+dica.charAt(0).toUpperCase()+dica.slice(1)+"."); });
     PRONT.forEach(([re, dica]) => { if(re.test(t)) add(false, "📗 "+dica+" (vê o Prontuário)."); });
     return res;
   }
