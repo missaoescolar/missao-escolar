@@ -1330,3 +1330,23 @@
   .pp-dica{ background:var(--surface-2); border-radius:18px; padding:16px 18px; margin:0 0 12px; }
   .pp-dica p:last-child{ margin:0; }
   .pp-priv{ margin:0; padding:10px 14px; border-radius:14px; background:var(--paper); border:1px solid var(--border); font-size:.9rem; }
+
+  /* ===== Início — layout «Caderno Vivo» ===== */
+  .year-cards{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:14px; max-width:760px; margin:6px auto 10px; }
+  .year-card{ display:flex; flex-direction:column; align-items:flex-start; gap:8px; text-align:left; padding:18px 20px; border-radius:18px; border:1.5px solid var(--border); background:var(--surface); color:var(--text); box-shadow:var(--shadow); cursor:pointer; font:inherit; }
+  .year-card:hover{ border-color:var(--accent); }
+  .year-card.active{ background:var(--surface); color:var(--text); border:2px solid var(--accent); }
+  .yc-ciclo{ font-size:.78rem; font-weight:700; padding:3px 10px; border-radius:8px; background:var(--surface-2); color:var(--text-muted); }
+  .yc-ano{ font-size:1.8rem; font-weight:800; line-height:1.1; }
+  .yc-disc{ display:flex; flex-wrap:wrap; gap:6px; }
+  .yc-disc i{ font-style:normal; font-size:.82rem; padding:3px 9px; border-radius:8px; background:var(--paper); border:1px solid var(--border); }
+  .yc-go{ margin-top:auto; align-self:stretch; text-align:center; padding:10px; border-radius:12px; background:var(--surface-2); font-weight:700; }
+  .year-card.active .yc-go{ background:var(--accent); color:#fff; }
+  .home-tools{ display:block; }
+  .tools-fold{ background:var(--surface); border:1.5px solid var(--border); border-radius:18px; box-shadow:var(--shadow); padding:4px 16px; }
+  .tools-fold > summary{ cursor:pointer; min-height:56px; display:flex; flex-direction:column; justify-content:center; padding:8px 0; }
+  .tools-fold > summary span{ font-weight:700; font-size:1.05rem; }
+  .tools-fold > summary small{ color:var(--text-muted); font-size:.85rem; }
+  .tools-fold[open]{ padding-bottom:16px; }
+  .tools-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:10px; }
+  .tools-grid .tool-card{ background:var(--paper); box-shadow:none; }

@@ -133,8 +133,13 @@
     crumbs.innerHTML = '<button type="button" class="ghost-btn" data-back>← Voltar</button><span>'+
       (Y ? '<b>'+Y.y+'.º ano</b>' : '')+(n === 3 && I ? ' › <b>'+I.icon+' '+I.t+'</b>' : '')+'</span>';
 
-    yearPick.innerHTML = '<div class="year-tabs">'+READY.map(Y =>
-      '<button type="button" class="year-tab'+(Y.y===year ? ' active' : '')+'" data-year="'+Y.y+'" aria-pressed="'+(Y.y===year)+'">'+Y.y+'.º ano</button>').join("")+'</div>'+
+    // year cards (layout «Caderno Vivo»): cycle, year, the subjects it has, and one clear button
+    yearPick.innerHTML = '<div class="year-tabs year-cards">'+READY.map(Y =>
+      '<button type="button" class="year-tab year-card'+(Y.y===year ? ' active' : '')+'" data-year="'+Y.y+'" aria-pressed="'+(Y.y===year)+'">'+
+        '<span class="yc-ciclo">'+(Number(Y.y) <= 6 ? '2.º ciclo' : '3.º ciclo')+(Y.y===year ? ' · o teu ano' : '')+'</span>'+
+        '<span class="yc-ano">'+Y.y+'.º ano</span>'+
+        '<span class="yc-disc">'+Y.list.map(s => '<i>'+esc(s.name)+'</i>').join("")+'</span>'+
+        '<span class="yc-go">Entrar no '+Y.y+'.º ano →</span></button>').join("")+'</div>'+
       '<p class="year-caption">'+(year ? 'O teu ano está marcado: toca nele para continuar.' : 'Fica guardado para a próxima vez.')+'</p>';
     intentGrid.innerHTML = INTENTS.map(I =>
       '<button type="button" class="intent-card'+(I.id===intent ? ' on' : '')+'" data-intent="'+I.id+'" aria-pressed="'+(I.id===intent)+'">'+
