@@ -1256,3 +1256,22 @@
     .cart-nav .cta{ flex:1; }
   }
   .cart-nav .cta{ background:var(--accent); border-color:var(--accent); color:#fff; }
+
+  /* ===== Mapa de mundos — layout «Caderno Vivo» ===== */
+  .tile{ border:1.5px solid var(--border); padding:14px; gap:4px; }
+  .tile:hover{ border-color:var(--wc); }
+  .tile-top{ display:flex; align-items:flex-start; justify-content:space-between; gap:6px; margin-bottom:4px; }
+  .tile .ic{ margin:0; }
+  .tile.done{ background:var(--surface); }
+  .tile.done .ic{ background:var(--wc-bg); color:var(--wc); }
+  .estado{ font-size:.72rem; font-weight:700; padding:3px 8px; border-radius:8px; background:var(--surface-2); color:var(--text-muted); white-space:nowrap; }
+  .estado.ok{ background:color-mix(in srgb, #3E8F5C 16%, var(--surface)); color:#2E7A56; }
+  .estado.meio{ background:color-mix(in srgb, #E0A100 18%, var(--surface)); color:#7A5600; }
+  .estado.aqui{ background:var(--accent); color:#fff; }
+  .tile .st{ color:var(--text-muted); font-weight:600; margin-top:auto; padding-top:8px; }
+  .tile .segs{ width:100%; }
+  .tile .segs i{ flex:1; width:auto; height:8px; }
+  .tile.next{ outline:none; border:2px solid var(--accent); box-shadow:0 8px 24px rgba(45,40,37,.10); }
+  .tile-cta{ margin-top:10px; text-align:center; background:var(--accent); color:#fff; border-radius:12px; padding:9px 10px; font-weight:700; font-size:.9rem; }
+  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .estado.ok{ color:#8FD3A8; } :root:not([data-theme="light"]) .estado.meio{ color:#F2C65A; } }
+  :root[data-theme="dark"] .estado.ok{ color:#8FD3A8; } :root[data-theme="dark"] .estado.meio{ color:#F2C65A; }

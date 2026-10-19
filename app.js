@@ -1248,9 +1248,13 @@
       let html = "";
       worlds.forEach(function(w){
         const d = worldDone(w), n = w.missions.length, done = isComplete(w), isNext = (w===nx);
+        // layout «Caderno Vivo»: status chip, one segment per mission, only ONE world highlighted («Continua aqui»)
+        const estado = done ? ['ok','✓ Concluído'] : isNext ? ['aqui','📍 Continua aqui'] : d ? ['meio','Em andamento'] : ['','Por iniciar'];
         html += '<a class="tile'+(done?' done':'')+(isNext?' next':'')+'" href="#'+cfg.key+'/'+w.id+stage+'" style="--wc:var(--'+w.c+');--wc-bg:var(--'+w.c+'-bg)">'+
-          '<span class="ic" aria-hidden="true">'+(done?'✓':w.icon)+'</span><small>Mundo '+w.num+'</small><b>'+w.title+'</b>'+
-          '<span class="st">'+(done ? 'Concluído ⭐' : d+'/'+n+' missões')+(isNext ? ' · continua aqui' : '')+'</span></a>';
+          '<span class="tile-top"><span class="ic" aria-hidden="true">'+w.icon+'</span><span class="estado '+estado[0]+'">'+estado[1]+'</span></span>'+
+          '<small>Mundo '+w.num+'</small><b>'+w.title+'</b>'+
+          '<span class="st">'+d+' de '+n+' missões</span><span class="segs" aria-hidden="true">'+w.missions.map(function(_, i){ return '<i'+(i<d ? ' class="ok"' : '')+'></i>'; }).join("")+'</span>'+
+          (isNext ? '<span class="tile-cta">'+(d ? 'Continuar' : 'Começar')+' →</span>' : '')+'</a>';
       });
       html += '<a class="tile review'+(g==="teste" ? ' next' : '')+'" href="#'+cfg.key+'/revisao">'+
         '<span class="ic" aria-hidden="true">🏆</span><small>Os '+worlds.length+' mundos</small><b>Revisão Final</b>'+
