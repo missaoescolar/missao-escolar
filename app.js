@@ -1819,7 +1819,10 @@
       const sh = el("a","xcard",'<b>📄 Página-resumo</b><small>A matéria toda numa folha, pronta a imprimir.</small>');
       sh.href = "resumo.html?w="+encodeURIComponent(w.id);
       grid.appendChild(sh);
-      X.appendChild(grid);
+      const gridWrap = el("div","");
+      gridWrap.appendChild(el("p","subhead","🔭 Para ir mais longe"));
+      gridWrap.appendChild(grid);
+      X.appendChild(gridWrap);
 
       if(w.compare){
         const cmpWrap = el("div","");
@@ -1853,7 +1856,10 @@
         resWrap.appendChild(rg);
         X.appendChild(resWrap);
       }
-      X.appendChild(el("div","xcard dashed",'<b>🏆 Avaliação</b><small>'+w.boss+(w.pages ? ' · '+w.pages : '')+'</small>'));
+      const avWrap = el("div","");
+      avWrap.appendChild(el("p","subhead","🏆 Avaliação"));
+      avWrap.appendChild(el("div","xcard dashed",'<small>'+w.boss+(w.pages ? ' · '+w.pages : '')+'</small>'));
+      X.appendChild(avWrap);
 
       /* --- previous / next world --- */
       const wnav = el("div","wnav");
@@ -1864,6 +1870,8 @@
       na.href = "#"+cfg.key+"/"+(next ? next.id : "revisao");
       wnav.appendChild(pa); wnav.appendChild(na);
       card.appendChild(wnav);
+      // layout «Caderno Vivo»: Explorar is also one card at a time (Cartão k de n); the last one leads to the next world
+      if(X.children.length > 1) emCartoes(X, {label: next ? "Seguinte: "+next.icon+" Mundo "+next.num+" →" : "🏆 Revisão Final →", fn: function(){ location.hash = na.getAttribute("href"); }});
 
       sec.appendChild(card);
       main.appendChild(sec);
