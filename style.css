@@ -1275,3 +1275,19 @@
   .tile-cta{ margin-top:10px; text-align:center; background:var(--accent); color:#fff; border-radius:12px; padding:9px 10px; font-weight:700; font-size:.9rem; }
   @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .estado.ok{ color:#8FD3A8; } :root:not([data-theme="light"]) .estado.meio{ color:#F2C65A; } }
   :root[data-theme="dark"] .estado.ok{ color:#8FD3A8; } :root[data-theme="dark"] .estado.meio{ color:#F2C65A; }
+
+  /* ===== Praticar — uma missão de cada vez (layout «Caderno Vivo») ===== */
+  .m-topo{ display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px 14px; margin:4px 0 10px; }
+  .m-conta{ margin:0; }
+  .m-circ{ display:flex; gap:6px; flex-wrap:wrap; }
+  .m-circ button{ width:38px; height:38px; border-radius:50%; border:1.5px solid var(--border); background:var(--surface); color:var(--text-muted); font:inherit; font-weight:700; cursor:pointer; }
+  .m-circ button.ok{ background:#3E8F5C; border-color:#3E8F5C; color:#fff; }
+  .m-circ button.on{ border:2px solid var(--accent); color:var(--accent); box-shadow:0 0 0 3px color-mix(in srgb, var(--accent) 15%, transparent); }
+  .m-circ button.ok.on{ color:#fff; }
+  .missions .mission{ background:var(--surface); border:1.5px solid var(--border); border-radius:18px; padding:18px 20px; box-shadow:var(--shadow); }
+  .missions .mission .mtitle{ font-size:1.15rem; }
+  .missions .mission .mtitle.done{ text-decoration:none; opacity:1; color:#2E7A56; }
+  .missions .mission .mtitle.done::after{ content:" ✓ feita"; font-size:.85rem; }
+  .missions .mission .mdetail{ font-size:.95rem; }
+  .m-pe{ border-top:none; margin-top:12px; padding-top:0; }
+  @media print{ .missions .mission[hidden]{ display:grid !important; } .m-topo, .m-pe{ display:none !important; } }

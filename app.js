@@ -1661,14 +1661,51 @@
         row.appendChild(cb); row.appendChild(title); row.appendChild(detail); row.appendChild(xp);
         missionsBox.appendChild(row);
       });
+      /* one mission at a time (layout «Caderno Vivo»): numbered circles (green = done), "Missão k de n", ← → */
+      const mRows = Array.prototype.slice.call(missionsBox.querySelectorAll(".mission"));
+      const mNav = el("div","m-circ"); mNav.setAttribute("aria-label","Missões deste mundo");
+      const mConta = el("p","m-conta"); mConta.setAttribute("aria-live","polite");
+      const mCirc = mRows.map(function(r, i){
+        const b = el("button","",String(i+1)); b.type = "button";
+        b.setAttribute("aria-label","Missão "+(i+1)+": "+w.missions[i].t);
+        b.addEventListener("click", function(){ mostraMissao(i); });
+        mNav.appendChild(b); return b;
+      });
+      const mPe = el("div","cart-nav m-pe");
+      const mAnt = el("button","ghost-btn","← Anterior"); mAnt.type = "button";
+      const mSeg = el("button","cta","Seguinte →"); mSeg.type = "button";
+      mPe.appendChild(mAnt); mPe.appendChild(mSeg);
+      let mk = Math.max(0, mRows.findIndex(function(r){ return !r.querySelector("input").checked; }));
+      function mostraMissao(i){
+        mk = i;
+        mRows.forEach(function(r, j){ r.hidden = (j!==i); });
+        mCirc.forEach(function(b, j){
+          b.className = (mRows[j].querySelector("input").checked ? "ok" : "")+(j===i ? " on" : "");
+          b.textContent = mRows[j].querySelector("input").checked ? "✓" : String(j+1);
+          if(j===i) b.setAttribute("aria-current","step"); else b.removeAttribute("aria-current");
+        });
+        mConta.innerHTML = '<b>Missão '+(i+1)+' de '+mRows.length+'</b>';
+        mAnt.disabled = (i===0);
+        mSeg.textContent = i < mRows.length-1 ? "Seguinte →" : "Ver os cartões de memória →";
+      }
+      mAnt.addEventListener("click", function(){ if(mk>0) mostraMissao(mk-1); });
+      mSeg.addEventListener("click", function(){
+        if(mk < mRows.length-1) mostraMissao(mk+1);
+        else { const c = document.getElementById("cartoes-"+w.id); if(c) c.scrollIntoView({block:"center"}); }
+      });
+      missionsBox.addEventListener("change", function(){ setTimeout(function(){ mostraMissao(mk); }, 0); });
+      const mTopo = el("div","m-topo"); mTopo.appendChild(mConta); mTopo.appendChild(mNav);
+      missionsWrap.appendChild(mTopo);
       missionsWrap.appendChild(missionsBox);
+      missionsWrap.appendChild(mPe);
+      mostraMissao(mk);
       P.appendChild(missionsWrap);
       if(F.robo) P.appendChild(buildRobo(F.robo));
       wheelBtn.addEventListener("click", function(){
-        const open = Array.prototype.filter.call(missionsBox.querySelectorAll(".mission"), function(r){ return !r.querySelector("input").checked; });
+        const open = mRows.map(function(r, i){ return r.querySelector("input").checked ? -1 : i; }).filter(function(i){ return i >= 0; });
         if(!open.length){ showToast("🎉 Já fizeste todas as missões deste mundo!"); return; }
-        const pick = open[Math.floor(Math.random()*open.length)];
-        if(typeof pick.scrollIntoView === "function") pick.scrollIntoView({behavior:"smooth", block:"center"});
+        mostraMissao(open[Math.floor(Math.random()*open.length)]);
+        const pick = mRows[mk];
         pick.classList.remove("picked"); void pick.offsetWidth; pick.classList.add("picked");
         setTimeout(function(){ pick.classList.remove("picked"); }, 1800);
       });
