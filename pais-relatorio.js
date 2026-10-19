@@ -129,6 +129,42 @@ window.addEventListener("load", function(){
   ["rel-email","rel-nome","rel-perfil"].forEach(id => $(id).addEventListener("change", () => { guardarCfg(); construir(); $("rel-ok").textContent = "✅ Guardado neste computador."; }));
   construir();
 
+  /* ---------- panel at the top (layout «Caderno Vivo»): only data the site really measures ---------- */
+  // what parents can do at home, by subject (short, concrete, no tests at home)
+  const APOIO = {
+    pt:"Leiam juntos 10 minutos e peça-lhe que reconte o texto por palavras suas. Contar a alguém obriga a organizar as ideias.",
+    math:"Peça-lhe que lhe explique um exemplo resolvido do «Para o teste», como se fosse o professor. Se encravar, pergunte «qual é o primeiro passo?».",
+    eng:"Vejam juntos um vídeo curto em inglês com legendas em inglês e digam, cada um, três palavras novas que ouviram.",
+    hgp:"Procurem juntos o lugar ou a data no mapa ou numa linha do tempo desenhada à mão. Ver «onde» e «quando» ajuda a lembrar.",
+    cn:"Façam uma das missões práticas juntos (observar, medir, registar) e peça-lhe que explique o que aconteceu e porquê.",
+    cn7:"Façam uma das missões práticas juntos e peça-lhe que explique o que observou com as palavras do glossário.",
+    fq7:"Peça-lhe que faça a previsão antes de verem a animação («o que achas que vai acontecer?») e que depois explique se acertou."
+  };
+  function painel(){
+    const box = $("pais-painel"); if(!box) return;
+    const D = dados();
+    const cartoes = MISSAO_SUBJECTS_6.concat(MISSAO_SUBJECTS_7).filter(s => s.worlds.length).map(s => {
+      const st = MissaoArmazem.ler(s.store, {}) || {};
+      let tot = 0, feitas = 0;
+      const segs = s.worlds.map(w => { const f = w.missions.filter((m, i) => st[w.id+"-"+i]).length; tot += w.missions.length; feitas += f; return f === w.missions.length && f ? "ok" : f ? "meio" : ""; });
+      const comp = segs.filter(x => x === "ok").length;
+      return '<article class="pp-card"><p class="pp-ano">'+(s.ano || "6")+'.º ano · '+comp+' de '+s.worlds.length+' mundos</p><h3>'+s.icon+' '+esc(s.name)+'</h3>'+
+        '<p class="pp-n"><span>Missões concluídas</span><b>'+feitas+' de '+tot+'</b></p>'+
+        '<span class="pp-segs" aria-hidden="true">'+segs.map(c => '<i class="'+c+'"></i>').join("")+'</span></article>';
+    }).join("");
+    const temas = D.dif.slice(0, 3).map(x => '<li><p class="pp-sub">'+x.s.icon+' '+esc(x.s.name)+' · Mundo '+x.w.num+'</p><h4>'+x.w.icon+' '+esc(x.w.title)+'</h4>'+
+      '<p><b>O que se observou:</b> '+esc(x.motivos.map(m => m.replace("escreveste", "escreveu").replace("já erraste", "já errou").replace("ainda não sabes", "ainda não sabe")).join("; "))+'.</p>'+
+      '<p class="pp-apoio">🏠 <b>Como apoiar em casa:</b> '+esc(APOIO[x.s.key] || "Peça-lhe que lhe explique o tema por palavras suas, sem pressa e sem corrigir logo.")+'</p></li>').join("");
+    const dica = DICAS.geral[semana % DICAS.geral.length];
+    box.innerHTML =
+      '<h2>🎒 Percurso escolar</h2><p class="pp-legenda">Cada segmento é um mundo: verde = concluído, verde-claro = começado.</p><div class="pp-grid">'+cartoes+'</div>'+
+      '<div class="pp-temas"><h2>💡 3 temas a reforçar com calma</h2><p class="pp-legenda">Calculados a partir das perguntas erradas, das dúvidas escritas no caderno e dos cartões por saber.</p>'+
+        (temas ? '<ol>'+temas+'</ol>' : '<p>Ainda não há dificuldades registadas. Aparecem quando a criança erra perguntas, escreve uma dúvida no caderno ou treina cartões.</p>')+'</div>'+
+      '<div class="pp-dica"><p class="pp-sub">🌱 Dica da semana para a família</p><h4>'+esc(dica[0])+'</h4><p>'+esc(dica[1])+'</p></div>'+
+      '<p class="pp-priv">🔒 Os dados ficam só neste aparelho. Não há contas, nem envio para terceiros.</p>';
+  }
+  painel();
+
   $("rel-enviar").addEventListener("click", () => {
     const email = $("rel-email").value.trim();
     if(email && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){ $("rel-ok").textContent = "⚠️ Confirme o endereço de e-mail."; $("rel-email").focus(); return; }
