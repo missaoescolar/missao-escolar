@@ -1466,3 +1466,25 @@
   .sessao-cara.on{ border-color:#3E8F5C; background:color-mix(in srgb, #3E8F5C 12%, var(--surface)); }
   .sessao-fechar{ background:var(--accent); align-self:stretch; margin-top:8px; }
   .hoje-acabar{ display:block; margin-top:6px; }
+
+  /* ===== modo escuro: contraste dos botões cheios, urgência, pictogramas, calma ===== */
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]) .cta, :root:not([data-theme="light"]) .cart-nav .cta, :root:not([data-theme="light"]) .teste-cab .cta, :root:not([data-theme="light"]) .hoje-go, :root:not([data-theme="light"]) .sessao-fechar, :root:not([data-theme="light"]) .estado.aqui, :root:not([data-theme="light"]) .ar-verify{ color:#1C1A17; }
+    :root:not([data-theme="light"]) .urg.urg-j{ color:#F2A49A; }
+    :root:not([data-theme="light"]) .urg.urg-d{ color:#F2C65A; }
+    :root:not([data-theme="light"]) .urg.urg-c{ color:#8FD3A8; }
+    :root:not([data-theme="light"]) .man-num a:first-child{ border-color:#E0786B; }
+    :root:not([data-theme="light"]) .mf-pic, :root:not([data-theme="light"]) .mf-fig{ background:#F4EFE6; }
+    :root:not([data-theme="light"]) .mf-fig figcaption{ color:#5C554A; }
+    :root:not([data-theme="light"]) .top-nav .top-calma, :root:not([data-theme="light"]) .tab-baixo button{ color:#8FD3A8; }
+    :root:not([data-theme="light"]) .sessao-cara.on{ border-color:#8FD3A8; }
+  }
+  :root[data-theme="dark"] .cta, :root[data-theme="dark"] .cart-nav .cta, :root[data-theme="dark"] .teste-cab .cta, :root[data-theme="dark"] .hoje-go, :root[data-theme="dark"] .sessao-fechar, :root[data-theme="dark"] .estado.aqui, :root[data-theme="dark"] .ar-verify{ color:#1C1A17; }
+  :root[data-theme="dark"] .urg.urg-j{ color:#F2A49A; }
+  :root[data-theme="dark"] .urg.urg-d{ color:#F2C65A; }
+  :root[data-theme="dark"] .urg.urg-c{ color:#8FD3A8; }
+  :root[data-theme="dark"] .man-num a:first-child{ border-color:#E0786B; }
+  :root[data-theme="dark"] .mf-pic, :root[data-theme="dark"] .mf-fig{ background:#F4EFE6; }
+  :root[data-theme="dark"] .mf-fig figcaption{ color:#5C554A; }
+  :root[data-theme="dark"] .top-nav .top-calma, :root[data-theme="dark"] .tab-baixo button{ color:#8FD3A8; }
+  :root[data-theme="dark"] .sessao-cara.on{ border-color:#8FD3A8; }
