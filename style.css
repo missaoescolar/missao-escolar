@@ -1350,3 +1350,11 @@
   .tools-fold[open]{ padding-bottom:16px; }
   .tools-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:10px; }
   .tools-grid .tool-card{ background:var(--paper); box-shadow:none; }
+
+  /* barra de cima: atalhos à vista (layout «Caderno Vivo») */
+  .top-nav{ display:flex; gap:4px; align-items:center; margin-left:auto; }
+  .top-nav a, .top-nav button{ font:inherit; font-weight:700; font-size:.9rem; color:var(--text); text-decoration:none; padding:8px 12px; border-radius:12px; border:none; background:none; cursor:pointer; min-height:44px; display:inline-flex; align-items:center; gap:6px; }
+  .top-nav a:hover, .top-nav button:hover{ background:var(--surface-2); }
+  .top-nav .top-calma{ background:color-mix(in srgb, #3E8F5C 16%, var(--surface)); color:#2E7A56; }
+  @media (max-width:720px){ .top-nav span{ position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); } .top-nav a, .top-nav button{ padding:8px 10px; font-size:1.1rem; } }
+  @media (max-width:720px){ .topbar .crumbs{ flex-basis:100%; margin:0; } .topbar .top-nav{ margin-left:0; } }
