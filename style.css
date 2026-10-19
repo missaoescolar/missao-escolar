@@ -1421,3 +1421,30 @@
   .hoje-mis, .hoje-mis .link-btn{ text-align:left; }
   .map-head .xp-pill{ background:var(--surface); color:var(--text); border:1.5px solid var(--border); box-shadow:none; font-size:.85rem; padding:5px 12px; }
   .tile-cta{ background:transparent; color:var(--accent); border:1.5px solid var(--accent); }
+  /* ===== navegação comum (navegacao.js): barra de baixo no telemóvel + janelas que sobem de baixo ===== */
+  .tab-baixo{ display:none; }
+  .top-nav a[aria-current="page"]{ background:var(--surface-2); color:var(--accent); }
+  @media (max-width:720px){
+    .tab-baixo{ display:grid; grid-template-columns:repeat(4, 1fr); position:fixed; left:0; right:0; bottom:0; z-index:90;
+      background:var(--surface); border-top:1.5px solid var(--border); padding:4px 4px calc(4px + env(safe-area-inset-bottom)); }
+    .tab-baixo a, .tab-baixo button{ font:inherit; font-size:.78rem; font-weight:700; color:var(--text-muted); text-decoration:none; background:none; border:none; cursor:pointer;
+      display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2px; min-height:52px; border-radius:12px; }
+    .tab-baixo span{ font-size:1.3rem; line-height:1; }
+    .tab-baixo [aria-current="page"]{ color:var(--accent); background:var(--surface-2); }
+    .tab-baixo button{ color:#2E7A56; }
+    .tab-baixo :focus-visible{ outline:3px solid var(--accent); outline-offset:-3px; }
+    body.com-tab-baixo{ padding-bottom:calc(76px + env(safe-area-inset-bottom)); }
+    /* the bottom bar already has Caderno and Calma: the top keeps only the path, Ajuda and Mais */
+    body.com-tab-baixo .top-nav{ display:none; }
+    /* inside a world, one thing at a time: no bottom bar (the world has its own Anterior / Seguinte) */
+    body.in-world .tab-baixo{ display:none; }
+    body.in-world.com-tab-baixo{ padding-bottom:0; }
+    body.com-tab-baixo:not(.in-world) .toast, body.com-tab-baixo:not(.in-world) .curio-card,
+    body.com-tab-baixo:not(.in-world) .armazem-aviso, body.com-tab-baixo:not(.in-world) .foco-bar{ bottom:calc(72px + env(safe-area-inset-bottom)); }
+    /* bottom sheets: every pop-up rises from the bottom, within reach of the thumb, with a big ✕ */
+    .modal-overlay{ align-items:flex-end; padding:0; }
+    .modal-box{ max-width:none; border-radius:22px 22px 0 0; max-height:88vh; padding:10px 18px calc(22px + env(safe-area-inset-bottom)); transform:translateY(100%); }
+    .modal-box::before{ content:""; display:block; width:44px; height:5px; border-radius:99px; background:var(--border); margin:0 auto 10px; }
+    .modal-close{ top:16px; width:44px; height:44px; font-size:18px; }
+    .modal-title{ padding-right:52px; min-height:44px; display:flex; align-items:center; }
+  }
