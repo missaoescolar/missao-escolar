@@ -1393,3 +1393,31 @@
   @media (min-width:760px){ .mf-corpo{ grid-template-columns:280px minmax(0,1fr); align-items:start; } }
   @media print{ .man-ficha{ break-inside:avoid; } .man-ficha > summary{ display:none; } .man-ficha .mf-corpo{ display:block !important; } }
   .mf-pic text{ display:none; }
+
+  /* ===== «Hoje» + seletor de disciplinas (layout Caderno Vivo) ===== */
+  .hoje{ border:1.5px solid var(--border); border-left:1.5px solid var(--border); border-radius:16px; padding:16px; }
+  .hoje-k{ margin:0 0 10px; font-size:.82rem; font-weight:700; letter-spacing:.04em; text-transform:uppercase; color:var(--text-muted); }
+  .hoje-ola{ margin:0 0 8px; }
+  .hoje-cont{ display:flex; flex-direction:column; align-items:flex-start; gap:10px; }
+  .hoje-go{ display:inline-block; text-decoration:none; background:var(--accent); font-size:1.02rem; padding:13px 20px; }
+  .hoje-segs{ display:flex; gap:4px; width:100%; max-width:520px; }
+  .hoje-segs i{ flex:1; height:10px; border-radius:99px; background:var(--surface-2); }
+  .hoje-segs i.ok{ background:#3E8F5C; } .hoje-segs i.meio{ background:#E0A100; } .hoje-segs i.aqui{ background:var(--accent); }
+  .hoje-cont .hoje-s{ margin:0; }
+  .hoje-mis{ margin:10px 0 0; font-size:.9rem; color:var(--text-muted); }
+  .hoje-mis .link-btn{ font-size:.92rem; color:var(--accent); padding:4px 0; }
+  .hoje-fold{ margin-top:8px; border-top:1px solid var(--border-soft); padding-top:6px; }
+  .hoje-fold > summary{ cursor:pointer; font-size:.88rem; font-weight:700; color:var(--text-muted); padding:6px 0; }
+  .hoje-prog{ margin:4px 0 0; padding:0; list-style:none; display:flex; flex-direction:column; gap:4px; font-size:.88rem; }
+  #subject-tabs{ display:flex; flex-wrap:wrap; gap:4px; padding:4px; background:var(--surface-2); border:1.5px solid var(--border); border-radius:16px; overflow:visible; }
+  #subject-tabs .tab-btn, #subject-tabs .tab-soon{ flex:1 1 auto; justify-content:center; margin:0; border:none; border-radius:12px; background:transparent; padding:10px 12px; }
+  #subject-tabs .tab-btn.active{ background:var(--surface); color:var(--text); box-shadow:0 1px 3px rgba(0,0,0,.12); }
+  @media (max-width:600px){
+    #subject-tabs{ display:grid; grid-template-columns:repeat(auto-fit, minmax(118px, 1fr)); }
+    #subject-tabs .tab-btn, #subject-tabs .tab-soon{ white-space:normal; font-size:.88rem; padding:10px 6px; }
+    .hoje-go{ width:100%; text-align:center; }
+  }
+  /* one primary action per screen: the «Hoje» button; the XP and the highlighted world speak more quietly */
+  .hoje-mis, .hoje-mis .link-btn{ text-align:left; }
+  .map-head .xp-pill{ background:var(--surface); color:var(--text); border:1.5px solid var(--border); box-shadow:none; font-size:.85rem; padding:5px 12px; }
+  .tile-cta{ background:transparent; color:var(--accent); border:1.5px solid var(--accent); }

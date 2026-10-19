@@ -797,27 +797,32 @@
   }
 
 
-  /* ---------- the one-line strip at the top: streak · progress · suggestion ---------- */
+  /* ---------- «Hoje» (layout Caderno Vivo): ONE starting point at the top of the year page.
+     A big «Continuar» for the next world of the open subject, the Missão de hoje as the alternative,
+     one segment per world, and the numbers (streak, missions, question bank) folded away ---------- */
   function renderTodayPanel(){
-    const panel = document.getElementById("today-panel");
-    if(!panel) return;
-    let total=0, done=0, next=null;
-    MISSAO_SUBJECTS.forEach(function(s){
-      const st = subjectStats(s.worlds, store(s.store));
-      total += st.total; done += st.done;
-      if(!next && st.nextWorld) next = {s:s, w:st.nextWorld};
-    });
-    const pct = total? Math.round(done/total*100) : 0;
-    const streak = computeStreak();
-    panel.innerHTML =
-      (streak>0
-        ? '<span>🔥 <b>'+streak+' dia'+(streak===1?'':'s')+'</b> seguido'+(streak===1?'':'s')+'</span>'
-        : '<span>✨ Começa hoje, sem pressão</span>')+
-      '<span class="mini" role="progressbar" aria-label="Missões feitas" aria-valuemin="0" aria-valuemax="100" aria-valuenow="'+pct+'"><span style="width:'+pct+'%"></span></span>'+
-      '<span><b>'+done+'/'+total+'</b> missões</span>'+
-      (next
-        ? '<a href="#'+next.s.key+'/'+next.w.id+'">Sugestão: '+next.w.icon+' Mundo '+next.w.num+' de '+next.s.name+' →</a>'
-        : '<span>🎉 Fizeste tudo! Boa altura para a Revisão Final.</span>');
+    const cont = document.getElementById("hoje-cont");
+    if(!cont) return;
+    const on = document.querySelector("#subject-tabs .tab-btn.active");
+    const s = MISSAO_SUBJECTS.find(function(x){ return on && x.key===on.dataset.subject; }) || MISSAO_SUBJECTS[0];
+    const state = store(s.store), st = subjectStats(s.worlds, state);
+    const feito = function(w){ return w.missions.filter(function(m, i){ return state[w.id+"-"+i]; }).length; };
+    const completos = s.worlds.filter(function(w){ return feito(w)===w.missions.length; }).length;
+    const nw = st.nextWorld;
+    cont.innerHTML = (nw
+        ? '<a class="cta hoje-go" href="#'+s.key+'/'+nw.id+'">'+(feito(nw) ? 'Continuar' : 'Começar')+': '+nw.icon+' Mundo '+nw.num+' de '+s.name+' →</a>'
+        : '<a class="cta hoje-go" href="#'+s.key+'/revisao">🎉 Fizeste os mundos de '+s.name+': 🏆 Revisão Final →</a>')+
+      '<span class="hoje-segs" aria-hidden="true">'+s.worlds.map(function(w){
+        const d = feito(w); return '<i class="'+(d===w.missions.length ? 'ok' : w===nw ? 'aqui' : d ? 'meio' : '')+'"></i>'; }).join("")+'</span>'+
+      '<p class="hoje-s">'+s.icon+' '+s.name+': <b>'+completos+' de '+s.worlds.length+'</b> mundos feitos</p>';
+    const prog = document.getElementById("hoje-prog");
+    if(prog){
+      let total=0, done=0;
+      MISSAO_SUBJECTS.forEach(function(x){ const t = subjectStats(x.worlds, store(x.store)); total += t.total; done += t.done; });
+      const streak = computeStreak();
+      prog.innerHTML = '<li>'+(streak>0 ? '🔥 <b>'+streak+' dia'+(streak===1?'':'s')+'</b> seguido'+(streak===1?'':'s') : '✨ Começa hoje, sem pressão')+'</li>'+
+        '<li>✅ <b>'+done+' de '+total+'</b> missões feitas neste ano</li>'+prog.dataset.banco;
+    }
   }
 
   function shuffled(list){
@@ -2044,24 +2049,30 @@
   const NOME_MAT = {};
   MISSAO_SUBJECTS.forEach(function(s){ NOME_MAT[s.key] = s.icon+" "+s.name; });
   function renderHoje(){
-    if(!hojeCard || !window.MissaoBanco) return;
-    const m = MissaoBanco.missaoDeHoje(), st = MissaoBanco.estatisticas();
+    if(!hojeCard) return;
     hojeCard.innerHTML = "";
-    const head = el("div","hoje-head");
-    const ola = (pausa !== null && pausa >= 2) ? '<p class="hoje-ola">👋 Que bom ver-te outra vez! Está tudo guardado. Começamos com uma missão curtinha?</p>' : '';
-    const b = el("button", m.feita ? "ghost" : "cta", m.feita ? "➕ Mais 5 perguntas" : "Começar →");
-    b.type = "button";
-    if(m.feita){
-      head.innerHTML = ola+'<div><p class="hoje-t">✅ Missão de hoje feita!</p><p class="hoje-s">Amanhã há perguntas novas. Se te apetecer, podes fazer mais umas.</p></div>';
-      b.addEventListener("click", function(){ jogar(MissaoBanco.mais(5), true); });
-    } else {
-      head.innerHTML = ola+'<div><p class="hoje-t">🎯 Missão de hoje <button type="button" class="link-btn hoje-calma" onclick="document.getElementById(\'calma-btn\') && document.getElementById(\'calma-btn\').click()">🧘 antes, 1 minuto para acalmar</button></p><p class="hoje-s">'+m.perguntas.length+' perguntas de várias disciplinas · cerca de 5 minutos</p></div>';
-      b.addEventListener("click", function(){ jogar(m.perguntas, false); });
+    if(pausa !== null && pausa >= 2) hojeCard.appendChild(el("p","hoje-ola","👋 Que bom ver-te outra vez! Está tudo guardado."));
+    hojeCard.appendChild(el("p","hoje-k","Hoje · o teu ponto de partida"));
+    const cont = el("div","hoje-cont"); cont.id = "hoje-cont";
+    hojeCard.appendChild(cont);
+    const fold = document.createElement("details"); fold.className = "hoje-fold";
+    fold.innerHTML = '<summary>📈 O meu progresso</summary><ul class="hoje-prog" id="hoje-prog"></ul>';
+    const ul = fold.querySelector("ul"); ul.dataset.banco = "";
+    if(window.MissaoBanco){
+      const m = MissaoBanco.missaoDeHoje(), st = MissaoBanco.estatisticas();
+      // the Missão de hoje is the alternative to «Continuar», a quiet line under it
+      const mis = el("p","hoje-mis");
+      const b = el("button","link-btn", m.feita ? "➕ mais 5 perguntas" : "ou faz a 🎯 Missão de hoje ("+m.perguntas.length+" perguntas, ~5 min)");
+      b.type = "button";
+      b.addEventListener("click", function(){ m.feita ? jogar(MissaoBanco.mais(5), true) : jogar(m.perguntas, false); });
+      if(m.feita) mis.appendChild(el("span","","✅ Missão de hoje feita · "));
+      mis.appendChild(b);
+      hojeCard.appendChild(mis);
+      ul.dataset.banco = '<li>📚 '+st.total+' perguntas no banco · já respondeste a '+st.vistas+' · '+st.dominadas+' bem sabidas'+
+        (st.novasAbertas ? ' · '+st.novasAbertas+' novas nos mundos que já abriste' : '')+'</li>';
     }
-    head.appendChild(b);
-    hojeCard.appendChild(head);
-    hojeCard.appendChild(el("p","hoje-stats","📚 "+st.total+" perguntas no banco · já respondeste a "+st.vistas+" · "+st.dominadas+" bem sabidas"+
-      (st.novasAbertas ? " · "+st.novasAbertas+" novas à tua espera nos mundos que já abriste" : "")));
+    hojeCard.appendChild(fold);
+    renderTodayPanel();
   }
   function jogar(lista, extra){
     hojeCard.innerHTML = "";
@@ -2221,6 +2232,7 @@
     Object.keys(panels).forEach(function(k){ panels[k].hidden = (k!==subject); });
     tabBtns.forEach(function(b){ b.classList.toggle("active", b.dataset.subject===subject); });
     MissaoArmazem.gravarTexto(KEY_SUBJECT, subject);
+    renderTodayPanel();   // «Continuar» follows the subject that is open
   }
 
   /* ---- views inside a subject: Matemática → Mundos | Arena; Português → Mundos | Oficina de Escrita ---- */
