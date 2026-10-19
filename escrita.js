@@ -319,14 +319,60 @@
     }));
   }
 
+  /* 🔎 automatic revision (SRSD — Harris & Graham: explicit, short revision checklists the child learns to use alone).
+     Never blocks saving: each finding comes with a concrete hint. */
+  const PRONT = [
+    [/\bconcerteza\b/i, "«concerteza» escreve-se «com certeza»"],
+    [/\bderrepente\b/i, "«derrepente» escreve-se «de repente»"],
+    [/\bporisso\b/i, "«porisso» escreve-se «por isso»"],
+    [/(?<![a-zà-ÿ])(àsvezes|as vezes)(?![a-zà-ÿ])/i, "escreve-se «às vezes», separado e com acento"],
+    [/\bhouveram\b/i, "com o sentido de «existir», escreve-se «houve» (no singular)"],
+    [/\bpara mim (fazer|ler|ir|ver|dizer|comer|escrever|jogar|brincar|estudar)\b/i, "antes de um verbo diz-se «para eu fazer», «para eu ir»…"],
+    [/\btu (fizestes|dissestes|comestes|fostes|tivestes|estivestes|vistes|destes|pusestes)\b/i, "com «tu», o passado acaba em -ste, sem «s»: fizeste, disseste, foste"],
+    [/\b(hei-de|hás-de|há-de|hão-de)\b/i, "com o Acordo Ortográfico, escreve-se sem hífen: «hei de», «há de»"],
+    [/\b(vêem|lêem|dêem|crêem)\b/i, "com o Acordo Ortográfico, perderam o acento: veem, leem, deem, creem"],
+    [/(?<![a-zà-ÿ])(acção|óptimo|direcção|actividade|baptizado)(?![a-zà-ÿ])/i, "com o Acordo Ortográfico: ação, ótimo, direção, atividade, batizado"]
+  ];
+  const VAZIAS = new Set("a o as os um uma uns umas e é de do da dos das em no na nos nas que se por para com não mas ou ao à aos às eu tu ele ela nós eles elas me te lhe nos vos lhes meu minha teu tua seu sua este esta isso isto aquele aquela era foi ser estar tinha tem há já muito mais como quando onde também lá aqui então".split(" "));
+  function rever(texto, tipo){
+    const res = [], t = texto.trim();
+    const add = (ok, txt) => res.push({ok:ok, txt:txt});
+    add(!!wrTitle.value.trim(), wrTitle.value.trim() ? "Tem título." : "Falta o título: escreve-o na caixa por cima do texto.");
+    const pars = t.split(/\n\s*\n|\n/).filter(p => p.trim()).length;
+    if(tipo !== "poema" && tipo !== "instrucoes"){
+      const min = tipo === "diario" ? 1 : 3;
+      add(pars >= min, pars >= min ? "Está organizado em "+pars+" parágrafo"+(pars === 1 ? "" : "s")+"." : "Só tem "+pars+" parágrafo"+(pars === 1 ? "" : "s")+": separa o início, o meio e o fim (muda de linha).");
+    }
+    const frases = t.split(/(?<=[.!?…])\s+/).filter(f => f.trim());
+    const semMaiusc = frases.filter(f => /^[«"—–\-\s]*[a-zàáâãéêíóôõúç]/.test(f)).length;
+    add(!semMaiusc, semMaiusc ? semMaiusc+" frase"+(semMaiusc === 1 ? " começa" : "s começam")+" com letra minúscula." : "As frases começam com maiúscula.");
+    if(tipo !== "poema") add(/[.!?…»"]\s*$/.test(t), /[.!?…»"]\s*$/.test(t) ? "O texto termina com pontuação." : "Falta a pontuação no fim do texto.");
+    const longas = frases.filter(f => words(f) > 35).length;
+    if(longas) add(false, longas+" frase"+(longas === 1 ? " é muito longa" : "s são muito longas")+" (mais de 35 palavras): experimenta partir em duas com um ponto final.");
+    const cont = {}; (t.toLowerCase().match(/[a-zà-ÿ]+/g) || []).forEach(p => { if(p.length > 2 && !VAZIAS.has(p)) cont[p] = (cont[p] || 0) + 1; });
+    const depois = (t.toLowerCase().match(/\b(e depois|depois)\b/g) || []).length;
+    const rep2 = Object.keys(cont).filter(p => cont[p] >= 4 && p !== "depois").sort((a, b) => cont[b] - cont[a]).slice(0, 3);
+    if(depois >= 3) add(false, "Usaste «depois» "+depois+" vezes. Experimenta: a seguir, mais tarde, nesse momento, entretanto, por fim.");
+    if(rep2.length) add(false, "Palavras que se repetem muito: "+rep2.map(p => "«"+p+"» ("+cont[p]+"×)").join(", ")+". Procura sinónimos ou usa um pronome.");
+    PRONT.forEach(([re, dica]) => { if(re.test(t)) add(false, "📗 "+dica+" (vê o Prontuário)."); });
+    return res;
+  }
+
   $("wr-done").addEventListener("click", e => {
     const t = ESCRITA_TIPOS[wrType.value], n = words(wrText.value);
     if(!n){ openModal("✍️ Ainda não há texto", "<p>Escreve pelo menos uma frase e depois toca em ✅ Terminei!</p>", e.currentTarget); return; }
-    const checks = t.rever.concat(["Comecei as frases com maiúscula e terminei com pontuação?","Li o texto em voz alta para ver se soa bem?"]);
+    const checks = t.rever.concat(["Li o texto em voz alta para ver se soa bem?"]);
     const c = pick(ESCRITA_CURIOSIDADES);
     openModal("🎉 Muito bem — escreveste "+n+" palavras!",
-      '<p>Antes de dares por terminado, faz esta revisão rápida:</p>'+
+      (function(){ const R = rever(wrText.value, wrType.value), bem = R.filter(x => x.ok), mal = R.filter(x => !x.ok);
+        // only 3 things to fix at a time (SRSD works on few goals at once); the rest stays folded
+        const li = x => '<li class="mal">✏️ '+esc(x.txt).replace("(vê o Prontuário)", '(vê o <a href="gramatica.html#pront" target="_blank" rel="noopener">Prontuário</a>)')+'</li>';
+        return '<p class="wr-rev-h">🔎 <b>O site verificou por ti</b> '+(mal.length ? '<small>('+mal.length+' coisa'+(mal.length === 1 ? '' : 's')+' a melhorar)</small>' : '<small>— está tudo em ordem 👏</small>')+'</p>'+
+          '<ul class="wr-auto">'+(bem.length ? '<li class="ok">✅ '+bem.map(x => esc(x.txt.replace(/\.$/, ""))).join(" · ")+'</li>' : '')+mal.slice(0, 3).map(li).join("")+'</ul>'+
+          (mal.length > 3 ? '<details class="wr-mais"><summary>Ver mais '+(mal.length - 3)+' (corrige primeiro as de cima)</summary><ul class="wr-auto">'+mal.slice(3).map(li).join("")+'</ul></details>' : ''); })()+
+      '<p class="wr-rev-h">✋ <b>Agora tu</b> <small>— relê e assinala</small></p>'+
       '<ul class="wr-review">'+checks.map((r,i) => '<li><label><input type="checkbox" id="rv'+i+'"> '+esc(r)+'</label></li>').join("")+'</ul>'+
+      '<p class="note-small">Podes fechar esta janela, corrigir e tocar outra vez em ✅ Terminei! para ver se melhorou.</p>'+
       '<button type="button" class="ws-btn primary" id="wr-archive">📚 Guardar em "Os meus textos"</button>'+
       '<div class="wr-curio"><p class="curio-title">💡 Sabias que…?</p>'+curioHtml(c)+'</div>', e.currentTarget);
     $("wr-archive").addEventListener("click", () => {
