@@ -416,7 +416,7 @@
     title:"Biblioteca da Turma: as Obras do Manual",
     subtitle:"Educação Literária: narrativas e poemas do 6.º ano",
     pages:"manual «Novo Livro Aberto 6»: Jorinda e Joringuel pp. 50–51; Ali Babá pp. 62–63; Pedro Alecrim pp. 82–106; Ulisses pp. 112–121; poesia pp. 146–147",
-    lead:"Neste mundo revês as obras que lês no manual: Pedro Alecrim, Ulisses, Ali Babá e os Quarenta Ladrões, um conto dos Irmãos Grimm e poemas de autores portugueses e brasileiros. Cada exemplo é uma ficha de leitura: elementos da narrativa, o que se aprende e as perguntas que costumam sair. Lê primeiro o texto no manual.",
+    lead:"Neste mundo revês as obras que lês no manual: Pedro Alecrim, Ulisses, Ali Babá e os Quarenta Ladrões, um conto dos Irmãos Grimm e poemas de autores portugueses e brasileiros. Há também a ficha de Robinson Crusoé, uma obra da lista do 6.º ano para ler em casa. Cada exemplo é uma ficha de leitura: elementos da narrativa, o que se aprende e as perguntas que costumam sair. Lê primeiro o texto no manual.",
     missions:[
       {t:"Ficha de Leitura", d:"Elementos da narrativa", f:"Escolhe uma das obras deste mundo que já leste. Faz uma ficha com: título, autor, narrador (participante ou não participante), personagens principais e secundárias, espaço, tempo e os 5 acontecimentos mais importantes, por ordem.\nVerifica: compara com o exemplo resolvido dessa obra. Cada acontecimento tem de estar na ordem certa (introdução → desenvolvimento → conclusão).", xp:15},
       {t:"Carta a uma Personagem", d:"Escrita: carta e opinião fundamentada", f:"Escreve uma carta ao Pedro Alecrim, ao Ulisses ou ao Ali Babá: conta-lhe o que achaste de uma decisão que tomou e porquê.\nVerifica: a carta tem local e data, saudação, corpo com pelo menos uma opinião justificada («Acho que… porque…») e despedida.", xp:15},
@@ -439,6 +439,8 @@
       ["texto lusófono","Texto escrito em português num país que não é Portugal (Brasil, Angola, Moçambique…)."]
     ],
     quiz:[
+      {q:"Em «Robinson Crusoé», porque é que Robinson dá ao seu companheiro o nome de Sexta-Feira?", opts:["Porque era o nome do pai dele","Porque o salvou numa sexta-feira","Porque chegaram seis navios","Porque era o sexto dia de tempestade"], correct:1, explain:"Robinson salvou-o numa sexta-feira e deu-lhe o nome desse dia da semana."},
+      {q:"Na ilha, como é que Robinson sabia há quanto tempo lá estava?", opts:["Tinha um relógio do navio","Marcava os dias num poste de madeira","Contava as luas cheias com Sexta-Feira","Escrevia no diário do capitão"], correct:1, explain:"Fazia um entalhe por dia num poste, como um calendário. Assim nunca perdeu a conta ao tempo."},
       {q:"Em «Pedro Alecrim», de António Mota, quem conta a história?", opts:["Um narrador que não entra na história","O próprio Pedro Alecrim, que participa na ação","O Nicolau","O pai do Pedro"], correct:1, explain:"O narrador é o Pedro Alecrim: participa na ação como personagem e conta na 1.ª pessoa. É um narrador participante."},
       {q:"Onde decorre a ação de «Pedro Alecrim»?", opts:["Em Ítaca","Numa cidade grande","No Pragal, uma aldeia","Num castelo na floresta"], correct:2, explain:"O espaço é o Pragal, uma aldeia. Ítaca é a ilha de Ulisses e o castelo na floresta é o da bruxa de «Jorinda e Joringuel»."},
       {q:"Em «Ulisses», porque é que os gregos vão combater em Troia?", opts:["Porque Páris, príncipe troiano, raptou Helena","Porque Ulisses queria ser rei de Troia","Porque Circe os enfeitiçou","Porque Penélope lhes pediu"], correct:0, explain:"Páris raptou a rainha grega Helena e levou-a para Troia, o que pôs gregos e troianos em guerra durante dez anos."},
@@ -478,10 +480,19 @@
         '<li><span aria-hidden="true">🔍</span><span><b>Para o teste:</b> relaciona o pisco-de-peito-azul com a história (o «passarito do anel azul»); identifica o espaço e o elemento mágico que resolve o problema.</span></li>'+
         '</ul>'},
       {title:"🖋️ Ficha 5 — Poesia: Manuel António Pina e o Primeiro Livro de Poesia", svg:'<ul class="wheel-legend">'+
-        '<li><span aria-hidden="true">📖</span><span><b>«Basta imaginar», Manuel António Pina (O Pássaro na Cabeça):</b> o poema repete «imaginar» no início dos versos (anáfora) e rima em -ar (aprisionar, libertar, voar, cantar). Mensagem: a imaginação tem o poder de prender e de libertar.</span></li>'+
+        '<li><span aria-hidden="true">📖</span><span><b>«Basta imaginar», Manuel António Pina (O Pássaro da Cabeça e mais versos para crianças):</b> o poema repete «imaginar» no início dos versos (anáfora) e rima em -ar (aprisionar, libertar, voar, cantar). Mensagem: a imaginação tem o poder de prender e de libertar.</span></li>'+
         '<li><span aria-hidden="true">🌍</span><span><b>Primeiro Livro de Poesia (seleção de Sophia de Mello Breyner Andresen):</b> reúne poemas portugueses e lusófonos. «A borboleta», de Odylo Costa, Filho, é brasileiro (pista: a palavra «boba»); «Boa noite», de Sidónio Muralha, é português.</span></li>'+
         '<li><span aria-hidden="true">🧩</span><span><b>Como analisar um poema:</b> conta os versos e as estrofes; vê o esquema rimático; procura recursos (anáfora, comparação, personificação); diz quem é o sujeito poético e qual é o tema.</span></li>'+
         '<li><span aria-hidden="true">🔍</span><span><b>Para o teste:</b> justifica sempre com um verso entre aspas, indicando o número do verso.</span></li>'+
+        '</ul>'},
+      {title:"🏝️ Ficha 6 — Robinson Crusoé, de Daniel Defoe (adapt. John Lang)", svg:'<ul class="wheel-legend">'+
+        '<li><span aria-hidden="true">✍️</span><span><b>Obra e autor:</b> romance de aventuras do escritor inglês Daniel Defoe, publicado em 1719. No 6.º ano lê-se uma adaptação para jovens (de John Lang).</span></li>'+
+        '<li><span aria-hidden="true">📍</span><span><b>Onde e quando:</b> no século XVII; sobretudo numa ilha deserta, perto da costa da América do Sul, onde Robinson vive 28 anos.</span></li>'+
+        '<li><span aria-hidden="true">🗣️</span><span><b>Narrador:</b> no romance de Defoe, é o próprio Robinson que conta, na 1.ª pessoa, como num diário. Confirma na tua edição: as adaptações às vezes mudam isto.</span></li>'+
+        '<li><span aria-hidden="true">👥</span><span><b>Personagens:</b> Robinson Crusoé (principal); Sexta-Feira, o homem que ele salva e que se torna seu companheiro; o pai de Robinson, que o aconselha a não ir para o mar.</span></li>'+
+        '<li><span aria-hidden="true">🧭</span><span><b>Ação (por ordem):</b> <br>contra o conselho do pai, Robinson parte para o mar; depois de várias viagens, o navio naufraga e ele é o único sobrevivente; tira do navio ferramentas, armas e mantimentos; constrói um abrigo, marca os dias num poste de madeira, cria cabras e semeia cereais; um dia vê uma pegada humana na areia; salva um prisioneiro e chama-lhe Sexta-Feira, o dia em que o encontrou; ao fim de 28 anos, ajuda o capitão de um navio inglês a recuperar o barco e regressa a casa.</span></li>'+
+        '<li><span aria-hidden="true">💭</span><span><b>Temas:</b> sobrevivência, engenho (resolver problemas com o que há), solidão, esperança e amizade. Para pensar: Robinson trata Sexta-Feira como criado e ensina-lhe a sua língua e a sua religião; é a visão de um europeu de 1719. Hoje, o que pensas disso?</span></li>'+
+        '<li><span aria-hidden="true">🔍</span><span><b>Para o teste:</b> identifica os elementos da narrativa; caracteriza Robinson pelo que faz (persistente, engenhoso, prudente); explica a origem do nome «Sexta-Feira».</span></li>'+
         '</ul>'}
     ],
     compare:{
