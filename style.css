@@ -1530,3 +1530,23 @@
   #subject-tabs .ico{ width:20px; height:20px; color:var(--accent); }
   #subject-tabs .tab-soon .ico{ color:inherit; }
   #subject-tabs .tab-btn, #subject-tabs .tab-soon{ display:inline-flex; align-items:center; gap:7px; }
+
+  /* ===== 🧱 tema de blocos (prefs.js: pf-blocos) — só aspeto: cantos retos, relevo de bloco, progresso em blocos ===== */
+  html.pf-blocos{ --bloco-relva:#6ABE4F; --bloco-terra:#8D5B34; --bloco-pedra:#CFC8BC; --bloco-pedra-2:#BDB5A8; }
+  html.pf-blocos :is(.tile, .hoje, #subject-tabs, .wcard, .cartoes, .ordem-box, .man-ficha, .xcard, .map-goal, .ws-card, .info, .pais-painel > *, .year-card, .tool-card, .tools-fold, .modal-box, .subtabs){ border-radius:6px; }
+  html.pf-blocos :is(.cta, .ghost-btn, .ghost, .qopt, .tab-btn, .subtab, .tab-baixo a, .tab-baixo button, .sessao-cara, .gp-cor, .tile-cta, .estado, .xp-pill, .link-btn.hoje-go){ border-radius:4px; }
+  html.pf-blocos :is(.cta, .hoje-go){ box-shadow:inset 0 -4px 0 rgba(0,0,0,.22); }
+  html.pf-blocos :is(.cta, .hoje-go):active{ box-shadow:inset 0 2px 0 rgba(0,0,0,.22); transform:translateY(2px); }
+  html.pf-blocos :is(.qopt, .ghost-btn, .tile-cta, .gp-cor, .sessao-cara){ box-shadow:inset 0 -3px 0 var(--border); }
+  html.pf-blocos .tile{ box-shadow:0 4px 0 var(--border); }
+  html.pf-blocos .tile .ic, html.pf-blocos .mf-pic{ border-radius:4px; }
+  /* progresso em blocos: feito = relva sobre terra; por fazer = pedra */
+  html.pf-blocos :is(.segs i, .hoje-segs i){ border-radius:2px; height:12px; background:linear-gradient(135deg, var(--bloco-pedra) 0 50%, var(--bloco-pedra-2) 50%); background-size:6px 6px; }
+  html.pf-blocos :is(.segs i.ok, .hoje-segs i.ok){ background:linear-gradient(var(--bloco-relva) 0 40%, var(--bloco-terra) 40%); }
+  html.pf-blocos .hoje-segs i.meio{ background:linear-gradient(#E0A100 0 40%, var(--bloco-terra) 40%); }
+  html.pf-blocos .hoje-segs i.aqui{ background:var(--accent); }
+  html.pf-blocos :is(.cart-pontos i, .dots i){ border-radius:2px; }
+  html.pf-blocos .sessao-barra, html.pf-blocos .sessao-barra i{ border-radius:2px; }
+  html.pf-blocos .sessao-barra i{ background:linear-gradient(var(--bloco-relva) 0 40%, var(--bloco-terra) 40%); }
+  @media (prefers-color-scheme: dark){ html.pf-blocos:not([data-theme="light"]){ --bloco-pedra:#4A453E; --bloco-pedra-2:#3F3A34; } }
+  html.pf-blocos[data-theme="dark"]{ --bloco-pedra:#4A453E; --bloco-pedra-2:#3F3A34; }

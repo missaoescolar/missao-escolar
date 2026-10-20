@@ -4,11 +4,13 @@
    - espaço entre letras: Zorzi et al., 2012 (PNAS) — o espaçamento extra melhorou a leitura de crianças com dislexia;
    - letra maior e mais espaço entre linhas: Rello & Baeza-Yates (estudos de legibilidade para a dislexia);
    - menos movimento e sem sons: ajudam crianças com sensibilidade sensorial ou dificuldade de atenção (PHDA, autismo);
-   - a letra base já é a Atkinson Hyperlegible (Braille Institute); «Lexend em todo o texto» é opcional.
+   - a letra base já é a Atkinson Hyperlegible (Braille Institute); «Lexend em todo o texto» é opcional;
+   - 🧱 tema de blocos (ligado por defeito: a criança gosta de jogos de construção): usar os interesses da criança aumenta
+     o envolvimento (Koegel et al., 2012, J Autism Dev Disord); é só aspeto — sem moedas novas nem recompensas extra.
    Guardado na chave "pref_estudo" (entra nas cópias de segurança do progresso). */
 const MissaoPrefs = (function(){
   const K = "pref_estudo";
-  const BASE = {letra:"normal", espaco:false, lexend:false, movimento:false, som:true, contraste:false};
+  const BASE = {letra:"normal", espaco:false, lexend:false, movimento:false, som:true, contraste:false, blocos:true};
   function ler(){
     try{ const t = localStorage.getItem(K); return Object.assign({}, BASE, t ? JSON.parse(t) : {}); }catch(e){ return Object.assign({}, BASE); }
   }
@@ -24,6 +26,7 @@ const MissaoPrefs = (function(){
     h.classList.toggle("pf-lexend", !!p.lexend);
     h.classList.toggle("pf-movimento", !!p.movimento);
     h.classList.toggle("pf-contraste", !!p.contraste);
+    h.classList.toggle("pf-blocos", !!p.blocos);
   }
   aplicar(ler());
 
@@ -43,6 +46,7 @@ const MissaoPrefs = (function(){
       op("espaco", p.espaco, "↔️ Mais espaço entre letras e linhas", "ajuda muitas pessoas com dislexia a ler mais depressa e com menos erros")+
       op("lexend", p.lexend, "🅰️ Letra Lexend em todo o texto", "uma letra desenhada para tornar a leitura mais fácil; experimenta e vê se gostas")+
       op("contraste", p.contraste, "🌓 Mais contraste", "letras mais escuras e contornos mais fortes")+
+      op("blocos", p.blocos, "🧱 Tema de blocos", "cantos retos, botões como blocos e progresso em blocos de relva e pedra, como nos jogos de construção")+
       op("movimento", p.movimento, "🐢 Menos movimento", "sem confettis nem transições; as animações das matérias avançam sem efeitos")+
       op("semsom", !p.som, "🔇 Sem sons", "sem os sons de fim de pausa e de acerto")+
       '<p class="pf-nota">Também há o 🔊 Ouvir em cada mundo, para quem prefere ouvir a ler.</p>'+
@@ -54,6 +58,7 @@ const MissaoPrefs = (function(){
         lexend: d.querySelector('[data-k="lexend"]').checked,
         contraste: d.querySelector('[data-k="contraste"]').checked,
         movimento: d.querySelector('[data-k="movimento"]').checked,
+        blocos: d.querySelector('[data-k="blocos"]').checked,
         som: !d.querySelector('[data-k="semsom"]').checked
       };
       gravar(n); aplicar(n);
