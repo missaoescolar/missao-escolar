@@ -1,7 +1,7 @@
 /* Atividades de Matemática para o 🎯 Praticar (conteúdo original; o formato inspira-se nos cadernos de problemas):
    - 🔷 Padrões de figuras (Mundo 4): ver 3 termos, prever o 4.º e verificar no desenho, o 10.º, o termo geral e a pergunta inversa.
      Na matemática japonesa (e nos Common Core dos EUA, «look for and express regularity») o padrão visual vem antes da fórmula.
-   - 🟦 Pinta a percentagem (Mundo 3): uma grelha de 100 quadrados (1 quadrado = 1&nbsp;%), pintada com o dedo ou o rato.
+   - 🟦 Pinta a percentagem (Mundo 3): uma grelha de 100 quadrados (1 quadrado = 1 %), pintada com o dedo ou o rato.
    Erros nunca a vermelho: ocre com uma pista; à 2.ª tentativa mostra-se a resolução. */
 (function(){
   "use strict";
@@ -27,7 +27,7 @@
      f:function(n){ return 3*n+2; }, geral:"3n + 2", erradas:["3n", "2n + 3", "5n"], d:3,
      porque:"Cada carruagem tem 3 quadrados (3 × n) e a locomotiva tem sempre 2."},
     {nome:"Quadrado cheio (desafio)", desc:"Quadrados cheios de mosaicos. Atenção: aqui não se junta sempre o mesmo número!",
-     cel:function(n){ const c = []; for(let x = 0; x < n; x++) for(let y = 0; y < n; y++) c.push([x, y, (x+y)&nbsp;% 2 ? "a" : "b"]); return c; },
+     cel:function(n){ const c = []; for(let x = 0; x < n; x++) for(let y = 0; y < n; y++) c.push([x, y, (x+y) % 2 ? "a" : "b"]); return c; },
      f:function(n){ return n*n; }, geral:"n × n", erradas:["2n", "n + n", "4n"], d:0,
      porque:"O termo n é um quadrado com n filas de n mosaicos: n × n. De um termo para o seguinte junta-se 3, depois 5, depois 7…"}
   ];
@@ -103,8 +103,8 @@
       seg.hidden = false;
       seg.textContent = passo < 3 ? "Seguinte →" : "🔷 Outro padrão →";
     }
-    seg.addEventListener("click", function(){ if(passo < 3) passo++; else { passo = 0; k = (k+1)&nbsp;% PADROES.length; } pergunta(); });
-    outro.addEventListener("click", function(){ passo = 0; k = (k+1)&nbsp;% PADROES.length; pergunta(); });
+    seg.addEventListener("click", function(){ if(passo < 3) passo++; else { passo = 0; k = (k+1) % PADROES.length; } pergunta(); });
+    outro.addEventListener("click", function(){ passo = 0; k = (k+1) % PADROES.length; pergunta(); });
     pergunta();
     return box;
   }
@@ -188,7 +188,7 @@
       } else fb.innerHTML = '🤔 <b>Ainda não.</b> '+mal.map(function(p){ const n = cel.filter(function(c){ return c === p[0]; }).length; return CORES[p[0]][0]+': tens '+n+', precisas de '+p[1]+(n < p[1] ? ' (faltam '+(p[1]-n)+')' : ' (sobram '+(n-p[1])+')'); }).join(" · ");
     });
     limpar.addEventListener("click", function(){ cel = new Array(100).fill(null); fb.innerHTML = ""; pinta(); });
-    outra.addEventListener("click", function(){ k = (k+1)&nbsp;% TAREFAS.length; nova(); });
+    outra.addEventListener("click", function(){ k = (k+1) % TAREFAS.length; nova(); });
     nova();
     return box;
   }
