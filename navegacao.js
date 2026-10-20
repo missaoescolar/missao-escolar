@@ -92,20 +92,21 @@
   }
   window.MissaoCalma = {abrir: abrir, fechar: fechar};
 
-  /* ---------- ícones próprios (linha 2px, cantos redondos, cor do texto): substituem os emoji da navegação.
+  /* ---------- ícones próprios (mundos, inglês, HGP e teste vêm do Stitch, com currentColor; linha 2px, cantos redondos, cor do texto): substituem os emoji da navegação.
      Desenhados para o site, em SVG, para funcionarem sem internet. ---------- */
   const P = {
     inicio:'<path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/>',
-    mundos:'<path d="M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2z"/><path d="M9 4v14"/><path d="M15 6v14"/>',
+    mundos:'<path d="M3 6l6-3 6 3 6-3v15l-6 3-6-3-6 3z"/><path d="M9 3v15"/><path d="M15 6v15"/>',
     caderno:'<rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 3v18"/><path d="M12 8h4"/><path d="M12 12h4"/>',
     calma:'<path d="M5 19C5 11 11 5 19 5c0 8-6 14-14 14z"/><path d="M5 19l8-8"/>',
     familia:'<circle cx="8" cy="8" r="3"/><circle cx="16.5" cy="9.5" r="2.5"/><path d="M3 20c0-3 2.2-5 5-5s5 2 5 5"/><path d="M13.5 20c0-2.4 1.3-4 3-4s3.5 1.6 3.5 4"/>',
     pt:'<path d="M3 5h6a3 3 0 0 1 3 3v12a2 2 0 0 0-2-2H3z"/><path d="M21 5h-6a3 3 0 0 0-3 3v12a2 2 0 0 1 2-2h7z"/>',
     math:'<rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8"/><path d="M8 12h.01M12 12h.01M16 12h.01M8 16h.01M12 16h.01M16 16h.01" stroke-width="2.6"/>',
-    eng:'<path d="M4 5h16v10H9l-5 4z"/><path d="M8 9h8"/><path d="M8 12h5"/>',
-    hgp:'<path d="M3 9l9-5 9 5"/><path d="M4 20h16"/><path d="M6 10v8M10 10v8M14 10v8M18 10v8"/>',
+    eng:'<path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.5 8.5 0 0 1 8 8.5z"/><path d="M9 11.5h.01M12 11.5h.01M15 11.5h.01" stroke-width="2.4"/>',
+    hgp:'<path d="M4 17c2.5 1.5 5 1.5 8 0 3 1.5 5.5 1.5 8 0"/><path d="M4 14h16l-2 3H6l-2-3z"/><path d="M12 3v11"/><path d="M12 4c3 0 5 3 5 6H12"/>',
     cn:'<path d="M9 3h6"/><path d="M10 3v6l-5 9a2 2 0 0 0 1.8 3h10.4a2 2 0 0 0 1.8-3l-5-9V3"/><path d="M7.5 15h9"/>',
     fq:'<circle cx="12" cy="12" r="1.6"/><ellipse cx="12" cy="12" rx="9" ry="3.6"/><ellipse cx="12" cy="12" rx="9" ry="3.6" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="9" ry="3.6" transform="rotate(120 12 12)"/>',
+    teste:'<path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M9 13.5l2 2 4.5-4.5"/>',
     geo:'<circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/>'
   };
   function icone(n){ return '<svg class="ico" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">'+P[n]+'</svg>'; }
