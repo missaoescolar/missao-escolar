@@ -3,7 +3,7 @@
    - Scripts e estilos com ?v=…: a cache primeiro (uma versão nova tem um endereço novo, nunca há mistura).
    - Imagens e tipos de letra: a cache primeiro, guardadas quando são usadas.
    A VERSAO é atualizada por ferramentas/versao.cjs; as caches de versões antigas são apagadas. */
-const VERSAO = "20261020-0751";
+const VERSAO = "20261020-0805";
 const CACHE = "missao-" + VERSAO;
 const PAGINAS = ["./", "index.html", "6ano.html", "7ano.html", "caderno.html", "escrita.html", "gramatica.html", "pais.html", "planeador.html", "resumo.html",
   "manifest.webmanifest", "icon.svg", "icon-192.png", "favicon-32.png"];

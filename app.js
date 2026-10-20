@@ -866,7 +866,22 @@
       if(i >= qs.length){ finish(); return; }
       const q = qs[i];
       box.appendChild(el("p","qprompt",(i+1)+" de "+qs.length+" · "+(o.label ? o.label(q) : "")+q.q));
-      const opts = el("div","qoptions");
+      // layout «Território Vivo» (Stitch): hear the question, or skip it without penalty (it comes back at the end, once)
+      const tools = el("div","q1-tools");
+      const ouvir = el("button","ghost-btn q1-ouvir","🔊 Ouvir"); ouvir.type = "button";
+      ouvir.addEventListener("click", function(){
+        if(window.speechSynthesis && window.speechSynthesis.speaking){ window.speechSynthesis.cancel(); return; }
+        speak(q.q.replace(/<[^>]+>/g, "")+". "+q.opts.map(function(t, k){ return "Opção "+(k+1)+": "+String(t).replace(/<[^>]+>/g, ""); }).join(". "));
+      });
+      tools.appendChild(ouvir);
+      if(!q._saltada && i < qs.length-1){
+        const saltar = el("button","link-btn q1-saltar","↷ Saltar por agora (volta no fim, sem penalização)"); saltar.type = "button";
+        saltar.addEventListener("click", function(){ q._saltada = true; qs.push(qs.splice(i, 1)[0]); paint(); });
+        tools.appendChild(saltar);
+      }
+      box.appendChild(tools);
+      const curtas = q.opts.every(function(t){ return String(t).replace(/<[^>]+>/g, "").length <= 28; });
+      const opts = el("div","qoptions"+(curtas ? " q2x2" : ""));
       q.opts.forEach(function(t,oi){
         const b = el("button","qopt",t); b.type = "button";
         if(oi===q.correct) b.setAttribute("data-correct","true");
@@ -889,6 +904,7 @@
         });
         const ok = chosen===q.correct;
         results.push(ok); if(ok) score++;
+        tools.querySelectorAll(".q1-saltar").forEach(function(x){ x.remove(); });
         if(o.onAnswer) o.onAnswer(q, ok);
         fb.textContent = (ok ? "Boa! 🎉 " : "Quase! ") + q.explain;
         const d = box.querySelector(".dots"); if(d) d.outerHTML = dotsHtml();

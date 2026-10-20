@@ -1516,3 +1516,17 @@
   .ex-nav{ display:grid; grid-template-columns:auto 1fr auto; grid-template-areas:"conta conta conta" "pontos pontos pontos" "ant . seg"; row-gap:8px; }
   .ex-nav .ex-count{ grid-area:conta; color:var(--accent); } .ex-nav .ex-pontos{ grid-area:pontos; margin-left:0; }
   .ex-nav > .ghost-btn{ grid-area:ant; } .ex-nav > .cta{ grid-area:seg; background:var(--accent); }
+
+  /* quiz (layout «Território Vivo» do Stitch): Ouvir, Saltar sem penalização, respostas curtas em grelha 2×2 */
+  .q1-tools{ display:flex; flex-wrap:wrap; align-items:center; gap:4px 12px; margin:6px 0 10px; }
+  .q1-tools .ghost-btn{ min-height:40px; padding:6px 12px; font-size:.85rem; }
+  .q1-saltar{ font-size:.85rem; }
+  @media (min-width:480px){ .qoptions.q2x2{ display:grid; grid-template-columns:1fr 1fr; gap:8px; } .qoptions.q2x2 .qopt{ min-height:56px; font-size:1.05rem; } }
+
+  /* ícones próprios (navegacao.js) */
+  .ico{ flex:none; display:inline-block; vertical-align:-5px; }
+  .tab-baixo .ico{ width:24px; height:24px; }
+  .top-nav .ico{ width:20px; height:20px; }
+  #subject-tabs .ico{ width:20px; height:20px; color:var(--accent); }
+  #subject-tabs .tab-soon .ico{ color:inherit; }
+  #subject-tabs .tab-btn, #subject-tabs .tab-soon{ display:inline-flex; align-items:center; gap:7px; }
