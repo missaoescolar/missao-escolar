@@ -1502,14 +1502,17 @@
         const nav = el("div","ex-nav");
         const prev = el("button","ghost-btn","← Anterior"); prev.type = "button";
         const count = el("span","ex-count"); count.setAttribute("aria-live","polite");
-        const next = el("button","ghost-btn",""); next.type = "button";
-        nav.appendChild(prev); nav.appendChild(count); nav.appendChild(next);
+        // layout «Caderno Vivo», as in the cards: «Exemplo k de n», one dot per example, «Seguinte» as the main button
+        const next = el("button","cta",""); next.type = "button";
+        const pontos = el("span","cart-pontos ex-pontos"); pontos.setAttribute("aria-hidden","true");
+        nav.appendChild(prev); nav.appendChild(count); nav.appendChild(pontos); nav.appendChild(next);
         E.appendChild(nav);
         let k = 0;
         function showEx(i, byUser){
           k = i;
           figs.forEach(function(f, j){ f.hidden = (j!==i); });
           count.textContent = "Exemplo "+(i+1)+" de "+figs.length;
+          pontos.innerHTML = figs.map(function(_, j){ return '<i class="'+(j<i ? 'ok' : j===i ? 'on' : '')+'"></i>'; }).join("");
           prev.disabled = (i===0);
           next.textContent = (i===figs.length-1) ? "📋 Agora o resumo →" : "Seguinte →";
           if(byUser && secNav.getBoundingClientRect().top < 0) secNav.scrollIntoView({block:"start"});
