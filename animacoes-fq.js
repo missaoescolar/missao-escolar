@@ -114,4 +114,52 @@
         {t:"<b>Radiação</b>: a energia viaja sem precisar de matéria, até pelo vazio. É assim que a energia do Sol chega à Terra e que sentimos o calor de uma fogueira à distância.", f:S => { S.mostrar(["#cv","#rd"]); S.cls(".raio", "an-pulse"); }}
       ]});
   })();
+
+  /* ---------- q4: preparar uma solução e calcular a concentração em massa ---------- */
+  (function(){
+    const GOB = "M150,70 v130 a10,10 0 0 0 10,10 h140 a10,10 0 0 0 10,-10 v-130";
+    const cristais = () => [0,1,2,3,4,5,6,7].map(i => r(196+(i%4)*18, 22+Math.floor(i/4)*14, 9, 9, {fill:"#fff", stroke:"#8a8a8a", sw:1})).join("");
+    const pontos = () => { let h = ""; for(let i=0;i<26;i++){ const x = 164+((i*37)%132), y = 112+((i*53)%90); h += c(x, y, 3, {fill:"#C7461F", op:0.75}); } return h; };
+    A.def({id:"solucao", mundo:"q4", cor:"m4", titulo:"Preparar uma solução: soluto, solvente e concentração", w:560, h:240,
+      cena: () => r(152,100,156,108,{fill:"#9CC3E6", op:0.55})+p(GOB,{stroke:"currentColor", sw:3})+t(230,232,"0,5 L de água",{fs:11, fw:400})+
+        g({id:"acucar", cls:"an-h"}, cristais())+t(310,40,"20 g de açúcar",{id:"rotulo", cls:"an-h", fs:11, ta:"start"})+
+        g({id:"pontos", cls:"an-h"}, pontos())+
+        t(330,110,"🥄",{id:"colher", cls:"an-h", fs:24, ta:"start"})+
+        g({id:"nomes", cls:"an-h"}, t(440,90,"soluto = açúcar",{fs:12})+t(440,112,"solvente = água",{fs:12})+t(440,134,"solução = mistura homogénea",{fs:11, fw:400}))+
+        g({id:"conta", cls:"an-h"}, r(350,150,200,74,{rx:10, fill:"var(--wc-bg)", stroke:"var(--wc)", sw:2})+t(450,172,"Cm = m(soluto) ÷ V(solução)",{fs:11})+t(450,194,"Cm = 20 g ÷ 0,5 L",{fs:12})+t(450,214,"Cm = 40 g/L",{fs:14, fill:"var(--wc)"}))+
+        g({id:"fundo", cls:"an-h"}, [0,1,2,3,4,5].map(i => r(176+i*16, 196, 10, 10, {fill:"#fff", stroke:"#8a8a8a", sw:1})).join("")+t(230,58,"saturada: já não dissolve mais",{fs:10.5, fw:400})),
+      passos:[
+        {t:"Temos <b>0,5 L de água</b>. Vamos juntar-lhe <b>20 g de açúcar</b>.", f:S => S.mostrar(["#acucar","#rotulo"])},
+        {t:"O açúcar cai na água…", f:S => S.mover("#acucar", "translate(0px,110px)")},
+        {t:"Mexemos: o açúcar <b>dissolve-se</b> e espalha-se por toda a água em partículas pequeníssimas.", f:S => { S.mostrar("#colher"); S.esconder("#acucar"); S.mostrar("#pontos"); }},
+        {t:"Já não se distingue o açúcar: é uma <b>mistura homogénea</b>, uma <b>solução</b>. O açúcar é o <b>soluto</b> e a água o <b>solvente</b>.", f:S => { S.esconder("#colher"); S.mostrar("#nomes"); }},
+        {t:"<b>Concentração em massa</b>: massa de soluto a dividir pelo volume da solução. 20 ÷ 0,5 = <b>40 g/L</b>.", f:S => S.mostrar("#conta")},
+        {t:"Se juntarmos açúcar a mais, uma parte fica no fundo sem se dissolver: a solução está <b>saturada</b>.", f:S => S.mostrar("#fundo")}
+      ]});
+  })();
+
+  /* ---------- q7: separar areia, sal e água (filtração + evaporação) ---------- */
+  (function(){
+    const grao = (x, y) => c(x, y, 2.6, {fill:"#C9A055"});
+    const areia = (x0, y0, n) => { let h = ""; for(let i=0;i<n;i++) h += grao(x0+((i*29)%60), y0+((i*17)%14)); return h; };
+    A.def({id:"separar", mundo:"q7", cor:"m8", titulo:"Separar areia, sal e água", w:560, h:250,
+      cena: () =>
+        g({id:"mistura"}, p("M30,90 v90 a8,8 0 0 0 8,8 h80 a8,8 0 0 0 8,-8 v-90",{stroke:"currentColor", sw:2.5})+r(32,120,92,66,{id:"agua1", fill:"#9CC3E6", op:0.5})+g({id:"areia1"}, areia(46,166,22))+t(78,212,"areia + sal + água",{fs:10.5, fw:400}))+
+        g({id:"filtro", cls:"an-h"}, p("M200,70 h100 l-40,50 v30 h-20 v-30 z",{stroke:"currentColor", sw:2.5, fill:"var(--surface)"})+p("M210,74 h80 l-36,42 h-8 z",{fill:"#EFE8DA", stroke:"#B9AE98", sw:1})+
+          g({id:"areia2", cls:"an-h"}, areia(222,84,20))+t(250,60,"filtração",{fs:12, fill:"var(--wc)"})+
+          p("M215,160 v50 a6,6 0 0 0 6,6 h58 a6,6 0 0 0 6,-6 v-50",{stroke:"currentColor", sw:2.5})+r(217,188,66,26,{id:"filtrado", cls:"an-h", fill:"#9CC3E6", op:0.5})+
+          c(250,166,3,{id:"gota", cls:"an-h", fill:"#4F86B3"}))+
+        g({id:"evap", cls:"an-h"}, p("M380,170 q50,30 100,0",{stroke:"currentColor", sw:2.5, fill:"#9CC3E6", op:0.9})+t(430,215,"🔥",{fs:22})+t(430,60,"evaporação",{fs:12, fill:"var(--wc)"})+
+          g({id:"vapor", cls:"an-h"}, t(410,120,"〰",{fs:18, fw:400})+t(440,105,"〰",{fs:18, fw:400})+t(470,125,"〰",{fs:18, fw:400})+t(440,88,"vapor de água",{fs:10, fw:400}))+
+          g({id:"sal", cls:"an-h"}, [0,1,2,3,4,5].map(i => r(398+i*11, 176, 7, 7, {fill:"#fff", stroke:"#8a8a8a", sw:1})).join("")+t(430,240,"o sal fica (cristalização)",{fs:10.5, fw:400}))),
+      passos:[
+        {t:"Uma mistura de <b>areia, sal e água</b>. Vê-se a areia: é uma <b>mistura heterogénea</b>. Como separar tudo?", f:S => {}},
+        {t:"1.º <b>Filtração</b>: o papel de filtro deixa passar o líquido e <b>retém a areia</b>.", f:S => { S.mostrar("#filtro"); S.esconder(["#areia1","#agua1"]); S.mostrar("#areia2"); }},
+        {t:"O líquido que passa (o <b>filtrado</b>) é água com sal dissolvido: uma mistura <b>homogénea</b>. O filtro não separa o sal!", f:S => { S.mostrar(["#gota","#filtrado"]); }},
+        {t:"2.º <b>Evaporação</b>: aquecemos o filtrado. A água passa a vapor e vai-se embora…", f:S => { S.mostrar(["#evap","#vapor"]); }},
+        {t:"…e o <b>sal fica</b> no recipiente, em cristais (<b>cristalização</b>).", f:S => S.mostrar("#sal")},
+        {t:"A ordem conta: primeiro filtração, depois evaporação. Para recuperar também a água, usava-se a <b>destilação</b>.", f:S => {}}
+      ]});
+  })();
+
 })();

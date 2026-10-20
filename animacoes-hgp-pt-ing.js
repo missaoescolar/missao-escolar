@@ -199,4 +199,72 @@
       passos: POS.map(q => ({t:q[1]+" — "+q[2], fala:q[1].replace(/<[^>]+>/g, ""), lang:"en-GB", f:S => colocar(S, q)}))
     });
   })();
+
+  /* p1 — classes de palavras numa frase */
+  (function(){
+    const PAL = ["O","gato","preto","dormiu","tranquilamente","no","sofá."];
+    const CL = [["determinante","artigo definido","#7F4C9C"],["nome","comum","#2F63A0"],["adjetivo","caracteriza","#C7461F"],["verbo","ação","#2E7A56"],["advérbio","modo","#8B6B1F"],["preposição","em + o = no","#3C7A73"],["nome","comum","#2F63A0"]];
+    let x = 44; const X = PAL.map(w => { const w0 = w.length*10+18, o = [x, w0]; x += w0+8; return o; });
+    const chip = (i) => g({id:"ch"+i}, r(X[i][0],50,X[i][1],40,{rx:8, fill:"var(--surface)", stroke:"var(--border)", sw:2, cls:"chr"})+t(X[i][0]+X[i][1]/2,76,PAL[i],{fs:16}));
+    const lab = (i) => { const y = i % 2 ? 150 : 118, cx = X[i][0]+X[i][1]/2;
+      return g({id:"lb"+i, cls:"an-h an-pop"}, l(cx,92,cx,y-14,{stroke:CL[i][2], sw:1.5})+t(cx,y,CL[i][0],{fs:11.5, fill:CL[i][2]})+t(cx,y+13,CL[i][1],{fs:9.5, fw:400})); };
+    const pinta = (S, i) => { S.attr("#ch"+i+" rect", "fill", CL[i][2]); S.attr("#ch"+i+" rect", "stroke", CL[i][2]); S.attr("#ch"+i+" text", "fill", "#fff"); S.mostrar("#lb"+i); };
+    A.def({id:"classes", mundo:"p1", cor:"m1", titulo:"Inventário de palavras: as classes numa frase", w:Math.max(480, x+6), h:240,
+      cena: () => PAL.map((_, i) => chip(i)).join("")+PAL.map((_, i) => lab(i)).join("")+
+        g({id:"truque", cls:"an-h"}, t(Math.max(480, x+6)/2,206,"Os gatos pretos dormiram tranquilamente.",{fs:14})+t(Math.max(480, x+6)/2,226,"o determinante, o nome, o adjetivo e o verbo mudam · o advérbio não",{fs:10.5, fw:400})),
+      passos:[
+        {t:"Cada palavra de uma frase pertence a uma <b>classe</b>. Vamos arrumar as palavras desta frase.", f:S => {}},
+        {t:"<b>gato</b> e <b>sofá</b> dão nome a um animal e a uma coisa: são <b>nomes</b> (comuns).", f:S => { pinta(S, 1); pinta(S, 6); }},
+        {t:"<b>O</b> vem antes do nome e acompanha-o: é um <b>determinante</b> (artigo definido).", f:S => pinta(S, 0)},
+        {t:"<b>preto</b> diz como é o gato: é um <b>adjetivo</b>. Concorda com o nome (gata preta, gatos pretos).", f:S => pinta(S, 2)},
+        {t:"<b>dormiu</b> indica a ação: é um <b>verbo</b> (no pretérito perfeito).", f:S => pinta(S, 3)},
+        {t:"<b>tranquilamente</b> diz <b>como</b> dormiu: é um <b>advérbio</b> (de modo).", f:S => pinta(S, 4)},
+        {t:"<b>no</b> é uma <b>preposição</b> contraída com um determinante: <b>em + o = no</b>.", f:S => pinta(S, 5)},
+        {t:"Põe a frase no plural: o nome, o adjetivo, o verbo e o determinante mudam; o <b>advérbio não varia</b>.", f:S => S.mostrar("#truque")}
+      ]});
+  })();
+
+  /* p5 — a estrutura do texto narrativo (mini-história original) */
+  (function(){
+    const PN = [[16,"Introdução","🌧️","Num dia de chuva, o Tomás","encontra um gatinho perdido","junto à escola."],
+                [196,"Desenvolvimento","📋","Procura o dono: pergunta","aos vizinhos e põe cartazes…","ninguém responde."],
+                [376,"Conclusão","🥖","A senhora da padaria","reconhece o gato: é dela!","Ficam amigos."]];
+    const painel = (q, i) => g({id:"pn"+i, cls:"an-h an-pop"}, r(q[0],30,168,128,{rx:10, fill:"var(--surface)", stroke:"var(--wc)", sw:2})+
+      t(q[0]+84,50,q[1],{fs:12, fill:"var(--wc)"})+t(q[0]+84,84,q[2],{fs:26})+t(q[0]+84,110,q[3],{fs:10.5, fw:400})+t(q[0]+84,125,q[4],{fs:10.5, fw:400})+t(q[0]+84,140,q[5],{fs:10.5, fw:400}));
+    const EL = [["el0",16,"👥 personagens: Tomás, a senhora (principais)"],["el1",16,"📍 espaço: junto à escola, a padaria"],["el2",300,"🕒 tempo: num dia de chuva"],["el3",300,"🗣️ narrador: não participante (3.ª pessoa)"]];
+    A.def({id:"narrativa", mundo:"p5", cor:"m5", titulo:"O texto narrativo: início, meio e fim", w:560, h:240,
+      cena: () => PN.map(painel).join("")+p("M186,94 h8 M366,94 h8",{stroke:"var(--wc)", sw:3})+
+        EL.map((e, i) => t(e[1], 184+(i % 2)*22, e[2], {id:e[0], cls:"an-h", fs:11.5, ta:"start"})).join(""),
+      passos:[
+        {t:"Uma narrativa conta uma história. Vamos ver como está organizada uma história pequenina.", f:S => {}},
+        {t:"<b>Introdução</b> (situação inicial): apresenta quem, onde e quando.", f:S => S.mostrar("#pn0")},
+        {t:"<b>Desenvolvimento</b>: surge um <b>problema</b> e as tentativas para o resolver (as peripécias).", f:S => S.mostrar("#pn1")},
+        {t:"<b>Conclusão</b> (desfecho): o problema resolve-se e a história acaba.", f:S => S.mostrar("#pn2")},
+        {t:"<b>Personagens</b> e <b>espaço</b>: quem entra na história e onde acontece.", f:S => S.mostrar(["#el0","#el1"])},
+        {t:"<b>Tempo</b> e <b>narrador</b>: «o Tomás encontra» está na 3.ª pessoa, por isso o narrador é <b>não participante</b>.", f:S => S.mostrar(["#el2","#el3"])}
+      ]});
+  })();
+
+  /* m3 — Portugal na 2.ª metade do século XIX: industrialização e migrações */
+  (function(){
+    A.def({id:"industria", mundo:"m3", cor:"m3", titulo:"A fábrica entra no jogo: Portugal no século XIX", w:560, h:250,
+      cena: () => r(0,180,560,70,{fill:"var(--wc-bg)"})+
+        g({id:"vapor", cls:"an-h an-pop"}, t(70,70,"⚙️",{fs:34})+t(70,100,"máquina a vapor",{fs:11}))+
+        g({id:"fab", cls:"an-h"}, t(230,150,"🏭",{fs:38})+t(230,174,"Lisboa · Setúbal",{fs:10.5, fw:400})+t(470,150,"🏭",{fs:38})+t(470,174,"Porto · Guimarães",{fs:10.5, fw:400}))+
+        g({id:"linha", cls:"an-h"}, l(40,205,400,205,{stroke:"#544F45", sw:3, da:"6 4"})+t(40,226,"Lisboa",{fs:10.5, ta:"start"})+t(400,226,"Carregado",{fs:10.5, ta:"end"})+t(220,240,"1856: a primeira linha de comboio",{fs:10.5, fw:400}))+
+        t(40,203,"🚂",{id:"comboio", cls:"an-h", fs:26, ta:"start"})+
+        g({id:"oper", cls:"an-h"}, t(300,46,"👷 👷 👷",{fs:20})+t(300,68,"operariado: salários baixos, muitas horas",{fs:10.5, fw:400}))+
+        g({id:"migra", cls:"an-h"}, t(110,150,"🏡 campo",{fs:12})+p("M150,145 C180,120 190,125 205,135",{stroke:"var(--wc)", sw:2.5})+p("M205,135 l-9,-1 l4,-8 z",{fill:"var(--wc)"})+
+          t(520,52,"⛴️",{fs:22})+t(520,72,"Brasil",{fs:10.5})+p("M490,140 C510,110 515,95 518,80",{stroke:"var(--wc)", sw:2.5, da:"5 4"}))+
+        g({id:"burg", cls:"an-h"}, t(300,96,"🎩 burguesia ganha importância · 🏰 nobreza perde privilégios",{fs:10.5, fw:400})),
+      passos:[
+        {t:"A partir de meados do século XIX chega a Portugal a <b>energia a vapor</b>: nas fábricas e nos transportes.", f:S => S.mostrar("#vapor")},
+        {t:"As fábricas concentram-se sobretudo em <b>Lisboa/Setúbal</b> e <b>Porto/Guimarães</b>.", f:S => S.mostrar("#fab")},
+        {t:"<b>1856</b>: a primeira linha de comboio liga <b>Lisboa ao Carregado</b>. Depois a rede cresce por todo o país.", f:S => { S.mostrar(["#linha","#comboio"]); S.depois(() => S.mover("#comboio", "translate(320px,0)"), 300); if(S.instant) S.mover("#comboio", "translate(320px,0)"); }},
+        {t:"Nasce um novo grupo social, o <b>operariado</b>: trabalhadores das fábricas, com salários baixos e longas horas.", f:S => S.mostrar("#oper")},
+        {t:"Muitos saem do <b>campo para as cidades</b> e outros <b>emigram</b>, sobretudo para o <b>Brasil</b>, por causa da pobreza.", f:S => S.mostrar("#migra")},
+        {t:"A <b>burguesia</b> (comerciantes, industriais) ganha importância; a nobreza perde privilégios.", f:S => S.mostrar("#burg")}
+      ]});
+  })();
+
 })();
