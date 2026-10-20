@@ -1777,6 +1777,7 @@
       const aa = buildAutoaval(w); if(aa) P.appendChild(aa);
       const ordem = buildOrdem(w); if(ordem) P.appendChild(ordem);
       const seq = buildSequencia(w); if(seq) P.appendChild(seq);
+      if(window.MissaoAtivMat) MissaoAtivMat.para(w).forEach(function(a){ P.appendChild(a); });   // 🔷 padrões, 🟦 percentagens (atividades-mat.js)
       if(w.quiz && w.quiz.length){
         const qbox = el("div","");
         const hasHard = !!(extra.desafio||[]).length;

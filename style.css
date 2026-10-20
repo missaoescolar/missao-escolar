@@ -1488,3 +1488,26 @@
   :root[data-theme="dark"] .mf-fig figcaption{ color:#5C554A; }
   :root[data-theme="dark"] .top-nav .top-calma, :root[data-theme="dark"] .tab-baixo button{ color:#8FD3A8; }
   :root[data-theme="dark"] .sessao-cara.on{ border-color:#8FD3A8; }
+  /* ===== 🔷 padrões de figuras · 🟦 pinta a percentagem (atividades-mat.js) ===== */
+  .pd-desc{ margin:0 0 8px; }
+  .pd-termos{ display:flex; flex-wrap:wrap; align-items:flex-end; gap:14px 18px; margin:0 0 12px; padding:12px; background:var(--paper); border:1.5px solid var(--border); border-radius:14px; }
+  .pd-termos figure, .pd-ver{ margin:0; display:flex; flex-direction:column; align-items:center; gap:4px; }
+  .pd-termos figcaption, .pd-ver figcaption{ font-size:.8rem; font-weight:700; color:var(--text-muted); }
+  .pd-termos svg, .pd-ver svg{ height:auto; max-width:100%; }
+  .pd-ret{ font-size:1.6rem; color:var(--text-muted); align-self:center; }
+  .pd-ver{ margin:12px 0 0; padding:10px; border:1.5px dashed #3E8F5C; border-radius:14px; align-self:flex-start; }
+  .pd-form{ display:flex; flex-wrap:wrap; gap:8px; align-items:flex-end; margin:6px 0 0; }
+  .pd-form label{ display:flex; flex-wrap:wrap; align-items:center; gap:8px; font-weight:700; }
+  .pd-form input{ font:inherit; width:6.5em; padding:10px 12px; border-radius:12px; border:1.5px solid var(--border); background:var(--surface); color:var(--text); }
+  .qopt.pd-ok{ border-color:#3E8F5C; background:color-mix(in srgb, #3E8F5C 14%, var(--surface)); }
+  .qopt.pd-quase{ border-color:#E0A100; background:color-mix(in srgb, #E0A100 14%, var(--surface)); }
+  .gp-pal{ display:flex; flex-wrap:wrap; gap:6px; margin:8px 0; }
+  .gp-cor{ font:inherit; font-weight:700; font-size:.88rem; cursor:pointer; display:inline-flex; align-items:center; gap:6px; min-height:44px; padding:6px 12px; border-radius:12px; border:1.5px solid var(--border); background:var(--surface); color:var(--text); }
+  .gp-cor i, .gp-conta i{ display:inline-block; width:18px; height:18px; border-radius:5px; border:1px solid rgba(0,0,0,.25); }
+  .gp-cor .gp-borr{ background:repeating-linear-gradient(45deg, var(--surface-2) 0 4px, var(--surface) 4px 8px); }
+  .gp-cor.on{ border-color:var(--accent); box-shadow:0 0 0 2px var(--accent) inset; }
+  .gp-grid{ display:grid; grid-template-columns:repeat(10, 1fr); gap:3px; width:min(100%, 380px); aspect-ratio:1; touch-action:none; user-select:none; padding:6px; background:var(--surface-2); border-radius:12px; }
+  .gp-c{ background:var(--surface); border:1px solid var(--border); border-radius:4px; cursor:pointer; }
+  .gp-c:nth-child(10n+5){ margin-right:2px; } .gp-c:nth-child(n+41):nth-child(-n+50){ margin-bottom:2px; }
+  .gp-conta{ display:flex; flex-wrap:wrap; gap:6px 14px; font-size:.9rem; margin:8px 0; }
+  .gp-conta span{ display:inline-flex; align-items:center; gap:6px; }
