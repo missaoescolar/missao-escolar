@@ -26,7 +26,8 @@ const MATH_EXTRA = {
     curiosidades: [
       {t:"Há mais de 2000 anos, o matemático grego Eratóstenes inventou um método para encontrar números primos riscando múltiplos numa tabela. Chama-se 'crivo de Eratóstenes' e ainda hoje se usa nas aulas.", fonte:"Encyclopaedia Britannica"},
       {t:"Algumas cigarras da América do Norte passam 13 ou 17 anos debaixo da terra antes de saírem todas ao mesmo tempo — dois números primos. Os cientistas pensam que isso as ajuda a não coincidir com os ciclos dos predadores.", fonte:"National Geographic"},
-      {t:"Os maiores números primos conhecidos têm dezenas de milhões de algarismos e são descobertos por computadores de voluntários do projeto GIMPS.", fonte:"Great Internet Mersenne Prime Search (mersenne.org)"}
+      {t:"Os maiores números primos conhecidos têm dezenas de milhões de algarismos e são descobertos por computadores de voluntários do projeto GIMPS.", fonte:"Great Internet Mersenne Prime Search (mersenne.org)"},
+      {t:"Os antigos egípcios multiplicavam só com dobros. Para 13 × 6: fazem-se os dobros de 6 (1 → 6, 2 → 12, 4 → 24, 8 → 48), escolhem-se as linhas que somam 13 (1 + 4 + 8) e somam-se os resultados: 6 + 24 + 48 = 78. É a mesma ideia dos números em base 2 que os computadores usam.", fonte:"Papiro de Rhind (c. 1550 a.C.), British Museum"}
     ]
   },
   n2: {
