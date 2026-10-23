@@ -162,7 +162,13 @@ Object.assign(MISSAO_IMAGENS, {
       cred:"Louis-Michel van Loo e Joseph Vernet", lic:"PD", src:COMMONS+"Louis-Michel_van_Loo_003.jpg"},
     {f:"img/m1/baixa.jpg", t:"A Baixa de Lisboa vista do ar",
       d:"Depois do terramoto, a Baixa foi reconstruída com ruas retas e quarteirões iguais, em quadrícula: a Baixa Pombalina. Junto ao rio fica o Terreiro do Paço (Praça do Comércio).",
-      cred:"António M. L. Cabral", lic:"SA30", src:COMMONS+"Lisboa_-_Terreiro_do_Paço.jpg"}
+      cred:"António M. L. Cabral", lic:"SA30", src:COMMONS+"Lisboa_-_Terreiro_do_Paço.jpg"},
+    {f:"img/m1/terramoto-3-desastres.svg", t:"1755: sismo, maremoto e incêndios", il:true,
+      d:"Três desastres seguidos no mesmo dia: o sismo (cerca das 9h40 da manhã de 1 de novembro), o maremoto que fez o Tejo entrar pela cidade (cerca de 40 minutos depois) e os incêndios, que duraram cerca de 5 dias.",
+      cred:"Missão Escolar", lic:"ORIG"},
+    {f:"img/m1/baixa-pombalina.svg", t:"A Baixa Pombalina e a gaiola", il:true,
+      d:"Depois do terramoto, o Marquês de Pombal mandou reconstruir a Baixa com ruas retas em grelha, quarteirões iguais e a Praça do Comércio aberta para o rio. Por dentro, os prédios têm uma estrutura de madeira com cruzes, a «gaiola pombalina», que deixa o prédio abanar sem cair.",
+      cred:"Missão Escolar", lic:"ORIG"}
   ],
   m2: [
     {f:"img/m2/alegoria-1822.jpg", t:"Alegoria à Constituição de 1822",
