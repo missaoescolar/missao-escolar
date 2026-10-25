@@ -80,6 +80,7 @@ const MissaoLicao = (function(){
   function ver(v){
     if(!v) return "";
     if(v.barras) return '<div class="lic-desenho">'+barras(v.barras, v)+'</div>';
+    if(v.svg) return '<div class="lic-desenho">'+v.svg+'</div>';   // um desenho próprio da lição (ex.: a balança)
     if(v.pizas) return '<div class="lic-desenho lic-pizas">'+v.pizas.map(f => '<figure>'+piza(f)+'<figcaption>'+fr(f)+'</figcaption></figure>').join("")+'</div>';
     return "";
   }
@@ -150,7 +151,8 @@ const MissaoLicao = (function(){
     }
     const rev = modo === "revisao";
     // a lista de ecrãs: a lição inteira, ou 3 perguntas de revisão (uma de cada caso)
-    const ecras = rev ? baralha(L.casos || ["mesmoNum","mesmoDen","diferentes"]).map(k => { const par = PARES[k](L); return {etapa:"sozinho", tipo:"comparar", a:par[0], b:par[1]}; }) : L.ecras;
+    const ecras = rev && L.revisao ? baralha(L.revisao).slice(0, 3).map(q => Object.assign({etapa:"sozinho", tipo:"escolha"}, q))
+      : rev ? baralha(L.casos || ["mesmoNum","mesmoDen","diferentes"]).map(k => { const par = PARES[k](L); return {etapa:"sozinho", tipo:"comparar", a:par[0], b:par[1]}; }) : L.ecras;
     const st0 = estado(L.id) || {};
     let pos = !rev && st0.pos && !st0.fimRun ? Math.min(st0.pos, ecras.length) : 0;
     const run = {pistas:0, erros:0, recuperados:0, porRecuperar:0, casos:{}, certas:0, total:0};
@@ -348,14 +350,15 @@ const MissaoLicao = (function(){
         return s;
       });
       d.innerHTML = "";
+      const nomeCaso = k => (L.casosNomes && L.casosNomes[k]) || CASOS[k] || k;
       const casosBem = Object.keys(run.casos).filter(k => !run.casos[k][1]), casosTreino = Object.keys(run.casos).filter(k => run.casos[k][1]);
       const h = el("div", "lic-cab", '<div class="lic-cab-t"><h2 id="lic-t">'+L.icon+' '+esc(L.titulo)+'</h2><p class="lic-etapa">'+(rev ? 'Revisão feita' : 'Missão cumprida')+'</p></div>');
       d.appendChild(h);
       corpo = el("div", "lic-corpo");
       corpo.innerHTML = '<h3>'+(rev ? '🔁 Revisão feita!' : '🏁 Missão cumprida!')+'</h3>'+
         (rev ? '' : '<p>Nesta missão treinaste:</p><ul class="lic-check">'+L.objetivos.map(o => '<li>'+o+'</li>').join("")+'</ul>')+
-        (casosBem.length ? '<p>✅ <b>Correu bem:</b> '+casosBem.map(k => CASOS[k]).join("; ")+'.</p>' : '')+
-        (casosTreino.length ? '<p>🌱 <b>Para treinar mais:</b> '+casosTreino.map(k => CASOS[k]).join("; ")+'. A revisão vai trazer estes casos de volta.</p>' : '')+
+        (casosBem.length ? '<p>✅ <b>Correu bem:</b> '+casosBem.map(nomeCaso).join("; ")+'.</p>' : '')+
+        (casosTreino.length ? '<p>🌱 <b>Para treinar mais:</b> '+casosTreino.map(nomeCaso).join("; ")+'. A revisão vai trazer estes casos de volta.</p>' : '')+
         (s.dominado ? '<p class="lic-proxima">🏅 Acertaste em todas as revisões: este tema está consolidado.</p>'
           : '<p class="lic-proxima">🔁 Próxima revisão: <b>'+dataCurta(s.proxima)+'</b> (3 perguntas, uns 2 minutos). Vais encontrá-la aqui, neste mundo.</p>')+
         '<p class="lic-nota">Lembrar daqui a uns dias é a melhor forma de saber que aprendeste, mesmo que no início custe um bocadinho.</p>';

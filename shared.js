@@ -21,6 +21,7 @@ const MISSAO_SUBJECTS_6 = [
 
 /* Disciplinas do 7.º ano já prontas (as outras ainda estão em preparação). */
 const MISSAO_SUBJECTS_7 = [
+  {key:"mat7", name:"Matemática", ano:"7", icon:"🔢", store:"mat7_missions", page:"7ano.html", worlds: typeof MAT7_WORLDS !== "undefined" ? MAT7_WORLDS : []},
   {key:"cn7", name:"Ciências Naturais", ano:"7", icon:"🔬", store:"cn7_missions", page:"7ano.html", worlds: typeof CN7_WORLDS !== "undefined" ? CN7_WORLDS : []},
   {key:"fq7", name:"Físico-Química", ano:"7", icon:"⚗️", store:"fq7_missions", page:"7ano.html", worlds: typeof FQ7_WORLDS !== "undefined" ? FQ7_WORLDS : []}
 ];

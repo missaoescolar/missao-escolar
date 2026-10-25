@@ -141,6 +141,7 @@ window.addEventListener("load", function(){
     fin:"Levem-no às compras com uma lista e um valor limite, e peça-lhe que compare o preço por kg de duas embalagens. Falar de dinheiro em casa, com números reais e sem dramas, é a melhor aula.",
     fq7:"Peça-lhe que faça a previsão antes de verem a animação («o que achas que vai acontecer?») e que depois explique se acertou."
   };
+  APOIO.mat3 = APOIO.mat7 = APOIO.math;   // a Matemática do 3.º e do 7.º ano: o mesmo conselho
   function painel(){
     const box = $("pais-painel"); if(!box) return;
     const D = dados();
@@ -175,7 +176,7 @@ window.addEventListener("load", function(){
       '<h2>🎒 Percurso escolar</h2><p class="pp-legenda">Cada segmento é um mundo: verde = concluído, verde-claro = começado.</p><div class="pp-grid">'+cartoes+'</div>'+
       '<div class="pp-temas"><h2>💡 3 temas a reforçar com calma</h2><p class="pp-legenda">Calculados a partir das perguntas erradas, das dúvidas escritas no caderno e dos cartões por saber.</p>'+
         (temas ? '<ol>'+temas+'</ol>' : '<p>Ainda não há dificuldades registadas. Aparecem quando a criança erra perguntas, escreve uma dúvida no caderno ou treina cartões.</p>')+'</div>'+
-      '<div class="pp-temas"><h2>🧭 Missões guiadas</h2><p class="pp-legenda">Uma lição completa, um passo de cada vez (por agora: «Comparar frações», no Mundo 2 de Matemática do 6.º ano, e «Partes iguais», no Mundo 5 do 3.º ano). Mostra se percebeu sem ajuda, que ajuda pediu e o que ficou dias depois. É uma observação, não uma avaliação.</p>'+
+      '<div class="pp-temas"><h2>🧭 Missões guiadas</h2><p class="pp-legenda">Uma lição completa, um passo de cada vez (por agora: «Comparar frações», no Mundo 2 de Matemática do 6.º ano, «Partes iguais», no Mundo 5 do 3.º ano, e «Resolver equações», no Mundo 3 de Matemática do 7.º ano). Mostra se percebeu sem ajuda, que ajuda pediu e o que ficou dias depois. É uma observação, não uma avaliação.</p>'+
         (licoes ? '<ol>'+licoes+'</ol>' : '<p>Ainda não foi começada nenhuma.</p>')+'</div>'+
       '<div class="pp-dica"><p class="pp-sub">🌱 Dica da semana para a família</p><h4>'+esc(dica[0])+'</h4><p>'+esc(dica[1])+'</p></div>'+
       '<p class="pp-priv">🔒 Os dados ficam só neste aparelho. Não há contas, nem envio para terceiros.</p>';
