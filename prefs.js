@@ -88,3 +88,4 @@ const MissaoPrefs = (function(){
   }
   return {abrir:abrir, ler:ler, som:() => ler().som, poucoMovimento:() => ler().movimento, instalar:instalar};
 })();
+window.MissaoPrefs = MissaoPrefs;   // os outros ficheiros perguntam window.MissaoPrefs (um «const» global não fica em window)

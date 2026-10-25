@@ -156,11 +156,27 @@ window.addEventListener("load", function(){
     const temas = D.dif.slice(0, 3).map(x => '<li><p class="pp-sub">'+x.s.icon+' '+esc(x.s.name)+' · Mundo '+x.w.num+'</p><h4>'+x.w.icon+' '+esc(x.w.title)+'</h4>'+
       '<p><b>O que se observou:</b> '+esc(x.motivos.map(m => m.replace("escreveste", "escreveu").replace("já erraste", "já errou").replace("ainda não sabes", "ainda não sabe")).join("; "))+'.</p>'+
       '<p class="pp-apoio">🏠 <b>Como apoiar em casa:</b> '+esc(APOIO[x.s.key] || "Peça-lhe que lhe explique o tema por palavras suas, sem pressa e sem corrigir logo.")+'</p></li>').join("");
+    // 🧭 missões guiadas (licoes.js): compreensão (sem ajuda), ajuda pedida, erros recuperados e retenção nas revisões
+    const LIC = MissaoArmazem.ler("licoes", {}) || {};
+    const licoes = (typeof MISSAO_LICOES !== "undefined" ? MISSAO_LICOES : []).filter(L => LIC[L.id] && LIC[L.id].inicio).map(L => {
+      const s = LIC[L.id], rev = s.revisoes || [], data = t => t ? t.split("-").reverse().slice(0, 2).join("/") : "";
+      return '<li><h4>'+L.icon+' '+esc(L.titulo)+'</h4>'+
+        (s.fim ? '<p><b>Feita a '+data(s.fim)+'</b>'+(s.vezes > 1 ? ' ('+s.vezes+' vezes)' : '')+'. Sem ajuda acertou '+(s.sozinho || [0, 0])[0]+' de '+(s.sozinho || [0, 0])[1]+
+            ' · pediu '+(s.pistas || 0)+' pista'+(s.pistas === 1 ? '' : 's')+' · '+(s.recuperados || 0)+' erro'+(s.recuperados === 1 ? '' : 's')+' corrigido'+(s.recuperados === 1 ? '' : 's')+' na pergunta parecida'+
+            (s.porRecuperar ? ' · '+s.porRecuperar+' ainda por perceber' : '')+'.</p>'
+          : '<p>Começada a '+data(s.inicio)+', ainda a meio.</p>')+
+        (s.estrategia ? '<p>Estratégia que diz ajudar mais: '+esc(s.estrategia)+'.</p>' : '')+
+        '<p><b>Revisões (o que ficou dias depois):</b> '+(rev.length ? rev.map(r => data(r.dia)+': '+r.certas+' de '+r.total).join(" · ") : 'ainda nenhuma')+
+        (s.dominado ? ' · 🏅 consolidado' : s.proxima ? ' · próxima a '+data(s.proxima) : '')+'.</p>'+
+        (s.frase ? '<p>Explicou por palavras suas: «'+esc(s.frase)+'»</p>' : '')+'</li>';
+    }).join("");
     const dica = DICAS.geral[semana % DICAS.geral.length];
     box.innerHTML =
       '<h2>🎒 Percurso escolar</h2><p class="pp-legenda">Cada segmento é um mundo: verde = concluído, verde-claro = começado.</p><div class="pp-grid">'+cartoes+'</div>'+
       '<div class="pp-temas"><h2>💡 3 temas a reforçar com calma</h2><p class="pp-legenda">Calculados a partir das perguntas erradas, das dúvidas escritas no caderno e dos cartões por saber.</p>'+
         (temas ? '<ol>'+temas+'</ol>' : '<p>Ainda não há dificuldades registadas. Aparecem quando a criança erra perguntas, escreve uma dúvida no caderno ou treina cartões.</p>')+'</div>'+
+      '<div class="pp-temas"><h2>🧭 Missões guiadas</h2><p class="pp-legenda">Uma lição completa, um passo de cada vez (por agora: Comparar frações, no Mundo 2 de Matemática). Mostra se percebeu sem ajuda, que ajuda pediu e o que ficou dias depois. É uma observação, não uma avaliação.</p>'+
+        (licoes ? '<ol>'+licoes+'</ol>' : '<p>Ainda não foi começada nenhuma.</p>')+'</div>'+
       '<div class="pp-dica"><p class="pp-sub">🌱 Dica da semana para a família</p><h4>'+esc(dica[0])+'</h4><p>'+esc(dica[1])+'</p></div>'+
       '<p class="pp-priv">🔒 Os dados ficam só neste aparelho. Não há contas, nem envio para terceiros.</p>';
   }

@@ -839,6 +839,11 @@
       sessionStorage.setItem("me_sessao", JSON.stringify(l.slice(-12)));
     }catch(e){}
   }
+  // a missão guiada conta para a sequência de dias e para o resumo da sessão
+  if(window.MissaoLicao) MissaoLicao.aoTerminar(function(L, rev, run){
+    logActivityToday();
+    registarSessao("🧭 "+L.titulo+(rev ? " (revisão)" : "")+": "+run.certas+" de "+run.total+" certas sem ajuda");
+  });
   function lerSessao(){ try{ return JSON.parse(sessionStorage.getItem("me_sessao") || "[]"); }catch(e){ return []; } }
 
   /* ---------- quiz: one question at a time (world quizzes and the Revisão Final) ---------- */
@@ -1504,6 +1509,8 @@
 
       const prob = (typeof MISSAO_PROBLEMAS !== "undefined") && MISSAO_PROBLEMAS[w.id];
       const F = formatosDe(w);
+      // 🧭 missão guiada (licoes.js): a porta de entrada, um passo de cada vez; o resto do mundo continua aberto
+      if(window.MissaoLicao) MissaoLicao.doMundo(w.id).forEach(function(L){ C.appendChild(MissaoLicao.cartao(L)); });
       if(F.primeiros || F.analogia || F.camadas) C.appendChild(buildMapaTema(F, cfg));
       if(prob) C.appendChild(buildProblema(prob));
       const preve = buildPreve(w); if(preve) C.appendChild(preve);
@@ -2138,6 +2145,13 @@
       ul.dataset.banco = '<li>📚 '+st.total+' perguntas no banco · já respondeste a '+st.vistas+' · '+st.dominadas+' bem sabidas'+
         (st.novasAbertas ? ' · '+st.novasAbertas+' novas nos mundos que já abriste' : '')+'</li>';
     }
+    // 🧭 a revisão de uma missão guiada, quando chega o dia (licoes.js)
+    if(window.MissaoLicao) MissaoLicao.pendentes().forEach(function(L){
+      const p = el("p","hoje-mis");
+      const b = el("button","link-btn","🔁 Revisão pronta: "+L.titulo+" (3 perguntas, ~2 min)"); b.type = "button";
+      b.addEventListener("click", function(){ MissaoLicao.abrir(L, "revisao"); });
+      p.appendChild(b); hojeCard.appendChild(p);
+    });
     const acabar = el("button","link-btn hoje-acabar","🌱 Terminar por hoje"); acabar.type = "button";
     acabar.addEventListener("click", sessaoFeita);
     fold.appendChild(acabar);

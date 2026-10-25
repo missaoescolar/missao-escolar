@@ -59,7 +59,7 @@
     return bits.length ? '<span class="subject-inside">'+bits.map(b => '<i>'+b+'</i>').join("")+'</span>' : '';
   }
 
-  const pontos = !window.MissaoPrefs || MissaoPrefs.ler().pontos !== false;   // ⚙️ «Sem pontos (XP)» hides the points
+  const pontos = typeof MissaoPrefs === "undefined" || MissaoPrefs.ler().pontos !== false;   // ⚙️ «Sem pontos (XP)» hides the points
   const cards = list => list.map((s, i) => {
     const p = progress(s), go = destino(s);
     return '<a class="subject-card" href="'+go.href+'" style="--wc:var(--m'+(i+1)+');--wc-bg:var(--m'+(i+1)+'-bg)">'+
