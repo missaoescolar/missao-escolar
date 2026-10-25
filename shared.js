@@ -15,7 +15,8 @@ const MISSAO_SUBJECTS_6 = [
   {key:"math", name:"Matemática",         icon:"🔢", store:"math_missions", worlds: typeof MATH_WORLDS !== "undefined" ? MATH_WORLDS : []},
   {key:"eng",  name:"Inglês",             icon:"🌐", store:"eng_missions",  worlds: typeof ENG_WORLDS  !== "undefined" ? ENG_WORLDS  : []},
   {key:"hgp",  name:"HGP",                icon:"📜", store:"hgp_missions",  worlds: typeof HGP_WORLDS  !== "undefined" ? HGP_WORLDS  : []},
-  {key:"cn",   name:"Ciências Naturais",  icon:"🔬", store:"cn_missions",   worlds: typeof CN_WORLDS   !== "undefined" ? CN_WORLDS   : []}
+  {key:"cn",   name:"Ciências Naturais",  icon:"🔬", store:"cn_missions",   worlds: typeof CN_WORLDS   !== "undefined" ? CN_WORLDS   : []},
+  {key:"fin",  name:"Dinheiro e Casa",    icon:"💶", store:"fin_missions",  worlds: typeof FIN_WORLDS  !== "undefined" ? FIN_WORLDS  : []}   // literacia financeira e economia doméstica
 ];
 
 /* Disciplinas do 7.º ano já prontas (as outras ainda estão em preparação). */

@@ -1100,6 +1100,14 @@
                 "<b>Contexto:</b> o que se passava em Portugal nessa altura? Usa a linha do tempo deste mundo.",
                 "<b>Confirma:</b> outra fonte, ou o resumo, diz o mesmo? Em que é que diferem?",
                 "<b>Lê com atenção:</b> que palavras ou pormenores mostram o ponto de vista de quem a fez?"]);
+    } else if(key === "fin"){
+      titulo = "🧠 Pensa como um consumidor atento"; origem = "o modelo de decisão PACED, usado em educação financeira nos EUA";
+      corpo = '<p><b>Decisão:</b> '+(cmp ? 'escolher entre «'+escXml(cmp[0])+'» e «'+escXml(cmp[1])+'» numa situação a sério.' : 'uma compra que queres fazer.')+'</p>'+
+        passos(["<b>Problema:</b> o que tenho de decidir? Escreve numa frase.",
+                "<b>Alternativas:</b> que escolhas há? Escreve pelo menos 3 (não comprar também é uma).",
+                "<b>Critérios:</b> o que é importante para mim? (preço, quanto dura, se preciso mesmo…)",
+                "<b>Avaliar:</b> numa tabela, dá ✔️ ou ✖️ a cada alternativa em cada critério.",
+                "<b>Decidir:</b> escolhe e escreve do que abdicaste (o custo de oportunidade)."]);
     } else {
       const g = (w.gloss || [])[Math.floor(Math.random() * (w.gloss || []).length)];
       const ing = key === "eng";

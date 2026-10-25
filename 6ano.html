@@ -4,16 +4,16 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>6.º Ano — Missão Escolar</title>
-<link rel="stylesheet" href="style.css?v=20261025-0851">
+<link rel="stylesheet" href="style.css?v=20261025-0917">
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="theme-color" content="#C7461F">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<script src="prefs.js?v=20261025-0851"></script>
-<script src="navegacao.js?v=20261025-0851"></script>
-<link rel="stylesheet" href="arena.css?v=20261025-0851">
-<link rel="stylesheet" href="animacoes.css?v=20261025-0851">
+<script src="prefs.js?v=20261025-0917"></script>
+<script src="navegacao.js?v=20261025-0917"></script>
+<link rel="stylesheet" href="arena.css?v=20261025-0917">
+<link rel="stylesheet" href="animacoes.css?v=20261025-0917">
 </head>
 <body>
 
@@ -47,6 +47,7 @@
     <button class="tab-btn" data-subject="eng" type="button">🌐 Inglês</button>
     <button class="tab-btn" data-subject="hgp" type="button">📜 HGP</button>
     <button class="tab-btn" data-subject="cn" type="button">🔬 Ciências</button>
+    <button class="tab-btn" data-subject="fin" type="button">💶 Dinheiro e Casa</button>
   </div>
 
   <section id="subj-pt" data-panel="pt" hidden>
@@ -146,39 +147,48 @@
     </div>
     <main id="worlds-cn"></main>
   </section>
+
+  <section id="subj-fin" data-panel="fin" hidden>
+    <div class="map-view" id="map-fin">
+      <div class="map-head"><p class="sec-title">Escolhe um mundo <small class="muted" id="map-count-fin"></small></p><span class="xp-pill">⭐ <span class="n"><span id="xp-total-fin">0</span> / <span id="xp-max-fin">0</span> XP</span></span></div>
+      <nav class="map" id="jump-nav-fin" aria-label="Mundos de Dinheiro e Casa"></nav>
+    </div>
+    <main id="worlds-fin"></main>
+  </section>
 </div>
 
-<script src="armazem.js?v=20261025-0851"></script>
-<script src="data/portugues.js?v=20261025-0851"></script>
-<script src="data/hgp.js?v=20261025-0851"></script>
-<script src="data/matematica.js?v=20261025-0851"></script>
-<script src="data/formatos-matematica.js?v=20261025-0851"></script>
-<script src="data/missao-final.js?v=20261025-0851"></script>
-<script src="data/cn.js?v=20261025-0851"></script>
-<script src="data/socorros-manual.js?v=20261025-0851"></script>
-<script src="data/ingles.js?v=20261025-0851"></script>
-<script src="data/extra-portugues.js?v=20261025-0851"></script>
-<script src="data/extra-hgp.js?v=20261025-0851"></script>
-<script src="data/extra-matematica.js?v=20261025-0851"></script>
-<script src="data/extra-cn.js?v=20261025-0851"></script>
-<script src="data/extra-ingles.js?v=20261025-0851"></script>
-<script src="data/imagens.js?v=20261025-0851"></script>
-<script src="data/cer.js?v=20261025-0851"></script>
-<script src="data/problemas.js?v=20261025-0851"></script>
-<script src="data/recursos.js?v=20261025-0851"></script>
-<script src="data/sequencias.js?v=20261025-0851"></script>
-<script src="atividades-mat.js?v=20261025-0851"></script>
-<script src="shared.js?v=20261025-0851"></script>
-<script src="dificuldades.js?v=20261025-0851"></script>
-<script src="banco.js?v=20261025-0851"></script>
-<script src="animacoes.js?v=20261025-0851"></script>
-<script src="animacoes-matematica.js?v=20261025-0851"></script>
-<script src="animacoes-ciencias.js?v=20261025-0851"></script>
-<script src="animacoes-ciencias-2.js?v=20261025-0851"></script>
-<script src="animacoes-socorros.js?v=20261025-0851"></script>
-<script src="animacoes-hgp-pt-ing.js?v=20261025-0851"></script>
-<script src="app.js?v=20261025-0851"></script>
-<script src="arena-exercicios.js?v=20261025-0851"></script>
-<script src="arena.js?v=20261025-0851"></script>
+<script src="armazem.js?v=20261025-0917"></script>
+<script src="data/portugues.js?v=20261025-0917"></script>
+<script src="data/hgp.js?v=20261025-0917"></script>
+<script src="data/matematica.js?v=20261025-0917"></script>
+<script src="data/formatos-matematica.js?v=20261025-0917"></script>
+<script src="data/missao-final.js?v=20261025-0917"></script>
+<script src="data/cn.js?v=20261025-0917"></script>
+<script src="data/socorros-manual.js?v=20261025-0917"></script>
+<script src="data/ingles.js?v=20261025-0917"></script>
+<script src="data/financas.js?v=20261025-0917"></script>
+<script src="data/extra-portugues.js?v=20261025-0917"></script>
+<script src="data/extra-hgp.js?v=20261025-0917"></script>
+<script src="data/extra-matematica.js?v=20261025-0917"></script>
+<script src="data/extra-cn.js?v=20261025-0917"></script>
+<script src="data/extra-ingles.js?v=20261025-0917"></script>
+<script src="data/imagens.js?v=20261025-0917"></script>
+<script src="data/cer.js?v=20261025-0917"></script>
+<script src="data/problemas.js?v=20261025-0917"></script>
+<script src="data/recursos.js?v=20261025-0917"></script>
+<script src="data/sequencias.js?v=20261025-0917"></script>
+<script src="atividades-mat.js?v=20261025-0917"></script>
+<script src="shared.js?v=20261025-0917"></script>
+<script src="dificuldades.js?v=20261025-0917"></script>
+<script src="banco.js?v=20261025-0917"></script>
+<script src="animacoes.js?v=20261025-0917"></script>
+<script src="animacoes-matematica.js?v=20261025-0917"></script>
+<script src="animacoes-ciencias.js?v=20261025-0917"></script>
+<script src="animacoes-ciencias-2.js?v=20261025-0917"></script>
+<script src="animacoes-socorros.js?v=20261025-0917"></script>
+<script src="animacoes-hgp-pt-ing.js?v=20261025-0917"></script>
+<script src="app.js?v=20261025-0917"></script>
+<script src="arena-exercicios.js?v=20261025-0917"></script>
+<script src="arena.js?v=20261025-0917"></script>
 
 </body></html>

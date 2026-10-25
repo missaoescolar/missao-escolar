@@ -138,6 +138,7 @@ window.addEventListener("load", function(){
     hgp:"Procurem juntos o lugar ou a data no mapa ou numa linha do tempo desenhada à mão. Ver «onde» e «quando» ajuda a lembrar.",
     cn:"Façam uma das missões práticas juntos (observar, medir, registar) e peça-lhe que explique o que aconteceu e porquê.",
     cn7:"Façam uma das missões práticas juntos e peça-lhe que explique o que observou com as palavras do glossário.",
+    fin:"Levem-no às compras com uma lista e um valor limite, e peça-lhe que compare o preço por kg de duas embalagens. Falar de dinheiro em casa, com números reais e sem dramas, é a melhor aula.",
     fq7:"Peça-lhe que faça a previsão antes de verem a animação («o que achas que vai acontecer?») e que depois explique se acertou."
   };
   function painel(){

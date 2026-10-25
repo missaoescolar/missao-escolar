@@ -314,6 +314,55 @@
     }
   };
   const TEMA = {n1:["ordem", "🧮 Ordem das operações"], n2:["fracoes", "🍕 Operações com frações"], n3:["decimais", "🏷️ Decimais e percentagens"]};
+  const eur = function(c){ return (c % 100 ? dec(c, 2) : String(c/100))+" €"; };   // cêntimos → «2,50 €»
+  // 💶 Dinheiro e Casa: poupança (f4) e compras (f5), em cêntimos para as contas darem certas
+  GERA.poupanca = function(){
+    if(ri(0, 1)){
+      const sem = esc([4, 5, 6, 8, 10]), porSem = esc([150, 200, 250, 300, 350, 400]), P = sem*porSem;
+      return {q:"Queres comprar uma coisa de "+eur(P)+" daqui a "+sem+" semanas. Quanto tens de poupar por semana?", v:[porSem, 100], passos:[
+        ["Perceber: o que sei? O preço e o número de semanas. O que quero? Quanto guardar em cada semana.", "Preço: "+eur(P)+" · tempo: "+sem+" semanas"],
+        ["Planear: o preço tem de ser dividido em partes iguais, uma por semana.", "Faço uma divisão: "+eur(P)+" ÷ "+sem],
+        ["Fazer a conta (em cêntimos é mais fácil).", P+" cêntimos ÷ "+sem+" = "+porSem+" cêntimos = <b>"+eur(porSem)+"</b> por semana"]],
+        verif:sem+" × "+eur(porSem)+" = "+eur(P)+". Bate certo."};
+    }
+    const C = esc([5000, 10000, 20000, 25000, 40000]), taxa = esc([1, 2, 3, 4]), J = C*taxa/100;
+    return {q:"Pões "+eur(C)+" numa conta que paga "+taxa+" % de juro ao ano. Quanto recebes de juros ao fim de 1 ano?", v:[J, 100], passos:[
+      ["Perceber: o juro é uma percentagem do dinheiro que está na conta.", "Quero "+taxa+" % de "+eur(C)],
+      ["Planear: começo por 1 %, que é dividir por 100.", "1 % de "+eur(C)+" = "+eur(C/100)],
+      ["Fazer: "+taxa+" % são "+taxa+" vezes 1 %.", taxa+" × "+eur(C/100)+" = <b>"+eur(J)+"</b>"]],
+      verif:"Ao fim de 1 ano, a conta fica com "+eur(C)+" + "+eur(J)+" = "+eur(C+J)+". O juro é pequeno, por isso o resultado tem de ser só um pouco maior do que "+eur(C)+"."};
+  };
+  GERA.compras = function(){
+    const t = ri(0, 2);
+    if(t === 0){
+      const p1 = esc([160, 180, 200, 220, 240]), pk1 = p1*2;
+      let k2 = esc([300, 340, 360, 380, 420, 440]); while(k2 === pk1) k2 += 20;
+      const melhor = pk1 < k2 ? "o pacote de 500 g" : "o pacote de 1 kg";
+      return {q:"Arroz: 500 g a "+eur(p1)+" ou 1 kg a "+eur(k2)+". Qual compensa mais? (Para verificar, escreve o preço por kg do que compensa.)", v:[Math.min(pk1, k2), 100], passos:[
+        ["Perceber: as embalagens têm tamanhos diferentes. Não posso comparar só o preço.", "Comparo o preço do mesmo peso: o preço por kg"],
+        ["Quanto custa 1 kg do pacote pequeno? 1 kg são 2 pacotes de 500 g.", "2 × "+eur(p1)+" = "+eur(pk1)+" por kg"],
+        ["O pacote grande já é de 1 kg.", eur(k2)+" por kg"],
+        ["Comparar os dois preços por kg.", eur(pk1)+" e "+eur(k2)+" → <b>"+melhor+"</b>"+(pk1 !== k2 ? " (mais barato: "+eur(Math.min(pk1, k2))+"/kg)" : "")]],
+        verif:"Só compensa levar mais se o arroz se gastar antes de estragar. Neste caso, o arroz dura muito: a conta vale."};
+    }
+    if(t === 1){
+      const u = esc([45, 60, 75, 90, 120]), R = 2*u, cada = R/3;
+      return {q:"Iogurtes a "+eur(u)+" cada, em promoção «leve 3, pague 2». Quanto custa, de facto, cada iogurte?", v:[cada, 100], passos:[
+        ["Perceber: levo 3, mas só pago 2.", "Pago 2 × "+eur(u)+" = "+eur(R)],
+        ["Planear: para saber o preço de cada um, reparto o que paguei pelos 3.", eur(R)+" ÷ 3"],
+        ["Fazer a conta em cêntimos.", R+" ÷ 3 = "+cada+" cêntimos = <b>"+eur(cada)+"</b>"]],
+        verif:"Poupas "+eur(u-cada)+" em cada iogurte. Mas a promoção só compensa se forem comidos antes do prazo."};
+    }
+    const total = ri(105, 990), nota = total <= 500 ? 500 : 1000, troco = nota - total;
+    return {q:"A compra custa "+eur(total)+" e pagas com uma nota de "+eur(nota)+". Quanto recebes de troco?", v:[troco, 100], passos:[
+      ["Perceber: o troco é o que falta ao preço para chegar ao valor da nota.", eur(nota)+" − "+eur(total)],
+      ["Planear: conto para a frente, como faz quem está na caixa: primeiro até ao euro seguinte.", eur(total)+" + "+eur((100 - total % 100) % 100)+" = "+eur(Math.ceil(total/100)*100)],
+      ["Depois, do euro seguinte até ao valor da nota.", eur(Math.ceil(total/100)*100)+" + "+eur(nota - Math.ceil(total/100)*100)+" = "+eur(nota)],
+      ["Somar as duas partes.", eur((100 - total % 100) % 100)+" + "+eur(nota - Math.ceil(total/100)*100)+" = <b>"+eur(troco)+"</b>"]],
+      verif:eur(total)+" + "+eur(troco)+" = "+eur(nota)+". Confere sempre o troco antes de sair da caixa."};
+  };
+  TEMA.f4 = ["poupanca", "🐷 Contas da poupança"];
+  TEMA.f5 = ["compras", "🛒 Qual compensa?"];
 
   function lerNumero(s){
     s = String(s).trim().replace(/\s+/g, " ").replace(",", ".").replace("−", "-");
@@ -338,7 +387,7 @@
 
     function novo(){
       ex = GERA[tema[0]](); i = 0;
-      conta.innerHTML = "Calcula: <b>"+ex.q+"</b>";
+      conta.innerHTML = (ex.q.indexOf("?") !== -1 ? "🧩 " : "Calcula: ")+"<b>"+ex.q+"</b>";   // os problemas com pergunta não levam «Calcula:»
       lista.innerHTML = ""; fb.innerHTML = ""; tenta.querySelector("input").value = "";
       seg.hidden = false; seg.textContent = "👣 Ver o 1.º passo";
     }
@@ -368,6 +417,6 @@
     return box;
   }
 
-  const MAPA = {n1: [pensar], n2: [pensar], n3: [grelha, pensar], n4: [padroes]};
+  const MAPA = {n1: [pensar], n2: [pensar], n3: [grelha, pensar], n4: [padroes], f4: [pensar], f5: [pensar]};
   window.MissaoAtivMat = {para: function(w){ return (MAPA[w.id] || []).map(function(f){ return f(w); }); }};
 })();
