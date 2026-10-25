@@ -475,4 +475,104 @@
       ]});
   })();
 
+
+  /* ---------- Inglês e1, e3, e5, e6, e7, e8 (exemplos originais) ---------- */
+  (function(){
+    const pill = (id, x, y, w, txt, cor, cls) => g({id:id, cls:cls || ""}, r(x,y,w,28,{rx:6, fill:cor || "var(--surface)", stroke:"currentColor", sw:1.5})+t(x+w/2,y+19,txt,{fs:12.5}));
+
+    /* e1 — family and the verb to be */
+    const FAM = [["grandmother","👵",80,40],["grandfather","👴",200,40],["mother","👩",80,120],["father","👨",200,120],["me","🧒",110,200],["sister","👧",170,200]];
+    A.def({id:"family", mundo:"e1", cor:"m1", titulo:"My family tree and the verb «to be»", lang:"pt-PT", w:540, h:250,
+      cena: () =>
+        l(140,62,140,100,{stroke:"var(--border)", sw:2})+l(140,142,140,178,{stroke:"var(--border)", sw:2})+l(110,178,170,178,{stroke:"var(--border)", sw:2})+
+        FAM.map((f, i) => g({id:"fm"+i, cls:"an-h an-pop"}, t(f[2],f[3]+10,f[1],{fs:26})+t(f[2],f[3]+32,f[0],{fs:10.5}))).join("")+
+        g({id:"tobe", cls:"an-h"}, r(300,40,220,170,{rx:8, fill:"var(--surface)", stroke:"var(--wc)", sw:2})+t(410,62,"to be (present)",{fs:12.5})+
+          [["I","am"],["he / she / it","is"],["you / we / they","are"]].map((q, i) => t(400,96+i*36,q[0],{fs:12, fw:400, ta:"end"})+t(412,96+i*36,q[1],{id:"tb"+i, cls:"an-h", fs:13, fill:"var(--wc)", ta:"start"})).join(""))+
+        t(410,234,"",{id:"frase", fs:12.5}),
+      passos:[
+        {t:"Vamos construir uma árvore da família em inglês. No topo: <b>grandmother</b> (avó) e <b>grandfather</b> (avô).", f:S => S.mostrar(["#fm0","#fm1"])},
+        {t:"Depois: <b>mother</b> (mãe) e <b>father</b> (pai).", f:S => S.mostrar(["#fm2","#fm3"])},
+        {t:"E por fim: <b>me</b> (eu) e a minha <b>sister</b> (irmã). Irmão diz-se <b>brother</b>.", f:S => S.mostrar(["#fm4","#fm5"])},
+        {t:"Para apresentar a família usa-se o verbo <b>to be</b>. Com <b>I</b> usa-se <b>am</b>.", f:S => { S.mostrar(["#tobe","#tb0"]); S.texto("#frase", "I am eleven years old."); }},
+        {t:"Com <b>he</b>, <b>she</b> ou <b>it</b> usa-se <b>is</b>.", f:S => { S.mostrar("#tb1"); S.texto("#frase", "She is my sister."); }},
+        {t:"Com <b>you</b>, <b>we</b> ou <b>they</b> usa-se <b>are</b>.", f:S => { S.mostrar("#tb2"); S.texto("#frase", "They are my grandparents."); }}
+      ]});
+
+    /* e3 — there is / there are */
+    A.def({id:"there-is", mundo:"e3", cor:"m3", titulo:"In my classroom: «there is» and «there are»", lang:"pt-PT", w:540, h:240,
+      cena: () =>
+        r(30,140,300,16,{rx:3, fill:"#C99B4F", stroke:"#8a6a4a", sw:1.5})+l(50,156,50,220,{stroke:"#8a6a4a", sw:4})+l(310,156,310,220,{stroke:"#8a6a4a", sw:4})+
+        g({id:"o1", cls:"an-h an-pop"}, r(60,128,120,10,{rx:2, fill:"#E0A100", stroke:"#3B372F", sw:1})+t(120,120,"a ruler",{fs:10.5, fw:400}))+
+        g({id:"o2", cls:"an-h"}, [0,1,2].map(i => g({id:"lp"+i, cls:"an-h an-pop"}, r(200+i*36,90,8,46,{rx:2, fill:["#C7461F","#2E5DA8","#3E8F5C"][i], stroke:"#3B372F", sw:1}))).join("")+t(240,80,"three pencils",{fs:10.5, fw:400}))+
+        t(430,70,"",{id:"f1", fs:13})+t(430,95,"",{id:"f1b", fs:10.5, fw:400})+t(430,140,"",{id:"f2", fs:13})+t(430,165,"",{id:"f2b", fs:10.5, fw:400}),
+      passos:[
+        {t:"Para dizer o que existe num sítio, em inglês usa-se <b>there is</b> ou <b>there are</b>.", f:S => {}},
+        {t:"Uma coisa só (singular): <b>There is a ruler.</b> (Há uma régua.)", f:S => { S.mostrar("#o1"); S.texto("#f1", "There is a ruler."); S.texto("#f1b", "1 → there is"); }},
+        {t:"Várias coisas (plural)…", f:S => { S.mostrar("#o2"); [0,1,2].forEach(i => { if(S.instant) S.mostrar("#lp"+i); else S.depois(() => S.mostrar("#lp"+i), 200+i*400); }); }},
+        {t:"…<b>There are three pencils.</b> (Há três lápis.)", f:S => { S.texto("#f2", "There are three pencils."); S.texto("#f2b", "2 ou mais → there are"); }},
+        {t:"Para perguntar: <b>Is there</b> a rubber? / <b>Are there</b> any books?", f:S => { S.texto("#f1b", "Is there a rubber?"); S.texto("#f2b", "Are there any books?"); }}
+      ]});
+
+    /* e5 — can / can't and by + transport */
+    A.def({id:"can", mundo:"e5", cor:"m5", titulo:"What can you do? «can» and «can't»", lang:"pt-PT", w:540, h:240,
+      cena: () =>
+        t(60,70,"🚲",{fs:30})+t(60,140,"🏊",{fs:30})+t(60,210,"✈️",{fs:30})+
+        t(100,76,"I can ride a bike.",{id:"c0", cls:"an-h", fs:13, ta:"start"})+t(100,146,"I can swim.",{id:"c1", cls:"an-h", fs:13, ta:"start"})+t(100,216,"I can't fly a plane.",{id:"c2", cls:"an-h", fs:13, ta:"start", fill:"#B5651D"})+
+        g({id:"regra", cls:"an-h"}, r(320,40,200,90,{rx:8, fill:"var(--surface)", stroke:"var(--wc)", sw:2})+t(420,64,"he can · she can",{fs:12})+t(420,88,"she can swim ✔",{fs:11.5, fill:"#3E8F5C"})+t(420,110,"she can to swim ✘",{fs:11.5, fill:"#B5651D"}))+
+        g({id:"by", cls:"an-h"}, t(420,160,"🚌 by bus · 🚆 by train",{fs:12})+t(420,184,"🚗 by car · 🚶 on foot",{fs:12})),
+      passos:[
+        {t:"Usa-se <b>can</b> para dizer o que <b>consegues</b> fazer: <b>I can ride a bike.</b>", f:S => S.mostrar("#c0")},
+        {t:"<b>I can swim.</b> (Eu sei nadar.)", f:S => S.mostrar("#c1")},
+        {t:"Na negativa: <b>can't</b> (can not). <b>I can't fly a plane.</b>", f:S => S.mostrar("#c2")},
+        {t:"<b>Can</b> nunca muda (he can, she can) e não leva «to» antes do verbo.", f:S => S.mostrar("#regra")},
+        {t:"Para dizer como viajas: <b>by</b> + transporte (by bus, by train). A pé diz-se <b>on foot</b>.", f:S => S.mostrar("#by")}
+      ]});
+
+    /* e6 — like / love / hate + -ing */
+    A.def({id:"like-ing", mundo:"e6", cor:"m6", titulo:"I like playing! Verbs + -ing", lang:"pt-PT", w:540, h:240,
+      cena: () =>
+        pill("v",60,50,90,"play","#E8D6B8","an-move")+pill("ing",300,50,60,"-ing","#BFD9EC","an-move")+
+        t(270,110,"",{id:"res", fs:14})+
+        g({id:"regras", cls:"an-h"}, t(270,145,"ride → riding (sai o «e»)",{fs:12, fw:400})+t(270,170,"swim → swimming (dobra o «m»)",{fs:12, fw:400}))+
+        t(270,212,"",{id:"frase", fs:13}),
+      passos:[
+        {t:"Depois de <b>like</b>, <b>love</b>, <b>hate</b> e <b>enjoy</b>, o verbo seguinte leva <b>-ing</b>.", f:S => {}},
+        {t:"<b>play</b> + <b>-ing</b> = <b>playing</b>.", f:S => { S.mover("#ing", "translate(-150px,0px)"); S.texto("#res", "playing"); }},
+        {t:"Assim: <b>I like playing video games.</b> (e não «I like play»).", f:S => S.texto("#frase", "I like playing video games.")},
+        {t:"Atenção à ortografia: <b>ride → riding</b> (perde o «e») e <b>swim → swimming</b> (dobra a consoante).", f:S => S.mostrar("#regras")},
+        {t:"Para dar a razão, usa-se <b>because</b>: <b>I love swimming because it's fun.</b>", f:S => S.texto("#frase", "I love swimming because it's fun.")}
+      ]});
+
+    /* e7 — Past Simple */
+    A.def({id:"past-simple", mundo:"e7", cor:"m7", titulo:"Last summer: the Past Simple", lang:"pt-PT", w:540, h:250,
+      cena: () =>
+        l(40,60,500,60,{stroke:"var(--border)", sw:3})+t(80,46,"last summer",{fs:11, fill:"var(--wc)"})+t(470,46,"now",{fs:11})+c(470,60,6,{fill:"currentColor"})+
+        g({id:"reg", cls:"an-h"}, pill("p1",40,90,80,"play",null)+t(140,110,"→",{fs:14})+pill("p2",160,90,90,"played","#D7E8C9")+
+          pill("p3",290,90,80,"visit",null)+t(390,110,"→",{fs:14})+pill("p4",410,90,100,"visited","#D7E8C9"))+
+        g({id:"irr", cls:"an-h"}, t(270,150,"irregulares (decoram-se):",{fs:11.5})+t(270,172,"go → went · see → saw · eat → ate · buy → bought",{fs:12, fw:400}))+
+        t(270,210,"",{id:"neg", fs:12.5})+t(270,232,"",{id:"neg2", fs:11, fw:400}),
+      passos:[
+        {t:"O <b>Past Simple</b> fala de ações que já terminaram: «last summer», «yesterday».", f:S => {}},
+        {t:"Nos verbos <b>regulares</b> junta-se <b>-ed</b>: play → <b>played</b>, visit → <b>visited</b>.", f:S => S.mostrar("#reg")},
+        {t:"Muitos verbos são <b>irregulares</b> e têm uma forma própria: go → <b>went</b>, see → <b>saw</b>.", f:S => S.mostrar("#irr")},
+        {t:"Na negativa usa-se <b>didn't</b> + o verbo na forma base: <b>I didn't go</b> to the beach.", f:S => { S.texto("#neg", "I didn't go to the beach."); S.texto("#neg2", "(e não «I didn't went»)"); }},
+        {t:"Na pergunta usa-se <b>Did</b>: <b>Did you visit</b> your cousins?", f:S => { S.texto("#neg", "Did you visit your cousins?"); S.texto("#neg2", "— Yes, I did. / No, I didn't."); }}
+      ]});
+
+    /* e8 — going to + invitations */
+    A.def({id:"going-to", mundo:"e8", cor:"m8", titulo:"Party plans: «going to»", lang:"pt-PT", w:540, h:240,
+      cena: () =>
+        r(30,30,150,150,{rx:8, fill:"var(--surface)", stroke:"currentColor", sw:1.5})+r(30,30,150,32,{rx:8, fill:"var(--wc)"})+t(105,52,"Saturday",{fs:13, fill:"#fff"})+t(105,120,"🎉",{fs:40})+
+        pill("b1",220,40,70,"I'm","#BFD9EC","an-h an-pop")+pill("b2",300,40,90,"going to","#F3C2A8","an-h an-pop")+pill("b3",400,40,120,"wear a costume","#D7E8C9","an-h an-pop")+
+        t(370,110,"",{id:"f", fs:12.5})+
+        g({id:"conv", cls:"an-h"}, r(220,140,300,60,{rx:10, fill:"var(--surface)", stroke:"var(--wc)", sw:2})+t(370,166,"Would you like to come to my party?",{fs:12})+t(370,188,"— Yes, I'd love to!",{fs:11.5, fw:400})),
+      passos:[
+        {t:"Para falar de <b>planos</b> para o futuro, usa-se <b>going to</b>.", f:S => {}},
+        {t:"Forma-se com o verbo <b>to be</b>…", f:S => S.mostrar("#b1")},
+        {t:"…+ <b>going to</b>…", f:S => S.mostrar("#b2")},
+        {t:"…+ o verbo na forma base: <b>I'm going to wear a costume.</b> (Vou usar um disfarce.)", f:S => { S.mostrar("#b3"); S.texto("#f", "We're going to watch the fireworks."); }},
+        {t:"Para convidar com educação: <b>Would you like to…?</b>", f:S => S.mostrar("#conv")}
+      ]});
+  })();
+
 })();
