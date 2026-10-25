@@ -168,7 +168,11 @@ Object.assign(MISSAO_IMAGENS, {
       cred:"Missão Escolar", lic:"ORIG"},
     {f:"img/m1/baixa-pombalina.svg", t:"A Baixa Pombalina e a gaiola", il:true,
       d:"Depois do terramoto, o Marquês de Pombal mandou reconstruir a Baixa com ruas retas em grelha, quarteirões iguais e a Praça do Comércio aberta para o rio. Por dentro, os prédios têm uma estrutura de madeira com cruzes, a «gaiola pombalina», que deixa o prédio abanar sem cair.",
-      cred:"Missão Escolar", lic:"ORIG"}
+      cred:"Missão Escolar", lic:"ORIG"},
+    {f:"img/m1/lisboa-antes-1755.svg", t:"Lisboa antes do terramoto", il:true,
+      d:"Assim era a frente de Lisboa na manhã de 1 de novembro de 1755: o Terreiro do Paço junto ao Tejo, o Paço da Ribeira (o palácio do rei) e, atrás, ruas medievais estreitas com casas altas encostadas. Era Dia de Todos os Santos e muitas pessoas estavam na missa.",
+      act:"<b>Antes e depois</b>: compara esta imagem com «A Baixa Pombalina e a gaiola». Faz uma tabela com 3 diferenças (ruas, casas, praça) e explica porque é que a cidade nova resistia melhor a um sismo.",
+      cred:"Missão Escolar (desenho feito com a ajuda do Google Stitch e revisto)", lic:"ORIG"}
   ],
   m2: [
     {f:"img/m2/alegoria-1822.jpg", t:"Alegoria à Constituição de 1822",
@@ -335,6 +339,12 @@ Object.assign(MISSAO_IMAGENS, {
     {f:"img/f6/onde-se-gasta-em-casa.svg", t:"Onde se gasta em casa", il:true,
       d:"Eletricidade, água, gás e comida: as 4 grandes despesas do dia a dia de uma casa, com uma dica de poupança para cada uma.",
       act:"<b>Inspeção da casa</b>: percorre a tua casa com um adulto e marca, numa planta desenhada por ti, onde se gasta eletricidade, água, gás e comida. Escolhe 1 dica para a família experimentar durante uma semana.",
+      cred:"Missão Escolar (desenho feito com a ajuda do Google Stitch e revisto)", lic:"ORIG"}
+  ],
+  f5: [
+    {f:"img/f5/ler-a-etiqueta.svg", t:"Ler a etiqueta da prateleira", il:true,
+      d:"Na etiqueta da prateleira há o nome do produto, a quantidade, o preço a pagar e o número para comparar: o preço por quilo. O pacote de 1 kg parece mais caro (3,20 € contra 2,00 €), mas por quilo é mais barato (3,20 € contra 4,00 €).",
+      act:"<b>Detetive do supermercado</b>: no supermercado ou num folheto, escolhe um produto com 2 tamanhos. Escreve o preço a pagar e o preço por kg (ou por litro) de cada um e diz qual compensa — e se a tua família gasta o pacote grande antes de estragar.",
       cred:"Missão Escolar (desenho feito com a ajuda do Google Stitch e revisto)", lic:"ORIG"}
   ],
   f7: [

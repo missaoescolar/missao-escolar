@@ -1,0 +1,388 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="800" height="450" style="background-color: #FBF7F0; font-family: 'Atkinson Hyperlegible', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+  <defs>
+    <!-- Filtros de sombra suave no estilo Caderno Vivo -->
+    <filter id="soft-shadow" x="-5%" y="-5%" width="110%" height="115%">
+      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#3B372F" flood-opacity="0.08"/>
+    </filter>
+    <filter id="card-shadow" x="-3%" y="-4%" width="106%" height="110%">
+      <feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="#3B372F" flood-opacity="0.06"/>
+    </filter>
+    <filter id="block-shadow" x="-8%" y="-8%" width="116%" height="116%">
+      <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#3B372F" flood-opacity="0.10"/>
+    </filter>
+    <filter id="highlight-glow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#C7461F" flood-opacity="0.2"/>
+    </filter>
+  </defs>
+
+  <!-- 0. FUNDO GERAL DE PAPEL DE CADERNO -->
+  <rect width="800" height="450" fill="#FBF7F0"/>
+
+  <!-- ======================================================== -->
+  <!-- CABEÇALHO PEDAGÓGICO CURRICULAR                          -->
+  <!-- ======================================================== -->
+  <g id="cabecalho-curricular" text-anchor="middle">
+    <rect x="160" y="10" width="480" height="30" rx="15" fill="#FFFFFF" stroke="#E8E0D5" stroke-width="1.5" filter="url(#soft-shadow)"/>
+    <text stroke="none" x="406" y="30" fill="#C7461F" font-size="11.5" font-weight="700" letter-spacing="0.4">
+      DINHEIRO E CASA · LER A ETIQUETA DA PRATELEIRA
+    </text>
+  </g>
+
+  <!-- ====================================================================== -->
+  <!-- PAINEL ESQUERDO: ETIQUETA DE PRATELEIRA AMPLIADA (x=30 a 460)           -->
+  <!-- ====================================================================== -->
+  <g id="painel-etiqueta-ampliada">
+
+    <!-- Réplica da calha da prateleira de supermercado em blocos metálicos -->
+    <g id="calha-prateleira" stroke="#3B372F" stroke-width="1.6" stroke-linejoin="round">
+      <rect x="30" y="52" width="440" height="14" rx="3" fill="#D9CFC4"/>
+      <rect x="30" y="62" width="440" height="4" fill="#8E8880"/>
+      <!-- Parafusos / rebites em bloco -->
+      <circle cx="45" cy="59" r="2" fill="#5A554E"/>
+      <circle cx="455" cy="59" r="2" fill="#5A554E"/>
+    </g>
+
+    <!-- CORPO DA ETIQUETA DE PRATELEIRA AMPLIADA (w=430, h=250) -->
+    <g id="cartao-etiqueta" filter="url(#card-shadow)">
+      <!-- Fundo branco da etiqueta de supermercado -->
+      <rect x="35" y="66" width="430" height="250" rx="10" fill="#FFFFFF" stroke="#3B372F" stroke-width="2"/>
+
+      <!-- Faixa superior subtil / categoria didática -->
+      <path d="M 36 76 Q 36 67 45 67 L 455 67 Q 464 67 464 76 L 464 92 L 36 92 Z" fill="#F4ECE1"/>
+      <line x1="36" y1="92" x2="464" y2="92" stroke="#E8E0D5" stroke-width="1.2"/>
+      <text stroke="none" x="50" y="83" fill="#7A7369" font-size="9" font-weight="700">MERCEARIA · CEREAIS</text>
+      <text stroke="none" x="450" y="83" text-anchor="end" fill="#7A7369" font-size="8.5" font-family="monospace">CORREDOR 3 · N.º 14</text>
+
+      <!-- 1. NOME DO PRODUTO (campo delimitado) -->
+      <g id="campo-nome-produto">
+        <rect x="48" y="99" width="260" height="38" rx="6" fill="#FBF7F0" stroke="#4F86B3" stroke-width="1.5" stroke-dasharray="3,2"/>
+        <text stroke="none" x="60" y="117" fill="#3B372F" font-size="14.5" font-weight="700">Arroz Agulha Longo</text>
+        <text stroke="none" x="60" y="130" fill="#7A7369" font-size="9.5">Grão fino e solto · marca própria</text>
+      </g>
+
+      <!-- Código de barras didático em blocos e quantidade da embalagem -->
+      <g id="campo-quantidade-produto">
+        <!-- Caixa de destaque da quantidade (500 g) -->
+        <rect x="48" y="146" width="130" height="36" rx="6" fill="#FFFBF0" stroke="#E0A100" stroke-width="1.5" stroke-dasharray="3,2"/>
+        <text stroke="none" x="58" y="161" fill="#7A7369" font-size="8.5" font-weight="700">PESO LÍQUIDO</text>
+        <text stroke="none" x="58" y="176" fill="#C68E00" font-size="14" font-weight="700">500 g</text>
+
+        <!-- Código de barras estilizado em blocos ao lado -->
+        <g id="codigo-barras" transform="translate(190, 148)" fill="#3B372F">
+          <rect x="0" y="0" width="3" height="30"/>
+          <rect x="5" y="0" width="1.5" height="30"/>
+          <rect x="9" y="0" width="4" height="30"/>
+          <rect x="15" y="0" width="2" height="30"/>
+          <rect x="19" y="0" width="5" height="30"/>
+          <rect x="27" y="0" width="1.5" height="30"/>
+          <rect x="31" y="0" width="3" height="30"/>
+          <rect x="36" y="0" width="2" height="30"/>
+          <rect x="41" y="0" width="4" height="30"/>
+          <rect x="48" y="0" width="2" height="30"/>
+          <rect x="52" y="0" width="3" height="30"/>
+          <rect x="58" y="0" width="1.5" height="30"/>
+          <rect x="62" y="0" width="4" height="30"/>
+          <text stroke="none" x="33" y="38" text-anchor="middle" fill="#8E8880" font-size="7" font-family="monospace">5 601234 567890</text>
+        </g>
+      </g>
+
+      <!-- 2. PREÇO DA EMBALAGEM (campo delimitado à direita) -->
+      <g id="campo-preco-embalagem">
+        <rect x="316" y="99" width="138" height="83" rx="8" fill="#FFF8F5" stroke="#3E8F5C" stroke-width="1.8" stroke-dasharray="3,2"/>
+        <text stroke="none" x="328" y="117" fill="#7A7369" font-size="8.5" font-weight="700">PREÇO A PAGAR</text>
+        <!-- Preço grande em destaque calmo -->
+        <text stroke="none" x="328" y="156" fill="#2E6B44" font-size="34" font-weight="700">2,00</text>
+        <text stroke="none" x="408" y="137" fill="#2E6B44" font-size="18" font-weight="700">€</text>
+        <rect x="326" y="164" width="118" height="14" rx="3" fill="#E8F4EC"/>
+        <text stroke="none" x="385" y="174" text-anchor="middle" fill="#2E6B44" font-size="8" font-weight="700">por pacote (500 g)</text>
+      </g>
+
+      <!-- DIVISÓRIA INTERNA DA ETIQUETA -->
+      <line x1="48" y1="194" x2="452" y2="194" stroke="#E8E0D5" stroke-width="1.5"/>
+
+      <!-- ============================================================ -->
+      <!-- 3. PREÇO POR QUILO (4,00 €/kg) EM GRANDE DESTAQUE CURRICULAR -->
+      <!-- ============================================================ -->
+      <g id="campo-preco-por-kg" filter="url(#highlight-glow)">
+        <!-- Caixa de destaque terracota vivo (#C7461F) -->
+        <rect x="48" y="204" width="404" height="74" rx="8" fill="#FFF5F2" stroke="#C7461F" stroke-width="2.2"/>
+        
+        <!-- Fita lateral de atenção em bloco -->
+        <rect x="49" y="205" width="8" height="72" rx="4" fill="#C7461F"/>
+
+        <!-- Distintivo curricular «O número mais importante!» -->
+        <rect x="68" y="213" width="180" height="20" rx="10" fill="#C7461F"/>
+        <circle cx="78" cy="223" r="3.5" fill="#FFFFFF"/>
+        <text stroke="none" x="88" y="227" fill="#FFFFFF" font-size="9" font-weight="700">O NÚMERO PARA COMPARAR</text>
+
+        <!-- Etiqueta textual e valor grande -->
+        <text stroke="none" x="68" y="254" fill="#7A7369" font-size="10" font-weight="700">PREÇO POR QUILO:</text>
+        
+        <!-- Valor do preço por kg com tamanho de destaque pedagógico -->
+        <g transform="translate(68, 258)">
+          <text stroke="none" x="0" y="15" fill="#C7461F" font-size="20" font-weight="700">4,00 € / kg</text>
+        </g>
+
+        <!-- Fórmula em bloco didático ao lado -->
+        <g transform="translate(245, 222)">
+          <rect x="0" y="0" width="195" height="46" rx="6" fill="#FFFFFF" stroke="#E8E0D5" stroke-width="1.2"/>
+          <text stroke="none" x="10" y="16" fill="#3B372F" font-size="8.5" font-weight="700">Cálculo matemático:</text>
+          <text stroke="none" x="10" y="30" fill="#665E55" font-size="8.5">2,00 € : 0,5 kg = <tspan fill="#C7461F" font-weight="700">4,00 €/kg</tspan></text>
+          <text stroke="none" x="10" y="41" fill="#7A7369" font-size="7.5">(ou 2,00 € × 2 para fazer 1 kg)</text>
+        </g>
+      </g>
+
+      <!-- Rodapé discreto da etiqueta com código fiscal/EAN -->
+      <g id="rodape-etiqueta" font-size="8" fill="#8E8880">
+        <text stroke="none" x="50" y="302">IVA incluído</text>
+        <text stroke="none" x="450" y="302" text-anchor="end" font-family="monospace">ART: 489201</text>
+      </g>
+    </g>
+
+    <!-- ================================================================== -->
+    <!-- 4 SETAS PEDAGÓGICAS COM CARTÕES DE EXPLICAÇÃO                     -->
+    <!-- ================================================================== -->
+
+    <!-- SETA 1: Nome do produto (Azul #4F86B3) -->
+    <g id="seta-explicacao-nome">
+      <path d="M 120 99 L 120 72 L 70 72" fill="none" stroke="#4F86B3" stroke-width="1.6" stroke-linecap="round"/>
+      <polygon points="120,99 116,91 124,91" fill="#4F86B3"/>
+      <!-- Balãozinho explicativo acima -->
+      <rect x="58" y="44" width="130" height="20" rx="10" fill="#F0F4F8" stroke="#4F86B3" stroke-width="1.2"/>
+      <circle cx="70" cy="54" r="3.5" fill="#4F86B3"/>
+      <text stroke="none" x="78" y="57.5" fill="#2E5575" font-size="8.5" font-weight="700">① Nome do produto</text>
+    </g>
+
+    <!-- SETA 2: Quantidade / Peso (Ocre #E0A100) -->
+    <g id="seta-explicacao-quantidade">
+      <path d="M 40 164 L 20 164 L 20 196 L 40 196" fill="none" stroke="#E0A100" stroke-width="1.6" stroke-linecap="round"/>
+      <polygon points="48,164 40,160 40,168" fill="#E0A100"/>
+      <!-- Etiqueta colocada à esquerda da etiqueta -->
+      <g transform="translate(2, 187)">
+        <rect x="0" y="0" width="105" height="18" rx="9" fill="#FFFBF0" stroke="#E0A100" stroke-width="1.2"/>
+        <text stroke="none" x="52" y="12.5" text-anchor="middle" fill="#C68E00" font-size="8" font-weight="700">② Quantidade (500 g)</text>
+      </g>
+    </g>
+
+    <!-- SETA 3: Preço da embalagem (Verde #3E8F5C) -->
+    <g id="seta-explicacao-preco">
+      <path d="M 370 99 L 370 72 L 310 72" fill="none" stroke="#3E8F5C" stroke-width="1.6" stroke-linecap="round"/>
+      <polygon points="370,99 366,91 374,91" fill="#3E8F5C"/>
+      <rect x="250" y="44" width="115" height="20" rx="10" fill="#F0F7F2" stroke="#3E8F5C" stroke-width="1.2"/>
+      <circle cx="262" cy="54" r="3.5" fill="#3E8F5C"/>
+      <text stroke="none" x="270" y="57.5" fill="#2E6B44" font-size="8.5" font-weight="700">③ Preço a pagar</text>
+    </g>
+
+    <!-- SETA 4: Preço por kg em destaque (Terracota #C7461F) -->
+    <g id="seta-explicacao-preco-kg">
+      <!-- Linha que aponta da borda para o destaque -->
+      <path d="M 230 286 L 230 304 L 140 304" fill="none" stroke="#C7461F" stroke-width="2" stroke-linecap="round"/>
+      <polygon points="230,280 226,288 234,288" fill="#C7461F"/>
+      <!-- Cartão explicativo da regra de ouro do consumidor -->
+      <g transform="translate(18, 308)">
+        <rect x="0" y="0" width="280" height="24" rx="6" fill="#FFF5F2" stroke="#C7461F" stroke-width="1.4"/>
+        <circle cx="12" cy="12" r="4" fill="#C7461F"/>
+        <text stroke="none" x="22" y="15.5" fill="#C7461F" font-size="9" font-weight="700">④ Preço por kg (4,00 €/kg) · O que permite comparar!</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- ====================================================================== -->
+  <!-- PAINEL DIREITO: AS DUAS EMBALAGENS DE ARROZ EM BLOCOS ISOMÉTRICOS     -->
+  <!-- Demonstração comparativa real de dois tamanhos (500 g vs 1 kg)         -->
+  <!-- x=490 a 770 (largura 280px)                                            -->
+  <!-- ====================================================================== -->
+  <g id="painel-embalagens-arroz" filter="url(#card-shadow)">
+    <!-- Contentor base da comparação -->
+    <rect x="490" y="52" width="280" height="290" rx="10" fill="#FFFFFF" stroke="#3B372F" stroke-width="1.8"/>
+
+    <!-- Título do painel de comparação -->
+    <g id="titulo-comparacao" text-anchor="middle">
+      <rect x="504" y="62" width="252" height="24" rx="12" fill="#FFF8F5" stroke="#C7461F" stroke-width="1.2"/>
+      <circle cx="518" cy="74" r="3.5" fill="#C7461F"/>
+      <text stroke="none" x="635" y="78" fill="#C7461F" font-size="10" font-weight="700">
+        QUAL É O PACOTE MAIS ECONÓMICO?
+      </text>
+    </g>
+
+    <!-- Prateleira em bloco onde assentam as duas embalagens (y=230) -->
+    <g id="prateleira-apoio" stroke="#3B372F" stroke-width="1.4">
+      <rect x="500" y="234" width="260" height="10" rx="2" fill="#D9CFC4"/>
+      <line x1="500" y1="238" x2="760" y2="238" stroke="#8E8880" stroke-width="1"/>
+    </g>
+
+    <!-- ========================================================== -->
+    <!-- EMBALAGEM A: PACOTE PEQUENO (500 g)                        -->
+    <!-- Dimensões em blocos: w=70, h=92, x=515, y=142              -->
+    <!-- ========================================================== -->
+    <g id="embalagem-pequena-500g" filter="url(#block-shadow)">
+      
+      <!-- Saco de arroz em bloco voxel azul Tejo (#4F86B3) -->
+      <g stroke="#3B372F" stroke-width="1.4" stroke-linejoin="round">
+        <!-- Corpo principal do saco de arroz pequeno -->
+        <rect x="515" y="142" width="70" height="92" rx="4" fill="#4F86B3"/>
+        
+        <!-- Dobra/selagem superior em bloco com picotado -->
+        <polygon points="515,142 550,134 585,142 550,138" fill="#3E729E"/>
+        <line x1="520" y1="140" x2="580" y2="140" stroke="#FFFFFF" stroke-width="1" stroke-dasharray="2,2"/>
+
+        <!-- Janela transparente do saco a mostrar os grãos de arroz em blocos -->
+        <rect x="525" y="158" width="50" height="34" rx="3" fill="#FAF4ED"/>
+        
+        <!-- Grãos de arroz cúbicos brancos na janela -->
+        <g fill="#FFFFFF" stroke="#D9CFC4" stroke-width="0.8">
+          <ellipse cx="535" cy="167" rx="3.5" ry="1.8" transform="rotate(-15 535 167)"/>
+          <ellipse cx="546" cy="166" rx="3.5" ry="1.8" transform="rotate(25 546 166)"/>
+          <ellipse cx="558" cy="168" rx="3.5" ry="1.8" transform="rotate(-30 558 168)"/>
+          <ellipse cx="538" cy="177" rx="3.5" ry="1.8" transform="rotate(10 538 177)"/>
+          <ellipse cx="550" cy="178" rx="3.5" ry="1.8" transform="rotate(-20 550 178)"/>
+          <ellipse cx="562" cy="176" rx="3.5" ry="1.8" transform="rotate(40 562 176)"/>
+          <ellipse cx="542" cy="185" rx="3.5" ry="1.8" transform="rotate(-10 542 185)"/>
+          <ellipse cx="555" cy="184" rx="3.5" ry="1.8" transform="rotate(15 555 184)"/>
+        </g>
+
+        <!-- Etiqueta no saco -->
+        <rect x="522" y="196" width="56" height="30" rx="2" fill="#FFFFFF"/>
+        <text stroke="none" x="550" y="206" text-anchor="middle" fill="#3B372F" font-size="7.5" font-weight="700">ARROZ</text>
+        <text stroke="none" x="550" y="214" text-anchor="middle" fill="#7A7369" font-size="6.5">AGULHA</text>
+        <!-- Peso do pacote pequeno -->
+        <rect x="528" y="217" width="44" height="7" rx="2" fill="#FFFBF0" stroke="#E0A100" stroke-width="0.6"/>
+        <text stroke="none" x="550" y="223" text-anchor="middle" fill="#C68E00" font-size="6.5" font-weight="700">500 g</text>
+      </g>
+
+      <!-- Cartão inferior de dados do Pacote A -->
+      <g id="dados-pacote-a" transform="translate(506, 250)">
+        <rect x="0" y="0" width="88" height="80" rx="6" fill="#F0F4F8" stroke="#4F86B3" stroke-width="1.2"/>
+        <text stroke="none" x="44" y="14" text-anchor="middle" fill="#2E5575" font-size="8.5" font-weight="700">Pacote A (500 g)</text>
+        
+        <text stroke="none" x="10" y="28" fill="#665E55" font-size="8">Preço:</text>
+        <text stroke="none" x="78" y="28" text-anchor="end" fill="#3B372F" font-size="8.5" font-weight="700">2,00 €</text>
+
+        <text stroke="none" x="10" y="42" fill="#665E55" font-size="8">Peso:</text>
+        <text stroke="none" x="78" y="42" text-anchor="end" fill="#C68E00" font-size="8.5" font-weight="700">0,5 kg</text>
+
+        <line x1="8" y1="48" x2="80" y2="48" stroke="#D3E2EE" stroke-width="1"/>
+
+        <!-- Preço por kg -->
+        <text stroke="none" x="44" y="59" text-anchor="middle" fill="#7A7369" font-size="7.5">Preço por kg:</text>
+        <rect x="8" y="62" width="72" height="14" rx="3" fill="#FFF5F2" stroke="#C7461F" stroke-width="1"/>
+        <text stroke="none" x="44" y="72.5" text-anchor="middle" fill="#C7461F" font-size="8.5" font-weight="700">4,00 € / kg</text>
+      </g>
+    </g>
+
+    <!-- Símbolo de comparação / VS no centro -->
+    <g id="separador-comparacao" transform="translate(605, 170)">
+      <circle cx="12" cy="12" r="11" fill="#FAF4ED" stroke="#3B372F" stroke-width="1.2"/>
+      <text stroke="none" x="12" y="16" text-anchor="middle" fill="#7A7369" font-size="9" font-weight="700">vs</text>
+    </g>
+
+    <!-- ========================================================== -->
+    <!-- EMBALAGEM B: PACOTE GRANDE (1 kg = 1000 g)                 -->
+    <!-- Dimensões em blocos: w=96, h=128, x=645, y=106             -->
+    <!-- ========================================================== -->
+    <g id="embalagem-grande-1kg" filter="url(#block-shadow)">
+      
+      <!-- Saco de arroz grande em bloco voxel verde sereno (#3E8F5C) -->
+      <g stroke="#3B372F" stroke-width="1.4" stroke-linejoin="round">
+        <!-- Corpo principal mais largo e mais alto -->
+        <rect x="645" y="106" width="96" height="128" rx="5" fill="#3E8F5C"/>
+        
+        <!-- Dobra/selagem superior com picotado duplo -->
+        <polygon points="645,106 693,96 741,106 693,101" fill="#2E6B44"/>
+        <line x1="652" y1="104" x2="734" y2="104" stroke="#FFFFFF" stroke-width="1" stroke-dasharray="2,2"/>
+
+        <!-- Janela maior transparente do arroz -->
+        <rect x="657" y="124" width="72" height="48" rx="4" fill="#FAF4ED"/>
+
+        <!-- Grãos de arroz cúbicos na janela ampla -->
+        <g fill="#FFFFFF" stroke="#D9CFC4" stroke-width="0.8">
+          <ellipse cx="670" cy="135" rx="3.5" ry="1.8" transform="rotate(-15 670 135)"/>
+          <ellipse cx="685" cy="134" rx="3.5" ry="1.8" transform="rotate(25 685 134)"/>
+          <ellipse cx="700" cy="136" rx="3.5" ry="1.8" transform="rotate(-30 700 136)"/>
+          <ellipse cx="715" cy="135" rx="3.5" ry="1.8" transform="rotate(20 715 135)"/>
+          
+          <ellipse cx="675" cy="148" rx="3.5" ry="1.8" transform="rotate(10 675 148)"/>
+          <ellipse cx="690" cy="147" rx="3.5" ry="1.8" transform="rotate(-20 690 147)"/>
+          <ellipse cx="705" cy="149" rx="3.5" ry="1.8" transform="rotate(35 705 149)"/>
+          
+          <ellipse cx="668" cy="160" rx="3.5" ry="1.8" transform="rotate(-10 668 160)"/>
+          <ellipse cx="682" cy="161" rx="3.5" ry="1.8" transform="rotate(15 682 161)"/>
+          <ellipse cx="698" cy="159" rx="3.5" ry="1.8" transform="rotate(-25 698 159)"/>
+          <ellipse cx="712" cy="161" rx="3.5" ry="1.8" transform="rotate(10 712 161)"/>
+        </g>
+
+        <!-- Etiqueta no saco grande -->
+        <rect x="655" y="178" width="76" height="48" rx="3" fill="#FFFFFF"/>
+        <text stroke="none" x="693" y="191" text-anchor="middle" fill="#3B372F" font-size="8.5" font-weight="700">ARROZ</text>
+        <text stroke="none" x="693" y="201" text-anchor="middle" fill="#7A7369" font-size="7">AGULHA FAMILIAR</text>
+        <!-- Peso do pacote grande -->
+        <rect x="665" y="206" width="56" height="12" rx="3" fill="#E8F4EC" stroke="#3E8F5C" stroke-width="0.8"/>
+        <text stroke="none" x="693" y="215" text-anchor="middle" fill="#2E6B44" font-size="8" font-weight="700">1 kg (1000 g)</text>
+      </g>
+
+      <!-- Cartão inferior de dados do Pacote B -->
+      <g id="dados-pacote-b" transform="translate(635, 250)">
+        <rect x="0" y="0" width="118" height="80" rx="6" fill="#F0F7F2" stroke="#3E8F5C" stroke-width="1.4"/>
+        <!-- Distintivo de mais económico -->
+        <rect x="8" y="5" width="102" height="14" rx="7" fill="#3E8F5C"/>
+        <text stroke="none" x="59" y="15" text-anchor="middle" fill="#FFFFFF" font-size="7.5" font-weight="700">✓ MAIS ECONÓMICO</text>
+
+        <text stroke="none" x="8" y="32" fill="#665E55" font-size="8">Preço:</text>
+        <text stroke="none" x="108" y="32" text-anchor="end" fill="#3B372F" font-size="8.5" font-weight="700">3,20 €</text>
+
+        <text stroke="none" x="8" y="45" fill="#665E55" font-size="8">Peso:</text>
+        <text stroke="none" x="108" y="45" text-anchor="end" fill="#2E6B44" font-size="8.5" font-weight="700">1,0 kg</text>
+
+        <line x1="8" y1="50" x2="110" y2="50" stroke="#CBE5D3" stroke-width="1"/>
+
+        <!-- Preço por kg -->
+        <text stroke="none" x="59" y="60" text-anchor="middle" fill="#7A7369" font-size="7.5">Preço por kg:</text>
+        <rect x="8" y="63" width="102" height="14" rx="3" fill="#FFFFFF" stroke="#3E8F5C" stroke-width="1.2"/>
+        <text stroke="none" x="59" y="73.5" text-anchor="middle" fill="#2E6B44" font-size="8.5" font-weight="700">3,20 € / kg (Poupa 0,80 €)</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- ====================================================================== -->
+  <!-- BARRA INFERIOR / REGRA DE OURO DO CONSUMIDOR (AO90)                    -->
+  <!-- ====================================================================== -->
+  <g id="rodape-regra-de-ouro" filter="url(#card-shadow)">
+    <!-- Caixa do rodapé -->
+    <rect x="30" y="356" width="740" height="82" rx="10" fill="#FFFFFF" stroke="#3B372F" stroke-width="1.8"/>
+
+    <!-- Distintivo lateral da regra -->
+    <g transform="translate(45, 368)">
+      <rect x="0" y="0" width="160" height="24" rx="12" fill="#FFF5F2" stroke="#C7461F" stroke-width="1.3"/>
+      <circle cx="12" cy="12" r="5" fill="#C7461F"/>
+      <text stroke="none" x="12" y="15.5" text-anchor="middle" fill="#FFFFFF" font-size="8.5" font-weight="700">★</text>
+      <text stroke="none" x="24" y="16" fill="#C7461F" font-size="9.5" font-weight="700">Regra de Ouro do Consumo</text>
+
+      <text stroke="none" x="0" y="40" fill="#3B372F" font-size="10.5" font-weight="700">Não olhes apenas para o preço total da embalagem.</text>
+      <text stroke="none" x="0" y="54" fill="#665E55" font-size="9.5">O pacote de 500 g custa 2,00 € e o de 1 kg custa 3,20 € (parece mais caro!).</text>
+    </g>
+
+    <!-- Comparação matemática em destaque à direita -->
+    <g transform="translate(460, 366)">
+      <rect x="0" y="0" width="295" height="62" rx="8" fill="#F4ECE1" stroke="#E8E0D5" stroke-width="1.2"/>
+      
+      <!-- 500 g a 4,00 €/kg -->
+      <g transform="translate(12, 10)">
+        <rect x="0" y="0" width="130" height="42" rx="5" fill="#FFFFFF" stroke="#C7461F" stroke-width="1"/>
+        <text stroke="none" x="65" y="14" text-anchor="middle" fill="#7A7369" font-size="8">PACOTE 500 g</text>
+        <text stroke="none" x="65" y="27" text-anchor="middle" fill="#C7461F" font-size="11" font-weight="700">4,00 € / kg</text>
+        <text stroke="none" x="65" y="37" text-anchor="middle" fill="#665E55" font-size="7">Mais caro por quilo</text>
+      </g>
+
+      <!-- Seta comparativa -->
+      <text stroke="none" x="148" y="36" text-anchor="middle" fill="#3B372F" font-size="14" font-weight="700">&gt;</text>
+
+      <!-- 1 kg a 3,20 €/kg -->
+      <g transform="translate(155, 10)">
+        <rect x="0" y="0" width="130" height="42" rx="5" fill="#FFFFFF" stroke="#3E8F5C" stroke-width="1.2"/>
+        <text stroke="none" x="65" y="14" text-anchor="middle" fill="#3E8F5C" font-size="8" font-weight="700">PACOTE 1 kg ✓</text>
+        <text stroke="none" x="65" y="27" text-anchor="middle" fill="#2E6B44" font-size="11" font-weight="700">3,20 € / kg</text>
+        <text stroke="none" x="65" y="37" text-anchor="middle" fill="#2E6B44" font-size="7">Poupança real de 20%</text>
+      </g>
+    </g>
+  </g>
+</svg>

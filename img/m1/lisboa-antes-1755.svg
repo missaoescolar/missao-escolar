@@ -1,0 +1,505 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="800" height="450" style="background-color: #FBF7F0; font-family: 'Atkinson Hyperlegible', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+  <defs>
+    <!-- Filtros de sombra suave no estilo Caderno Vivo -->
+    <filter id="soft-shadow" x="-5%" y="-5%" width="110%" height="115%">
+      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#3B372F" flood-opacity="0.08"/>
+    </filter>
+    <filter id="card-shadow" x="-3%" y="-4%" width="106%" height="110%">
+      <feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="#3B372F" flood-opacity="0.07"/>
+    </filter>
+    <filter id="block-shadow" x="-8%" y="-8%" width="116%" height="116%">
+      <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#3B372F" flood-opacity="0.10"/>
+    </filter>
+  </defs>
+
+  <!-- 0. FUNDO GERAL DE PAPEL DE CADERNO -->
+  <rect width="800" height="450" fill="#FBF7F0"/>
+
+  <!-- ======================================================== -->
+  <!-- CABEÇALHO PEDAGÓGICO CURRICULAR (HGP · 6.º ANO)          -->
+  <!-- ======================================================== -->
+  <g id="cabecalho-curricular" text-anchor="middle">
+    <rect x="150" y="10" width="500" height="30" rx="15" fill="#FFFFFF" stroke="#E8E0D5" stroke-width="1.5" filter="url(#soft-shadow)"/>
+    <text x="400" y="30" fill="#C7461F" font-size="11.5" font-weight="700" letter-spacing="0.4">
+      HGP · LISBOA ANTES DO TERRAMOTO DE 1755
+    </text>
+  </g>
+
+  <!-- ====================================================================== -->
+  <!-- CENA PRINCIPAL: LISBOA ANTES DO TERRAMOTO (viewBox 800x450)            -->
+  <!-- ====================================================================== -->
+  <g id="cena-lisboa-antiga" filter="url(#card-shadow)">
+    <!-- Moldura de cartão didático do Caderno Vivo -->
+    <rect x="25" y="48" width="750" height="332" rx="12" fill="#FFFFFF" stroke="#3B372F" stroke-width="1.8"/>
+
+    <!-- Fundo de céu matinal calmo e sol de domingo (Dia de Todos os Santos) -->
+    <rect x="27" y="50" width="746" height="155" rx="10" fill="#FFF9F2"/>
+    
+    <!-- Sol de outono matinal em bloco cúbico suave -->
+    <g id="sol-matinal" transform="translate(670, 65)">
+      <rect x="0" y="0" width="34" height="34" rx="4" fill="#FCE49C" stroke="#E0A100" stroke-width="1.5"/>
+      <rect x="5" y="5" width="24" height="24" rx="2" fill="#E0A100"/>
+      <!-- Raios em pequenos blocos serenos -->
+      <line x1="17" y1="-8" x2="17" y2="-3" stroke="#E0A100" stroke-width="2" stroke-linecap="round"/>
+      <line x1="17" y1="37" x2="17" y2="42" stroke="#E0A100" stroke-width="2" stroke-linecap="round"/>
+      <line x1="-8" y1="17" x2="-3" y2="17" stroke="#E0A100" stroke-width="2" stroke-linecap="round"/>
+      <line x1="37" y1="17" x2="42" y2="17" stroke="#E0A100" stroke-width="2" stroke-linecap="round"/>
+    </g>
+
+    <!-- Nuvens em blocos horizontais discretas -->
+    <g id="nuvens-voxel" fill="#FFFFFF" stroke="#E8E0D5" stroke-width="1.2">
+      <rect x="60" y="70" width="70" height="14" rx="4"/>
+      <rect x="80" y="62" width="40" height="12" rx="3"/>
+      <rect x="260" y="76" width="90" height="14" rx="4"/>
+      <rect x="285" y="68" width="45" height="12" rx="3"/>
+    </g>
+
+    <!-- Encosta / Colina de Lisboa antiga ao fundo (Castelo e igrejas) -->
+    <path d="M 27 185 Q 220 120 480 150 Q 620 160 773 175 L 773 205 L 27 205 Z" fill="#EFE8DF"/>
+
+    <!-- ==================================================================== -->
+    <!-- 1. CASARIO MEDIEVAL AO FUNDO: RUAS ESTREITAS, CASAS ALTAS ENCOSTADAS  -->
+    <!-- Igrejas com torres e sinos para a missa de Todos os Santos           -->
+    <!-- ==================================================================== -->
+    <g id="casario-medieval-colina" stroke="#3B372F" stroke-width="1.4" stroke-linejoin="round">
+      
+      <!-- IGREJA 1 COM TORRE SINEIRA (Colina esquerda - Sé / Convento) -->
+      <g id="igreja-colina-esquerda">
+        <!-- Corpo da igreja -->
+        <rect x="65" y="130" width="55" height="60" fill="#EAE5DE"/>
+        <!-- Telhado terracota -->
+        <polygon points="60,130 92,105 125,130" fill="#C7461F"/>
+        <!-- Torre sineira alta em blocos -->
+        <rect x="110" y="90" width="26" height="100" fill="#D9CFC4"/>
+        <polygon points="107,90 123,65 139,90" fill="#C7461F"/>
+        <!-- Cruz em bloco no topo -->
+        <line x1="123" y1="58" x2="123" y2="65" stroke="#3B372F" stroke-width="1.5"/>
+        <line x1="120" y1="61" x2="126" y2="61" stroke="#3B372F" stroke-width="1.5"/>
+        <!-- Janela do sino com arco e sino ocre -->
+        <rect x="117" y="100" width="12" height="16" rx="6" fill="#5A554E"/>
+        <circle cx="123" cy="110" r="3.5" fill="#E0A100"/>
+        <!-- Rosácea na fachada -->
+        <circle cx="88" cy="145" r="7" fill="#F4ECE1"/>
+        <circle cx="88" cy="145" r="3" fill="#C7461F"/>
+        <!-- Porta medieval com arco -->
+        <rect x="80" y="168" width="16" height="22" rx="4" fill="#523F2F"/>
+      </g>
+
+      <!-- CASAS MEDIEVAIS ENCOSTADAS 1 (Ruas medievais estreitas e tortas) -->
+      <g id="casas-encostadas-1">
+        <!-- Casa alta 1 (ocre) -->
+        <rect x="140" y="125" width="28" height="65" fill="#FFFBF0"/>
+        <polygon points="138,125 154,110 170,125" fill="#C7461F"/>
+        <rect x="146" y="134" width="7" height="9" fill="#5A554E"/>
+        <rect x="156" y="134" width="7" height="9" fill="#5A554E"/>
+        <rect x="146" y="152" width="7" height="9" fill="#5A554E"/>
+        <rect x="156" y="152" width="7" height="9" fill="#5A554E"/>
+
+        <!-- Casa alta 2 encostada com avanço de piso (madeira e pedra) -->
+        <rect x="168" y="118" width="32" height="72" fill="#FAF4ED"/>
+        <polygon points="166,118 184,102 202,118" fill="#A73816"/>
+        <line x1="168" y1="140" x2="200" y2="140" stroke="#3B372F" stroke-width="1.2"/>
+        <rect x="174" y="126" width="8" height="9" fill="#5A554E"/>
+        <rect x="186" y="126" width="8" height="9" fill="#5A554E"/>
+        <rect x="174" y="148" width="8" height="9" fill="#5A554E"/>
+        <rect x="186" y="148" width="8" height="9" fill="#5A554E"/>
+
+        <!-- Casa torta 3 com varanda de madeira em bloco -->
+        <rect x="200" y="128" width="26" height="62" fill="#F4ECE1"/>
+        <polygon points="198,128 213,114 228,128" fill="#C7461F"/>
+        <rect x="204" y="136" width="18" height="6" fill="#C59B63"/>
+        <rect x="208" y="148" width="8" height="9" fill="#5A554E"/>
+      </g>
+
+      <!-- CASAS MEDIEVAIS ENCOSTADAS 2 (Centro-fundo) -->
+      <g id="casas-encostadas-centro">
+        <!-- Casa alta 4 -->
+        <rect x="230" y="120" width="30" height="70" fill="#FFF8F5"/>
+        <polygon points="228,120 245,106 262,120" fill="#C7461F"/>
+        <rect x="236" y="130" width="7" height="8" fill="#5A554E"/>
+        <rect x="247" y="130" width="7" height="8" fill="#5A554E"/>
+        <rect x="236" y="146" width="7" height="8" fill="#5A554E"/>
+        <rect x="247" y="146" width="7" height="8" fill="#5A554E"/>
+
+        <!-- Casa 5 -->
+        <rect x="260" y="126" width="28" height="64" fill="#FAF4ED"/>
+        <polygon points="258,126 274,112 290,126" fill="#A73816"/>
+        <rect x="266" y="135" width="6" height="8" fill="#5A554E"/>
+        <rect x="276" y="135" width="6" height="8" fill="#5A554E"/>
+
+        <!-- Ruela estreita sugerida por quebra de blocos -->
+        <rect x="288" y="140" width="6" height="50" fill="#3B372F" opacity="0.15"/>
+      </g>
+
+      <!-- IGREJA 2 COM TORRE E CRÚZIO (Centro-direita: Igreja paroquial) -->
+      <g id="igreja-centro-direita">
+        <rect x="296" y="124" width="46" height="66" fill="#EAE5DE"/>
+        <polygon points="292,124 319,102 346,124" fill="#C7461F"/>
+        <!-- Torre sineira com sino para a missa matinal -->
+        <rect x="334" y="86" width="24" height="104" fill="#D9CFC4"/>
+        <polygon points="331,86 346,64 361,86" fill="#C7461F"/>
+        <line x1="346" y1="58" x2="346" y2="64" stroke="#3B372F" stroke-width="1.5"/>
+        <line x1="343" y1="60" x2="349" y2="60" stroke="#3B372F" stroke-width="1.5"/>
+        <!-- Sino e abertura -->
+        <rect x="340" y="96" width="12" height="15" rx="5" fill="#5A554E"/>
+        <circle cx="346" cy="105" r="3.5" fill="#E0A100"/>
+        <!-- Ondas de sino / toque para missa -->
+        <path d="M 364 96 A 8 8 0 0 1 364 112" fill="none" stroke="#E0A100" stroke-width="1.2" stroke-dasharray="2,2"/>
+      </g>
+
+      <!-- CASAS ALTAS ENCOSTADAS 3 (Colina direita) -->
+      <g id="casas-encostadas-direita">
+        <rect x="362" y="122" width="28" height="68" fill="#FFFBF0"/>
+        <polygon points="360,122 376,108 392,122" fill="#C7461F"/>
+        <rect x="368" y="132" width="6" height="8" fill="#5A554E"/>
+        <rect x="378" y="132" width="6" height="8" fill="#5A554E"/>
+
+        <rect x="390" y="116" width="32" height="74" fill="#FAF4ED"/>
+        <polygon points="388,116 406,100 424,116" fill="#A73816"/>
+        <rect x="396" y="126" width="7" height="8" fill="#5A554E"/>
+        <rect x="407" y="126" width="7" height="8" fill="#5A554E"/>
+
+        <rect x="422" y="124" width="26" height="66" fill="#F4ECE1"/>
+        <polygon points="420,124 435,110 450,124" fill="#C7461F"/>
+      </g>
+    </g>
+
+    <!-- ==================================================================== -->
+    <!-- 2. PAÇO DA RIBEIRA (O PALÁCIO REAL ANTES DE 1755) COM TORREÃO MANUELINO -->
+    <!-- Posição: x=440 a x=735, y=105 a y=270                                -->
+    <!-- ==================================================================== -->
+    <g id="bloco-paco-da-ribeira" stroke="#3B372F" stroke-width="1.6" stroke-linejoin="round" filter="url(#block-shadow)">
+      
+      <!-- ASA OESTE / CORPO INTERMÉDIO DO PALÁCIO REAL -->
+      <g id="palacio-corpo-principal">
+        <!-- Fachada do palácio real em pedra nobre clara -->
+        <rect x="455" y="142" width="140" height="95" fill="#FFFFFF"/>
+        <!-- Telhado nobre com telha terracota -->
+        <polygon points="450,142 525,122 600,142" fill="#C7461F"/>
+        <!-- Platibanda e beiral em blocos salientes -->
+        <rect x="452" y="140" width="146" height="5" fill="#D9CFC4"/>
+
+        <!-- Galeria de janelas fidalgas e varandins reais no piso nobre -->
+        <g id="janelas-palacio-piso1">
+          <rect x="466" y="152" width="12" height="18" rx="2" fill="#FAF4ED"/>
+          <rect x="469" y="155" width="6" height="12" fill="#4F86B3"/>
+          <line x1="464" y1="170" x2="480" y2="170" stroke="#3B372F" stroke-width="1.2"/>
+
+          <rect x="490" y="152" width="12" height="18" rx="2" fill="#FAF4ED"/>
+          <rect x="493" y="155" width="6" height="12" fill="#4F86B3"/>
+          <line x1="488" y1="170" x2="504" y2="170" stroke="#3B372F" stroke-width="1.2"/>
+
+          <rect x="514" y="152" width="12" height="18" rx="2" fill="#FAF4ED"/>
+          <rect x="517" y="155" width="6" height="12" fill="#4F86B3"/>
+          <line x1="512" y1="170" x2="528" y2="170" stroke="#3B372F" stroke-width="1.2"/>
+
+          <rect x="538" y="152" width="12" height="18" rx="2" fill="#FAF4ED"/>
+          <rect x="541" y="155" width="6" height="12" fill="#4F86B3"/>
+          <line x1="536" y1="170" x2="552" y2="170" stroke="#3B372F" stroke-width="1.2"/>
+
+          <rect x="562" y="152" width="12" height="18" rx="2" fill="#FAF4ED"/>
+          <rect x="565" y="155" width="6" height="12" fill="#4F86B3"/>
+          <line x1="560" y1="170" x2="576" y2="170" stroke="#3B372F" stroke-width="1.2"/>
+        </g>
+
+        <!-- Piso térreo com arcadas / pórticos de pedra -->
+        <g id="arcadas-terreas-palacio">
+          <rect x="466" y="186" width="14" height="24" rx="7" fill="#EAE5DE"/>
+          <rect x="470" y="192" width="6" height="18" fill="#3B372F"/>
+
+          <rect x="490" y="186" width="14" height="24" rx="7" fill="#EAE5DE"/>
+          <rect x="494" y="192" width="6" height="18" fill="#3B372F"/>
+
+          <rect x="514" y="186" width="14" height="24" rx="7" fill="#EAE5DE"/>
+          <rect x="518" y="192" width="6" height="18" fill="#3B372F"/>
+
+          <rect x="538" y="186" width="14" height="24" rx="7" fill="#EAE5DE"/>
+          <rect x="542" y="192" width="6" height="18" fill="#3B372F"/>
+
+          <rect x="562" y="186" width="14" height="24" rx="7" fill="#EAE5DE"/>
+          <rect x="566" y="192" width="6" height="18" fill="#3B372F"/>
+        </g>
+
+        <!-- Galeria fechada sobre o Terreiro -->
+        <rect x="455" y="210" width="140" height="27" fill="#F4ECE1"/>
+        <line x1="455" y1="210" x2="595" y2="210" stroke="#3B372F" stroke-width="1.4"/>
+      </g>
+
+      <!-- O GRANDE TORREÃO DO PAÇO DA RIBEIRA (Construído por Filipe II / D. Manuel I, junto ao rio) -->
+      <g id="torreao-monumental-ribeira">
+        <!-- Torreão em bloco imponente avançado sobre as águas -->
+        <rect x="588" y="102" width="112" height="142" fill="#FFFFFF"/>
+        <!-- Cúpula / Cobertura piramidal com mansarda régia -->
+        <polygon points="582,102 644,66 706,102" fill="#C7461F"/>
+        <!-- Claraboia / Lanterna régia no cimo da cúpula -->
+        <rect x="638" y="54" width="12" height="12" fill="#FFFFFF"/>
+        <polygon points="635,54 644,45 653,54" fill="#C7461F"/>
+        <line x1="644" y1="40" x2="644" y2="45" stroke="#3B372F" stroke-width="1.5"/>
+        <line x1="641" y1="42" x2="647" y2="42" stroke="#3B372F" stroke-width="1.5"/>
+
+        <!-- Janelas monumentais do torreão (Biblioteca Real e Gabinete Régio) -->
+        <!-- Piso superior -->
+        <rect x="604" y="115" width="16" height="22" rx="2" fill="#FAF4ED"/>
+        <rect x="608" y="119" width="8" height="14" fill="#4F86B3"/>
+        <rect x="636" y="115" width="16" height="22" rx="2" fill="#FAF4ED"/>
+        <rect x="640" y="119" width="8" height="14" fill="#4F86B3"/>
+        <rect x="668" y="115" width="16" height="22" rx="2" fill="#FAF4ED"/>
+        <rect x="672" y="119" width="8" height="14" fill="#4F86B3"/>
+
+        <!-- Varanda real em sacada contínua de blocos -->
+        <rect x="596" y="145" width="96" height="6" fill="#EAE5DE"/>
+        <line x1="596" y1="145" x2="692" y2="145" stroke="#3B372F" stroke-width="1.5"/>
+
+        <!-- Piso intermédio -->
+        <rect x="604" y="157" width="16" height="24" rx="2" fill="#FAF4ED"/>
+        <rect x="608" y="162" width="8" height="15" fill="#4F86B3"/>
+        <rect x="636" y="157" width="16" height="24" rx="2" fill="#FAF4ED"/>
+        <rect x="640" y="162" width="8" height="15" fill="#4F86B3"/>
+        <rect x="668" y="157" width="16" height="24" rx="2" fill="#FAF4ED"/>
+        <rect x="672" y="162" width="8" height="15" fill="#4F86B3"/>
+
+        <!-- Base em pedra robusta com blocos almofadados junto à água -->
+        <rect x="586" y="196" width="116" height="48" fill="#EAE5DE"/>
+        <line x1="586" y1="212" x2="702" y2="212" stroke="#3B372F" stroke-width="1.2"/>
+        <line x1="586" y1="228" x2="702" y2="228" stroke="#3B372F" stroke-width="1.2"/>
+        <!-- Porta de armas com arco -->
+        <rect x="634" y="212" width="20" height="32" rx="10" fill="#523F2F"/>
+      </g>
+    </g>
+
+    <!-- ==================================================================== -->
+    <!-- 3. TERREIRO DO PAÇO (A GRANDE PRAÇA ABERTA JUNTO AO RIO TEJO)         -->
+    <!-- Posição: x=50 a x=470, y=190 a y=268                                 -->
+    <!-- ==================================================================== -->
+    <g id="bloco-terreiro-do-paco">
+      <!-- Piso do Terreiro em blocos de calcário e saibro claro -->
+      <polygon points="27,192 460,192 485,268 27,268" fill="#F4ECE1" stroke="#3B372F" stroke-width="1.6"/>
+      
+      <!-- Padrão geométrico suave de chão de praça medieval em blocos -->
+      <g stroke="#E0D6C8" stroke-width="1" stroke-dasharray="8,6">
+        <line x1="40" y1="210" x2="450" y2="210"/>
+        <line x1="35" y1="230" x2="465" y2="230"/>
+        <line x1="30" y1="250" x2="475" y2="250"/>
+      </g>
+
+      <!-- Cais da Pedra / Escadaria de desembarque no Tejo em blocos -->
+      <g id="cais-da-pedra-desembarque" stroke="#3B372F" stroke-width="1.5">
+        <!-- Degrau 1 -->
+        <rect x="230" y="254" width="130" height="7" fill="#FFFFFF"/>
+        <!-- Degrau 2 -->
+        <rect x="220" y="261" width="150" height="7" fill="#EAE5DE"/>
+        <!-- Degrau 3 (mergulha na água) -->
+        <rect x="210" y="268" width="170" height="6" fill="#D9CFC4"/>
+        <!-- Amarras / Pilares de amarração cúbicos de pedra -->
+        <rect x="212" y="248" width="10" height="14" rx="2" fill="#8E8880"/>
+        <rect x="358" y="248" width="10" height="14" rx="2" fill="#8E8880"/>
+      </g>
+
+      <!-- Habitantes e mercadores de domingo em blocos simples (sem violência) -->
+      <g id="populacao-blocos-domingo">
+        <!-- Grupo 1: Dois cidadãos a caminho da missa matinal -->
+        <g transform="translate(120, 218)">
+          <rect x="0" y="0" width="6" height="6" rx="1.5" fill="#FCE49C" stroke="#3B372F" stroke-width="1"/>
+          <rect x="-1" y="6" width="8" height="14" rx="2" fill="#4F86B3" stroke="#3B372F" stroke-width="1"/>
+          <rect x="10" y="2" width="5" height="5" rx="1" fill="#FCE49C" stroke="#3B372F" stroke-width="1"/>
+          <rect x="9" y="7" width="7" height="13" rx="2" fill="#C7461F" stroke="#3B372F" stroke-width="1"/>
+        </g>
+        <!-- Grupo 2: Mercador com cesto junto à margem -->
+        <g transform="translate(380, 226)">
+          <rect x="0" y="0" width="6" height="6" rx="1.5" fill="#FCE49C" stroke="#3B372F" stroke-width="1"/>
+          <rect x="-1" y="6" width="8" height="14" rx="2" fill="#3E8F5C" stroke="#3B372F" stroke-width="1"/>
+          <rect x="9" y="10" width="8" height="8" rx="2" fill="#C59B63" stroke="#3B372F" stroke-width="1"/>
+        </g>
+      </g>
+    </g>
+
+    <!-- Muro de contenção marginal e cais de blocos entre a praça e o rio -->
+    <rect x="27" y="268" width="746" height="8" fill="#8E8880" stroke="#3B372F" stroke-width="1.6"/>
+
+    <!-- ==================================================================== -->
+    <!-- 4. RIO TEJO COM BARCOS, CARAVELAS E FRAGATAS EM BLOCOS VOXEL         -->
+    <!-- Posição: x=27 a x=773, y=276 a y=378 (w=746, h=102)                  -->
+    <!-- ==================================================================== -->
+    <g id="bloco-rio-tejo">
+      <!-- Água calma do rio Tejo em tons azul Tejo sereno (#4F86B3) -->
+      <rect x="27" y="276" width="746" height="102" rx="10" fill="#4F86B3"/>
+      <!-- Camada inferior mais profunda em blocos -->
+      <rect x="27" y="325" width="746" height="53" rx="8" fill="#3E729E"/>
+
+      <!-- Padrão estilizado de ondas calmas em blocos isométricos claros -->
+      <g fill="#D3E6F3" opacity="0.6">
+        <!-- Linha 1 de ondas de blocos -->
+        <rect x="60" y="286" width="24" height="4" rx="2"/>
+        <rect x="130" y="292" width="36" height="4" rx="2"/>
+        <rect x="240" y="284" width="20" height="4" rx="2"/>
+        <rect x="360" y="290" width="40" height="4" rx="2"/>
+        <rect x="490" y="284" width="30" height="4" rx="2"/>
+        <rect x="630" y="294" width="45" height="4" rx="2"/>
+
+        <!-- Linha 2 de ondas -->
+        <rect x="90" y="310" width="32" height="4" rx="2"/>
+        <rect x="180" y="318" width="24" height="4" rx="2"/>
+        <rect x="290" y="312" width="42" height="4" rx="2"/>
+        <rect x="420" y="318" width="28" height="4" rx="2"/>
+        <rect x="560" y="314" width="38" height="4" rx="2"/>
+
+        <!-- Linha 3 de ondas junto ao fundo -->
+        <rect x="140" y="348" width="40" height="4" rx="2"/>
+        <rect x="320" y="352" width="34" height="4" rx="2"/>
+        <rect x="480" y="346" width="44" height="4" rx="2"/>
+        <rect x="660" y="350" width="30" height="4" rx="2"/>
+      </g>
+
+      <!-- EMBARCAÇÃO 1: GRANDE NAU / CARAVELA EM BLOCOS (Comércio e navegação) -->
+      <g id="caravela-tejo" transform="translate(100, 280)" stroke="#3B372F" stroke-width="1.4" stroke-linejoin="round">
+        <!-- Casco de madeira em blocos com popa elevada -->
+        <polygon points="10,38 75,38 85,25 90,25 80,48 18,48 5,38" fill="#523F2F"/>
+        <!-- Faixa de casco ocre -->
+        <rect x="18" y="38" width="60" height="4" fill="#C59B63"/>
+
+        <!-- Mastro principal alto -->
+        <line x1="48" y1="4" x2="48" y2="40" stroke="#3B372F" stroke-width="2"/>
+        <!-- Mastro de proa -->
+        <line x1="26" y1="14" x2="26" y2="40" stroke="#3B372F" stroke-width="1.6"/>
+        <!-- Mastro da mezena -->
+        <line x1="70" y1="18" x2="70" y2="40" stroke="#3B372F" stroke-width="1.6"/>
+
+        <!-- Vela redonda grande no mastro principal com a cruz terracota -->
+        <rect x="36" y="8" width="24" height="24" rx="2" fill="#FFFFFF"/>
+        <!-- Cruz de Cristo / símbolo régio em terracota nos blocos -->
+        <line x1="48" y1="12" x2="48" y2="28" stroke="#C7461F" stroke-width="2.5"/>
+        <line x1="40" y1="20" x2="56" y2="20" stroke="#C7461F" stroke-width="2.5"/>
+
+        <!-- Vela de proa -->
+        <polygon points="26,16 12,32 26,32" fill="#FAF4ED"/>
+
+        <!-- Vela latina de mezena triangular -->
+        <polygon points="70,20 84,34 70,34" fill="#FAF4ED"/>
+
+        <!-- Bandeira portuguesa de época no topo do mastro -->
+        <rect x="49" y="3" width="8" height="5" fill="#FFFFFF" stroke="none"/>
+        <rect x="49" y="3" width="3" height="5" fill="#4F86B3" stroke="none"/>
+      </g>
+
+      <!-- EMBARCAÇÃO 2: BARCO RABELO / CATRAIA DE PASSAGEM (Transporte de passageiros) -->
+      <g id="barco-passagem-tejo" transform="translate(470, 312)" stroke="#3B372F" stroke-width="1.3" stroke-linejoin="round">
+        <!-- Casco do barco -->
+        <polygon points="6,18 48,18 54,10 42,24 12,24 2,18" fill="#C59B63"/>
+        <!-- Mastro e vela latina triangular -->
+        <line x1="28" y1="3" x2="28" y2="20" stroke="#3B372F" stroke-width="1.5"/>
+        <polygon points="28,5 42,16 28,16" fill="#FFFFFF"/>
+        <!-- Remador / barqueiro em bloco -->
+        <circle cx="16" cy="14" r="2.5" fill="#FCE49C"/>
+        <rect x="14" y="16.5" width="4" height="5" fill="#C7461F"/>
+        <!-- Remo na água -->
+        <line x1="16" y1="18" x2="8" y2="28" stroke="#3B372F" stroke-width="1.2"/>
+      </g>
+
+      <!-- EMBARCAÇÃO 3: PEQUENO BOTE DE PESCA ANCORADO -->
+      <g id="bote-pesca-tejo" transform="translate(680, 330)" stroke="#3B372F" stroke-width="1.2">
+        <polygon points="4,12 28,12 24,18 8,18" fill="#523F2F"/>
+        <rect x="12" y="7" width="8" height="5" fill="#FAF4ED"/>
+      </g>
+    </g>
+
+    <!-- ==================================================================== -->
+    <!-- 5. AS 3 ETIQUETAS DIDÁTICAS OBRIGATÓRIAS COM SETAS DE CHAMADA         -->
+    <!-- «Terreiro do Paço», «Paço da Ribeira», «rio Tejo»                     -->
+    <!-- ==================================================================== -->
+
+    <!-- ETIQUETA 1: «Paço da Ribeira» (Aponta para o Torreão e Palácio Real) -->
+    <g id="etiqueta-paco-da-ribeira" filter="url(#soft-shadow)">
+      <!-- Linha de chamada com conector pontilhado em terracota -->
+      <g stroke="#C7461F" stroke-width="1.8" stroke-dasharray="3,3">
+        <line x1="565" y1="78" x2="610" y2="100"/>
+      </g>
+      <circle cx="610" cy="100" r="3.5" fill="#C7461F"/>
+
+      <!-- Caixa da etiqueta -->
+      <rect x="420" y="58" width="145" height="28" rx="14" fill="#FFFFFF" stroke="#C7461F" stroke-width="1.6"/>
+      <circle cx="434" cy="72" r="5" fill="#C7461F"/>
+      <text x="445" y="76" fill="#C7461F" font-size="11" font-weight="700">Paço da Ribeira</text>
+    </g>
+
+    <!-- ETIQUETA 2: «Terreiro do Paço» (Aponta para o centro da grande praça) -->
+    <g id="etiqueta-terreiro-do-paco" filter="url(#soft-shadow)">
+      <!-- Linha de chamada para a praça -->
+      <g stroke="#E0A100" stroke-width="1.8" stroke-dasharray="3,3">
+        <line x1="150" y1="184" x2="190" y2="216"/>
+      </g>
+      <circle cx="190" cy="216" r="3.5" fill="#E0A100"/>
+
+      <!-- Caixa da etiqueta -->
+      <rect x="45" y="162" width="150" height="28" rx="14" fill="#FFFFFF" stroke="#E0A100" stroke-width="1.6"/>
+      <circle cx="59" cy="176" r="5" fill="#E0A100"/>
+      <text x="70" y="180" fill="#C68E00" font-size="11" font-weight="700">Terreiro do Paço</text>
+    </g>
+
+    <!-- ETIQUETA 3: «rio Tejo» (Aponta para as águas junto aos barcos) -->
+    <g id="etiqueta-rio-tejo" filter="url(#soft-shadow)">
+      <!-- Linha de chamada para o rio -->
+      <g stroke="#4F86B3" stroke-width="1.8" stroke-dasharray="3,3">
+        <line x1="315" y1="340" x2="350" y2="310"/>
+      </g>
+      <circle cx="350" cy="310" r="3.5" fill="#4F86B3"/>
+
+      <!-- Caixa da etiqueta -->
+      <rect x="220" y="332" width="115" height="28" rx="14" fill="#FFFFFF" stroke="#4F86B3" stroke-width="1.6"/>
+      <circle cx="234" cy="346" r="5" fill="#4F86B3"/>
+      <text x="245" y="350" fill="#2E5575" font-size="11" font-weight="700">rio Tejo</text>
+    </g>
+  </g>
+
+  <!-- ====================================================================== -->
+  <!-- BARRA INFERIOR / PAINEL HISTÓRICO DIDÁTICO (AO90)                      -->
+  <!-- Manhã de 1 de novembro de 1755 · Dia de Todos os Santos                -->
+  <!-- ====================================================================== -->
+  <g id="rodape-contexto-historico" text-anchor="middle">
+    <!-- Caixa do rodapé com 3 notas curriculares essenciais -->
+    <rect x="25" y="388" width="750" height="52" rx="10" fill="#FFFFFF" stroke="#3B372F" stroke-width="1.8" filter="url(#card-shadow)"/>
+
+    <g transform="translate(38, 396)">
+      <!-- Distintivo da data -->
+      <rect x="0" y="4" width="165" height="26" rx="13" fill="#FFF8F5" stroke="#C7461F" stroke-width="1.2"/>
+      <circle cx="14" cy="17" r="4.5" fill="#C7461F"/>
+      <text x="26" y="20.5" text-anchor="start" fill="#C7461F" font-size="10" font-weight="700">1 de novembro de 1755</text>
+
+      <!-- 3 Pontos históricos do 6.º ano explicados com calma -->
+      <g text-anchor="start" font-size="10" fill="#3B372F" transform="translate(180, 0)">
+        
+        <!-- Ponto 1: Cidade medieval -->
+        <g transform="translate(0, 4)">
+          <rect x="0" y="0" width="175" height="26" rx="6" fill="#FFFBF0" stroke="#E8E0D5" stroke-width="1"/>
+          <circle cx="12" cy="13" r="5" fill="#E0A100"/>
+          <text x="12" y="16" text-anchor="middle" fill="#FFFFFF" font-size="7.5" font-weight="700">1</text>
+          <text x="24" y="11" font-weight="700">Ruas medievais estreitas</text>
+          <text x="24" y="21" fill="#7A7369" font-size="8">Casas altas muito encostadas</text>
+        </g>
+
+        <!-- Seta discreta -->
+        <text x="183" y="21" fill="#7A7369" font-size="12" font-weight="700">·</text>
+
+        <!-- Ponto 2: Manhã de festa religiosa -->
+        <g transform="translate(196, 4)">
+          <rect x="0" y="0" width="180" height="26" rx="6" fill="#F0F7FA" stroke="#E8E0D5" stroke-width="1"/>
+          <circle cx="12" cy="13" r="5" fill="#4F86B3"/>
+          <text x="12" y="16" text-anchor="middle" fill="#FFFFFF" font-size="7.5" font-weight="700">2</text>
+          <text x="24" y="11" font-weight="700">Dia de Todos os Santos</text>
+          <text x="24" y="21" fill="#7A7369" font-size="8">Velas acesas e missa matinal</text>
+        </g>
+
+        <!-- Seta discreta -->
+        <text x="384" y="21" fill="#7A7369" font-size="12" font-weight="700">·</text>
+
+        <!-- Ponto 3: Palácio real à beira-rio -->
+        <g transform="translate(396, 4)">
+          <rect x="0" y="0" width="160" height="26" rx="6" fill="#F0F7F2" stroke="#E8E0D5" stroke-width="1"/>
+          <circle cx="12" cy="13" r="5" fill="#3E8F5C"/>
+          <text x="12" y="16" text-anchor="middle" fill="#FFFFFF" font-size="7.5" font-weight="700">3</text>
+          <text x="24" y="11" font-weight="700" fill="#2E6B44">Porto e Paço Real</text>
+          <text x="24" y="21" fill="#665E55" font-size="8">O centro do Império no Tejo</text>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
