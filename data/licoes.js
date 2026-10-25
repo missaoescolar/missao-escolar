@@ -65,8 +65,7 @@ const MISSAO_LICOES = [
        porque:"As outras duas frases tratam a fração como dois números inteiros separados. [1/8] tem o número de baixo maior e é mais pequena do que [1/2]; [2/9] tem o número de cima maior e é mais pequena do que [1/3]."},
       {etapa:"consolidar", tipo:"estrategia", titulo:"🧠 Que estratégia te ajudou mais?",
        q:"Não há resposta errada: serve para saberes o que te ajuda.",
-       opts:["📏 Desenhar barras do mesmo comprimento", "🔢 Pôr o mesmo denominador", "👀 Olhar para os numeradores ou para os denominadores", "💡 Pedir a pista"],
-       nota:"Nas aulas de Matemática do Japão, a turma compara as estratégias no fim de cada problema. Saber o que te ajuda também é aprender."}
+       opts:["📏 Desenhar barras do mesmo comprimento", "🔢 Pôr o mesmo denominador", "👀 Olhar para os numeradores ou para os denominadores", "💡 Pedir a pista"]}
     ]
   }
 ];
