@@ -4,14 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Gramática e Prontuário — Missão Escolar</title>
-<link rel="stylesheet" href="style.css?v=20261023-2020">
+<link rel="stylesheet" href="style.css?v=20261025-0851">
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="theme-color" content="#C7461F">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<script src="prefs.js?v=20261023-2020"></script>
-<script src="navegacao.js?v=20261023-2020"></script>
+<script src="prefs.js?v=20261025-0851"></script>
+<script src="navegacao.js?v=20261025-0851"></script>
 <style>
   /* Gramática · Prontuário · Verbos: one part at a time, calm and printable */
   .g-head h1{ margin:6px 0 4px; font-size:clamp(1.5rem,1.2rem+1.4vw,2rem); }
@@ -29,7 +29,14 @@
   .pr-cat{ margin:0 0 18px; }
   .pr-cat h2{ font-size:1.05rem; margin:0 0 8px; }
   .pr-item{ background:var(--surface); border:1px solid var(--border-soft); border-left:5px solid var(--accent); border-radius:12px; padding:10px 14px; margin:0 0 8px; }
-  .pr-item p{ margin:3px 0; line-height:1.55; }
+  .pr-item p{ margin:6px 0 3px; line-height:1.55; }
+  .pr-item summary{ cursor:pointer; min-height:28px; list-style-position:inside; }
+  .pr-item[open]{ border-left-color:#3E8F5C; }
+  .pr-indice{ display:flex; flex-wrap:wrap; gap:8px; margin:0 0 20px; padding:12px; background:var(--surface-2); border-radius:14px; }
+  .pr-indice .gr-h{ flex-basis:100%; margin:0 0 2px; }
+  .pr-indice a{ display:inline-flex; align-items:center; gap:6px; min-height:40px; padding:6px 12px; border-radius:10px; background:var(--surface); color:var(--text); font-weight:700; text-decoration:none; border:1px solid var(--border-soft); }
+  .pr-indice a span{ font-size:.8rem; color:var(--text-muted); font-weight:600; }
+  .pr-cat h2{ scroll-margin-top:16px; }
   .pr-e{ font-weight:700; }
   .pr-r{ color:var(--text-muted); font-size:.93rem; }
   .pr-tab, .v-table{ border-collapse:collapse; width:100%; max-width:520px; background:var(--surface); }
@@ -131,7 +138,7 @@
   </div>
 </div>
 
-<script src="data/gramatica-pt.js?v=20261023-2020"></script>
-<script src="gramatica.js?v=20261023-2020"></script>
+<script src="data/gramatica-pt.js?v=20261025-0851"></script>
+<script src="gramatica.js?v=20261025-0851"></script>
 </body>
 </html>

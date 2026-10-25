@@ -2,6 +2,7 @@
    - 🔷 Padrões de figuras (Mundo 4): ver 3 termos, prever o 4.º e verificar no desenho, o 10.º, o termo geral e a pergunta inversa.
      Na matemática japonesa (e nos Common Core dos EUA, «look for and express regularity») o padrão visual vem antes da fórmula.
    - 🟦 Pinta a percentagem (Mundo 3): uma grelha de 100 quadrados (1 quadrado = 1 %), pintada com o dedo ou o rato.
+   - 🧠 Como pensar, passo a passo (Mundos 1, 2 e 3): exemplos resolvidos em voz alta, um passo de cada vez.
    Erros nunca a vermelho: ocre com uma pista; à 2.ª tentativa mostra-se a resolução. */
 (function(){
   "use strict";
@@ -193,6 +194,180 @@
     return box;
   }
 
-  const MAPA = {n3: [grelha], n4: [padroes]};
+  /* ---------- 🧠 Como pensar, passo a passo (Mundos 1, 2 e 3) ----------
+     Exemplo resolvido em voz alta: em cada passo, primeiro a pergunta que se faz («💭»), depois a conta («✏️»).
+     Segue os 4 passos de Pólya (EUA, «How to Solve It», 1945): perceber, planear, fazer e verificar.
+     Os exemplos resolvidos ajudam quem está a aprender mais do que resolver logo sozinho (Sweller, «worked example effect»).
+     Quem quiser pode tentar primeiro e só depois ver os passos. */
+  const ri = function(a, b){ return a + Math.floor(Math.random()*(b-a+1)); };
+  const esc = function(a){ return a[Math.floor(Math.random()*a.length)]; };
+  const mdc = function(a, b){ a = Math.abs(a); b = Math.abs(b); while(b){ const t = b; b = a % b; a = t; } return a; };
+  const mmc = function(a, b){ return a / mdc(a, b) * b; };
+  const fr = function(n, d){ return '<span class="cp-fr"><b>'+n+'</b><b>'+d+'</b></span>'; };
+  // decimal guardado como inteiro com «c» casas: (125, 1) = 12,5
+  const dec = function(v, c){ let s = String(Math.abs(v)).padStart(c+1, "0"); if(c) s = s.slice(0, -c)+","+s.slice(-c); return (v < 0 ? "−" : "")+s; };
+  const semZeros = function(s){ return s.indexOf(",") === -1 ? s : s.replace(/0+$/, "").replace(/,$/, ""); };
+  const virg = function(x){ return semZeros(x.toFixed(2).replace(".", ",")); };
+  const multiplos = function(n, ate){ const m = []; for(let k = n; k <= ate; k += n) m.push(k); return m.join(", "); };
+
+  function simplifica(n, d){
+    const g = mdc(n, d), passos = [];
+    if(g > 1) passos.push(["Posso simplificar? Procuro o maior divisor comum de "+n+" e "+d+".", "m.d.c.("+n+", "+d+") = "+g+" → "+fr(n, d)+" = "+fr(n/g, d/g)+" (divido em cima e em baixo por "+g+")"]);
+    else passos.push(["Posso simplificar?", n+" e "+d+" só têm o 1 como divisor comum: "+fr(n, d)+" já é irredutível."]);
+    n /= g; d /= g;
+    if(n > d && n % d) passos.push(["O numerador é maior do que o denominador: quantas unidades inteiras cabem?", fr(n, d)+" = "+Math.floor(n/d)+" e "+fr(n % d, d)+" (número misto)"]);
+    else if(n % d === 0 && d !== 1) passos.push(["O numerador é múltiplo do denominador?", fr(n, d)+" = "+(n/d)]);
+    return {n:n, d:d, passos:passos};
+  }
+
+  const GERA = {
+    ordem: function(){
+      const f = ri(0, 2);
+      if(f === 0){
+        const a = ri(2, 20), b = ri(2, 9), d = ri(1, 6), c = d + ri(1, 6), r = c - d, m = b*r;
+        return {q:a+" + "+b+" × ("+c+" − "+d+")", v:[a+m, 1], passos:[
+          ["Há parênteses? Sim: o que está dentro deles faz-se primeiro.", c+" − "+d+" = "+r+" → fica "+a+" + "+b+" × "+r],
+          ["Há potências? Não. Há multiplicações ou divisões? Sim: fazem-se antes das adições.", b+" × "+r+" = "+m+" → fica "+a+" + "+m],
+          ["Só falta a adição.", a+" + "+m+" = <b>"+(a+m)+"</b>"]],
+          verif:"Se fizesse da esquerda para a direita, ("+a+" + "+b+") × "+r+" daria "+((a+b)*r)+": outro resultado. Por isso a ordem das operações conta."};
+      }
+      if(f === 1){
+        const s = esc([4, 6, 8, 10]), a = ri(1, s-1), b = s - a, q = s*s, c = esc([2, 4]), t = q/c, d = ri(1, Math.min(9, t-1));
+        return {q:"("+a+" + "+b+")² ÷ "+c+" − "+d, v:[t-d, 1], passos:[
+          ["Há parênteses? Sim: começo por eles.", a+" + "+b+" = "+s+" → fica "+s+"² ÷ "+c+" − "+d],
+          ["Há potências? Sim: vêm logo a seguir aos parênteses. "+s+"² é "+s+" × "+s+".", s+" × "+s+" = "+q+" → fica "+q+" ÷ "+c+" − "+d],
+          ["Agora as divisões e multiplicações, antes da subtração.", q+" ÷ "+c+" = "+t+" → fica "+t+" − "+d],
+          ["Só falta a subtração.", t+" − "+d+" = <b>"+(t-d)+"</b>"]],
+          verif:"Faço ao contrário: "+(t-d)+" + "+d+" = "+t+" e "+t+" × "+c+" = "+q+" = "+s+"². Bate certo."};
+      }
+      const a = ri(3, 9), b = ri(3, 9), d = ri(2, 5), k = ri(2, 9), c = d*k, p = a*b, e = ri(1, 15);
+      return {q:a+" × "+b+" − "+c+" ÷ "+d+" + "+e, v:[p-k+e, 1], passos:[
+        ["Há parênteses ou potências? Não. Então começo pelas multiplicações e divisões, da esquerda para a direita.", a+" × "+b+" = "+p+" → fica "+p+" − "+c+" ÷ "+d+" + "+e],
+        ["Ainda há uma divisão.", c+" ÷ "+d+" = "+k+" → fica "+p+" − "+k+" + "+e],
+        ["Só há adições e subtrações: faço-as da esquerda para a direita.", p+" − "+k+" = "+(p-k)+" → fica "+(p-k)+" + "+e],
+        ["Última conta.", (p-k)+" + "+e+" = <b>"+(p-k+e)+"</b>"]],
+        verif:"Atenção à armadilha: "+p+" − "+k+" + "+e+" não é "+p+" − "+(k+e)+". Da esquerda para a direita, sempre."};
+    },
+    fracoes: function(){
+      const op = esc(["+", "−", "×", "÷"]);
+      let b = ri(2, 9), d = ri(2, 9); while(d === b) d = ri(2, 9);
+      let a = ri(1, b-1), c = ri(1, d-1);
+      while(mdc(a, b) > 1) a = ri(1, b-1);   // as frações do enunciado já vêm irredutíveis
+      while(mdc(c, d) > 1) c = ri(1, d-1);
+      if(op === "−" && a*d < c*b){ const ta = a, tb = b; a = c; b = d; c = ta; d = tb; }
+      if(op === "−" && a*d === c*b){ c = 1; d = b*2; }
+      const q = fr(a, b)+" "+op+" "+fr(c, d);
+      if(op === "+" || op === "−"){
+        const L = mmc(b, d), A = a*L/b, C = c*L/d, S = op === "+" ? A + C : A - C, sp = simplifica(S, L);
+        return {q:q, v:[sp.n, sp.d], passos:[
+          ["Os denominadores são iguais? Não ("+b+" e "+d+"): os pedaços têm tamanhos diferentes e ainda não os posso juntar.", "Procuro o menor múltiplo comum. Múltiplos de "+b+": "+multiplos(b, L)+". Múltiplos de "+d+": "+multiplos(d, L)+". → m.m.c. = "+L],
+          ["Por quanto multiplico cada denominador para chegar a "+L+"? Multiplico também o numerador pelo mesmo número.", fr(a, b)+" = "+fr(A, L)+" (× "+(L/b)+") e "+fr(c, d)+" = "+fr(C, L)+" (× "+(L/d)+")"],
+          ["Agora os pedaços são do mesmo tamanho: "+(op === "+" ? "somo" : "subtraio")+" só os numeradores; o denominador fica igual.", fr(A, L)+" "+op+" "+fr(C, L)+" = "+fr(S, L)]].concat(sp.passos),
+          verif:"Estimo com decimais: "+fr(a, b)+" ≈ "+virg(a/b)+" e "+fr(c, d)+" ≈ "+virg(c/d)+"; "+(op === "+" ? "somados" : "subtraídos")+" dão ≈ "+virg(op === "+" ? a/b + c/d : a/b - c/d)+", e "+fr(sp.n, sp.d)+" ≈ "+virg(sp.n/sp.d)+". Bate certo."};
+      }
+      if(op === "×"){
+        const sp = simplifica(a*c, b*d);
+        return {q:q, v:[sp.n, sp.d], passos:[
+          ["Na multiplicação não preciso de denominadores iguais.", "Multiplico numerador por numerador e denominador por denominador: "+fr(a+" × "+c, b+" × "+d)+" = "+fr(a*c, b*d)]].concat(sp.passos),
+          verif:"Multiplicar por uma fração menor do que 1 dá um resultado mais pequeno: "+fr(sp.n, sp.d)+" é menor do que "+fr(a, b)+". Faz sentido."};
+      }
+      const sp = simplifica(a*d, b*c);
+      return {q:q, v:[sp.n, sp.d], passos:[
+        ["Dividir por uma fração é o mesmo que multiplicar pelo seu inverso (troco o numerador com o denominador da 2.ª fração).", fr(a, b)+" ÷ "+fr(c, d)+" = "+fr(a, b)+" × "+fr(d, c)],
+        ["Agora é uma multiplicação: em cima com em cima, em baixo com em baixo.", fr(a+" × "+d, b+" × "+c)+" = "+fr(a*d, b*c)]].concat(sp.passos),
+        verif:"Faço ao contrário: "+fr(sp.n, sp.d)+" × "+fr(c, d)+" tem de dar "+fr(a, b)+"."};
+    },
+    decimais: function(){
+      const t = ri(0, 3);
+      if(t === 0){
+        const op = esc(["+", "−"]), X = ri(105, 999)*10, Y = ri(105, 999);   // X: 1 casa decimal (guardado com 2), Y: 2 casas
+        const R = op === "+" ? X + Y : X - Y;
+        return {q:semZeros(dec(X, 2))+" "+op+" "+dec(Y, 2), v:[R, 100], passos:[
+          ["Onde estão as vírgulas? Alinho as vírgulas umas por baixo das outras (unidades com unidades, décimas com décimas).", "Acrescento um zero para os dois terem 2 casas decimais: "+dec(X, 2)+" "+op+" "+dec(Y, 2)],
+          ["Agora faço a conta como se fossem números inteiros, da direita para a esquerda.", X+" "+op+" "+Y+" = "+R],
+          ["Onde ponho a vírgula no resultado? No mesmo sítio: 2 casas decimais.", "<b>"+semZeros(dec(R, 2))+"</b>"]],
+          verif:"Estimo com números redondos: "+Math.round(X/100)+" "+op+" "+Math.round(Y/100)+" = "+(op === "+" ? Math.round(X/100)+Math.round(Y/100) : Math.round(X/100)-Math.round(Y/100))+". O resultado tem de estar perto disto."};
+      }
+      if(t === 1){
+        const x = ri(11, 49), y = ri(11, 39), R = x*y;
+        return {q:dec(x, 1)+" × "+dec(y, 1), v:[R, 100], passos:[
+          ["Na multiplicação não preciso de alinhar as vírgulas. Faço a conta sem elas.", x+" × "+y+" = "+R],
+          ["Quantas casas decimais têm os fatores ao todo?", dec(x, 1)+" tem 1 e "+dec(y, 1)+" tem 1: 1 + 1 = 2 casas"],
+          ["O resultado tem essas casas todas: conto 2 casas a partir da direita.", R+" → <b>"+semZeros(dec(R, 2))+"</b>"]],
+          verif:"Estimo: "+Math.round(x/10)+" × "+Math.round(y/10)+" = "+Math.round(x/10)*Math.round(y/10)+". "+semZeros(dec(R, 2))+" está perto. Se a vírgula estivesse noutro sítio (por exemplo "+semZeros(dec(R, 1))+"), a estimativa mostrava o erro."};
+      }
+      if(t === 2){
+        const dv = esc([2, 4, 5, 6, 8]), qu = ri(3, 25), D = dv*qu;
+        return {q:dec(D, 1)+" ÷ "+dec(dv, 1), v:[qu, 1], passos:[
+          ["O divisor tem vírgula. Posso multiplicar os dois números pelo mesmo valor sem mudar o resultado.", "Multiplico os dois por 10: "+dec(D, 1)+" × 10 = "+D+" e "+dec(dv, 1)+" × 10 = "+dv+" → fica "+D+" ÷ "+dv],
+          ["Agora o divisor é inteiro: faço a divisão normal.", D+" ÷ "+dv+" = <b>"+qu+"</b>"]],
+          verif:"Faço ao contrário: "+qu+" × "+dec(dv, 1)+" = "+dec(D, 1)+". Dividir por um número menor do que 1 dá um resultado maior: faz sentido."};
+      }
+      const P = esc([15, 20, 25, 30, 35, 40, 45]), N = 20*ri(2, 15), dez = N/10, R10 = P*N/10;   // R10 = resultado × 10
+      const nd = Math.floor(P/10), cinco = P % 10 === 5;
+      const passos = [["Como calculo 10 %? 10 % é a décima parte: divido por 10.", "10 % de "+N+" = "+N+" ÷ 10 = "+dez]];
+      if(nd > 1) passos.push(["Quantos «10 %» cabem em "+P+" %?", nd+" × 10 % = "+nd+" × "+dez+" = "+(nd*dez)]);
+      if(cinco) passos.push(["Falta 5 %: 5 % é metade de 10 %.", "5 % de "+N+" = "+dez+" ÷ 2 = "+semZeros(dec(dez*5, 1))]);
+      passos.push(["Junto as partes.", P+" % de "+N+" = <b>"+semZeros(dec(R10, 1))+"</b>"]);
+      return {q:P+" % de "+N, v:[P*N, 100], passos:passos,
+        verif:"Confirmo de outra maneira: "+P+" % = "+fr(P, 100)+", e "+fr(P, 100)+" × "+N+" = "+(P*N)+" ÷ 100 = "+semZeros(dec(R10, 1))+"."};
+    }
+  };
+  const TEMA = {n1:["ordem", "🧮 Ordem das operações"], n2:["fracoes", "🍕 Operações com frações"], n3:["decimais", "🏷️ Decimais e percentagens"]};
+
+  function lerNumero(s){
+    s = String(s).trim().replace(/\s+/g, " ").replace(",", ".").replace("−", "-");
+    let m = s.match(/^(-?\d+) (\d+)\/(\d+)$/); if(m && +m[3]) return {v:(+m[1]) + (+m[2])/(+m[3]), fr:[+m[2] + (+m[1])*(+m[3]), +m[3]]};
+    m = s.match(/^(-?\d+)\/(\d+)$/); if(m && +m[2]) return {v:(+m[1])/(+m[2]), fr:[+m[1], +m[2]]};
+    if(/^-?\d+(\.\d+)?$/.test(s)) return {v:+s};
+    return null;
+  }
+
+  function pensar(w){
+    const tema = TEMA[w.id];
+    const box = el("div", "ordem-box cp-box");
+    box.appendChild(el("p", "subhead", '🧠 Como pensar, passo a passo <small class="muted">— '+tema[1]+'</small>'));
+    box.appendChild(el("p", "cp-polya", '<span>1. Perceber</span><span>2. Planear</span><span>3. Fazer</span><span>4. Verificar</span>'));
+    const conta = el("p", "cp-conta"), lista = el("ol", "cp-passos"), fb = el("div", "ordem-fb"); fb.setAttribute("aria-live", "polite");
+    const tenta = el("div", "cp-tenta", '<label>Queres tentar primeiro? <input type="text" inputmode="decimal" autocomplete="off" placeholder="a tua resposta"></label> <button type="button" class="ghost-btn">Verificar</button>');
+    const acoes = el("div", "card-actions"), seg = el("button", "cta", "👣 Ver o 1.º passo"), outro = el("button", "ghost-btn", "🔀 Outro exemplo");
+    seg.type = outro.type = "button";
+    acoes.appendChild(seg); acoes.appendChild(outro);
+    [conta, tenta, lista, acoes, fb].forEach(function(x){ box.appendChild(x); });
+    let ex, i;
+
+    function novo(){
+      ex = GERA[tema[0]](); i = 0;
+      conta.innerHTML = "Calcula: <b>"+ex.q+"</b>";
+      lista.innerHTML = ""; fb.innerHTML = ""; tenta.querySelector("input").value = "";
+      seg.hidden = false; seg.textContent = "👣 Ver o 1.º passo";
+    }
+    function passo(){
+      if(i < ex.passos.length){
+        const p = ex.passos[i];
+        lista.appendChild(el("li", "", '<p class="cp-pensa">💭 '+p[0]+'</p><p class="cp-faz">✏️ '+p[1]+'</p>'));
+        i++;
+        seg.textContent = i < ex.passos.length ? "👣 Passo seguinte ("+(i+1)+" de "+ex.passos.length+")" : "✔️ Verificar o resultado";
+      } else {
+        lista.appendChild(el("li", "cp-verif", '<p class="cp-pensa">✔️ <b>Verificar:</b> '+ex.verif+'</p>'));
+        seg.hidden = true;
+      }
+      const ult = lista.lastElementChild; ult.tabIndex = -1; ult.focus({preventScroll:true});
+    }
+    tenta.querySelector("button").addEventListener("click", function(){
+      const r = lerNumero(tenta.querySelector("input").value), certo = ex.v[0]/ex.v[1];
+      if(!r){ fb.innerHTML = "✏️ Escreve um número (12,5), uma fração (3/4) ou um número misto (1 1/2)."; return; }
+      if(Math.abs(r.v - certo) < 1e-9){
+        const simp = r.fr && mdc(r.fr[0], r.fr[1]) > 1;
+        fb.innerHTML = "🎉 <b>Certo!</b>"+(simp ? " Ainda dá para simplificar: vê o último passo." : "")+" Vê os passos para comparar com a tua maneira de pensar.";
+      } else fb.innerHTML = "🤔 <b>Ainda não.</b> Não faz mal: vê os passos um de cada vez e descobre onde o caminho se separou.";
+    });
+    seg.addEventListener("click", passo);
+    outro.addEventListener("click", novo);
+    novo();
+    return box;
+  }
+
+  const MAPA = {n1: [pensar], n2: [pensar], n3: [grelha, pensar], n4: [padroes]};
   window.MissaoAtivMat = {para: function(w){ return (MAPA[w.id] || []).map(function(f){ return f(w); }); }};
 })();

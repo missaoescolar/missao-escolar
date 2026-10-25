@@ -18,18 +18,35 @@
     }));
   }
 
-  /* ---------- 📗 Prontuário: grouped by category, plus PT-PT ↔ PT-BR ---------- */
+  /* ---------- 📗 Prontuário: index of categories first; each doubt is a short line that opens its explanation (one at a time) ---------- */
   function renderPront(){
     const cats = [];
     PRONTUARIO_PT.forEach(p => { if(cats.indexOf(p.c) === -1) cats.push(p.c); });
-    $("g-pront").innerHTML = cats.map(c =>
-      '<section class="pr-cat"><h2>'+c+'</h2>'+PRONTUARIO_PT.filter(p => p.c === c).map(p =>
-        '<div class="pr-item" data-busca="'+norm(p.e+" "+p.certo+" "+p.r).replace(/"/g,"")+'">'+
-          '<p class="pr-e">🤔 '+p.e+'</p><p class="pr-c">✅ '+p.certo+'</p><p class="pr-r">'+p.r+'</p></div>').join("")+'</section>').join("")+
-      '<section class="pr-cat" data-busca="'+norm(PT_BR.map(x => x.join(" ")).join(" ")+" brasil")+'"><h2>🌍 Português de Portugal e português do Brasil</h2>'+
+    const ind = (c, i) => '<a href="#pr-cat-'+i+'" data-pr-cat="'+i+'">'+c+' <span>'+PRONTUARIO_PT.filter(p => p.c === c).length+'</span></a>';
+    $("g-pront").innerHTML = '<nav class="pr-indice" aria-label="Índice do prontuário"><p class="gr-h">📑 Índice</p>'+cats.map(ind).join("")+
+      '<a href="#pr-cat-br" data-pr-cat="br">🌍 Portugal e Brasil</a></nav>'+
+      cats.map((c, i) =>
+      '<section class="pr-cat" id="pr-cat-'+i+'"><h2>'+c+'</h2>'+PRONTUARIO_PT.filter(p => p.c === c).map(p =>
+        '<details class="pr-item" data-busca="'+norm(p.e+" "+p.certo+" "+p.r).replace(/"/g,"")+'">'+
+          '<summary class="pr-e">🤔 '+p.e+'</summary><p class="pr-c">✅ '+p.certo+'</p><p class="pr-r">'+p.r+'</p></details>').join("")+'</section>').join("")+
+      '<section class="pr-cat" id="pr-cat-br" data-busca="'+norm(PT_BR.map(x => x.join(" ")).join(" ")+" brasil")+'"><h2>🌍 Português de Portugal e português do Brasil</h2>'+
       '<p class="pr-r">As duas variedades são português e estão ambas certas. Na escola, em Portugal, usa-se o português europeu.</p>'+
       '<table class="pr-tab"><thead><tr><th>Em Portugal</th><th>No Brasil</th></tr></thead><tbody>'+
       PT_BR.map(x => '<tr><td>'+x[0]+'</td><td>'+x[1]+'</td></tr>').join("")+'</tbody></table></section>';
+  }
+
+  function ligarPront(){
+    const box = $("g-pront");
+    box.querySelectorAll("details").forEach(d => d.addEventListener("toggle", () => {
+      if(d.open && !$("g-busca").value.trim()) box.querySelectorAll("details[open]").forEach(o => { if(o !== d) o.open = false; });
+    }));
+    box.querySelector(".pr-indice").addEventListener("click", e => {
+      const a = e.target.closest("[data-pr-cat]"); if(!a) return;
+      e.preventDefault();
+      const sec = $("pr-cat-"+a.dataset.prCat); if(!sec) return;
+      sec.scrollIntoView({behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block:"start"});
+      const h = sec.querySelector("h2"); h.tabIndex = -1; h.focus({preventScroll:true});
+    });
   }
 
   /* ---------- 🔤 Verbos ---------- */
@@ -146,9 +163,10 @@
       sec.hidden = !sec.querySelector(".pr-item:not([hidden])");
     });
     $("g-vazio").hidden = !q || n > 0;
+    const ind = document.querySelector(".pr-indice"); if(ind) ind.hidden = !!q;
   }
 
-  renderGram(); renderPront(); renderVerbos();
+  renderGram(); renderPront(); ligarPront(); renderVerbos();
   document.querySelectorAll("[data-parte]").forEach(b => b.addEventListener("click", () => setParte(b.dataset.parte, true)));
   $("g-busca").addEventListener("input", filtrar);
   const h = location.hash.slice(1);

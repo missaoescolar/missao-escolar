@@ -127,9 +127,16 @@
     nav.innerHTML = itens.map(function(i){
       return '<a href="'+i[0]+'"'+(i[3] ? ' aria-current="page"' : '')+'>'+icone(i[1])+i[2]+'</a>';
     }).join("")+'<button type="button" data-calma>'+icone("calma")+'Calma</button>';
+    // «Início» first in the top shortcuts on every page (on the home page it brings back screen 1)
+    document.querySelectorAll(".top-nav").forEach(function(tn){
+      if(tn.querySelector("a[href=\"index.html\"]")) return;
+      const a = document.createElement("a");
+      a.href = "index.html"; a.innerHTML = "🏠 <span>Início</span>";
+      tn.insertBefore(a, tn.firstChild);
+    });
     // the same icons in the top shortcuts and in the subject selector (emoji stay in the content)
     document.querySelectorAll(".top-nav a, .top-nav button").forEach(function(a){
-      const h = (a.getAttribute("href") || "").toLowerCase(), n = h === "caderno.html" ? "caderno" : h === "pais.html" ? "familia" : a.hasAttribute("data-calma") ? "calma" : null;
+      const h = (a.getAttribute("href") || "").toLowerCase(), n = h === "index.html" ? "inicio" : h === "caderno.html" ? "caderno" : h === "pais.html" ? "familia" : a.hasAttribute("data-calma") ? "calma" : null;
       const sp = a.querySelector("span");
       if(n && sp) a.innerHTML = icone(n)+sp.outerHTML;
     });
@@ -143,7 +150,7 @@
     document.body.appendChild(nav);
     document.body.classList.add("com-tab-baixo");
     document.querySelectorAll(".top-nav a").forEach(function(a){
-      if((a.getAttribute("href") || "").toLowerCase() === pag) a.setAttribute("aria-current", "page");
+      if((a.getAttribute("href") || "").toLowerCase() === pag && !location.hash) a.setAttribute("aria-current", "page");
     });
     // every «Calma» button (top bar, bottom bar) opens the same sheet; the year pages add the Modo foco at the end
     document.addEventListener("click", function(e){

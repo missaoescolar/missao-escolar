@@ -4,14 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Para pais — Missão Escolar</title>
-<link rel="stylesheet" href="style.css?v=20261023-2020">
+<link rel="stylesheet" href="style.css?v=20261025-0851">
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="theme-color" content="#C7461F">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<script src="prefs.js?v=20261023-2020"></script>
-<script src="navegacao.js?v=20261023-2020"></script>
+<script src="prefs.js?v=20261025-0851"></script>
+<script src="navegacao.js?v=20261025-0851"></script>
 </head>
 <body>
 
@@ -23,9 +23,11 @@
   <h1>👪 Para pais e educadores</h1>
   <p class="lead">A Missão Escolar foi pensada para crianças com PHDA ou AuDHD: um mundo de cada vez, passos curtos, sem relógios a pressionar e sem castigos. Aqui fica o que não precisa de estar à frente da criança enquanto estuda.</p>
 
-  <section class="pais-painel" id="pais-painel" aria-label="Resumo do percurso"></section>
+  <nav class="subtabs pais-menu" id="pais-menu" aria-label="Secções da área familiar"></nav>
 
-  <section class="info" id="relatorio">
+  <section class="pais-painel" data-aba="resumo" id="pais-painel" aria-label="Resumo do percurso"></section>
+
+  <section class="info" data-aba="relatorio" id="relatorio">
     <h2>📬 Relatório para pais</h2>
     <p>Um resumo do progresso, das dificuldades e do que treinar, com dicas de parentalidade positiva — com afeto, mas com regras e limites claros. Pode adaptar as dicas ao perfil da criança.</p>
     <div class="rel-form">
@@ -45,7 +47,7 @@
       <p>As dicas são gerais e não substituem o acompanhamento de profissionais (psicólogo, médico, professor de educação especial). Na escola, o Decreto-Lei n.º 54/2018 (educação inclusiva) prevê medidas de suporte à aprendizagem: fale com o diretor de turma.</p>
     </details>
   </section>
-  <section class="info">
+  <section class="info" data-aba="como">
     <h2>🧭 Como funciona</h2>
     <ol class="help-list">
       <li>Na página inicial a criança escolhe o ano, o que quer fazer (aprender, rever ou preparar um teste) e a disciplina. No 6.º ano há 5 disciplinas, com 8 ou 9 mundos (capítulos) cada. Os mundos estão todos abertos: não tem de seguir a ordem.</li>
@@ -72,7 +74,7 @@
     </ol>
   </section>
 
-  <section class="info" id="guardar">
+  <section class="info" data-aba="guardar" id="guardar">
     <h2>💾 Guardar o progresso</h2>
     <p>O progresso fica guardado neste browser quando a gravação tem sucesso. Se houver alterações por guardar, mantenha a página aberta e tente novamente ou descarregue uma cópia pelo botão ⬇ do aviso dessa página.</p>
     <p>Uma cópia permite recuperar o progresso ou transferi-lo para outro browser. Inclui os textos guardados da Oficina; guarde o ficheiro num local privado. A cópia feita aqui inclui os dados já guardados. Alterações pendentes noutro separador devem ser exportadas nesse separador.</p>
@@ -95,7 +97,7 @@
     </ul>
   </section>
 
-  <section class="info">
+  <section class="info" data-aba="como">
     <h2>⭐ Sistema de XP e recompensas</h2>
     <table class="simple">
       <tr><th>XP acumulado</th><th>Recompensa sugerida</th></tr>
@@ -107,7 +109,7 @@
     <p class="note-small">As recompensas devem ser combinadas com a criança antes de começar, nunca impostas depois nem retiradas como castigo. O XP conta por disciplina.</p>
   </section>
 
-  <section class="info">
+  <section class="info" data-aba="calendarios">
     <h2>📅 Calendários flexíveis sugeridos</h2>
     <p class="note-small">Sem prazos impostos: se uma semana não correr como previsto, a missão espera — não se acumula como dívida.</p>
 
@@ -201,7 +203,7 @@
     </details>
   </section>
 
-  <section class="info">
+  <section class="info" data-aba="sites">
     <h2>🌍 Outros sites que recomendamos</h2>
     <p class="note-small" style="margin-top:0">Verificados por nós. Todos gratuitos e sem conta obrigatória; indicamos quando têm publicidade ou estão em inglês.</p>
     <ul class="help-list">
@@ -222,7 +224,7 @@
     </ul>
   </section>
 
-  <section class="info">
+  <section class="info" data-aba="sites">
     <h2>📚 Fontes</h2>
     <ul class="help-list">
       <li><b>Português</b> — Aprendizagens Essenciais de Português, 6.º ano (DGE), com a terminologia do Dicionário Terminológico.</li>
@@ -240,17 +242,34 @@
   <p class="pais-back"><a class="ghost" href="6ano.html">← Voltar ao 6.º ano</a></p>
 </div>
 
-<script src="armazem.js?v=20261023-2020"></script>
-<script src="data/portugues.js?v=20261023-2020"></script>
-<script src="data/hgp.js?v=20261023-2020"></script>
-<script src="data/matematica.js?v=20261023-2020"></script>
-<script src="data/cn.js?v=20261023-2020"></script>
-<script src="data/ingles.js?v=20261023-2020"></script>
-<script src="data/cn7.js?v=20261023-2020"></script>
-<script src="data/fq7.js?v=20261023-2020"></script>
-<script src="shared.js?v=20261023-2020"></script>
-<script src="dificuldades.js?v=20261023-2020"></script>
-<script src="pais-relatorio.js?v=20261023-2020"></script>
-<script src="progresso.js?v=20261023-2020"></script>
+<script src="armazem.js?v=20261025-0851"></script>
+<script src="data/portugues.js?v=20261025-0851"></script>
+<script src="data/hgp.js?v=20261025-0851"></script>
+<script src="data/matematica.js?v=20261025-0851"></script>
+<script src="data/cn.js?v=20261025-0851"></script>
+<script src="data/ingles.js?v=20261025-0851"></script>
+<script src="data/cn7.js?v=20261025-0851"></script>
+<script src="data/fq7.js?v=20261025-0851"></script>
+<script src="shared.js?v=20261025-0851"></script>
+<script src="dificuldades.js?v=20261025-0851"></script>
+<script src="pais-relatorio.js?v=20261025-0851"></script>
+<script>
+/* uma secção de cada vez: o menu mostra só a parte escolhida (a página ficava muito comprida) */
+(function(){
+  const ABAS = [["resumo","📊 Resumo"],["relatorio","📬 Relatório"],["como","🧭 Como funciona"],["calendarios","📅 Calendários"],["guardar","💾 Guardar"],["sites","🌍 Sites e fontes"]];
+  const menu = document.getElementById("pais-menu"), secs = document.querySelectorAll("[data-aba]");
+  menu.innerHTML = ABAS.map(a => '<button type="button" class="subtab" data-ir="'+a[0]+'">'+a[1]+'</button>').join("");
+  function mostrar(id, foco){
+    if(!ABAS.some(a => a[0] === id)) id = "resumo";
+    secs.forEach(s => { s.hidden = s.dataset.aba !== id; });
+    menu.querySelectorAll(".subtab").forEach(b => { const on = b.dataset.ir === id; b.classList.toggle("active", on); if(on) b.setAttribute("aria-current","true"); else b.removeAttribute("aria-current"); });
+    if(foco) history.replaceState(null, "", id === "resumo" ? location.pathname : "#"+id);
+  }
+  menu.addEventListener("click", e => { const b = e.target.closest("[data-ir]"); if(b) mostrar(b.dataset.ir, true); });
+  mostrar((location.hash || "").slice(1));
+  window.addEventListener("hashchange", () => mostrar(location.hash.slice(1)));
+})();
+</script>
+<script src="progresso.js?v=20261025-0851"></script>
 </body>
 </html>

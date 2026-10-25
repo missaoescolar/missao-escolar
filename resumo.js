@@ -164,7 +164,7 @@
   const pagina = s => (s && s.page) || '6ano.html', subjOnly = SUBJECTS.filter(function(s){ return s.key===onlyKey; })[0];
   const back = found ? pagina(found.s)+'#'+found.s.key+'/'+found.w.id : (onlyKey ? pagina(subjOnly)+'#'+onlyKey : 'index.html');
   document.getElementById("sheet-nav").innerHTML =
-    '<a href="'+back+'">← Voltar '+(found ? 'ao mundo' : onlyKey ? 'à disciplina' : 'ao início')+'</a>'+
+    '<a href="index.html">🏠 Início</a><a href="'+back+'">← Voltar '+(found ? 'ao mundo' : onlyKey ? 'à disciplina' : 'ao início')+'</a>'+
     (found ? '<button type="button" id="print-btn">🖨️ Imprimir esta página</button>' : '');
   document.getElementById("sheet-root").innerHTML = found ? renderWorld(found.s, found.w, found.wi) : renderIndex(onlyKey);
   const printBtn = document.getElementById("print-btn");
