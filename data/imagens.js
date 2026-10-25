@@ -260,7 +260,11 @@ Object.assign(MISSAO_IMAGENS, {
   n8: [
     {f:"img/n8/dados.jpg", t:"Dados",
       d:"Um dado tem 6 faces, todas com a mesma probabilidade: a probabilidade de sair um 5 é de 1 em 6 (1/6). Nos dados normais, as faces opostas somam sempre 7.",
-      cred:"Diacritica", lic:"SA30", src:COMMONS+"6sided_dice.jpg"}
+      cred:"Diacritica", lic:"SA30", src:COMMONS+"6sided_dice.jpg"},
+    {f:"img/n8/jogo-preferido-graficos.svg", t:"Tabela, gráfico de barras e gráfico circular", il:true,
+      d:"Os mesmos dados (o jogo preferido de 24 alunos) mostrados de três maneiras. A moda é a categoria com maior frequência. No gráfico circular, cada aluno vale 360° ÷ 24 = 15°.",
+      act:"<b>Faz o teu</b>: pergunta a 10 a 20 pessoas da família ou da turma qual é o seu fruto preferido. Faz a tabela de frequências, o gráfico de barras (1 quadrado = 1 pessoa) e diz qual é a moda. Desafio: calcula quantos graus vale cada pessoa num gráfico circular.",
+      cred:"Missão Escolar (desenho feito com a ajuda do Google Stitch e revisto)", lic:"ORIG"}
   ],
 
   /* ---------------- Português ---------------- */
@@ -306,5 +310,37 @@ Object.assign(MISSAO_IMAGENS, {
     {f:"img/e8/pudim.jpg", t:"Christmas pudding",
       d:"Sobremesa tradicional do Natal britânico, feita com frutos secos. Às vezes é servida a arder (flambé)!",
       cred:"Ed g2s", lic:"SA40", src:COMMONS+"Christmas_pudding_(Heston_from_Waitrose)_flaming.jpg"}
+  ]
+});
+
+/* ---------------- 💶 Dinheiro e Casa ---------------- */
+Object.assign(MISSAO_IMAGENS, {
+  f1: [
+    {f:"img/f1/historia-do-dinheiro.svg", t:"Da troca direta ao pagamento digital", il:true,
+      d:"Primeiro trocavam-se coisas por coisas. Depois vieram as moedas de metal, as notas de papel e, hoje, os cartões e o telemóvel.",
+      act:"<b>Linha do tempo em casa</b>: pede a um avô ou a uma avó que te conte como se pagava quando era criança (escudos? cheques? cadernetas?). Acrescenta o que te contarem à linha do tempo.",
+      cred:"Missão Escolar (desenho feito com a ajuda do Google Stitch e revisto)", lic:"ORIG"},
+    {f:"img/f1/moedas-de-euro.svg", t:"As 8 moedas de euro", il:true,
+      d:"As 8 moedas por ordem de valor, com o diâmetro real. Repara: a de 10 cêntimos é mais pequena do que a de 5, e a de 1 € é mais pequena do que a de 50 cêntimos. Por isso não se deve escolher uma moeda só pelo tamanho.",
+      act:"<b>Medir moedas</b>: com uma régua, mede o diâmetro das moedas que houver em casa e compara com a imagem. Depois, de olhos fechados, tenta reconhecê-las só pelo bordo (liso, com ranhura, recortado).",
+      cred:"Missão Escolar (desenho feito com a ajuda do Google Stitch e revisto)", lic:"ORIG"}
+  ],
+  f3: [
+    {f:"img/f3/tres-frascos.svg", t:"Gastar, poupar e partilhar", il:true,
+      d:"Uma semanada de 10 € dividida em 3 partes logo que chega: 6 € para gastar, 3 € para poupar e 1 € para partilhar. As percentagens são uma sugestão: cada família decide as suas.",
+      act:"<b>Os teus 3 frascos</b>: com 3 frascos ou caixas, faz etiquetas «gastar», «poupar» e «partilhar». Decide com um adulto quanto vai para cada um e regista durante um mês.",
+      cred:"Missão Escolar (desenho feito com a ajuda do Google Stitch e revisto)", lic:"ORIG"}
+  ],
+  f6: [
+    {f:"img/f6/onde-se-gasta-em-casa.svg", t:"Onde se gasta em casa", il:true,
+      d:"Eletricidade, água, gás e comida: as 4 grandes despesas do dia a dia de uma casa, com uma dica de poupança para cada uma.",
+      act:"<b>Inspeção da casa</b>: percorre a tua casa com um adulto e marca, numa planta desenhada por ti, onde se gasta eletricidade, água, gás e comida. Escolhe 1 dica para a família experimentar durante uma semana.",
+      cred:"Missão Escolar (desenho feito com a ajuda do Google Stitch e revisto)", lic:"ORIG"}
+  ],
+  f7: [
+    {f:"img/f7/mensagens-falsas.svg", t:"Detetar mensagens falsas", il:true,
+      d:"Três sinais de burla: um prémio que não pediste, pressa («só tens 5 minutos») e o pedido de um código. Se vires um deles, não respondas e mostra a um adulto.",
+      act:"<b>Treino com um adulto</b>: o adulto escreve 3 mensagens (uma verdadeira e duas falsas). Encontra os sinais de alerta em cada uma e explica porquê.",
+      cred:"Missão Escolar (desenho feito com a ajuda do Google Stitch e revisto)", lic:"ORIG"}
   ]
 });
