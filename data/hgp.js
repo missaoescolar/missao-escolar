@@ -81,7 +81,7 @@
     id:"m2", num:2, c:"m2", icon:"⚔️",
     title:"Guerra de Servidores",
     subtitle:"O triunfo do liberalismo", pages:"pp. 42–60",
-    lead:"A França força um update que ninguém pediu — as invasões napoleónicas — e o servidor Portugal divide-se entre quem quer manter o admin único (absolutistas) e quem quer regras votadas por todos (liberais).",
+    lead:"No início do século XIX, os exércitos de Napoleão invadem Portugal três vezes (as invasões francesas) e a família real parte para o Brasil. Depois, o país divide-se entre os absolutistas, que querem um rei com poder total, e os liberais, que querem uma Constituição. É como dois grupos de jogadores a discutir quem faz as regras do servidor, mas aqui houve guerra e vítimas reais.",
     missions:[
       {t:"Três Tentativas de Invasão", d:"Invasões napoleónicas 1807–1810 (p. 44)", f:"Linha do tempo desenhada", xp:10},
       {t:"A Corte Faz Logout", d:"Corte no Brasil e ingleses em Portugal (p. 46)", f:"Mapa da rota Lisboa–Brasil", xp:10},
@@ -232,7 +232,7 @@
     id:"m4", num:4, c:"m4", icon:"🗳️",
     title:"Ban ao Rei: Nasce a República",
     subtitle:"A revolução republicana", pages:"pp. 80–102",
-    lead:"O rei perde apoio como um streamer que perde seguidores, até que os republicanos organizam um raid e tomam o poder em 1910.",
+    lead:"A monarquia perde apoio: em 1908, o rei D. Carlos e o príncipe herdeiro são assassinados em Lisboa (o Regicídio) e, a 5 de outubro de 1910, uma revolução republicana põe fim à monarquia. Portugal passa a ter um Presidente da República em vez de um rei. É uma mudança das regras do «servidor», feita por pessoas reais e com consequências reais.",
     missions:[
       {t:"O Servidor Real Perde Fãs", d:"Desgaste da monarquia (p. 82)", f:"Lista de razões do descontentamento, em bullet points", xp:10},
       {t:"O Fim do Reinado", d:"Ataques republicanos e revolução (pp. 84–86)", f:"Linha do tempo", xp:10},
@@ -293,7 +293,7 @@
     id:"m5", num:5, c:"m5", icon:"🔒",
     title:"Modo Restrito",
     subtitle:"Os anos de ditadura (Estado Novo)", pages:"pp. 104–128",
-    lead:"Imagina um mundo de Minecraft em modo sobrevivência onde só o dono do servidor decide as regras, ninguém mais pode votar, e quem critica é banido: é o Estado Novo, a ditadura que durou quase 50 anos em Portugal.",
+    lead:"Entre 1926 e 1974, Portugal viveu em ditadura, a partir de 1933 com o nome de Estado Novo, liderado por Salazar e depois por Marcello Caetano. Não havia eleições livres, a censura cortava notícias e livros, e a polícia política (PIDE) perseguia quem se opunha ao regime. Num jogo, ser «banido» é sair do servidor; na ditadura, quem criticava podia ser preso, torturado ou forçado ao exílio.",
     missions:[
       {t:"O Golpe que Mudou o Servidor", d:"O golpe militar que trouxe a ditadura (p. 106)", f:"Linha do tempo do golpe", xp:10},
       {t:"Um Só Admin", d:"Salazar e o Estado Novo (p. 108)", f:"Comparar Salazar a um admin com poderes ilimitados", xp:10},
@@ -379,10 +379,10 @@
     id:"m6", num:6, c:"m6", icon:"🕊️",
     title:"Patch 25 de Abril",
     subtitle:"Democracia Desbloqueada", pages:"pp. 130–154",
-    lead:"A 25 de abril de 1974, um grupo de militares muda as regras do servidor quase sem disparar um tiro — por isso lhe chamam a Revolução dos Cravos. É como um jogador com permissões de administrador que desbloqueia o voto para todos os outros jogadores.",
+    lead:"A 25 de abril de 1974, o Movimento das Forças Armadas (MFA) derruba a ditadura do Estado Novo, com muito poucas vítimas: é a Revolução dos Cravos. Seguem-se a democratização (eleições livres e a Constituição de 1976), o fim da Guerra Colonial e a descolonização. Num jogo seria um «patch» que muda as regras para todos; na vida real, foi o regresso da liberdade.",
     missions:[
-      {t:"Antes do Patch", d:"Portugal nas vésperas da revolução (p. 132)", f:"Lista de motivos do descontentamento", xp:10},
-      {t:"O Dia do Patch", d:"Revolução dos Cravos (p. 134)", f:"Linha do tempo antes / durante / depois", xp:10},
+      {t:"Antes da Revolução", d:"Portugal nas vésperas da revolução (p. 132)", f:"Lista de motivos do descontentamento", xp:10},
+      {t:"O Dia da Revolução", d:"Revolução dos Cravos (p. 134)", f:"Linha do tempo antes / durante / depois", xp:10},
       {t:"De Ditadura a Democracia", d:"Da ditadura para a democracia (p. 138)", f:"Comparar 3 diferenças entre antes e depois", xp:10},
       {t:"Acabar a Guerra", d:"Acabar com a guerra e descolonizar (p. 140)", f:"Localizar no mapa os países que se tornaram independentes", xp:10},
       {t:"Regras Novas para Sempre", d:"A Constituição de 1976 (p. 142)", f:"Escrever 3 direitos garantidos pela Constituição", xp:10},

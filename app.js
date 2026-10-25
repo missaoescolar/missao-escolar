@@ -879,8 +879,15 @@
         saltar.addEventListener("click", function(){ q._saltada = true; qs.push(qs.splice(i, 1)[0]); paint(); });
         tools.appendChild(saltar);
       }
-      box.appendChild(tools);
-      const curtas = q.opts.every(function(t){ return String(t).replace(/<[^>]+>/g, "").length <= 28; });
+      // 💡 a hint before answering, only when asked for (the question has a "pista")
+      const pistaBox = el("p","q1-pista",""); pistaBox.hidden = true;
+      if(q.pista){
+        const pista = el("button","ghost-btn","💡 Pista"); pista.type = "button";
+        pista.addEventListener("click", function(){ pistaBox.textContent = "💡 "+q.pista; pistaBox.hidden = false; pista.remove(); });
+        tools.appendChild(pista);
+      }
+      box.appendChild(tools); box.appendChild(pistaBox);
+      const curtas =q.opts.every(function(t){ return String(t).replace(/<[^>]+>/g, "").length <= 28; });
       const opts = el("div","qoptions"+(curtas ? " q2x2" : ""));
       q.opts.forEach(function(t,oi){
         const b = el("button","qopt",t); b.type = "button";
@@ -908,7 +915,17 @@
         if(o.onAnswer) o.onAnswer(q, ok);
         fb.textContent = (ok ? "Boa! 🎉 " : "Quase! ") + q.explain;
         const d = box.querySelector(".dots"); if(d) d.outerHTML = dotsHtml();
-        next.hidden = false; next.focus({preventScroll:true});
+        next.hidden = false;
+        // after a mistake: a similar question (the "irma") to check the idea, instead of repeating the same one
+        if(!ok && q.irma){
+          const parecida = el("button","ghost-btn","🔁 Experimentar uma parecida"); parecida.type = "button";
+          parecida.addEventListener("click", function(){
+            qs.splice(i+1, 0, Object.assign(shuffleQuizOptions(q.irma), {_saltada:true}));
+            i++; paint();
+          });
+          row.insertBefore(parecida, next);
+          parecida.focus({preventScroll:true});
+        } else next.focus({preventScroll:true});
       });
       box.appendChild(opts); box.appendChild(fb); box.appendChild(row);
     }

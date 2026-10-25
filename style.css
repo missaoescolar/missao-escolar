@@ -1521,6 +1521,9 @@
   .q1-tools{ display:flex; flex-wrap:wrap; align-items:center; gap:4px 12px; margin:6px 0 10px; }
   .q1-tools .ghost-btn{ min-height:40px; padding:6px 12px; font-size:.85rem; }
   .q1-saltar{ font-size:.85rem; }
+  html.pf-sem-pontos :is(.xp-pill, .mission .mxp){ display:none !important; }
+  .q1-pista{ margin:0 0 10px; padding:8px 12px; border-radius:10px; background:var(--surface-2); border:1px solid var(--border-soft); font-size:.92rem; }
+  .q1 .next-step{ flex-wrap:wrap; gap:8px; }
   @media (min-width:480px){ .qoptions.q2x2{ display:grid; grid-template-columns:1fr 1fr; gap:8px; } .qoptions.q2x2 .qopt{ min-height:56px; font-size:1.05rem; } }
 
   /* ícones próprios (navegacao.js) */

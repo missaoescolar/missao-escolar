@@ -59,14 +59,15 @@
     return bits.length ? '<span class="subject-inside">'+bits.map(b => '<i>'+b+'</i>').join("")+'</span>' : '';
   }
 
+  const pontos = !window.MissaoPrefs || MissaoPrefs.ler().pontos !== false;   // ⚙️ «Sem pontos (XP)» hides the points
   const cards = list => list.map((s, i) => {
     const p = progress(s), go = destino(s);
     return '<a class="subject-card" href="'+go.href+'" style="--wc:var(--m'+(i+1)+');--wc-bg:var(--m'+(i+1)+'-bg)">'+
       '<span class="subject-icon" aria-hidden="true">'+s.icon+'</span>'+
       '<b>'+esc(s.name)+'</b>'+
-      '<small>'+s.worlds.length+' mundos · '+p.xpMax+' XP</small>'+
+      '<small>'+s.worlds.length+' mundos'+(pontos ? ' · '+p.xpMax+' XP' : '')+'</small>'+
       '<span class="mini-bar" aria-hidden="true"><span style="width:'+p.pct+'%"></span></span>'+
-      '<small class="subject-done">'+(p.done ? p.done+'/'+p.total+' missões · '+p.xp+' XP' : 'Ainda por começar')+'</small>'+
+      '<small class="subject-done">'+(p.done ? p.done+'/'+p.total+' missões'+(pontos ? ' · '+p.xp+' XP' : '') : 'Ainda por começar')+'</small>'+
       '<span class="subject-go">'+esc(go.txt)+'&nbsp;→</span>'+
       inside(s)+
     '</a>';

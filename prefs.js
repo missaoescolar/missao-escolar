@@ -6,11 +6,12 @@
    - menos movimento e sem sons: ajudam crianças com sensibilidade sensorial ou dificuldade de atenção (PHDA, autismo);
    - a letra base já é a Atkinson Hyperlegible (Braille Institute); «Lexend em todo o texto» é opcional;
    - 🧱 tema de blocos (ligado por defeito: a criança gosta de jogos de construção): usar os interesses da criança aumenta
-     o envolvimento (Koegel et al., 2012, J Autism Dev Disord); é só aspeto — sem moedas novas nem recompensas extra.
+     o envolvimento (Koegel et al., 2012, J Autism Dev Disord); é só aspeto — sem moedas novas nem recompensas extra;
+   - 🙈 sem pontos: há crianças que estudam melhor sem contagem de pontos; o progresso das missões continua visível.
    Guardado na chave "pref_estudo" (entra nas cópias de segurança do progresso). */
 const MissaoPrefs = (function(){
   const K = "pref_estudo";
-  const BASE = {letra:"normal", espaco:false, lexend:false, movimento:false, som:true, contraste:false, blocos:true};
+  const BASE = {letra:"normal", espaco:false, lexend:false, movimento:false, som:true, contraste:false, blocos:true, pontos:true};
   function ler(){
     try{ const t = localStorage.getItem(K); return Object.assign({}, BASE, t ? JSON.parse(t) : {}); }catch(e){ return Object.assign({}, BASE); }
   }
@@ -27,6 +28,7 @@ const MissaoPrefs = (function(){
     h.classList.toggle("pf-movimento", !!p.movimento);
     h.classList.toggle("pf-contraste", !!p.contraste);
     h.classList.toggle("pf-blocos", !!p.blocos);
+    h.classList.toggle("pf-sem-pontos", p.pontos === false);
   }
   aplicar(ler());
 
@@ -49,6 +51,7 @@ const MissaoPrefs = (function(){
       op("blocos", p.blocos, "🧱 Tema de blocos", "cantos retos, botões como blocos e progresso em blocos de relva e pedra, como nos jogos de construção")+
       op("movimento", p.movimento, "🐢 Menos movimento", "sem confettis nem transições; as animações das matérias avançam sem efeitos")+
       op("semsom", !p.som, "🔇 Sem sons", "sem os sons de fim de pausa e de acerto")+
+      op("sempontos", !p.pontos, "🙈 Sem pontos (XP)", "esconde os pontos; continuas a ver as missões feitas e o que já aprendeste")+
       '<p class="pf-nota">Também há o 🔊 Ouvir em cada mundo, para quem prefere ouvir a ler.</p>'+
       '<div class="pf-acoes"><button type="button" class="ghost-btn" id="pf-repor">↺ Repor</button><button type="button" class="cta" id="pf-ok">Fechar</button></div>';
     const atualizar = () => {
@@ -59,7 +62,8 @@ const MissaoPrefs = (function(){
         contraste: d.querySelector('[data-k="contraste"]').checked,
         movimento: d.querySelector('[data-k="movimento"]').checked,
         blocos: d.querySelector('[data-k="blocos"]').checked,
-        som: !d.querySelector('[data-k="semsom"]').checked
+        som: !d.querySelector('[data-k="semsom"]').checked,
+        pontos: !d.querySelector('[data-k="sempontos"]').checked
       };
       gravar(n); aplicar(n);
     };
