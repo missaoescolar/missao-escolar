@@ -267,4 +267,94 @@
       ]});
   })();
 
+
+  /* ---------- HGP m4, m5, m7, m8 ---------- */
+  (function(){
+    /* m4 — da monarquia à República */
+    A.def({id:"republica", mundo:"m4", cor:"m4", titulo:"Da monarquia à República (1890–1926)", w:560, h:250,
+      cena: () =>
+        g({id:"mapa"}, r(40,70,90,110,{rx:10, fill:"#E8D6B8", stroke:"#8a6a4a", sw:1.5})+t(85,130,"Angola",{fs:12})+
+          r(270,70,90,110,{rx:10, fill:"#E8D6B8", stroke:"#8a6a4a", sw:1.5})+t(315,130,"Moçambique",{fs:12})+
+          r(130,108,140,26,{id:"rosa", fill:"#F2A7C3", op:0.85})+t(200,100,"Mapa Cor-de-Rosa",{fs:11, fw:400})+
+          g({id:"ultimato", cls:"an-h"}, l(140,104,260,138,{stroke:"#B5651D", sw:4})+l(140,138,260,104,{stroke:"#B5651D", sw:4})+t(200,160,"Ultimato inglês, 1890",{fs:12, fill:"#B5651D"})))+
+        g({id:"bandeiras", cls:"an-h"},
+          g({id:"bmon"}, r(60,70,48,80,{fill:"#2E5DA8"})+r(108,70,72,80,{fill:"#fff", stroke:"#8a8a8a", sw:1})+c(108,110,14,{fill:"#E0A100", stroke:"#8a6a00", sw:1})+t(120,172,"bandeira da monarquia",{fs:10.5, fw:400}))+
+          g({id:"brep", cls:"an-h an-pop"}, r(300,70,48,80,{fill:"#1F7A3A"})+r(348,70,72,80,{fill:"#C8102E"})+c(348,110,16,{fill:"#E0A100", stroke:"#8a6a00", sw:1})+t(360,172,"bandeira da República (1911)",{fs:10.5, fw:400}))+
+          p("M200,110 h80",{id:"seta", cls:"an-h", stroke:"var(--wc)", sw:3, "marker-end":"url(#an-ponta)"}))+
+        g({id:"const", cls:"an-h"}, r(430,40,120,120,{rx:8, fill:"var(--surface)", stroke:"var(--wc)", sw:2})+t(490,62,"📜 1911",{fs:12})+
+          t(490,86,"Igreja separada",{fs:9.5, fw:400})+t(490,100,"do Estado",{fs:9.5, fw:400})+t(490,122,"votam homens",{fs:9.5, fw:400})+t(490,136,"que sabem ler",{fs:9.5, fw:400}))+
+        g({id:"gov", cls:"an-h"}, t(280,215,"",{id:"ngov", fs:15})+t(280,238,"governos diferentes entre 1910 e 1926",{fs:10.5, fw:400}))+
+        t(548,22,"",{id:"ano", ta:"end", fs:14}),
+      passos:[
+        {t:"Final do século XIX: Portugal queria ligar <b>Angola</b> a <b>Moçambique</b> por terra — o <b>Mapa Cor-de-Rosa</b>.", f:S => S.texto("#ano", "1886")},
+        {t:"Em <b>1890</b>, a Inglaterra exige que Portugal desista: é o <b>Ultimato inglês</b>, sentido como uma humilhação. A monarquia perde apoio.", f:S => { S.mostrar("#ultimato"); S.texto("#ano", "1890"); }},
+        {t:"Em <b>1908</b>, o rei D. Carlos I e o príncipe herdeiro são mortos em Lisboa (o <b>regicídio</b>). A monarquia fica ainda mais fraca.", f:S => { S.esconder("#mapa"); S.mostrar("#bandeiras"); S.texto("#ano", "1908"); }},
+        {t:"<b>5 de outubro de 1910</b>: uma revolução derruba a monarquia e proclama a <b>República</b>. A bandeira verde e vermelha é adotada em 1911.", f:S => { S.mostrar(["#seta","#brep"]); S.texto("#ano", "5 out. 1910"); }},
+        {t:"A <b>Constituição de 1911</b> separa a Igreja do Estado e dá o voto aos homens que sabem ler e escrever.", f:S => { S.mostrar("#const"); S.texto("#ano", "1911"); }},
+        {t:"Mas a Primeira República foi muito <b>instável</b>: mais de 40 governos em 16 anos, até ao golpe de 1926.", f:S => {
+          S.mostrar("#gov"); S.texto("#ano", "1910–1926");
+          if(S.instant) S.texto("#ngov", "mais de 40"); else [10,20,30,40].forEach((n, i) => S.depois(() => S.texto("#ngov", n === 40 ? "mais de 40" : String(n)), 300+i*500)); }}
+      ]});
+
+    /* m5 — Estado Novo: censura e falta de liberdade */
+    const LINHAS = [["O governo inaugura uma ponte nova.",false],["Estudantes pedem liberdade de reunião.",true],["Tempo de sol em todo o país.",false],["Greve numa fábrica de Lisboa.",true],["Opositor preso pela polícia política.",true]];
+    A.def({id:"estado-novo", mundo:"m5", cor:"m5", titulo:"Estado Novo: um país sem liberdade (1926–1974)", w:560, h:250,
+      cena: () =>
+        g({id:"tl"}, l(30,40,530,40,{stroke:"var(--border)", sw:3})+
+          [["1926","golpe militar",50],["1933","Constituição",160],["1958","Humberto Delgado",290],["1961","Guerra Colonial",420],["1974","25 de Abril",515]].map((e, i) =>
+            g({id:"tl"+i, cls:"an-h an-pop"}, c(e[2],40,6,{fill:"var(--wc)"})+t(e[2],26,e[0],{fs:11})+t(e[2],60,e[1],{fs:9.5, fw:400}))).join(""))+
+        g({id:"jornal", cls:"an-h"}, r(40,80,300,160,{rx:4, fill:"#FBF7F0", stroke:"currentColor", sw:1.5})+t(190,100,"O DIÁRIO",{fs:14})+
+          LINHAS.map((q, i) => t(52,128+i*24,q[0],{fs:11, fw:400, ta:"start"})+(q[1] ? l(50,124+i*24,330,124+i*24,{id:"risco"+i, cls:"an-h", stroke:"#2E5DA8", sw:5, lc:"round", op:0.85}) : "")).join(""))+
+        t(450,110,"✏️",{id:"lapis", cls:"an-h", fs:30})+
+        g({id:"lista", cls:"an-h"}, t(450,150,"partido único",{fs:11})+t(450,170,"polícia política (PIDE)",{fs:11})+t(450,190,"Mocidade Portuguesa",{fs:11})+t(450,210,"censura",{fs:11})),
+      passos:[
+        {t:"Em <b>1926</b>, um golpe militar acaba com a Primeira República. Começa uma ditadura.", f:S => S.mostrar("#tl0")},
+        {t:"<b>Salazar</b> chefia o governo a partir de 1932. A <b>Constituição de 1933</b> cria o <b>Estado Novo</b>, com um só partido.", f:S => S.mostrar("#tl1")},
+        {t:"Os jornais, os livros, o cinema e a rádio eram vistos antes de saírem: a <b>censura</b>. O que o regime não queria era cortado — muitas vezes com um <b>lápis azul</b>.", f:S => { S.mostrar(["#jornal","#lapis"]); ["#risco1","#risco3","#risco4"].forEach((r, i) => { if(S.instant) S.mostrar(r); else S.depois(() => S.mostrar(r), 500+i*700); }); }},
+        {t:"Quem se opunha podia ser preso pela <b>polícia política</b> (PIDE). Os jovens tinham de pertencer à <b>Mocidade Portuguesa</b>.", f:S => S.mostrar("#lista")},
+        {t:"Em <b>1958</b>, o general <b>Humberto Delgado</b> candidatou-se a Presidente com grande apoio, mas as eleições foram fraudulentas.", f:S => S.mostrar("#tl2")},
+        {t:"De <b>1961</b> a 1974, a <b>Guerra Colonial</b> em Angola, na Guiné e em Moçambique. O regime só acabou com o <b>25 de Abril de 1974</b>.", f:S => S.mostrar(["#tl3","#tl4"])}
+      ]});
+
+    /* m7 — Portugal hoje (esquemas, não à escala) */
+    const pontos = (x, y, w, h, n, cor) => { let s = ""; for(let i=0;i<n;i++){ const px = x+((i*37)%w), py = y+((i*53)%h); s += c(px,py,2.6,{fill:cor}); } return s; };
+    A.def({id:"portugal-hoje", mundo:"m7", cor:"m7", titulo:"Portugal hoje: onde vivemos e em que trabalhamos", w:560, h:250,
+      cena: () =>
+        g({id:"lit"}, r(40,40,110,170,{rx:8, fill:"#DCEBF5", stroke:"currentColor", sw:1.5})+t(95,30,"litoral",{fs:12})+pontos(48,48,94,154,60,"#2E5DA8")+
+          r(160,40,110,170,{rx:8, fill:"#F1E8D6", stroke:"currentColor", sw:1.5})+t(215,30,"interior",{fs:12})+pontos(168,48,94,154,14,"#8a6a4a")+
+          t(155,232,"cada ponto = muitas pessoas (esquema)",{fs:10, fw:400}))+
+        g({id:"idade", cls:"an-h"}, t(410,30,"idade da população (esquema)",{fs:11})+
+          [[0,"jovens",120,70],[1,"adultos",150,150],[2,"idosos",90,130]].map(q => t(320,78+q[0]*50,q[1],{fs:10, ta:"end"})+
+            r(330,62+q[0]*50,q[2]*0.9,22,{id:"ida"+q[0], fill:"#9CC3E6"})+r(330,62+q[0]*50,q[3]*0.9,22,{id:"idb"+q[0], cls:"an-h", fill:"#E0A100", op:0.85})).join("")+
+          t(400,220,"azul: há 60 anos · amarelo: hoje",{fs:10, fw:400}))+
+        g({id:"setores", cls:"an-h"}, r(40,90,480,40,{rx:6, fill:"var(--surface-2)"})+r(40,90,15,40,{fill:"#3E8F5C"})+r(55,90,120,40,{fill:"#8a8a8a"})+r(175,90,345,40,{fill:"#4F86B3"})+
+          t(40,82,"primário",{fs:10, ta:"start"})+l(47,86,47,90,{stroke:"#3E8F5C", sw:2})+t(115,152,"secundário",{fs:10})+t(345,115,"terciário (serviços)",{fs:12, fill:"#fff"})+
+          t(280,180,"mais de 7 em cada 10 trabalhadores estão nos serviços",{fs:11, fw:400})),
+      passos:[
+        {t:"A população não está espalhada por igual: vive muito mais gente no <b>litoral</b> (Lisboa, Porto) do que no <b>interior</b>. Chama-se <b>litoralização</b>.", f:S => {}},
+        {t:"Portugal está a <b>envelhecer</b>. Há 60 anos havia muitos jovens…", f:S => { S.esconder("#lit"); S.mostrar("#idade"); }},
+        {t:"…hoje há <b>menos jovens</b> e <b>mais idosos</b>: nascem menos bebés e vive-se mais tempo.", f:S => [0,1,2].forEach(i => S.mostrar("#idb"+i))},
+        {t:"Nos últimos anos, a chegada de <b>imigrantes</b> fez voltar a crescer a população que vive em Portugal.", f:S => {}},
+        {t:"Em que trabalhamos? <b>Primário</b> (agricultura, pesca), <b>secundário</b> (indústria) e <b>terciário</b> (serviços, comércio, turismo) — hoje, a grande maioria está nos serviços.", f:S => { S.esconder("#idade"); S.mostrar("#setores"); }}
+      ]});
+
+    /* m8 — Portugal no mundo */
+    const ORG = [["🛡️","NATO","1949",60],["🕊️","ONU","1955",150],["UE","CEE (hoje UE)","1986",250],["🛂","Schengen","1995",345],["🌍","CPLP","1996",430],["💶","euro","2002",515]];
+    A.def({id:"portugal-mundo", mundo:"m8", cor:"m8", titulo:"Portugal no mundo: as organizações a que pertence", w:560, h:230,
+      cena: () =>
+        l(30,130,540,130,{stroke:"var(--border)", sw:3})+
+        ORG.map((o, i) => g({id:"or"+i, cls:"an-h an-pop"}, (o[0] === "UE"
+          ? r(o[3]-20,78,40,30,{rx:2, fill:"#1F3F8F"})+Array.from({length:12}, (_, k) => c(o[3]+10*Math.cos(k*Math.PI/6),93+10*Math.sin(k*Math.PI/6),1.6,{fill:"#F3C23C"})).join("")
+          : t(o[3],100,o[0],{fs:28}))+c(o[3],130,6,{fill:"var(--wc)"})+t(o[3],156,o[2],{fs:12})+t(o[3],176,o[1],{fs:10.5, fw:400}))).join("")+
+        t(280,215,"",{id:"nota", fs:11, fw:400}),
+      passos:[
+        {t:"<b>1949</b>: Portugal é um dos fundadores da <b>NATO</b>, uma aliança de defesa.", f:S => S.mostrar("#or0")},
+        {t:"<b>1955</b>: entra na <b>ONU</b>, que junta quase todos os países do mundo pela paz.", f:S => S.mostrar("#or1")},
+        {t:"<b>1986</b>: Portugal e Espanha entram na <b>Comunidade Económica Europeia</b>, hoje <b>União Europeia</b>. Chegam fundos para estradas, escolas e hospitais.", f:S => S.mostrar("#or2")},
+        {t:"<b>1995</b>: espaço <b>Schengen</b> — viaja-se entre a maioria dos países europeus sem mostrar o passaporte.", f:S => S.mostrar("#or3")},
+        {t:"<b>1996</b>: nasce em Lisboa a <b>CPLP</b>, que junta os países de língua portuguesa.", f:S => S.mostrar("#or4")},
+        {t:"<b>2002</b>: o escudo dá lugar ao <b>euro</b>, a moeda comum de muitos países da UE.", f:S => { S.mostrar("#or5"); S.texto("#nota", "Pertencer a estas organizações dá a Portugal alianças, mercados e apoio."); }}
+      ]});
+  })();
+
 })();
