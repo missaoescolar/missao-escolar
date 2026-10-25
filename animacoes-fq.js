@@ -162,4 +162,69 @@
       ]});
   })();
 
+  /* ---------- q2: o Sistema Solar à escala das distâncias (UA) ---------- */
+  (function(){
+    // distância média ao Sol em UA (NASA); 1 UA ≈ 150 milhões de km
+    const PL = [["Mercúrio",0.39,4,"#9A8F86"],["Vénus",0.72,6,"#E0B36A"],["Terra",1,6,"#4F86B3"],["Marte",1.52,5,"#C7461F"],
+                ["Júpiter",5.2,14,"#D9A066"],["Saturno",9.58,12,"#E3C27A"],["Urano",19.2,9,"#8FD0D6"],["Neptuno",30.1,9,"#4A6FD0"]];
+    const SX = 34, ESC = 16;   // 1 UA = 16 px
+    A.def({id:"sistema-solar", mundo:"q2", cor:"m2", titulo:"O Sistema Solar à escala das distâncias", w:560, h:240,
+      cena: () =>
+        c(SX-32,110,26,{fill:"#E0A100", stroke:"#B07800", sw:2})+t(10,158,"Sol",{fs:11, ta:"start"})+
+        l(SX,110,560,110,{stroke:"var(--border)", sw:1.5, da:"3 4"})+
+        PL.map((q, i) => g({id:"pl"+i, cls:"an-move", style:"transform:translate("+(70+i*58-SX)+"px,0px)"},
+          c(SX,110,q[2],{fill:q[3], stroke:"#3B372F", sw:1})+t(SX,i%2 ? 145 : 82,q[0],{fs:10, cls:i < 4 ? "nome-int" : null}))).join("")+
+        g({id:"cintura", cls:"an-h"}, [2.2,2.5,2.8,3.1].map((u, k) => c(SX+u*ESC,104+(k%2)*10,1.6,{fill:"#7A7369"})).join("")+t(SX+2.7*ESC,190,"cintura de asteroides",{fs:9.5, fw:400}))+
+        g({id:"regua", cls:"an-h"}, l(SX,210,SX+ESC,210,{stroke:"var(--wc)", sw:3})+t(SX+ESC+6,214,"1 UA ≈ 150 milhões de km (Sol–Terra)",{fs:10, ta:"start", fw:400}))+
+        g({id:"grupos", cls:"an-h"}, t(SX+1*ESC,40,"rochosos",{fs:11, fill:"#C7461F"})+t(10,58,"Mercúrio, Vénus, Terra, Marte",{fs:9.5, fw:400, ta:"start"})+t(SX+18*ESC,40,"gigantes gasosos e gelados",{fs:11, fill:"#4A6FD0"})),
+      passos:[
+        {t:"Os 8 planetas, por ordem a partir do Sol: Mercúrio, Vénus, Terra, Marte, Júpiter, Saturno, Urano e Neptuno. Aqui estão igualmente espaçados — mas no espaço <b>não é assim</b>.", f:S => {}},
+        {t:"Agora à <b>escala das distâncias</b>, em unidades astronómicas (UA). 1 UA é a distância média da Terra ao Sol.", f:S => {
+          PL.forEach((q, i) => S.mover("#pl"+i, "translate("+(q[1]*ESC)+"px,0px)")); S.mostrar("#regua"); S.esconder(".nome-int"); }},
+        {t:"Os 4 primeiros ficam todos muito perto do Sol: são os planetas <b>rochosos</b> (ou telúricos).", f:S => S.mostrar("#grupos")},
+        {t:"Entre Marte e Júpiter há a <b>cintura de asteroides</b>.", f:S => S.mostrar("#cintura")},
+        {t:"Depois vêm os planetas <b>gigantes</b>, cada vez mais afastados: Neptuno está a cerca de <b>30 UA</b> — 30 vezes mais longe do Sol do que a Terra. (Os tamanhos dos planetas não estão à escala.)", f:S => {}}
+      ]});
+  })();
+
+  /* ---------- q1: distâncias no Universo e o ano-luz ---------- */
+  (function(){
+    const MARCOS = [["🌙","Lua","≈ 1,3 segundos",80],["☀️","Sol","≈ 8 minutos",190],["✨","Proxima Centauri","≈ 4,2 anos",330],["🌌","atravessar a Via Láctea","≈ 100 000 anos",470]];
+    A.def({id:"ano-luz", mundo:"q1", cor:"m1", titulo:"Quanto tempo demora a luz a chegar?", w:560, h:230,
+      cena: () =>
+        t(30,120,"🌍",{fs:26})+l(46,112,530,112,{stroke:"var(--border)", sw:2, da:"4 4"})+
+        MARCOS.map((m, i) => g({id:"mc"+i, cls:"an-h an-pop"}, t(m[3],104,m[0],{fs:24})+t(m[3],140,m[1],{fs:9.5, fw:400})+t(m[3],158,m[2],{fs:11, fill:"var(--wc)"}))).join("")+
+        c(46,112,6,{id:"luz", cls:"an-move", fill:"#F3C23C", stroke:"#B07800", sw:1})+
+        g({id:"def", cls:"an-h"}, t(280,40,"A luz percorre ≈ 300 000 km em cada segundo.",{fs:12})+t(280,62,"1 ano-luz = a distância que a luz percorre num ano ≈ 9,5 biliões de km",{fs:11, fw:400}))+
+        t(280,205,"",{id:"nota", fs:11, fw:400}),
+    passos:[
+        {t:"A luz é a coisa mais rápida que existe: percorre cerca de <b>300 000 km por segundo</b>.", f:S => S.mostrar("#def")},
+        {t:"A luz da <b>Lua</b> chega-nos em pouco mais de <b>1 segundo</b>.", f:S => { S.mostrar("#mc0"); S.mover("#luz", "translate(34px,0px)"); }},
+        {t:"A luz do <b>Sol</b> demora cerca de <b>8 minutos</b>: vemos o Sol como ele era há 8 minutos!", f:S => { S.mostrar("#mc1"); S.mover("#luz", "translate(144px,0px)"); }},
+        {t:"Para distâncias tão grandes, usa-se o <b>ano-luz</b>: a distância que a luz percorre num ano. A estrela mais próxima depois do Sol está a cerca de <b>4,2 anos-luz</b>.", f:S => { S.mostrar("#mc2"); S.mover("#luz", "translate(284px,0px)"); }},
+        {t:"A nossa galáxia, a <b>Via Láctea</b>, tem cerca de <b>100 000 anos-luz</b> de uma ponta à outra.", f:S => { S.mostrar("#mc3"); S.mover("#luz", "translate(424px,0px)"); S.texto("#nota", "Atenção: o ano-luz é uma unidade de distância, não de tempo."); }}
+      ]});
+  })();
+
+  /* ---------- q6: massa volúmica — o mesmo volume, massas diferentes ---------- */
+  (function(){
+    const MAT = [["madeira",0.6,"#C99B4F"],["água",1.0,"#9CC3E6"],["alumínio",2.7,"#C9CDD2"],["ferro",7.9,"#7B7F86"]];
+    A.def({id:"massa-volumica", mundo:"q6", cor:"m6", titulo:"Massa volúmica: porque é que uns flutuam e outros não", w:560, h:240,
+      cena: () =>
+        MAT.map((m, i) => g({id:"cb"+i}, r(40+i*70,60,44,44,{rx:3, fill:m[2], stroke:"#3B372F", sw:1.5})+t(62+i*70,122,m[0],{fs:10.5})+
+          t(62+i*70,142,"",{id:"ro"+i, fs:11, fill:"var(--wc)"}))).join("")+
+        t(160,40,"todos com 1 cm³",{fs:11, fw:400})+
+        g({id:"tanque", cls:"an-h"}, r(330,70,200,130,{rx:6, fill:"var(--surface)", stroke:"currentColor", sw:2})+r(332,110,196,88,{fill:"#9CC3E6", op:0.6})+
+          r(355,94,36,30,{rx:3, fill:"#C99B4F", stroke:"#3B372F", sw:1.5})+t(373,86,"flutua",{fs:10})+
+          r(460,166,30,30,{rx:3, fill:"#7B7F86", stroke:"#3B372F", sw:1.5})+t(475,158,"afunda",{fs:10, fill:"#1F3550"})+t(430,222,"água: 1 g/cm³",{fs:10.5, fw:400}))+
+        t(160,200,"",{id:"form", fs:13}),
+      passos:[
+        {t:"Quatro cubos com o <b>mesmo volume</b> (1 cm³), de materiais diferentes. Terão a mesma massa?", f:S => {}},
+        {t:"Não! Cada material tem a sua <b>massa volúmica</b>: a massa de 1 cm³.", f:S => { MAT.forEach((m, i) => S.texto("#ro"+i, String(m[1]).replace(".", ",")+" g")); }},
+        {t:"<b>ρ = m ÷ V</b>. Para estes cubos, a massa volúmica é igual à massa: madeira 0,6 · água 1,0 · alumínio 2,7 · ferro 7,9 g/cm³.", f:S => S.texto("#form", "ρ = m ÷ V  (g/cm³)")},
+        {t:"Na água, o que tem massa volúmica <b>menor</b> do que 1 g/cm³ <b>flutua</b> (a madeira); o que tem <b>maior</b> <b>afunda</b> (o ferro).", f:S => S.mostrar("#tanque")},
+        {t:"A massa volúmica, o ponto de fusão e o ponto de ebulição são como a <b>impressão digital</b> de cada material: ajudam a identificá-lo.", f:S => {}}
+      ]});
+  })();
+
 })();
