@@ -7,7 +7,7 @@ const MissaoArmazem = (function(){
   const pendentes = new Map(), falhas = new Map(), emCurso = new Set();
   const diasPendentes = new Set();
   const lidos = new Map();
-  const CHAVES = ['pt_missions','math_missions','eng_missions','hgp_missions','cn_missions','cn7_missions','fin_missions','fq7_missions','arena','activity_log','banco_srs','banco_hoje','banco_hoje_7','mundos_vistos','ws_tab','ws_draft','ws_saved','ty_best','ty_count','ty_prefs','challenge_mode','curio_cards_off','active_subject','active_subject_7','home_year','home_intent','anim_narrar','caderno','cartoes','pais_relatorio','autoaval','pref_estudo','humor','plano','licoes'];
+  const CHAVES = ['pt_missions','math_missions','eng_missions','hgp_missions','cn_missions','cn7_missions','fin_missions','fq7_missions','arena','activity_log','banco_srs','banco_hoje','banco_hoje_7','mundos_vistos','ws_tab','ws_draft','ws_saved','ty_best','ty_count','ty_prefs','challenge_mode','curio_cards_off','active_subject','active_subject_7','home_year','home_intent','anim_narrar','caderno','cartoes','pais_relatorio','autoaval','pref_estudo','humor','plano','licoes','mat3_missions','active_subject_3','banco_hoje_3'];
   let disponivel = true, aviso = null, esperaDOM = false, retryTimer = null;
   // a normal save waits a few milliseconds for the lock: only a wait longer than this shows the warning
   const ESPERA_LONGA_MS = 2000;
@@ -219,7 +219,7 @@ const MissaoArmazem = (function(){
     return CHAVES.indexOf(k) !== -1 || /^(?:_estragado_|_antes_importar_)/.test(k) &&
       CHAVES.some(function(c){ const resto = k.replace(/^(?:_estragado_|_antes_importar_)/,''); return resto === c || resto.startsWith(c+'_') && /^\d+$/.test(resto.slice(c.length+1)); });
   }
-  const TEXTO = ['challenge_mode','curio_cards_off','active_subject','active_subject_7','home_year','home_intent','anim_narrar'];
+  const TEXTO = ['challenge_mode','curio_cards_off','active_subject','active_subject_7','active_subject_3','home_year','home_intent','anim_narrar'];
   function valorImportavel(k,raw){
     if(k.startsWith('_estragado_') || k.startsWith('_antes_importar_') || TEXTO.indexOf(k) !== -1) return true;
     let v; try{ v=JSON.parse(raw); }catch(e){ return false; }

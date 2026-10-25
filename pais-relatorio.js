@@ -64,7 +64,7 @@ window.addEventListener("load", function(){
     return out;
   }
   function dados(){
-    const subjects = MISSAO_SUBJECTS_6.concat(MISSAO_SUBJECTS_7);
+    const subjects = MISSAO_SUBJECTS_TODAS;
     const prog = subjects.map(s => {
       const st = MissaoArmazem.ler(s.store, {}) || {};
       let total = 0, feitas = 0;
@@ -144,7 +144,7 @@ window.addEventListener("load", function(){
   function painel(){
     const box = $("pais-painel"); if(!box) return;
     const D = dados();
-    const cartoes = MISSAO_SUBJECTS_6.concat(MISSAO_SUBJECTS_7).filter(s => s.worlds.length).map(s => {
+    const cartoes = MISSAO_SUBJECTS_TODAS.filter(s => s.worlds.length).map(s => {
       const st = MissaoArmazem.ler(s.store, {}) || {};
       let tot = 0, feitas = 0;
       const segs = s.worlds.map(w => { const f = w.missions.filter((m, i) => st[w.id+"-"+i]).length; tot += w.missions.length; feitas += f; return f === w.missions.length && f ? "ok" : f ? "meio" : ""; });
@@ -175,7 +175,7 @@ window.addEventListener("load", function(){
       '<h2>🎒 Percurso escolar</h2><p class="pp-legenda">Cada segmento é um mundo: verde = concluído, verde-claro = começado.</p><div class="pp-grid">'+cartoes+'</div>'+
       '<div class="pp-temas"><h2>💡 3 temas a reforçar com calma</h2><p class="pp-legenda">Calculados a partir das perguntas erradas, das dúvidas escritas no caderno e dos cartões por saber.</p>'+
         (temas ? '<ol>'+temas+'</ol>' : '<p>Ainda não há dificuldades registadas. Aparecem quando a criança erra perguntas, escreve uma dúvida no caderno ou treina cartões.</p>')+'</div>'+
-      '<div class="pp-temas"><h2>🧭 Missões guiadas</h2><p class="pp-legenda">Uma lição completa, um passo de cada vez (por agora: Comparar frações, no Mundo 2 de Matemática). Mostra se percebeu sem ajuda, que ajuda pediu e o que ficou dias depois. É uma observação, não uma avaliação.</p>'+
+      '<div class="pp-temas"><h2>🧭 Missões guiadas</h2><p class="pp-legenda">Uma lição completa, um passo de cada vez (por agora: «Comparar frações», no Mundo 2 de Matemática do 6.º ano, e «Partes iguais», no Mundo 5 do 3.º ano). Mostra se percebeu sem ajuda, que ajuda pediu e o que ficou dias depois. É uma observação, não uma avaliação.</p>'+
         (licoes ? '<ol>'+licoes+'</ol>' : '<p>Ainda não foi começada nenhuma.</p>')+'</div>'+
       '<div class="pp-dica"><p class="pp-sub">🌱 Dica da semana para a família</p><h4>'+esc(dica[0])+'</h4><p>'+esc(dica[1])+'</p></div>'+
       '<p class="pp-priv">🔒 Os dados ficam só neste aparelho. Não há contas, nem envio para terceiros.</p>';

@@ -4,7 +4,7 @@
 (function(){
   const $ = id => document.getElementById(id);
   const esc = s => String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
-  const SUBJ = MISSAO_SUBJECTS_6.concat(MISSAO_SUBJECTS_7);
+  const SUBJ = MISSAO_SUBJECTS_TODAS;
   const subj = k => SUBJ.find(s => s.key === k);
   const mundo = (k, wid) => { const s = subj(k); return s && s.worlds.find(w => w.id === wid); };
   const DIAS = ["segunda","terça","quarta","quinta","sexta","sábado","domingo"];

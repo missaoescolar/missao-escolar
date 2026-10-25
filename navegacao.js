@@ -115,11 +115,11 @@
   /* ---------- barra de baixo (telemóvel) e página atual ---------- */
   function montar(){
     const pag = (location.pathname.split("/").pop() || "index.html").toLowerCase();
-    const ano = lerTexto("home_year", "6") === "7" ? "7ano.html" : "6ano.html";
-    const mundos = /^[67]ano\.html$/.test(pag) ? pag : ano;
+    const ano = (["3", "7"].indexOf(lerTexto("home_year", "6")) !== -1 ? lerTexto("home_year", "6") : "6")+"ano.html";
+    const mundos = /^[367]ano\.html$/.test(pag) ? pag : ano;
     const itens = [
       ["index.html", "inicio", "Início", pag === "index.html"],
-      [mundos, "mundos", "Mundos", /^[67]ano\.html$/.test(pag)],
+      [mundos, "mundos", "Mundos", /^[367]ano\.html$/.test(pag)],
       ["caderno.html", "caderno", "Caderno", pag === "caderno.html"]
     ];
     const nav = document.createElement("nav");

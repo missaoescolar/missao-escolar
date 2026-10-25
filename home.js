@@ -9,7 +9,7 @@
   const P2 = [["Português","📖"],["Matemática","🔢"],["Inglês","🌐"],["HGP","📜"],["Ciências Naturais","🔬"]];
   const P3 = [["Português","📖"],["Matemática","🔢"],["Inglês","🌐"],["Francês ou Espanhol","🗣️"],["História","🏛️"],["Geografia","🗺️"],["Ciências Naturais","🔬"],["Físico-Química","⚗️"]];
   const YEARS = [
-    {y:"3", ciclo:"1.º ciclo", soon:P1}, {y:"4", ciclo:"1.º ciclo", soon:P1},
+    {y:"3", ciclo:"1.º ciclo", ready:true, list:MISSAO_SUBJECTS_3, soon:P1.filter(s => s[0] !== "Matemática")}, {y:"4", ciclo:"1.º ciclo", soon:P1},
     {y:"5", ciclo:"2.º ciclo", soon:P2}, {y:"6", ciclo:"2.º ciclo", ready:true, list:MISSAO_SUBJECTS_6},
     {y:"7", ciclo:"3.º ciclo", ready:true, list:MISSAO_SUBJECTS_7, soon:P3.filter(s => s[0] !== "Ciências Naturais" && s[0] !== "Físico-Química")},
     {y:"8", ciclo:"3.º ciclo", soon:P3}, {y:"9", ciclo:"3.º ciclo", soon:P3}
@@ -137,7 +137,7 @@
     // year cards (layout «Caderno Vivo»): cycle, year, the subjects it has, and one clear button
     yearPick.innerHTML = '<div class="year-tabs year-cards">'+READY.map(Y =>
       '<button type="button" class="year-tab year-card'+(Y.y===year ? ' active' : '')+'" data-year="'+Y.y+'" aria-pressed="'+(Y.y===year)+'">'+
-        '<span class="yc-ciclo">'+(Number(Y.y) <= 6 ? '2.º ciclo' : '3.º ciclo')+(Y.y===year ? ' · o teu ano' : '')+'</span>'+
+        '<span class="yc-ciclo">'+Y.ciclo+(Y.y===year ? ' · o teu ano' : '')+'</span>'+
         '<span class="yc-ano">'+Y.y+'.º ano</span>'+
         '<span class="yc-disc">'+Y.list.map(s => '<i>'+esc(s.name)+'</i>').join("")+'</span>'+
         '<span class="yc-go">Entrar no '+Y.y+'.º ano →</span></button>').join("")+'</div>'+

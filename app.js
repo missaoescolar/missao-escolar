@@ -1087,7 +1087,7 @@
     if(im.act) return im.act;
     if(im.m) return ATIVIDADES.micro;
     if(wid === "c9") return ATIVIDADES.socorros;
-    const disc = {c:"ciencias", g:"ciencias", m:"historia", n:"matematica", p:"portugues", e:"ingles"}[String(wid).charAt(0)] || "ciencias";
+    const disc = {c:"ciencias", g:"ciencias", m:"historia", n:"matematica", t:"matematica", p:"portugues", e:"ingles"}[String(wid).charAt(0)] || "ciencias";
     if(im.il && disc === "ciencias") return ATIVIDADES.ilustracao;
     return ATIVIDADES[disc];
   }
@@ -1097,7 +1097,7 @@
   function buildMetodo(w, key){
     let titulo, origem, corpo;
     const cmp = w.compare ? [semIcone(w.compare.left.title), semIcone(w.compare.right.title)] : null;
-    if(key === "math"){
+    if(key === "math" || key === "mat3"){
       titulo = "🧠 Pensa como um matemático"; origem = "a resolução de problemas das aulas de Matemática no Japão";
       const ex = (w.posters || [])[0];
       corpo = '<p><b>Problema:</b> '+(ex ? 'o «'+escXml(semIcone(ex.title))+'», no 📖 Aprender. Tapa a resolução.' : 'a pergunta do Testa-te que achaste mais difícil.')+'</p>'+

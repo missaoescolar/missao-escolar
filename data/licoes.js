@@ -67,5 +67,71 @@ const MISSAO_LICOES = [
        q:"Não há resposta errada: serve para saberes o que te ajuda.",
        opts:["📏 Desenhar barras do mesmo comprimento", "🔢 Pôr o mesmo denominador", "👀 Olhar para os numeradores ou para os denominadores", "💡 Pedir a pista"]}
     ]
+  },
+  {
+    // 3.º ano (AE de Matemática 2021): frações unitárias, comparar com o mesmo numerador ou o mesmo denominador,
+    // fração de uma quantidade e frações equivalentes simples. Só numeradores 1 nas perguntas geradas.
+    id:"t5-partes", mundo:"t5", icon:"🍕", min:10, unitarias:true, dens:[2,3,4,5,6,8,10], casos:["mesmoNum","mesmoDen"],
+    titulo:"Partes iguais",
+    resumo:"Metade, terço, quarto: qual é maior? Desenhos, um exemplo resolvido, perguntas com ajuda e uma revisão daqui a uns dias.",
+    objetivos:["dizer o nome de uma fração (metade, terço, quarto…);","dizer qual de duas frações é maior;","encontrar a fração de uma quantidade."],
+    ecras:[
+      {etapa:"missao", tipo:"texto", titulo:"🚩 A tua missão", botao:"Começar →",
+       html:"<p>Duas pizas iguais. Uma é dividida por 2 amigos e a outra por 3 amigos, sempre em partes iguais.</p><p><b>Em que piza cada amigo come mais?</b></p>",
+       ver:{pizas:[[1,2],[1,3]]},
+       depois:"<p>No fim desta missão vais conseguir:</p><ul class=\"lic-check\"><li>dizer o nome de uma fração;</li><li>dizer qual de duas frações é maior;</li><li>encontrar a fração de um grupo de coisas.</li></ul>"},
+
+      {etapa:"compreender", tipo:"texto", titulo:"📖 Partes iguais têm nome",
+       html:"<p>Quando se divide um todo em partes <b>iguais</b>, cada parte tem um nome: [1/2] é um meio (metade), [1/3] é um terço e [1/4] é um quarto.</p><p>O número de baixo diz em quantas partes se dividiu. O número de cima diz quantas partes contamos.</p>",
+       ver:{barras:[[1,2],[1,3],[1,4]], marca:true},
+       depois:"<p class=\"lic-conclusao\">Quanto <b>mais</b> partes, <b>mais pequena</b> é cada parte: [1/2] &gt; [1/3] &gt; [1/4]. Na piza dos 2 amigos, cada um come mais.</p>"},
+      {etapa:"compreender", tipo:"texto", titulo:"📖 Partes do mesmo tamanho: conta-as",
+       html:"<p>Em [2/4] e [3/4], as partes são todas quartos, por isso têm o mesmo tamanho. Basta contar: 3 partes é mais do que 2.</p>",
+       ver:{barras:[[2,4],[3,4]], marca:true},
+       depois:"<p class=\"lic-conclusao\">Partes do mesmo tamanho: ganha quem tem mais partes. [3/4] &gt; [2/4].</p>"},
+      {etapa:"compreender", tipo:"exemplo", titulo:"✏️ Exemplo resolvido: [1/2] é o mesmo que [2/4]",
+       q:"Pintas metade de uma barra. Depois cortas cada parte ao meio. Que fração está pintada?",
+       passos:[
+         {t:"Pinta metade: [1/2].", ver:{barras:[[1,2]]}},
+         {t:"Corta cada metade ao meio: agora há 4 partes e 2 estão pintadas.", ver:{barras:[[1,2]], sub:4}},
+         {t:"Está pintado [2/4]. A parte pintada não mudou de tamanho: [1/2] = [2/4]."}
+       ],
+       conclusao:"Frações que valem o mesmo chamam-se <b>frações equivalentes</b>."},
+
+      {etapa:"experimentar", tipo:"comparar", a:[1,4], b:[1,2],
+       ctx:"Uma piza foi cortada em 4 partes iguais e outra, igual, em 2. Qual é maior: {A} ou {B} de piza?"},
+      {etapa:"experimentar", tipo:"comparar", a:[2,5], b:[4,5]},
+      {etapa:"experimentar", tipo:"escolha", caso:"equivalentes",
+       q:"Qual destas frações é igual a [1/2]?",
+       opts:["[2/4]", "[1/4]", "[2/2]"], correct:0,
+       erros:{1:"[1/4] é só um quarto, metade de metade. Repara nas barras: [1/4] é mais curto do que [1/2].", 2:"[2/2] são as duas metades: é a piza inteira!"},
+       ver:{barras:[[1,2],[2,4]], marca:true},
+       porque:"Se cortares cada metade ao meio, [1/2] fica [2/4]: 4 partes e 2 pintadas.",
+       irma:{q:"Qual destas frações é igual a [1/3]?", caso:"equivalentes", opts:["[2/6]", "[1/6]", "[3/3]"], correct:0,
+         ver:{barras:[[1,3],[2,6]], marca:true},
+         porque:"Se cortares cada terço ao meio, [1/3] fica [2/6]: 6 partes e 2 pintadas."}},
+
+      {etapa:"sozinho", tipo:"comparar", a:[1,5], b:[1,3]},
+      {etapa:"sozinho", tipo:"comparar", a:[3,8], b:[5,8]},
+      {etapa:"sozinho", tipo:"escolha", caso:"quantidade",
+       q:"Quanto é [1/4] de 12 cromos?",
+       opts:["3", "4", "48"], correct:0,
+       erros:{1:"O 4 é o número de partes, não o que fica em cada parte. Divide os 12 cromos em 4 montes iguais: quantos ficam em cada monte?", 2:"48 é 12 × 4. Mas [1/4] é uma das 4 partes iguais: divide, não multiplica."},
+       porque:"12 ÷ 4 = 3: cada quarto tem 3 cromos.",
+       irma:{q:"Quanto é [1/3] de 15 berlindes?", caso:"quantidade", opts:["5", "3", "45"], correct:0,
+         porque:"15 ÷ 3 = 5: cada terço tem 5 berlindes."}},
+      {etapa:"sozinho", tipo:"comparar", a:[1,6], b:[1,4], nomes:["O Rui","A Ana"], iguais:"Comeram o mesmo",
+       ctx:"Duas tabletes de chocolate iguais. O Rui comeu {A} da tablete dele e a Ana comeu {B} da dela. Quem comeu mais?"},
+
+      {etapa:"consolidar", tipo:"frase", titulo:"✅ O que descobri?",
+       q:"Qual destas frases explica melhor o que descobriste?",
+       opts:["Quanto mais partes iguais se fazem no mesmo todo, mais pequena é cada parte. Com partes do mesmo tamanho, é maior a fração que tem mais partes.",
+             "A fração com o número de baixo maior é sempre a maior.",
+             "As partes de uma fração não precisam de ser iguais."],
+       porque:"[1/8] tem o número de baixo maior e é mais pequena do que [1/2]. E uma fração só existe com partes iguais."},
+      {etapa:"consolidar", tipo:"estrategia", titulo:"🧠 O que te ajudou mais?",
+       q:"Não há resposta errada: serve para saberes o que te ajuda.",
+       opts:["📏 Desenhar barras", "🍕 Imaginar pizas", "🔢 Olhar para os números de cima e de baixo", "💡 Pedir a pista"]}
+    ]
   }
 ];

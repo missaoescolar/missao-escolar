@@ -44,7 +44,7 @@ const MissaoLicao = (function(){
   function frFala(f){ const n = NOMES[f[1]]; return n ? (f[0] === 1 ? (f[1] === 2 ? "um meio" : "um "+n[0]) : f[0]+" "+n[1]) : f[0]+" sobre "+f[1]; }
   function cmp(a, b){ return a[0]*b[1] - b[0]*a[1]; }
   function caso(a, b){ return a[0] === b[0] ? "mesmoNum" : a[1] === b[1] ? "mesmoDen" : "diferentes"; }
-  const CASOS = {mesmoNum:"comparar frações com o mesmo numerador", mesmoDen:"comparar frações com o mesmo denominador", diferentes:"comparar frações com denominadores diferentes", ordenar:"pôr frações por ordem"};
+  const CASOS = {mesmoNum:"comparar frações com o mesmo numerador", mesmoDen:"comparar frações com o mesmo denominador", diferentes:"comparar frações com denominadores diferentes", ordenar:"pôr frações por ordem", equivalentes:"encontrar frações equivalentes", quantidade:"calcular a fração de uma quantidade"};
   // fala: texto com 2/3 escrito como «2 terços»
   function semFracoes(html){
     return html.replace(/<svg[\s\S]*?<\/svg>/g, " ").replace(/<span class="lic-fr"[^>]*aria-label="([^"]+)"[^>]*>.*?<\/span>/g, " $1 ")
@@ -86,8 +86,9 @@ const MissaoLicao = (function(){
 
   /* ---------- perguntas «comparar duas frações»: opções, diagnóstico do erro, resolução e perguntas parecidas ---------- */
   const PARES = {
-    mesmoNum: () => { const n = sorteia([1,1,2,3]); const ds = baralha([3,4,5,6,7,8,9,10].filter(d => d > n)).slice(0,2); return [[n, ds[0]], [n, ds[1]]]; },
-    mesmoDen: () => { const d = sorteia([5,6,7,8,9,10,12]); const ns = baralha(Array.from({length:d-1}, (_, i) => i+1)).slice(0,2); return [[ns[0], d], [ns[1], d]]; },
+    // o = a lição: unitarias (só numerador 1, para o 1.º ciclo) e dens (denominadores permitidos)
+    mesmoNum: o => { o = o || {}; const n = o.unitarias ? 1 : sorteia([1,1,2,3]); const ds = baralha((o.dens || [3,4,5,6,7,8,9,10]).filter(d => d > n && d > 1)).slice(0,2); return [[n, ds[0]], [n, ds[1]]]; },
+    mesmoDen: o => { o = o || {}; const d = sorteia((o.dens || [5,6,7,8,9,10,12]).filter(x => x >= 3)); const ns = baralha(Array.from({length:d-1}, (_, i) => i+1)).slice(0,2); return [[ns[0], d], [ns[1], d]]; },
     diferentes: () => baralha(sorteia([[[2,3],[3,4]],[[3,5],[2,3]],[[4,5],[7,10]],[[5,6],[7,12]],[[2,3],[5,9]],[[1,2],[4,9]],[[3,4],[5,6]],[[3,8],[1,4]],[[2,5],[3,10]],[[5,8],[3,4]],[[1,3],[2,9]],[[7,10],[3,5]]]))
   };
   function opcoesComparar(p){
@@ -127,8 +128,8 @@ const MissaoLicao = (function(){
     if(lado[0] > outro[0] || lado[1] > outro[1]) return 'Parece que comparaste os números de cima ou de baixo como se fossem números inteiros. Uma fração é uma parte de um todo: para comparar, as partes têm de ter o mesmo tamanho.';
     return 'Para comparar frações com denominadores diferentes, primeiro corta as duas em partes do mesmo tamanho.';
   }
-  function parecida(p){
-    const par = PARES[caso(p.a, p.b)]();
+  function parecida(p, L){
+    const par = PARES[caso(p.a, p.b)](L);
     const q = Object.assign({}, p, {a:par[0], b:par[1], _irma:true});
     // um contexto com números escritos («partida em 8 pedaços») não serve para outras frações: fica a pergunta simples
     if(q.ctx && /\d/.test(q.ctx.replace(/\{[AB]\}/g, ""))){ delete q.ctx; delete q.nomes; }
@@ -149,7 +150,7 @@ const MissaoLicao = (function(){
     }
     const rev = modo === "revisao";
     // a lista de ecrãs: a lição inteira, ou 3 perguntas de revisão (uma de cada caso)
-    const ecras = rev ? baralha(["mesmoNum","mesmoDen","diferentes"]).map(k => { const par = PARES[k](); return {etapa:"sozinho", tipo:"comparar", a:par[0], b:par[1]}; }) : L.ecras;
+    const ecras = rev ? baralha(L.casos || ["mesmoNum","mesmoDen","diferentes"]).map(k => { const par = PARES[k](L); return {etapa:"sozinho", tipo:"comparar", a:par[0], b:par[1]}; }) : L.ecras;
     const st0 = estado(L.id) || {};
     let pos = !rev && st0.pos && !st0.fimRun ? Math.min(st0.pos, ecras.length) : 0;
     const run = {pistas:0, erros:0, recuperados:0, porRecuperar:0, casos:{}, certas:0, total:0};
@@ -313,7 +314,7 @@ const MissaoLicao = (function(){
         const diag = comparar ? diagnostico(Q, i) : ((Q.erros && Q.erros[i]) || Q.porque);
         fb.innerHTML = '<b>Vamos ver de outra forma.</b> '+diag+(comparar ? desenhoComparar(Q) : ver(Q.ver));
         fb.classList.add("on", "outra-forma");
-        const irma = comparar ? parecida(Q) : Q.irma && Object.assign({etapa:etapa}, Q.irma);
+        const irma = comparar ? parecida(Q, L) : Q.irma && Object.assign({etapa:etapa}, Q.irma);
         if(irma){
           const t = el("button", "cta", "🔁 Experimentar uma parecida"); t.type = "button";
           t.addEventListener("click", () => {

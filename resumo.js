@@ -2,7 +2,7 @@
    resumo.html          → índice de todos os mundos
    resumo.html?w=<id>   → página-resumo de um mundo (ex.: ?w=m1, ?w=n3, ?w=c7, ?w=e2) */
 (function(){
-  const SUBJECTS = MISSAO_SUBJECTS_6.concat(MISSAO_SUBJECTS_7); // from shared.js — every year that is ready
+  const SUBJECTS = MISSAO_SUBJECTS_TODAS; // from shared.js — every year that is ready
   const LETTERS = ["A","B","C","D","E"];
 
   function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }

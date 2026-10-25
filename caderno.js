@@ -3,7 +3,7 @@
   function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
   const caderno = MissaoArmazem.ler("caderno", {}) || {};
   const PERG = [["a","O que aprendi"],["b","O que ainda não percebi bem"],["c","O que quero saber a seguir"],["r","📍 Na minha região"]];
-  const anos = [["6", MISSAO_SUBJECTS_6], ["7", MISSAO_SUBJECTS_7]];
+  const anos = [["3", MISSAO_SUBJECTS_3], ["6", MISSAO_SUBJECTS_6], ["7", MISSAO_SUBJECTS_7]];
   let html = "", total = 0;
   anos.forEach(function(par){
     par[1].forEach(function(s, i){
@@ -22,7 +22,7 @@
   });
   /* 📊 where there is most difficulty (dificuldades.js), for the child and the parents */
   const difBox = document.getElementById("cad-dif");
-  const dif = (typeof MissaoDificuldades !== "undefined") ? MissaoDificuldades.analisar(MISSAO_SUBJECTS_6.concat(MISSAO_SUBJECTS_7)).slice(0, 6) : [];
+  const dif = (typeof MissaoDificuldades !== "undefined") ? MissaoDificuldades.analisar(MISSAO_SUBJECTS_TODAS).slice(0, 6) : [];
   if(difBox){
     difBox.innerHTML = '<h2>💡 Temas a reforçar</h2>'+(dif.length
       ? '<p>Calculado a partir das perguntas erradas, das dúvidas escritas no caderno e dos cartões por saber. Começa pelo primeiro.</p><ol>'+

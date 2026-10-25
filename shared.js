@@ -24,9 +24,15 @@ const MISSAO_SUBJECTS_7 = [
   {key:"cn7", name:"Ciências Naturais", ano:"7", icon:"🔬", store:"cn7_missions", page:"7ano.html", worlds: typeof CN7_WORLDS !== "undefined" ? CN7_WORLDS : []},
   {key:"fq7", name:"Físico-Química", ano:"7", icon:"⚗️", store:"fq7_missions", page:"7ano.html", worlds: typeof FQ7_WORLDS !== "undefined" ? FQ7_WORLDS : []}
 ];
+/* Matemática do 3.º ano (1.º ciclo): a primeira disciplina deste ano; as outras ainda estão em preparação. */
+const MISSAO_SUBJECTS_3 = [
+  {key:"mat3", name:"Matemática", ano:"3", icon:"🔢", store:"mat3_missions", page:"3ano.html", worlds: typeof MAT3_WORLDS !== "undefined" ? MAT3_WORLDS : []}
+];
+/* every year that is ready, for the pages that show everything (caderno, plano, resumos, área familiar) */
+const MISSAO_SUBJECTS_TODAS = MISSAO_SUBJECTS_6.concat(MISSAO_SUBJECTS_7, MISSAO_SUBJECTS_3);
 /* Each year page says which year it is (var MISSAO_ANO = "7" before the scripts); without it, it is the 6.º ano. */
 const MISSAO_ANO_ATUAL = (typeof MISSAO_ANO !== "undefined") ? String(MISSAO_ANO) : "6";
-const MISSAO_SUBJECTS = MISSAO_ANO_ATUAL === "7" ? MISSAO_SUBJECTS_7 : MISSAO_SUBJECTS_6;
+const MISSAO_SUBJECTS = MISSAO_ANO_ATUAL === "7" ? MISSAO_SUBJECTS_7 : MISSAO_ANO_ATUAL === "3" ? MISSAO_SUBJECTS_3 : MISSAO_SUBJECTS_6;
 
 /* Fontes com pesquisa por link (testadas num browser). lang: língua do site. */
 const FONTES = {
