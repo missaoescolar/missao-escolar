@@ -357,4 +357,122 @@
       ]});
   })();
 
+
+  /* ---------- Português p4, p6, p7, p8, p9, p10 (exemplos originais) ---------- */
+  (function(){
+    const bloco = (id, x, y, w, txt, cor, extra) => g(Object.assign({id:id, cls:"an-move"}, extra || {}), r(x,y,w,30,{rx:4, fill:cor || "var(--surface)", stroke:"currentColor", sw:1.5})+t(x+w/2,y+20,txt,{fs:12.5}));
+
+    /* p7 — o texto dramático */
+    A.def({id:"dramatico", mundo:"p7", cor:"m7", titulo:"O texto dramático: falas, didascálias e cenas", w:540, h:250,
+      cena: () =>
+        r(20,14,330,226,{rx:6, fill:"#FBF7F0", stroke:"currentColor", sw:1.5})+
+        t(185,36,"CENA I",{id:"c1", fs:13})+
+        t(32,60,"(Uma cozinha, de manhã. O TIAGO procura qualquer coisa.)",{id:"d1", fs:10, fw:400, ta:"start", "font-style":"italic"})+
+        t(32,86,"TIAGO — Onde está a minha mochila?",{id:"f1", fs:11.5, fw:400, ta:"start"})+
+        t(32,108,"AVÓ (a rir-se) — No sítio onde a deixaste!",{id:"f2", fs:11.5, fw:400, ta:"start"})+
+        g({id:"cena2", cls:"an-h"}, t(185,138,"CENA II",{fs:13})+t(32,160,"(Entra a MÃE, com a mochila na mão.)",{fs:10, fw:400, ta:"start", "font-style":"italic"})+
+          t(32,186,"MÃE — Estava na sala, ao pé do sofá.",{fs:11.5, fw:400, ta:"start"})+
+          t(32,212,"TIAGO (para o público) — Eu sabia!",{id:"aparte", fs:11.5, fw:400, ta:"start"}))+
+        g({id:"lb1", cls:"an-h"}, t(440,80,"texto principal:",{fs:11, fill:"#2E5DA8"})+t(440,96,"as falas, com o nome",{fs:10, fw:400})+t(440,110,"de quem fala",{fs:10, fw:400}))+
+        g({id:"lb2", cls:"an-h"}, t(440,140,"texto secundário:",{fs:11, fill:"#3E8F5C"})+t(440,156,"as didascálias, entre",{fs:10, fw:400})+t(440,170,"parênteses e em itálico",{fs:10, fw:400}))+
+        g({id:"lb3", cls:"an-h"}, t(440,200,"nova cena: entra ou",{fs:10.5, fill:"var(--wc)"})+t(440,214,"sai uma personagem",{fs:10.5, fill:"var(--wc)"}))+
+        g({id:"lb4", cls:"an-h"}, t(440,236,"aparte: só o público ouve",{fs:10.5, fill:"#B5651D"})),
+      passos:[
+        {t:"O texto dramático é escrito para ser <b>representado</b>. Não há narrador: as personagens falam.", f:S => {}},
+        {t:"O <b>texto principal</b> são as <b>falas</b>. Cada fala começa pelo <b>nome</b> da personagem.", f:S => { S.attr("#f1", "fill", "#2E5DA8"); S.attr("#f2", "fill", "#2E5DA8"); S.mostrar("#lb1"); }},
+        {t:"O <b>texto secundário</b> são as <b>didascálias</b>: indicam o cenário, os gestos e o tom de voz. Não se dizem em voz alta.", f:S => { S.attr("#d1", "fill", "#3E8F5C"); S.mostrar("#lb2"); }},
+        {t:"Quando <b>entra ou sai</b> uma personagem, começa uma <b>nova cena</b>. Várias cenas formam um <b>ato</b>.", f:S => { S.mostrar(["#cena2","#lb3"]); }},
+        {t:"Um <b>aparte</b> é uma fala dita para o público: as outras personagens fingem que não ouvem.", f:S => { S.attr("#aparte", "fill", "#B5651D"); S.mostrar("#lb4"); }}
+      ]});
+
+    /* p6 — verso, estrofe e rima */
+    const QUADRA = [["O gato sobe ao telhado,","A"],["a lua vem espreitar,","B"],["fica o gato encantado,","A"],["põe-se a lua a cantar.","B"]];
+    A.def({id:"rima", mundo:"p6", cor:"m6", titulo:"Verso, estrofe e rima", w:500, h:240,
+      cena: () =>
+        QUADRA.map((v, i) => t(60,62+i*34,v[0],{id:"v"+i, fs:15, fw:400, ta:"start"})+t(330,62+i*34,v[1],{id:"r"+i, cls:"an-h an-pop", fs:16, fill:v[1] === "A" ? "#C7461F" : "#2E5DA8"})+
+          t(40,62+i*34,(i+1)+".",{id:"n"+i, cls:"an-h", fs:11, ta:"end"})).join("")+
+        r(30,36,320,138,{id:"estrofe", cls:"an-h", rx:10, fill:"none", stroke:"var(--wc)", sw:2, da:"6 4"})+
+        t(425,90,"",{id:"tipo", fs:13})+t(250,196,"",{id:"tipo2", fs:11, fw:400})+
+        t(250,222,"",{id:"recurso", fs:12}),
+      passos:[
+        {t:"Cada linha de um poema é um <b>verso</b>. Este poema tem 4 versos.", f:S => [0,1,2,3].forEach(i => S.mostrar("#n"+i))},
+        {t:"Um conjunto de versos é uma <b>estrofe</b>. Uma estrofe de 4 versos chama-se <b>quadra</b>.", f:S => { S.mostrar("#estrofe"); S.texto("#tipo", "quadra"); S.texto("#tipo2", "4 versos"); }},
+        {t:"A <b>rima</b> é a semelhança de sons no fim dos versos: «telh<b>ado</b>» e «encant<b>ado</b>» rimam — damos-lhes a letra <b>A</b>.", f:S => { S.mostrar(["#r0","#r2"]); }},
+        {t:"«espreit<b>ar</b>» e «cant<b>ar</b>» também rimam: letra <b>B</b>. O esquema A B A B chama-se <b>rima cruzada</b>.", f:S => { S.mostrar(["#r1","#r3"]); S.texto("#tipo", "rima cruzada"); S.texto("#tipo2", "A B A B"); }},
+        {t:"Outros esquemas: <b>emparelhada</b> (A A B B) e <b>interpolada</b> (A B B A).", f:S => { S.texto("#tipo2", "outros esquemas: A A B B (emparelhada) · A B B A (interpolada)"); }},
+        {t:"E há um recurso expressivo: a lua «vem espreitar» e «canta», como se fosse uma pessoa. É uma <b>personificação</b>.", f:S => { S.attr("#v1", "fill", "#3E8F5C"); S.attr("#v3", "fill", "#3E8F5C"); S.texto("#recurso", "personificação: a lua espreita e canta"); }}
+      ]});
+
+    /* p8 — formação de palavras (blocos que se encaixam) */
+    A.def({id:"formar-palavras", mundo:"p8", cor:"m8", titulo:"Formar palavras: derivação e composição", w:520, h:250,
+      cena: () =>
+        t(260,30,"derivação: radical + afixos",{id:"tit", fs:13})+
+        bloco("pre",30,60,50,"in","#F3C2A8")+bloco("rad",220,60,70,"feliz","#E8D6B8")+bloco("suf",420,60,70,"mente","#BFD9EC")+
+        t(260,120,"",{id:"res1", fs:14})+
+        g({id:"comp", cls:"an-h"}, t(260,150,"composição: palavra + palavra",{fs:13})+
+          bloco("c1",60,170,70,"guarda","#D7E8C9")+bloco("c2",300,170,70,"chuva","#D7E8C9")+t(260,232,"",{id:"res2", fs:14})),
+      passos:[
+        {t:"O <b>radical</b> é a parte da palavra que tem o significado principal: <b>feliz</b>.", f:S => {}},
+        {t:"Um <b>prefixo</b> junta-se <b>antes</b> do radical: <b>in</b> + feliz = <b>infeliz</b> (o contrário).", f:S => { S.mover("#pre", "translate(140px,0px)"); S.texto("#res1", "infeliz"); }},
+        {t:"Um <b>sufixo</b> junta-se <b>depois</b>: feliz + <b>mente</b> = <b>felizmente</b>. Formar palavras assim chama-se <b>derivação</b>.", f:S => { S.mover("#pre", "translate(0px,0px)"); S.mover("#suf", "translate(-130px,0px)"); S.texto("#res1", "felizmente"); }},
+        {t:"Na <b>composição</b> juntam-se duas palavras inteiras: <b>guarda</b> + <b>chuva</b> = <b>guarda-chuva</b>.", f:S => { S.mostrar("#comp"); S.mover("#c1", "translate(98px,0px)"); S.mover("#c2", "translate(-72px,0px)"); S.texto("#res2", "guarda-chuva"); }},
+        {t:"Às vezes juntam-se sem hífen: gira + sol = <b>girassol</b> (com dois «s», para soar «ss»).", f:S => S.texto("#res2", "guarda-chuva · girassol · passatempo")}
+      ]});
+
+    /* p4 — voz ativa e voz passiva */
+    A.def({id:"voz-passiva", mundo:"p4", cor:"m4", titulo:"Da voz ativa para a voz passiva", w:540, h:240,
+      cena: () =>
+        t(270,30,"voz ativa: o sujeito pratica a ação",{id:"tit", fs:13})+
+        bloco("suj",40,70,110,"O gato","#BFD9EC")+bloco("ver",160,70,110,"comeu","#F3C2A8")+bloco("cd",280,70,110,"o peixe.","#D7E8C9")+
+        g({id:"lbl", cls:"an-h"}, t(95,124,"sujeito",{fs:10.5, fw:400})+t(215,124,"verbo",{fs:10.5, fw:400})+t(335,124,"complemento direto",{fs:10.5, fw:400}))+
+        g({id:"pas", cls:"an-h"}, bloco("ser",160,160,110,"foi comido","#F3C2A8")+bloco("ag",400,160,110,"pelo gato.","#BFD9EC"))+
+        t(270,225,"",{id:"nota", fs:11.5, fw:400}),
+      passos:[
+        {t:"Na <b>voz ativa</b>, o sujeito <b>pratica</b> a ação: «O gato comeu o peixe.»", f:S => S.mostrar("#lbl")},
+        {t:"Para passar à <b>voz passiva</b>, o <b>complemento direto</b> («o peixe») passa a ser o <b>sujeito</b>.", f:S => { S.esconder("#lbl"); S.mover("#cd", "translate(-240px,90px)"); S.texto("#tit", "voz passiva: o sujeito sofre a ação"); }},
+        {t:"O verbo passa a usar <b>ser</b> + particípio: «comeu» → «<b>foi comido</b>» (mesmo tempo: pretérito perfeito).", f:S => { S.esconder("#ver"); S.mostrar("#pas"); S.esconder("#ag"); }},
+        {t:"Quem praticou a ação aparece no fim, com «<b>por</b>/<b>pelo</b>»: é o <b>complemento agente da passiva</b>.", f:S => { S.esconder("#suj"); S.mostrar("#ag"); }},
+        {t:"Resultado: «O peixe foi comido pelo gato.» O significado é o mesmo; muda o que fica em destaque.", f:S => S.texto("#nota", "Ativa: O gato comeu o peixe. → Passiva: O peixe foi comido pelo gato.")}
+      ]});
+
+    /* p9 — o narrador: participante ou não participante */
+    A.def({id:"narrador", mundo:"p9", cor:"m9", titulo:"Quem conta a história? O narrador", w:540, h:240,
+      cena: () =>
+        g({id:"n1"}, r(20,40,240,150,{rx:8, fill:"var(--surface)", stroke:"#2E5DA8", sw:2})+t(140,62,"narrador participante",{fs:12, fill:"#2E5DA8"})+
+          t(32,92,"Abri a porta devagar.",{fs:11.5, fw:400, ta:"start"})+t(32,114,"Lá dentro, o meu cão",{fs:11.5, fw:400, ta:"start"})+t(32,136,"esperava por mim.",{fs:11.5, fw:400, ta:"start"})+
+          t(140,176,"",{id:"p1", fs:11, fill:"#2E5DA8"}))+
+        g({id:"n3", cls:"an-h"}, r(280,40,240,150,{rx:8, fill:"var(--surface)", stroke:"#B5651D", sw:2})+t(400,62,"narrador não participante",{fs:12, fill:"#B5651D"})+
+          t(292,92,"A Rita abriu a porta",{fs:11.5, fw:400, ta:"start"})+t(292,114,"devagar. Lá dentro, o cão",{fs:11.5, fw:400, ta:"start"})+t(292,136,"esperava por ela.",{fs:11.5, fw:400, ta:"start"})+
+          t(400,176,"",{id:"p3", fs:11, fill:"#B5651D"}))+
+        t(270,220,"",{id:"nota", fs:11.5, fw:400}),
+      passos:[
+        {t:"Numa narrativa, quem conta a história é o <b>narrador</b>. Aqui, quem conta também entra na história.", f:S => {}},
+        {t:"Repara nas palavras «<b>abri</b>», «<b>meu</b>», «<b>mim</b>»: é a <b>1.ª pessoa</b>. É um <b>narrador participante</b>.", f:S => S.texto("#p1", "1.ª pessoa: eu, meu, mim")},
+        {t:"A mesma história contada de fora: «A Rita <b>abriu</b>… por <b>ela</b>.» É a <b>3.ª pessoa</b>.", f:S => S.mostrar("#n3")},
+        {t:"Quem conta não entra na história: é um <b>narrador não participante</b>.", f:S => S.texto("#p3", "3.ª pessoa: ele, ela, a Rita")},
+        {t:"Para descobrir o narrador de um livro, procura os verbos e os pronomes: «eu» ou «ele/ela»?", f:S => S.texto("#nota", "Pergunta-te: quem conta faz parte da história?")}
+      ]});
+
+    /* p10 — a notícia: lead e pirâmide invertida (notícia inventada) */
+    A.def({id:"noticia", mundo:"p10", cor:"m6", titulo:"Como se constrói uma notícia", w:560, h:250,
+      cena: () =>
+        r(20,14,330,226,{rx:6, fill:"#FBF7F0", stroke:"currentColor", sw:1.5})+
+        t(185,40,"Escola de Vila Nova inaugura horta",{id:"tit", fs:14})+
+        t(32,70,"Os alunos do 6.º ano da Escola de Vila Nova",{id:"l1", fs:10.5, fw:400, ta:"start"})+
+        t(32,86,"inauguraram ontem, no recreio, uma horta",{id:"l2", fs:10.5, fw:400, ta:"start"})+
+        t(32,102,"com 20 canteiros de legumes e ervas.",{id:"l3", fs:10.5, fw:400, ta:"start"})+
+        g({id:"corpo", cls:"an-h"}, t(32,132,"A ideia nasceu nas aulas de Ciências. Os",{fs:10, fw:400, ta:"start"})+t(32,147,"legumes vão para a cantina. A professora",{fs:10, fw:400, ta:"start"})+
+          t(32,162,"Ana Lopes conta que todos ajudaram a regar.",{fs:10, fw:400, ta:"start"})+t(32,187,"No verão, as famílias vão cuidar da horta.",{fs:10, fw:400, ta:"start"}))+
+        g({id:"perg", cls:"an-h"}, t(450,60,"o lead responde a:",{fs:11.5})+t(450,82,"quem? os alunos do 6.º ano",{fs:10, fw:400})+t(450,98,"o quê? inauguraram uma horta",{fs:10, fw:400})+
+          t(450,114,"quando? ontem",{fs:10, fw:400})+t(450,130,"onde? no recreio da escola",{fs:10, fw:400}))+
+        g({id:"piramide", cls:"an-h"}, p("M380,160 h140 l-70,70 z",{fill:"#E8D6B8", stroke:"currentColor", sw:1.5})+t(450,178,"mais importante",{fs:9.5, fw:400})+t(470,224,"pormenores",{fs:9.5, fw:400, ta:"start"})),
+      passos:[
+        {t:"Uma <b>notícia</b> informa sobre um acontecimento recente e verdadeiro. Começa por um <b>título</b> curto e chamativo. (Esta notícia é inventada, para treinar.)", f:S => S.attr("#tit", "fill", "var(--wc)")},
+        {t:"O 1.º parágrafo é o <b>lead</b>: resume o essencial.", f:S => ["#l1","#l2","#l3"].forEach(x => S.attr(x, "fill", "#2E5DA8"))},
+        {t:"O lead responde a <b>quem?</b>, <b>o quê?</b>, <b>quando?</b> e <b>onde?</b>", f:S => S.mostrar("#perg")},
+        {t:"Depois vem o <b>corpo da notícia</b>, com os pormenores: como aconteceu, porquê, o que disseram as pessoas.", f:S => S.mostrar("#corpo")},
+        {t:"A informação vai do mais importante para o menos importante: é a <b>pirâmide invertida</b>.", f:S => S.mostrar("#piramide")}
+      ]});
+  })();
+
 })();
