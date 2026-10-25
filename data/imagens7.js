@@ -44,7 +44,7 @@ Object.assign(MISSAO_IMAGENS, {
       cred:"U.S. Geological Survey (USGS)", lic:"PD", src:COMMONS+"Tectonic_plates.png"},
     {f:"img/g5/meteorito-ferro.jpg", t:"Um meteorito de ferro (Canyon Diablo, Arizona)",
       d:"Este pedaço de metal caiu do espaço há cerca de 50 000 anos, quando um asteroide abriu a Cratera do Meteoro, nos EUA. É feito quase só de ferro e níquel, como o núcleo da Terra. Ninguém consegue ir ao núcleo; por isso, os meteoritos de ferro são uma das pistas que os cientistas usam para saber de que é feito.",
-      cred:"Smithsonian, National Museum of Natural History", lic:"CC0", src:"http://n2t.net/ark:/65665/339f2e9c7-1016-46b0-827c-095952a4888b", fonte:"Smithsonian Open Access"}
+      cred:"Smithsonian, National Museum of Natural History", lic:"CC0", src:"https://n2t.net/ark:/65665/339f2e9c7-1016-46b0-827c-095952a4888b", fonte:"Smithsonian Open Access"}
   ],
   g6: [
     {f:"img/g6/sarychev-iss.jpg", t:"Uma erupção vista do espaço: vulcão Sarychev",
