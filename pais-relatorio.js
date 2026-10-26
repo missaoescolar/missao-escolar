@@ -144,6 +144,7 @@ window.addEventListener("load", function(){
   APOIO.mat3 = APOIO.mat7 = APOIO.math;   // a Matemática do 3.º e do 7.º ano: o mesmo conselho
   APOIO.eng7 = APOIO.eng; APOIO.hist7 = APOIO.hgp;
   APOIO.esp7 = "Peça-lhe que lhe ensine 5 palavras ou uma frase em espanhol por semana, com a pronúncia, e que a use à mesa ou nas compras. Ver um desenho animado em espanhol com legendas em espanhol também ajuda.";
+  APOIO.tic7 = "Combinem juntos as regras da casa para o uso dos ecrãs e revejam as definições de privacidade das aplicações que usa. Peça-lhe que lhe ensine algo que aprendeu (um atalho, uma pesquisa com aspas, como editar uma imagem).";
   APOIO.geo7 = "Quando se falar de um lugar em casa ou nas notícias, procurem-no juntos num mapa (em papel ou digital) e peça-lhe que diga o continente, as coordenadas aproximadas e a distância a Portugal, usando a escala.";
   function painel(){
     const box = $("pais-painel"); if(!box) return;

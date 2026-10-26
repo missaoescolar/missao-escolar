@@ -26,6 +26,7 @@ const MISSAO_SUBJECTS_7 = [
   {key:"hist7", name:"História", ano:"7", icon:"🏛️", store:"hist7_missions", page:"7ano.html", worlds: typeof HIST7_WORLDS !== "undefined" ? HIST7_WORLDS : []},
   {key:"geo7", name:"Geografia", ano:"7", icon:"🗺️", store:"geo7_missions", page:"7ano.html", worlds: typeof GEO7_WORLDS !== "undefined" ? GEO7_WORLDS : []},
   {key:"esp7", name:"Espanhol", ano:"7", icon:"🗣️", store:"esp7_missions", page:"7ano.html", worlds: typeof ESP7_WORLDS !== "undefined" ? ESP7_WORLDS : []},
+  {key:"tic7", name:"TIC", ano:"7", icon:"💻", store:"tic7_missions", page:"7ano.html", worlds: typeof TIC7_WORLDS !== "undefined" ? TIC7_WORLDS : []},
   {key:"cn7", name:"Ciências Naturais", ano:"7", icon:"🔬", store:"cn7_missions", page:"7ano.html", worlds: typeof CN7_WORLDS !== "undefined" ? CN7_WORLDS : []},
   {key:"fq7", name:"Físico-Química", ano:"7", icon:"⚗️", store:"fq7_missions", page:"7ano.html", worlds: typeof FQ7_WORLDS !== "undefined" ? FQ7_WORLDS : []}
 ];
