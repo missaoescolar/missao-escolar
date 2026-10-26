@@ -4,15 +4,15 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>7.º Ano — Missão Escolar</title>
-<link rel="stylesheet" href="style.css?v=20261026-0721">
+<link rel="stylesheet" href="style.css?v=20261026-0729">
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="theme-color" content="#C7461F">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<script src="prefs.js?v=20261026-0721"></script>
-<script src="navegacao.js?v=20261026-0721"></script>
-<link rel="stylesheet" href="animacoes.css?v=20261026-0721">
+<script src="prefs.js?v=20261026-0729"></script>
+<script src="navegacao.js?v=20261026-0729"></script>
+<link rel="stylesheet" href="animacoes.css?v=20261026-0729">
 <script>var MISSAO_ANO = "7";</script>
 </head>
 <body>
@@ -44,10 +44,10 @@
     <button class="tab-btn" data-subject="mat7" type="button">🔢 Matemática</button>
     <button class="tab-btn" data-subject="eng7" type="button">🌐 Inglês</button>
     <button class="tab-btn" data-subject="hist7" type="button">🏛️ História</button>
+    <button class="tab-btn" data-subject="geo7" type="button">🗺️ Geografia</button>
     <button class="tab-btn" data-subject="cn7" type="button">🔬 Ciências Naturais</button>
     <button class="tab-btn" data-subject="fq7" type="button">⚗️ Físico-Química</button>
     <span class="tab-soon" title="Em preparação">📖 Português</span>
-    <span class="tab-soon" title="Em preparação">🗺️ Geografia</span>
   </div>
 
   <section id="subj-mat7" data-panel="mat7" hidden>
@@ -71,6 +71,13 @@
     </div>
     <main id="worlds-hist7"></main>
   </section>
+  <section id="subj-geo7" data-panel="geo7" hidden>
+    <div class="map-view" id="map-geo7">
+      <div class="map-head"><p class="sec-title">Geografia do 7.º ano — escolhe um mundo <small class="muted" id="map-count-geo7"></small></p><span class="xp-pill">⭐ <span class="n"><span id="xp-total-geo7">0</span> / <span id="xp-max-geo7">0</span> XP</span></span></div>
+      <nav class="map" id="jump-nav-geo7" aria-label="Mundos de Geografia do 7.º ano"></nav>
+    </div>
+    <main id="worlds-geo7"></main>
+  </section>
   <section id="subj-cn7" data-panel="cn7" hidden>
     <div class="map-view" id="map-cn7">
       <div class="map-head"><p class="sec-title">A Terra em transformação — escolhe um mundo <small class="muted" id="map-count-cn7"></small></p><span class="xp-pill">⭐ <span class="n"><span id="xp-total-cn7">0</span> / <span id="xp-max-cn7">0</span> XP</span></span></div>
@@ -88,27 +95,28 @@
   </section>
 </div>
 
-<script src="armazem.js?v=20261026-0721"></script>
-<script src="data/matematica7.js?v=20261026-0721"></script>
-<script src="data/ingles7.js?v=20261026-0721"></script>
-<script src="data/historia7.js?v=20261026-0721"></script>
-<script src="data/cn7.js?v=20261026-0721"></script>
-<script src="data/fq7.js?v=20261026-0721"></script>
-<script src="data/extra-cn7.js?v=20261026-0721"></script>
-<script src="data/imagens.js?v=20261026-0721"></script>
-<script src="data/imagens7.js?v=20261026-0721"></script>
-<script src="data/cer.js?v=20261026-0721"></script>
-<script src="data/recursos.js?v=20261026-0721"></script>
-<script src="data/sequencias.js?v=20261026-0721"></script>
-<script src="data/preve.js?v=20261026-0721"></script>
-<script src="shared.js?v=20261026-0721"></script>
-<script src="dificuldades.js?v=20261026-0721"></script>
-<script src="banco.js?v=20261026-0721"></script>
-<script src="animacoes.js?v=20261026-0721"></script>
-<script src="animacoes-geologia.js?v=20261026-0721"></script>
-<script src="animacoes-fq.js?v=20261026-0721"></script>
-<script src="licoes.js?v=20261026-0721"></script>
-<script src="data/licoes.js?v=20261026-0721"></script>
-<script src="app.js?v=20261026-0721"></script>
+<script src="armazem.js?v=20261026-0729"></script>
+<script src="data/matematica7.js?v=20261026-0729"></script>
+<script src="data/ingles7.js?v=20261026-0729"></script>
+<script src="data/historia7.js?v=20261026-0729"></script>
+<script src="data/geografia7.js?v=20261026-0729"></script>
+<script src="data/cn7.js?v=20261026-0729"></script>
+<script src="data/fq7.js?v=20261026-0729"></script>
+<script src="data/extra-cn7.js?v=20261026-0729"></script>
+<script src="data/imagens.js?v=20261026-0729"></script>
+<script src="data/imagens7.js?v=20261026-0729"></script>
+<script src="data/cer.js?v=20261026-0729"></script>
+<script src="data/recursos.js?v=20261026-0729"></script>
+<script src="data/sequencias.js?v=20261026-0729"></script>
+<script src="data/preve.js?v=20261026-0729"></script>
+<script src="shared.js?v=20261026-0729"></script>
+<script src="dificuldades.js?v=20261026-0729"></script>
+<script src="banco.js?v=20261026-0729"></script>
+<script src="animacoes.js?v=20261026-0729"></script>
+<script src="animacoes-geologia.js?v=20261026-0729"></script>
+<script src="animacoes-fq.js?v=20261026-0729"></script>
+<script src="licoes.js?v=20261026-0729"></script>
+<script src="data/licoes.js?v=20261026-0729"></script>
+<script src="app.js?v=20261026-0729"></script>
 
 </body></html>

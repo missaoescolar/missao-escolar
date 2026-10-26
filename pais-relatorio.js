@@ -143,6 +143,7 @@ window.addEventListener("load", function(){
   };
   APOIO.mat3 = APOIO.mat7 = APOIO.math;   // a Matemática do 3.º e do 7.º ano: o mesmo conselho
   APOIO.eng7 = APOIO.eng; APOIO.hist7 = APOIO.hgp;
+  APOIO.geo7 = "Quando se falar de um lugar em casa ou nas notícias, procurem-no juntos num mapa (em papel ou digital) e peça-lhe que diga o continente, as coordenadas aproximadas e a distância a Portugal, usando a escala.";
   function painel(){
     const box = $("pais-painel"); if(!box) return;
     const D = dados();
