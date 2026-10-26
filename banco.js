@@ -58,7 +58,7 @@ const MissaoBanco = (function(){
     r = r || Math.random;
     const base = {_id:item._id, _w:item._w, _s:item._s};
     if(!item._gen) return Object.assign({}, item);
-    const eng = item._s.key === "eng";
+    const eng = item._s.key === "eng" || item._s.key === "eng7";
     if(item._gen === "def" || item._gen === "termo"){
       const certo = {w:item._w, term:item.term, def:item.def};
       const porTermo = item._gen === "termo";

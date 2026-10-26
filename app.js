@@ -1087,7 +1087,7 @@
     if(im.act) return im.act;
     if(im.m) return ATIVIDADES.micro;
     if(wid === "c9") return ATIVIDADES.socorros;
-    const disc = {c:"ciencias", g:"ciencias", m:"historia", n:"matematica", t:"matematica", s:"matematica", p:"portugues", e:"ingles"}[String(wid).charAt(0)] || "ciencias";
+    const disc = {c:"ciencias", g:"ciencias", m:"historia", n:"matematica", t:"matematica", s:"matematica", i:"ingles", p:"portugues", e:"ingles"}[String(wid).charAt(0)] || "ciencias";
     if(im.il && disc === "ciencias") return ATIVIDADES.ilustracao;
     return ATIVIDADES[disc];
   }
@@ -1132,7 +1132,7 @@
                 "<b>Decidir:</b> escolhe e escreve do que abdicaste (o custo de oportunidade)."]);
     } else {
       const g = (w.gloss || [])[Math.floor(Math.random() * (w.gloss || []).length)];
-      const ing = key === "eng";
+      const ing = key === "eng" || key === "eng7";
       titulo = ing ? "🧠 Word map" : "🧠 Mapa da palavra"; origem = "o «modelo de Frayer», usado nas escolas dos EUA para aprender vocabulário";
       corpo = (g ? '<p><b>'+(ing ? "Word" : "Palavra")+':</b> «'+escXml(g[0])+'»</p>' : '')+
         '<p>Num quadrado dividido em quatro, com a palavra no meio, escreve:</p>'+
