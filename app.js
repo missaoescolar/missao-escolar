@@ -1087,7 +1087,7 @@
     if(im.act) return im.act;
     if(im.m) return ATIVIDADES.micro;
     if(wid === "c9") return ATIVIDADES.socorros;
-    const disc = {c:"ciencias", g:"ciencias", m:"historia", n:"matematica", t:"matematica", s:"matematica", i:"ingles", p:"portugues", e:"ingles"}[String(wid).charAt(0)] || "ciencias";
+    const disc = {c:"ciencias", g:"ciencias", m:"historia", n:"matematica", t:"matematica", s:"matematica", i:"ingles", h:"historia", p:"portugues", e:"ingles"}[String(wid).charAt(0)] || "ciencias";
     if(im.il && disc === "ciencias") return ATIVIDADES.ilustracao;
     return ATIVIDADES[disc];
   }
@@ -1115,7 +1115,7 @@
       if(m) corpo += '<details class="modelo"><summary>👀 Ver uma resposta-modelo <small>(só depois de escreveres a tua)</small></summary>'+
         '<p><b>Afirmação:</b> '+escXml(m.a)+'</p><p><b>Prova:</b> '+escXml(m.p)+'</p><p><b>Raciocínio:</b> '+escXml(m.r)+'</p>'+
         '<p class="modelo-nota">Compara com a tua: tens as três partes? A tua prova é uma observação ou uma experiência? O teu raciocínio usa uma regra da ciência?</p></details>';
-    } else if(key === "hgp"){
+    } else if(key === "hgp" || key === "hist7"){
       titulo = "🧠 Pensa como um historiador"; origem = "o método «Ler como um historiador» da Universidade de Stanford (EUA)";
       corpo = '<p><b>Fonte:</b> uma imagem do 📷 Ver de perto deste mundo, ou um documento do teu manual.</p>'+
         passos(["<b>Quem fez a fonte?</b> Quando, e para quê? Essa pessoa tinha interesse em contar a história de certa maneira?",

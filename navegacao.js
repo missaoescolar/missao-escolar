@@ -140,7 +140,7 @@
       const sp = a.querySelector("span");
       if(n && sp) a.innerHTML = icone(n)+sp.outerHTML;
     });
-    const DISC = {pt:"pt", math:"math", mat3:"math", mat7:"math", eng:"eng", eng7:"eng", hgp:"hgp", cn:"cn", cn7:"cn", fq7:"fq"};
+    const DISC = {pt:"pt", math:"math", mat3:"math", mat7:"math", eng:"eng", eng7:"eng", hist7:"hgp", hgp:"hgp", cn:"cn", cn7:"cn", fq7:"fq"};
     const NOME = {"Português":"pt", "Matemática":"math", "História":"hgp", "Geografia":"geo", "Inglês":"eng"};
     document.querySelectorAll("#subject-tabs .tab-btn, #subject-tabs .tab-soon").forEach(function(b){
       const txt = b.textContent.replace(/^[^A-Za-zÀ-ú]+/, "").trim();

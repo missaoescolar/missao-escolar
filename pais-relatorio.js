@@ -142,7 +142,7 @@ window.addEventListener("load", function(){
     fq7:"Peça-lhe que faça a previsão antes de verem a animação («o que achas que vai acontecer?») e que depois explique se acertou."
   };
   APOIO.mat3 = APOIO.mat7 = APOIO.math;   // a Matemática do 3.º e do 7.º ano: o mesmo conselho
-  APOIO.eng7 = APOIO.eng;
+  APOIO.eng7 = APOIO.eng; APOIO.hist7 = APOIO.hgp;
   function painel(){
     const box = $("pais-painel"); if(!box) return;
     const D = dados();
