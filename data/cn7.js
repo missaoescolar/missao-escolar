@@ -1,11 +1,11 @@
 /* Ciências Naturais — 7.º ano: «A Terra em transformação» (Aprendizagens Essenciais, DGE).
-   Mundos g1–g8. Páginas do manual por confirmar. Os factos foram verificados em fontes de referência
+   Mundos g1–g8. Páginas do caderno «100% CN» (Porto Editora), segundo o índice recebido em 2026-10-25; as do manual estão por confirmar. Os factos foram verificados em fontes de referência
    (LNEG, IPMA, Proteção Civil, USGS, Smithsonian, Encyclopaedia Britannica). */
   const CN7_WORLDS = [
   {
     id:"g1", num:1, c:"m1", icon:"💎",
     title:"Detetives da Paisagem: Minerais e Rochas",
-    subtitle:"Paisagens geológicas, minerais e as suas propriedades", pages:"manual a confirmar",
+    subtitle:"Paisagens geológicas, minerais e as suas propriedades", pages:"caderno «100% CN», tema 1 «Paisagens, rochas e minerais» (pp. 3–10)",
     lead:"Em Minecraft partes blocos de pedra, minério e cristais. Na Terra real, cada paisagem conta uma história — e essa história começa nos minerais, os «blocos» de que as rochas são feitas.",
     missions:[
       {t:"Paisagem à Porta da Escola", d:"Paisagens geológicas", f:"Fotografar a paisagem perto da escola e descobrir que rochas e que relevo dominam", xp:10},
@@ -49,12 +49,12 @@
       left:{title:"💎 Mineral", points:["Uma só substância, com composição definida","Ex.: quartzo, calcite, mica","É o «bloco» das rochas"]},
       right:{title:"🪨 Rocha", points:["Formada por um ou mais minerais","Ex.: granito (quartzo + feldspato + mica)","Forma as paisagens"]}
     },
-    boss:"Ficha de avaliação — por confirmar no manual"
+    boss:"Caderno «100% CN»: fichas n.º 1 e 2 (pp. 7–10); fichas de avaliação a partir da p. 99"
   },
   {
     id:"g2", num:2, c:"m2", icon:"🏜️",
     title:"O Escultor Invisível: Rochas Sedimentares",
-    subtitle:"Agentes geológicos, meteorização, erosão e rochas sedimentares", pages:"manual a confirmar",
+    subtitle:"Agentes geológicos, meteorização, erosão e rochas sedimentares", pages:"caderno «100% CN», tema 2 «Agentes de geodinâmica externa, modelação das paisagens e rochas sedimentares» (pp. 11–20)",
     lead:"A água, o vento, o gelo e os seres vivos são escultores muito lentos: desfazem montanhas grão a grão e, com esses grãos, constroem rochas novas.",
     missions:[
       {t:"Detetive da Erosão", d:"Agentes geológicos", f:"Fotografar 3 marcas de erosão perto de casa ou da escola (muros, ribeiras, praias)", xp:10},
@@ -98,12 +98,12 @@
       left:{title:"🧊 Meteorização física", points:["A rocha parte-se em pedaços","Não muda a sua composição","Ex.: gelo nas fendas, raízes"]},
       right:{title:"🧪 Meteorização química", points:["A composição da rocha muda","Os minerais dissolvem-se ou alteram-se","Ex.: água da chuva a dissolver o calcário"]}
     },
-    boss:"Ficha de avaliação — por confirmar no manual"
+    boss:"Caderno «100% CN»: fichas n.º 3 a 5 (pp. 15–20); fichas de avaliação a partir da p. 99"
   },
   {
     id:"g3", num:3, c:"m3", icon:"🦕",
     title:"Caçadores de Fósseis",
-    subtitle:"Fósseis e processos de fossilização", pages:"manual a confirmar",
+    subtitle:"Fósseis e processos de fossilização", pages:"caderno «100% CN», tema 11 «Testemunhos da história da Terra» (pp. 83–92)",
     lead:"Portugal é um dos melhores sítios da Europa para encontrar dinossauros — na Lourinhã encontraram-se até ovos com embriões. Os fósseis são as «capturas de ecrã» da vida de há milhões de anos.",
     missions:[
       {t:"Fóssil Caseiro", d:"Moldes", f:"Com um adulto, fazer um molde de uma concha em plasticina e enchê-lo com gesso", xp:15},
@@ -147,12 +147,12 @@
       left:{title:"⏳ Fóssil de idade", points:["Viveu pouco tempo","Espalhado por muitos locais","Serve para datar rochas","Ex.: trilobites, amonites"]},
       right:{title:"🏝️ Fóssil de fácies", points:["Viveu num ambiente muito próprio","Indica o ambiente do passado","Ex.: corais (mar quente e pouco profundo)"]}
     },
-    boss:"Ficha de avaliação — por confirmar no manual"
+    boss:"Caderno «100% CN»: fichas n.º 24 a 26 (pp. 87–92); fichas de avaliação a partir da p. 99"
   },
   {
     id:"g4", num:4, c:"m4", icon:"⏳",
     title:"Viagem no Tempo Profundo",
-    subtitle:"O tempo geológico e a história da Terra", pages:"manual a confirmar",
+    subtitle:"O tempo geológico e a história da Terra", pages:"caderno «100% CN», tema 11 «Testemunhos da história da Terra» (pp. 83–92)",
     lead:"A Terra tem cerca de 4600 milhões de anos. Se toda essa história coubesse num só dia, os humanos só apareceriam nos últimos segundos antes da meia-noite!",
     missions:[
       {t:"O Dia da Terra em 24 Horas", d:"Escala do tempo geológico", f:"Fazer um relógio de 24 horas com os grandes acontecimentos da história da Terra", xp:15},
@@ -196,12 +196,12 @@
       left:{title:"🧮 Datação relativa", points:["Mais antigo ou mais recente?","Usa os estratos e os fósseis","Ex.: princípio da sobreposição"]},
       right:{title:"⚛️ Datação absoluta", points:["Dá uma idade em anos","Mede elementos radioativos","Ex.: «esta rocha tem 300 M.a.»"]}
     },
-    boss:"Ficha de avaliação — por confirmar no manual"
+    boss:"Caderno «100% CN»: fichas n.º 24 a 26 (pp. 87–92); fichas de avaliação a partir da p. 99"
   },
   {
     id:"g5", num:5, c:"m5", icon:"🌍",
     title:"Por Dentro do Planeta",
-    subtitle:"Estrutura interna da Terra, deriva continental e tectónica de placas", pages:"manual a confirmar",
+    subtitle:"Estrutura interna da Terra, deriva continental e tectónica de placas", pages:"caderno «100% CN», temas 3 a 5 «Deriva continental», «Fundos oceânicos e tectónica de placas» e «Deformação das rochas» (pp. 21–40) e tema 10 «Estrutura interna da Terra» (pp. 77–82)",
     lead:"Ninguém escavou até ao centro da Terra — o furo mais fundo de sempre tem pouco mais de 12 km. Então como sabemos o que há lá dentro? Pelas ondas dos sismos, que mudam ao atravessar cada camada.",
     missions:[
       {t:"A Terra Fatiada", d:"Estrutura interna", f:"Fazer um modelo da Terra em plasticina com camadas de cores diferentes e cortá-lo ao meio", xp:15},
@@ -252,12 +252,12 @@
       left:{title:"🧩 Deriva continental (1912)", points:["Ideia de Wegener","Os continentes deslocam-se","Não explicava a «força» que os move"]},
       right:{title:"🌍 Tectónica de placas (anos 1960)", points:["Teoria aceite hoje","A litosfera está dividida em placas","Explica sismos, vulcões e montanhas"]}
     },
-    boss:"Ficha de avaliação — por confirmar no manual"
+    boss:"Caderno «100% CN»: fichas n.º 6 a 11 (pp. 23–40) e 22 e 23 (pp. 79–82); fichas de avaliação a partir da p. 99"
   },
   {
     id:"g6", num:6, c:"m6", icon:"🌋",
     title:"Montanhas de Fogo: Vulcões",
-    subtitle:"Atividade vulcânica, materiais, riscos e benefícios", pages:"manual a confirmar",
+    subtitle:"Atividade vulcânica, materiais, riscos e benefícios", pages:"caderno «100% CN», tema 6 «Atividade vulcânica» (pp. 41–50)",
     lead:"Em 1957, nos Açores, uma erupção no mar fez nascer terra nova junto à ilha do Faial: o vulcão dos Capelinhos. Os vulcões destroem — mas também constroem paisagens.",
     missions:[
       {t:"Vulcão de Laboratório", d:"Erupção (modelo)", f:"Com um adulto, fazer um vulcão com bicarbonato e vinagre e explicar o que representa cada parte", xp:10},
@@ -301,12 +301,12 @@
       left:{title:"🫗 Erupção efusiva", points:["Lava fluida","Poucos gases","A lava escorre","Ex.: Havai, Islândia"]},
       right:{title:"💥 Erupção explosiva", points:["Lava viscosa","Muitos gases","Explosões, cinzas e bombas","Ex.: Monte Santa Helena (EUA, 1980)"]}
     },
-    boss:"Ficha de avaliação — por confirmar no manual"
+    boss:"Caderno «100% CN»: fichas n.º 12 a 14 (pp. 45–50); fichas de avaliação a partir da p. 99"
   },
   {
     id:"g7", num:7, c:"m7", icon:"📈",
     title:"Quando a Terra Treme: Sismos",
-    subtitle:"Sismos, ondas sísmicas, escalas e proteção", pages:"manual a confirmar",
+    subtitle:"Sismos, ondas sísmicas, escalas e proteção", pages:"caderno «100% CN», tema 9 «Atividade sísmica» (pp. 69–76)",
     lead:"Todos os anos há centenas de milhares de sismos na Terra, mas a maioria é tão fraca que ninguém os sente. Em Portugal, o grande sismo de 1755 mudou para sempre a história de Lisboa.",
     missions:[
       {t:"Sismógrafo Caseiro", d:"Registo de sismos", f:"Com um adulto, construir um sismógrafo com uma caixa, uma caneta pendurada e uma tira de papel", xp:15},
@@ -350,12 +350,12 @@
       left:{title:"⚡ Magnitude (Richter)", points:["Mede a energia libertada","Um só valor para cada sismo","Calcula-se com sismógrafos"]},
       right:{title:"🏚️ Intensidade (Mercalli)", points:["Mede os efeitos num local","Varia de lugar para lugar","De I a XII, pela observação"]}
     },
-    boss:"Ficha de avaliação — por confirmar no manual"
+    boss:"Caderno «100% CN»: fichas n.º 20 e 21 (pp. 73–76); fichas de avaliação a partir da p. 99"
   },
   {
     id:"g8", num:8, c:"m8", icon:"♻️",
     title:"A Reciclagem das Rochas",
-    subtitle:"Rochas magmáticas e metamórficas, o ciclo das rochas e os recursos geológicos", pages:"manual a confirmar",
+    subtitle:"Rochas magmáticas e metamórficas, o ciclo das rochas e os recursos geológicos", pages:"caderno «100% CN», temas 7 e 8 «Rochas magmáticas e metamórficas» e «Formação, transformação e exploração das rochas» (pp. 51–68) e tema 12 «Geologia e sustentabilidade» (pp. 93–98)",
     lead:"As rochas também se reciclam — só que demora milhões de anos. O granito de uma calçada pode um dia virar areia, depois arenito… e, muito mais tarde, voltar a fundir.",
     missions:[
       {t:"Granito vs. Basalto", d:"Rochas magmáticas", f:"Comparar uma rocha plutónica e uma vulcânica: tamanho dos cristais e cor", xp:10},
@@ -399,6 +399,6 @@
       left:{title:"🔥 Rocha magmática", points:["Nasce do magma que solidifica","Plutónica (granito) ou vulcânica (basalto)","Cristais grandes ou pequenos"]},
       right:{title:"🔁 Rocha metamórfica", points:["Nasce de outra rocha transformada","Pressão e temperatura, sem fundir","Ex.: mármore, xisto, ardósia"]}
     },
-    boss:"Ficha de avaliação — por confirmar no manual"
+    boss:"Caderno «100% CN»: fichas n.º 15 a 19 (pp. 55–68) e 27 e 28 (pp. 95–98); fichas de avaliação a partir da p. 99"
   }
   ];

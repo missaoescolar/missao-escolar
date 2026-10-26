@@ -1,12 +1,12 @@
 /* Físico-Química — 7.º ano (Aprendizagens Essenciais de 2018: Espaço, Materiais, Energia).
-   Mesma estrutura dos outros mundos. Páginas do manual a confirmar com o índice do manual da escola. */
+   Mesma estrutura dos outros mundos. Páginas do manual «FQ 7» (ASA) e do caderno de atividades, segundo os índices recebidos em 2026-10-25. */
 const L7 = (e, b, t) => '<li><span aria-hidden="true">'+e+'</span><span><b>'+b+'</b> '+t+'</span></li>';
 const EX7 = (titulo, itens) => ({title:titulo, svg:'<ul class="wheel-legend">'+itens.map(i => L7(i[0], i[1], i[2])).join("")+'</ul>'});
 const FQ7_WORLDS = [
   {
     id:"q1", num:1, c:"m3", icon:"🌌",
     title:"Viagem pelo Universo",
-    subtitle:"Universo, galáxias e distâncias no Universo", pages:"manual a confirmar",
+    subtitle:"Universo, galáxias e distâncias no Universo", pages:"FQ 7 (ASA), I Espaço, 1 «Universo e distâncias no Universo» (pp. 8–37); caderno de atividades, fichas 1 a 3 (pp. 5–14)",
     lead:"Onde estamos no Universo? Neste mundo vais conhecer os corpos celestes, as galáxias e o Big Bang, e perceber porque é que, no espaço, as distâncias se medem em unidades astronómicas e anos-luz.",
     missions:[
       {t:"O Meu Endereço Cósmico", d:"Organização do Universo", f:"Escreve a tua «morada» completa no Universo, do mais pequeno para o maior: a tua rua, a localidade, Portugal, a Terra, o Sistema Solar, a Via Láctea, o Grupo Local, o Universo.\nDesenha-a como bonecas russas, umas dentro das outras.\nVerifica: cada estrutura cabe dentro da seguinte (o Sistema Solar está dentro da Via Láctea, e não ao contrário).", xp:10},
@@ -68,12 +68,12 @@ const FQ7_WORLDS = [
       right:{title:"✨ Ano-luz (a.l.)", points:["Distância percorrida pela luz num ano","≈ 9,5 biliões de km","Para estrelas e galáxias"]}
     },
     resources:[{icon:"🔭", title:"Stellarium Web", desc:"Planetário no browser: vê o céu desta noite a partir de onde estás. Grátis, sem conta.", site:"stellarium-web.org", url:"https://stellarium-web.org/"}],
-    boss:"Ficha de avaliação — página a confirmar no manual"
+    boss:"FQ 7: «Avaliação global» (p. 37); caderno de atividades: Teste 1 (p. 109)"
   },
   {
     id:"q2", num:2, c:"m1", icon:"🪐",
     title:"Os Vizinhos do Sol",
-    subtitle:"O Sistema Solar e os planetas", pages:"manual a confirmar",
+    subtitle:"O Sistema Solar e os planetas", pages:"FQ 7 (ASA), I Espaço, 2 «Sistema Solar» (pp. 40–61); caderno de atividades, ficha 4 (p. 15)",
     lead:"Oito planetas, muitas luas, asteroides e cometas giram à volta do Sol. Neste mundo comparas os planetas, descobres porque é que os mais afastados demoram mais a dar a volta ao Sol e o que faz da Terra um planeta com vida.",
     missions:[
       {t:"Sistema Solar no Corredor", d:"Modelo à escala", f:"Faz um modelo de distâncias à escala 1 ua = 1 m. Põe o Sol num extremo e marca os planetas: Mercúrio 0,4 m, Vénus 0,7 m, Terra 1 m, Marte 1,5 m, Júpiter 5,2 m, Saturno 9,5 m, Urano 19,2 m, Neptuno 30 m (talvez precises da rua!).\nVerifica: escreve uma vantagem e uma limitação deste modelo (por exemplo, os tamanhos dos planetas não estão à mesma escala).", xp:15},
@@ -127,12 +127,12 @@ const FQ7_WORLDS = [
       right:{title:"☁️ Planetas gasosos", points:["Júpiter, Saturno, Urano, Neptuno","Enormes, sobretudo gases","Muitas luas e anéis"]}
     },
     resources:[{icon:"🛰️", title:"NASA Space Place", desc:"Explicações e jogos sobre os planetas, para jovens. Em inglês.", site:"spaceplace.nasa.gov", url:"https://spaceplace.nasa.gov/"}],
-    boss:"Ficha de avaliação — página a confirmar no manual"
+    boss:"FQ 7: «Avaliação global» (p. 61); caderno de atividades: Teste 1 (p. 109)"
   },
   {
     id:"q3", num:3, c:"m2", icon:"🌗",
     title:"Terra, Lua e Gravidade",
-    subtitle:"Dia e noite, estações, fases da Lua, eclipses, peso e massa", pages:"manual a confirmar",
+    subtitle:"Dia e noite, estações, fases da Lua, eclipses, peso e massa", pages:"FQ 7 (ASA), I Espaço, 3 «A Terra, a Lua e as forças gravíticas» (pp. 62–100); caderno de atividades, fichas 5 a 8 (pp. 19–28)",
     lead:"Porque há dia e noite, verão e inverno, lua cheia e eclipses? Tudo resulta dos movimentos da Terra e da Lua. Neste mundo percebes também a força que nos prende ao chão e a diferença entre peso e massa.",
     missions:[
       {t:"O Relógio de Sol", d:"Comprimento da sombra ao longo do dia", f:"Num dia de sol, espeta um pau na vertical num sítio plano. De hora a hora (das 9h às 17h), mede o comprimento da sombra e marca a ponta com uma pedra.\nFaz um gráfico do comprimento da sombra em função da hora.\nVerifica: a sombra é mais curta por volta do meio-dia solar (em Portugal continental, perto das 13h30 no horário de verão e das 12h30 no de inverno) e muda de direção ao longo do dia.", xp:15},
@@ -194,12 +194,12 @@ const FQ7_WORLDS = [
       right:{title:"⬇️ Peso", points:["Força gravítica no corpo","Newton (N), com dinamómetro","Depende do lugar: P = m × g"]}
     },
     resources:[],
-    boss:"Ficha de avaliação — página a confirmar no manual"
+    boss:"FQ 7: «Avaliação global» (p. 100); caderno de atividades: Ficha global Espaço (p. 29) e Teste 2 (p. 113)"
   },
   {
     id:"q4", num:4, c:"m4", icon:"🧪",
     title:"Misturas e Soluções",
-    subtitle:"Materiais, substâncias e misturas, soluções e concentração", pages:"manual a confirmar",
+    subtitle:"Materiais, substâncias e misturas, soluções e concentração", pages:"FQ 7 (ASA), II Materiais, 1 «Constituição do mundo material» e 2 «Substâncias e misturas» (pp. 106–145); caderno de atividades, fichas 9 a 12 (pp. 45–52)",
     lead:"Quase tudo à nossa volta é uma mistura: o ar, a água da torneira, o leite, o sumo. Neste mundo aprendes a classificar materiais, a preparar soluções e a calcular a sua concentração em massa.",
     missions:[
       {t:"Detetive de Rótulos", d:"A maior parte dos materiais são misturas", f:"Lê os rótulos de 5 produtos da cozinha (água engarrafada, leite, refrigerante, sal, açúcar).\nPara cada um, escreve se é substância ou mistura e porquê.\nVerifica: se o rótulo tem vários componentes, é uma mistura (a água engarrafada tem sais minerais!). O sal e o açúcar puros são substâncias.", xp:10},
@@ -262,12 +262,12 @@ const FQ7_WORLDS = [
       right:{title:"🪨 Mistura heterogénea", points:["Distinguem-se componentes","Ex.: água com areia, granito","Separam-se por decantação, filtração…"]}
     },
     resources:[],
-    boss:"Ficha de avaliação — página a confirmar no manual"
+    boss:"FQ 7: «Avaliação global» (pp. 117 e 145); caderno de atividades: Teste 3 (p. 117)"
   },
   {
     id:"q5", num:5, c:"m6", icon:"🔥",
     title:"Muda Tudo! Transformações",
-    subtitle:"Transformações físicas e químicas, mudanças de estado e reações", pages:"manual a confirmar",
+    subtitle:"Transformações físicas e químicas, mudanças de estado e reações", pages:"FQ 7 (ASA), II Materiais, 3 «Transformações físicas e químicas» (pp. 146–174); caderno de atividades, fichas 13 a 15 (pp. 53–58)",
     lead:"O gelo derrete, o ferro enferruja, o bolo coze. Umas transformações não criam substâncias novas, outras sim. Neste mundo aprendes a distingui-las, a explicar o ciclo da água e a escrever reações químicas por palavras.",
     missions:[
       {t:"Cozinha-Laboratório", d:"Física ou química?", f:"Observa na cozinha: derreter manteiga, cozer um ovo, dissolver sal, torrar pão, ferver água, o leite azedar.\nClassifica cada uma como transformação física ou química.\nVerifica: aparecem substâncias novas (cor, cheiro, gás, não se volta atrás facilmente)? Então é química.", xp:10},
@@ -329,12 +329,12 @@ const FQ7_WORLDS = [
       right:{title:"⚗️ Transformação química", points:["Formam-se substâncias novas","Ex.: arder, enferrujar, cozinhar","Reagentes → produtos"]}
     },
     resources:[],
-    boss:"Ficha de avaliação — página a confirmar no manual"
+    boss:"FQ 7: «Avaliação global» (p. 174)"
   },
   {
     id:"q6", num:6, c:"m7", icon:"🌡️",
     title:"A Impressão Digital dos Materiais",
-    subtitle:"Pontos de fusão e ebulição, massa volúmica e testes químicos", pages:"manual a confirmar",
+    subtitle:"Pontos de fusão e ebulição, massa volúmica e testes químicos", pages:"FQ 7 (ASA), II Materiais, 4 «Propriedades físicas e químicas dos materiais» (pp. 176–200); caderno de atividades, fichas 16 a 18 (pp. 59–64)",
     lead:"Cada substância tem uma «impressão digital»: o ponto de fusão, o ponto de ebulição e a massa volúmica. Neste mundo aprendes a ler gráficos temperatura-tempo, a calcular a massa volúmica e a fazer testes químicos simples.",
     missions:[
       {t:"Gelo ao Lume", d:"Gráfico temperatura-tempo", f:"Com um adulto, aquece gelo num tacho com um termómetro de cozinha. Regista a temperatura de minuto a minuto até a água ferver.\nFaz o gráfico temperatura (°C) em função do tempo (min).\nVerifica: há dois patamares: perto de 0 °C (fusão) e perto de 100 °C (ebulição). Durante os patamares a temperatura não sobe.", xp:15},
@@ -405,12 +405,12 @@ const FQ7_WORLDS = [
       right:{title:"🧱 Massa volúmica", points:["ρ = m ÷ V","Ex.: água 1,0 g/cm³","Diz se flutua ou afunda"]}
     },
     resources:[],
-    boss:"Ficha de avaliação — página a confirmar no manual"
+    boss:"FQ 7: «Avaliação global» (p. 200); caderno de atividades: Teste 4 (p. 121)"
   },
   {
     id:"q7", num:7, c:"m8", icon:"🔬",
     title:"Separar para Conhecer",
-    subtitle:"Técnicas de separação de misturas e tratamento de água", pages:"manual a confirmar",
+    subtitle:"Técnicas de separação de misturas e tratamento de água", pages:"FQ 7 (ASA), II Materiais, 5 «Separação das substâncias de uma mistura» (pp. 200–217); caderno de atividades, fichas 19 e 20 (pp. 65–68)",
     lead:"Como se tira o sal da água do mar ou a areia da água? Neste mundo aprendes as técnicas para separar os componentes das misturas e como se trata a água que bebemos.",
     missions:[
       {t:"Areia, Sal e Água", d:"Separar uma mistura em três passos", f:"Mistura areia e sal num copo e junta água. Mexe. Filtra com um filtro de café. Deixa o líquido filtrado num prato ao sol.\nVerifica: a areia fica no filtro (filtração); depois de dias, aparecem cristais de sal no prato (evaporação/cristalização).", xp:15},
@@ -463,12 +463,12 @@ const FQ7_WORLDS = [
       right:{title:"💧 Separar homogéneas", points:["Evaporação/cristalização","Destilação simples","Cromatografia"]}
     },
     resources:[],
-    boss:"Ficha de avaliação — página a confirmar no manual"
+    boss:"FQ 7: «Avaliação global» (p. 217); caderno de atividades: Ficha global Misturas (p. 69)"
   },
   {
     id:"q8", num:8, c:"m5", icon:"⚡",
     title:"Energia em Movimento",
-    subtitle:"Fontes e recetores, transferências de energia, calor e temperatura", pages:"manual a confirmar",
+    subtitle:"Fontes e recetores, transferências de energia, calor e temperatura", pages:"FQ 7 (ASA), III Energia, 1 «Fontes de energia e transferências de energia» (pp. 220–245); caderno de atividades, fichas 21 a 23",
     lead:"A energia está em tudo o que acontece: o Sol aquece-te, a comida dá-te força, a tomada liga o computador. Neste mundo descobres de onde vem a energia, como passa de um sistema para outro e a diferença entre calor e temperatura.",
     missions:[
       {t:"Caça às Transferências", d:"Fonte e recetor", f:"Em casa, encontra 5 situações em que há transferência de energia (fogão e tacho, Sol e roupa no estendal, pilha e lanterna…).\nPara cada uma, indica a fonte, o recetor e o sentido da transferência (com uma seta).\nVerifica: a energia vai sempre da fonte para o recetor, e não «desaparece».", xp:10},
@@ -529,6 +529,6 @@ const FQ7_WORLDS = [
       right:{title:"🔥 Calor", points:["Energia transferida","Do mais quente para o mais frio","Só existe enquanto há diferença de temperatura"]}
     },
     resources:[],
-    boss:"Ficha de avaliação — página a confirmar no manual"
+    boss:"FQ 7: «Avaliação global» (p. 245); caderno de atividades: Ficha global Energia (p. 103) e Teste 5 (p. 125)"
   }
 ];
