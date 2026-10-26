@@ -11,7 +11,7 @@
   const YEARS = [
     {y:"3", ciclo:"1.º ciclo", ready:true, list:MISSAO_SUBJECTS_3, soon:P1.filter(s => s[0] !== "Matemática")}, {y:"4", ciclo:"1.º ciclo", soon:P1},
     {y:"5", ciclo:"2.º ciclo", soon:P2}, {y:"6", ciclo:"2.º ciclo", ready:true, list:MISSAO_SUBJECTS_6},
-    {y:"7", ciclo:"3.º ciclo", ready:true, list:MISSAO_SUBJECTS_7, soon:P3.filter(s => ["Matemática","Inglês","História","Geografia","Ciências Naturais","Físico-Química"].indexOf(s[0]) === -1)},
+    {y:"7", ciclo:"3.º ciclo", ready:true, list:MISSAO_SUBJECTS_7, soon:P3.filter(s => ["Matemática","Inglês","Francês ou Espanhol","História","Geografia","Ciências Naturais","Físico-Química"].indexOf(s[0]) === -1)},
     {y:"8", ciclo:"3.º ciclo", soon:P3}, {y:"9", ciclo:"3.º ciclo", soon:P3}
   ];
   const READY = YEARS.filter(Y => Y.ready);
